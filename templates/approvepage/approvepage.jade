@@ -1,0 +1,99 @@
+{% extends "base.jade" %}
+{% block title %}创作者认证信息{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block content %}
+div(style="font-size:15px;width:984px")
+    创作者认证信息：
+    font(size="2px") （我们将对您的信息进行保护，请放心填写）
+div#div_span9(style="font-size:15px")
+    form(action !="{%url django.contrib.auth.views.login%}",method="post") {% csrf_token %}
+        fieldset.control-group.success
+            {% block content_works %}{% endblock %}
+
+            div
+                div.controls(style="margin-left:105px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px") 创作者真实姓名
+                        input.success(type="text",style="margin-left:35px")
+            div
+                div.controls(style="margin-left:165px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px") 手机号
+                        input.success(type="text",style="margin-left:35px")
+            div
+                div.controls(style="margin-left:150px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px") 通讯地址
+                        select(style="margin-left:35px;width:130px;height:30px;background:#f7f7f7")
+                            option 省/直辖市/自治区
+                            option 1
+                        select(style="width:100px;height:30px;background:#f7f7f7")
+                            option 市/区
+                            option 1
+            div
+                div.controls(style="margin-left:235px")
+                    p
+                        label.control-label
+                            textarea(name="message", style="width:420px;height:75px;margin-left:30px;background:#f7f7f7")
+            div
+                div.controls(style="margin-left:150px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px;")作品示例
+                        button.btn(style="width:150px;margin-left:35px;background:#f7f7f7") 上传本人相关作品
+                    label.control-label(style="margin-left:115px")
+                        font(style="font-size:13px;color:#ababab")·最少上传2张
+                        br
+                        font(style="font-size:13px;color:#ababab")·根据自己从事行业，上传相关作品、活动照片等图片，并标注。
+                    label.control-label(style="margin-left:120px;margin-top:15px")
+                        img(src="/statics/img/approve_upload.gif")
+                        img(src="/statics/img/approve_upload.gif",style="margin-left:20px")
+                    label.control-label(style="margin-left:115px")
+                        a(href="#",style="margin-left:45px")删除
+                        a(href="#",style="margin-left:105px")删除
+            div
+                div.controls(style="margin-left:105px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px") 请选择证件类型
+                        select(style="margin-left:35px;width:130px;height:30px;background:#f7f7f7")
+                            option 身份证
+                            option 护照
+                    label.control-label(style="margin-left:160px")
+                        font(style="font-size:13px;color:#ababab")·证件必须是清晰彩色原件电子版，可以扫描或数码拍摄照片。
+                        br
+                        font(style="font-size:13px;color:#ababab")·仅支持 jpg、jpeg、bmp格式。
+                        br
+                        font(style="font-size:13px;color:#ababab")·特别声明：您的身份证信息仅用于对您的身份审核，罐头工厂会保护您的个人隐私。
+                    label.control-label(style="margin-left:160px;margin-top:15px")
+                        img(src="/statics/img/approve_upload.gif")
+                        img(src="/statics/img/approve_upload.gif",style="margin-left:20px")
+                    label.control-label(style="margin-left:115px")
+                        a(href="#",style="margin-left:85px")删除
+                        a(href="#",style="margin-left:105px")删除
+            div
+                div.controls(style="margin-left:105px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px") 请填写证件号码
+                        input.success(type="text",style="margin-left:35px")
+            div
+                div.controls(style="margin-left:90px")
+                    label.control-label
+                        font(style="font-size:15px",color="red") &lowast;&nbsp;
+                        font(style="font-size:15px") 再次确认证件号码
+                        input.success(type="text",style="margin-left:35px")
+            div
+                div.controls(style="margin-left:105px")
+                    label.control-label
+                        font(style="font-size:15px") &nbsp;参赛以及获奖经历
+                        textarea(name="message", style="width:470px;height:175px;margin-left:35px;background:#f7f7f7")
+            div
+                div.controls(style="margin-left:165px")
+                    button.btn.btn-success(type="submit",style="background:#ff8400;margin-left:100px",href !="#")
+                        strong &nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;
+{% endblock %}

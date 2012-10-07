@@ -1,0 +1,77 @@
+{% extends "base.jade" %}
+{% block title %}确认订单页{% endblock %}
+{% block content %}
+div.sbt-ift
+    div.sbt-ift1
+        h3 订单提交成功
+    div#order_ok
+        div.order_ok_works
+            s.icon-suc
+            div.order_ok_tip
+                h3.h3green 订单已提交，请尽快付款！
+                div.order_ok_tipl
+                    table(width="100%" ,border="0", cellspacing="0", cellpadding="0")
+                        tr
+                            td.order_ok_tiptd1.order_ok_tiptd2 订单号
+                            td.order_ok_tiptd1.order_ok_tiptd2 金额
+                            td.order_ok_tiptd1.order_ok_tiptd2 支付方式
+                            td.order_ok_tiptd1.order_ok_tiptd2 配送方式
+                        tr
+                            td.order_ok_tiptd1 2536152465
+                            td.order_ok_tiptd1
+                                b
+                                    i.ibg3
+                                    em 1200 .00
+                            td.order_ok_tiptd1 在线支付
+                            td.order_ok_tiptd1 顺丰快递
+    div#order_ok
+        p.ok_helpright
+            span 请您在2小时内完成支付，否则订单会被自动取消。
+            a 使用帮助
+        div.order_ok_payment
+            div.mc
+                ul.tab
+                    li.okh1
+                        a.okh1_a(href="#") 储蓄卡
+                    li
+                        a(href="#") 信用卡
+                    li
+                        a(href="#") 信用卡
+            div.mt
+                div.mt_tit
+                    p.mt_tit_p1
+                        span 请选择在下支付的方式:
+                    p.mt_tit_p2
+                        strong 网银支付
+                        span 需要开通网银
+                ul.mt_con
+                    li
+                        input(name="", type="radio", value="")
+                        a.mt_con_btn1
+                    li.mt_con_limargin1
+                        input(name="", type="radio" ,value="")
+                        a.mt_con_btn2
+                    li.mt_con_limargin1
+                        input(name="", type="radio" ,value="")
+                        a.mt_con_btn3
+                    li
+                        input(name="", type="radio", value="")
+                        a.mt_con_btn4
+                    li.mt_con_limargin1
+                        input(name="", type="radio" ,value="")
+                        a.mt_con_btn5
+                    li.mt_con_limargin1
+                        input(name="", type="radio" ,value="")
+                        a.mt_con_btn6
+                    li
+                        input(name="", type="radio", value="")
+                        a.mt_con_btn7
+                    li.mt_con_limargin1
+                        input(name="", type="radio" ,value="")
+                        a.mt_con_btn8
+                    li.mt_con_limargin1
+                        input(name="", type="radio" ,value="")
+                        a.mt_con_btn9
+                div.mt_div_btn
+                    a.mt_btn 确认支付方式
+{% endblock %}

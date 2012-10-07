@@ -1,0 +1,72 @@
+{% extends "base.jade" %}
+{% block title %}确认订单页{% endblock %}
+{% block content %}
+div.sbt-ift
+    div.sbt-ift1
+        h3 填写订单信息
+    div.sbt-ift2
+        div.sbt-ift21
+            h4 填写收货地址:
+        div.sbt-ift22
+            ul
+                li.t-red
+                    span.tip 寄送至
+                    label.label1 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
+                    em.em1     1854545454
+    div.sbt-ift2
+        div.sbt-ift21
+            h4 支付和配送方式:
+        div.sbt-ift22
+            b.b1 支付方式：
+            ul
+                li
+                    label.label1 在线支付
+                    em.em1 即时到帐，支持绝大数银行借记卡及部分银行信用卡
+                    a.a1 查看银行及限额
+            b.b1 配送方式:
+            ul
+                li.dt_ddlogistics
+                    label.label1 顺丰快递
+                    span
+                        div.tb-postAgeCont 至   北京
+                    span
+                        快递费用：
+                        b 3
+                        em 元(人民币)/千克
+    div.sbt-ift2
+        div.sbt-ift21
+            div.订单信息
+        div.sbt-ift23
+            ul.ul1
+                li.li1
+                li.li2 作品名
+                li.li3 类别
+                li.li4 框架
+                li.li5 数量
+                li.li6 单价
+                li.li7 小计
+            ul.ul2
+                li.li1.hg
+                    img(src="/statics/IMG/cp1.jpg", width="107", height="85")
+                li.li2.hg
+                    div 云贵水田油墨风景
+                li.li3.hg
+                    div 摄影
+                li.li4.hg
+                    div 黑色框架
+                li.li5.hg
+                    div 2
+                li.li6.hg
+                    div 600
+                li.li7.hg
+                    div
+                        strong.strong ￥1200.00
+        div.order-go
+            p.p1
+                总计（含运费）:
+                strong ￥1250.00
+            p
+                a.a3
+                input.dpl-button(type="submit", value="")
+
+{% endblock %}

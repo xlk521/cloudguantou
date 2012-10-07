@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="wrap">
+        <div id="content">
+            <div id="content_div_span4">
+                <div id="content_div_margin">
+                    <div class="rightside_text">
+                        <b>使用关联帐号登录</b>
+                    </div>
+                    <div class="rightside_ico">
+                        <a href="#"><img id="sina_auth" src="/statics/img/ico2.gif" alt="6Cans_新浪"/></a>
+                        <a href="#"><img id="douban_auth" src="/statics/img/ico3.gif" alt="6Cans_豆瓣"/></a>
+                        <a href="#"><img id="renren_auth" src="/statics/img/ico4.gif" alt="6Cans_人人"/></a>
+                        <a href="#"><img id="qq_auth" src="/statics/img/ico5.gif" alt="6Cans_QQ"/></a>
+                    </div>
+                </div>
+            </div>
+            {% block index %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

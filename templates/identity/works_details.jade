@@ -1,0 +1,29 @@
+{% extends "identity/personal_works_details_base.jade" %}
+{% block title %}作品简介{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block content_works %}
+div
+    div.controls
+        label.control-label(style="margin-left:-20px")
+            font(size="4px",color="red") &lowast;&nbsp;
+            font(size="4px")品牌昵称
+            input.success#div_span9_input(type="text")
+div
+    div.controls
+        label.control-label(style="margin-left:-20px")
+            font(size="4px",color="red") &lowast;&nbsp;
+            font(size="4px") 品牌介绍
+            textarea(name="message", style="width:470px;height:175px;margin-left:35px;background:#f7f7f7;border-width:3px")
+div
+    div.controls
+        label.control-label(style="margin-left:-20px")
+            font(size="4px",color="red") &lowast;&nbsp;
+            font(size="4px") 品牌类别
+            input(type="checkbox",style="margin-left:30px")
+            font(size="4px",style="margin-left:10px") 摄影
+            input(type="checkbox",style="margin-left:30px")
+            font(size="4px",style="margin-left:10px") 插画
+            input(type="checkbox",style="margin-left:30px")
+            font(size="4px",style="margin-left:10px") 绘画
+{% endblock %}

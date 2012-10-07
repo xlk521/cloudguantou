@@ -1,0 +1,78 @@
+{% extends "base.jade" %}
+{% block title %}主页{% endblock %}
+{% block headright %}
+a#font_color_white(href !="{%url registration_register%}")加入我们？注册
+{% endblock %}
+{% block content %}
+div#wrap
+    div#homepage_content
+        div#myCarousel.carousel
+            div.carousel-inner
+                div.active.item
+                    a(href="#")
+                        img(style="margin:auto",src="/statics/img/homepage_run1.gif")
+                div.item
+                    a(href="#")
+                        img(style="margin:auto",src="/statics/img/homepage_run2.gif")
+                div.item
+                    a(href="#")
+                        img(style="margin:auto",src="/statics/img/homepage_run3.gif")
+            a.carousel-control(href="#myCarousel",data-slide="prev",style="margin:auto")&lsaquo;
+            a.carousel-control.right(href="#myCarousel",data-slide="next",style="margin:auto")&rsaquo;
+        div#homepage_refresh
+            img(src="/statics/img/refresh.gif")
+            a(href="#")作品已更新，请点击刷新
+        form
+            fieldset.control-group#movieList
+                div#container.transitions-enabled.infinite-scroll.clearfix.masonry
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                    div.box.masonry-brick
+                        p
+                            a(href="#",title="homepage")
+                                img(src="/statics/img/homepage_product.GIF",alt="homepage_product.GIF")
+                nav#page-nav
+                    a(href="2.html")
+{% endblock %}

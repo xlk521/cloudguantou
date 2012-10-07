@@ -1,0 +1,130 @@
+{% extends "base.jade" %}
+{% block title %}物品详情页{% endblock %}
+{% block content %}
+div#detail_content_div
+    div#detail_content_left
+        div#detail_content_left_top
+            ul.ulmarginw25
+                li.h30
+                    h3 青藏高原
+                li.h24
+                    span 类别：
+                    em 摄影
+                    span 品牌：
+                    em 金色闪光
+                    span 作者
+                    em 姚远
+            hr.bottom_line
+            ul.ulmarginw25
+                li.h410
+                    img(src="/statics/img/cp.jpg",width="510",height="410")
+                li.hauto1
+                    p 所有复制品均有6cans统一扫描、制定、装订。所有纸张均为康颂纸，画框均为____材质，6cans为您保证质量。
+        div#detail_content_left_bottom
+            div.dclb
+                span
+                    系列《
+                    strong 走进西藏的春与秋
+                    》中的其它作品
+                div.detail_left_content_w510
+                    a.detail_slide_right(target="_self")
+                    a.detail_slide_left(target="_self")
+                    div.detail_left_content_w470
+                        a
+                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
+                        a
+                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
+                        a
+                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
+                        a
+                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
+    div#detail_content_right
+        div#detail_content_right_top
+            ul.ulmarginw25
+                li.h30
+                    h3 数码微喷
+                li.h24
+                    span 数码摄影、数码插画为复制品
+            hr.bottom_line
+            dl.ulmarginw25
+                dt.lifontsize 请选择尺寸：
+                dd.lifontsize_dd
+                    input(name="",type="radio",value="")
+                    em 20  X  30CM
+                    strong
+                        i.ibg1
+                        em 100 .00
+                dd.lifontsize_dd
+                    input(name="",type="radio",value="")
+                    em 20  X  30CM
+                    strong
+                        i.ibg1
+                        em 100 .00
+                dd.lifontsize_dd
+                    input(name="",type="radio",value="")
+                    em 20  X  30CM
+                    strong
+                        i.ibg1
+                        em 100 .00
+                dd.lifontsize_dd
+                    input(name="",type="radio",value="")
+                    em 20  X  30CM
+                    strong
+                        i.ibg1
+                        em 100 .00
+                dd.lifontsize_dd
+                    input(name="",type="radio",value="")
+                    em 20  X  30CM
+                    strong
+                        i.ibg1
+                        em 100 .00
+            hr.bottom_line
+            dl.ulmarginw25
+                dt.lifontsize 请选择画框
+                dd.ddh112
+                    li.liw20
+                        input(type="radio", name="subProduct")
+                    li
+                        img(src="/statics/IMG/GT_detail_none20120913.jpg", alt="", width="83", height="82")
+                        p +0RMB
+                    li.liw20
+                        input(type="radio",name="subProduct")
+                    li
+                        img(src="/statics/IMG/GT_detail_black20120913.jpg", alt="", width="83", height="82")
+                        p +100RMB
+                    li.liw20
+                        input(type="radio",name="subProduct")
+                    li
+                        img(src="/statics/IMG/GT_detail_white20120913.jpg", alt="", width="83", height="82")
+                        p +100RMB
+            hr.bottom_line
+            dl.ulmarginw25
+                dt.ifontsize 请填写购买的数量:
+                dd.ddnumber
+                    a.ddnumbera1
+                    input.ddinputw60h21( name="", type="text", value="1", maxlength="5")
+                    a.ddnumbera2
+                    span 件,(仅 5 件)
+            hr.bottom_line
+            dl.ulmarginw25
+                dt.lifontsize 物流快递:(顺丰快递)
+                dd.dt_ddlogistics
+                    span
+                        div.tb-postAgeCont 至   北京
+                    span
+                        快递费用：
+                        b 3
+                        em 元(人民币)/千克
+        div#detail_content_right_bottom
+            div.de_right_btleft
+                p
+                    重量：
+                    b 5
+                    em kg
+                p
+                    总价：
+                    b 1233 .00
+                    em RMB
+            div.de_right_btright
+                a.btright_btn 加入购物车
+{% endblock %}

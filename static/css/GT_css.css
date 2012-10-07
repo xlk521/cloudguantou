@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*全局*/
+body{background-color:#f2f2f2;color:#5d5d5d;}
+
+/*标签样式*/
+body,ul,dl,li,dt,dl,dd,input,td,table,h1,h2,h3,h4,h5,h6,p{margin:0; padding:0;}
+li,ol { list-style:none; }
+dd,strong,s{display:block;}
+h3,h4,i{display:inline-block}
+em,dd,dt,p,i{font-style: normal;}
+img,input,td,table{ border:0;}
+a{ text-decoration:none; cursor:pointer;}
+
+/*板式*/
+.left { float:left;}
+.right{ float:right;}
+
+/*文字*/
+h3,.mt_btn,#I_f_con ul li a.IFEmailBtn { font-family:"微软雅黑"; }
+h4,h5{ font-family:"宋体"; }
+h3{font-size:15px;}
+h4{font-size:14px;}
+h5{font-size:12px;}
+dd,li,em,p{font-size:12px; }
+dt{ font-size:14px;}
+em,strong,b,em{font-family:Tahoma,Arial,Helvetica,sans-serif; display:inline-block;}
+
+/*分割线*/
+.bottom_line{ width:100%; height:1px;border:0px;background-color:#f2f2f2;color:#f2f2f2;}
+.bottom_line2{ width:100%; height:5px;border:0px;background-color:#f2f2f2;color:#f2f2f2;}
+
+/*引进图*/
+.detail_slide_right,.detail_slide_left,.ibg1,.ibg2,.ibg3,.ddnumbera1,.ddnumbera2,.btright_btn,.btright_btn:hover{background: url(/statics/IMG/GT_detail.png) no-repeat;}
+.tb-postAgeCont,.i_con_li2_a1,.B_i_con_lia3,.listliR_a1{background: url(/statics/IMG/GT_icon_2012913.png) no-repeat;}
+.ddinputw60h21,.i_con_li2 input,.i_con_li2 .i_textarea1,.i_con_li2 .i_textarea2,.B_i_con_input1,.B_i_textarea{background:url(/statics/IMG/inputshadowbg.gif) no-repeat;}
+.icon-suc{background: url(/statics/IMG/GT_icon_2012915.gif) no-repeat;}
+.mt_con li a{background: url(/statics/IMG/GT_banks.png) no-repeat;}
+.mycans_dl1 dt i,.B_i_con_lia2,.sbt_newsbtn,.o_apagebtnleft,.o_apagebtnright{ background:url(/statics/img/mycans.png) no-repeat;}
+
+
+/*图标*/
+.ibg1{width:8px; height:10px; background-position:0 -57px;}
+.ibg2{width:13px; height:11px; background-position:-15px -57px;}
+.ibg3{width:13px; height:11px; background-position:-35px -57px;}
+

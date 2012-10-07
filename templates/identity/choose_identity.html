@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}用户身份选择{% endblock %}
+{% block headright %}
+<a id="font_color_white" href ="{%url registration_register%}">加入我们？注册</a>
+{% endblock %}
+{% block content %}
+<div id="wrap">
+	<div id="choose_identity_content2">
+		<form>
+			<div id="choose_identity_title">欢迎加入罐头工厂，先选择你的身份吧</div>
+			<ul>
+				<li>
+					<a href="?iden=normal">创作者</a>
+				</li>
+				<li id="domestic_consumer">
+					<a href="?iden=designer">普通用户</a>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>
+{% endblock %}

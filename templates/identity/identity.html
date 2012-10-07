@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}创作者身份验证{% endblock %}
+{% block content %}
+<div>
+	<div id="i_tit">
+		<h3>创作者认证信息：</h3>
+		<span>（我们将对您的信息进行保护，请放心填写）</span>
+	</div>
+	<div id="i_con">
+		<ul class="i_con_ul">
+			<li class="i_con_li1"><i>*</i><em>创作者真实姓名：</em></li>
+			<li class="i_con_li2"><input name="" type="text" class="i_con_input1"/></li>
+			<li class="i_con_li1"><i>*</i><em>手机号：</em></li>
+			<li class="i_con_li2"><input name="" type="text" class="i_con_input1"/></li>
+			<li class="i_con_li1"><i>*</i><em>通讯地址：</em></li>
+			<li class="i_con_li2">
+				<a class="i_con_li2_a1">省/直辖市/自治区</a>
+				<a class="i_con_li2_a1">地区/市</a>
+				<textarea name="" cols="" rows="" class="i_textarea1">请填写详细的通讯地址，方便与您沟通。例：XX市（县/区）XX街道（镇/居委会/办事处）XX路（村/小区）</textarea>
+			</li>
+			<li class="i_con_li1"><i>*</i><em>作品示例：</em></li>
+			<li class="i_con_li2">
+				<a class="i_con_li2_a2">上传本人相关作品</a>
+				<p>• 最少上传2张<br/><em>• 根据自己从事行业，上传相关作品、活动照片等图片，并标注。</em></p>
+				<div class="divw654">
+					<img src="/statics/IMG/xq_cps1.jpg" class="i_con_li2_img"/>
+					<img src="/statics/IMG/xq_cps1.jpg" class="i_con_li2_img"/>
+				</div>
+			</li>
+			<li class="i_con_li1"><i>*</i><em>请选择证件类型：</em></li>
+			<li class="i_con_li2"><a class="i_con_li2_a1">身份证</a></li>
+			<li class="i_con_li1"><i>*</i><em>请填写证件号码：</em></li>
+			<li class="i_con_li2"><input name="" type="text" class="i_con_input1"/></li>
+			<li class="i_con_li1"><i>*</i><em>请再次确认证件号码：</em></li>
+			<li class="i_con_li2"><input name="" type="text" class="i_con_input1"/></li>
+			<li class="i_con_li1"><i>*</i><em>证件照片：</em></li>
+			<li class="i_con_li2"><a class="i_con_li2_a2">上传本人证件照片</a>
+				<p>• 证件必须是清晰彩色原件电子版，可以是扫描件或者数码拍摄照片。<br/>
+					<em>仅支持.jpg .png 的图片格式。图片不大于2M。</em><br/>
+					<em>• 特别声明：您的身份证信息仅并用于你的身份审核用，罐头工厂会保护你的资料隐。</em>
+				</p>
+				<div class="divw6542">
+					<img src="/statics/IMG/CT_i_201209161.png" class="i_con_li2_img2"/>
+					<img src="/statics/IMG/CT_i_201209162.png" class="i_con_li2_img2"/>
+				</div>
+				<div class="i_con_li2_a3div">
+					<a class="i_con_li2_a4">删除</a>
+					<a class="i_con_li2_a4">删除</a>
+				</div>
+			</li>
+			<li class="i_con_li1"><i>*</i><em>参赛及获奖经历：</em></li>
+			<li class="i_con_li2"><textarea name="" cols="" rows="" class="i_textarea2"></textarea></li>
+			<li class="i_con_li1"></li>
+			<li class="i_con_li2"><a class="i_con_li2_btn">完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成</a></li>
+		</ul>
+	</div>
+</div>
+{% endblock %}

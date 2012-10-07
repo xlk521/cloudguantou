@@ -1,0 +1,81 @@
+{% extends "base.jade" %}
+{% block title %}帐号管理-收货地址{% endblock %}
+{% block content %}
+div#mycans
+    div#mycans_left
+        dl.mycans_dl1
+            dt
+                i
+                a 账号设置
+            dd
+                a 基本信息
+            dd.D_a_dd
+                a 收货地址
+        dl.mycans_dl2
+            dt
+                a 关联账号
+        dl.mycans_dl3
+            dt
+                a 我的订单
+        dl.mycans_dl4
+            dt
+                a 邀请好友
+    div#mycans_right
+        div.mycans_div
+            div.mycans_tit
+                h3 收货地址
+            div#D_a_con
+                ul.D_a_con_top
+                    li.D_a_red
+                        span.tip 寄送至
+                        a.delete 删除
+                        a.delete 编辑
+                        label.label1 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
+                        em.em1 12345678901
+                        a.dft 默认地址
+                    li.D_a_red1
+                        a.delete 删除
+                        a.delete 编辑
+                        label.label2 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
+                        em.em1 12345678901
+                        a.dft1 设为默认地址
+                div.D_a_con_sbt
+                    a.sbt_newsbtn
+                        h3 新增地址
+                    div.sbt_listdiv
+                        ul.sbt_listul
+                            li.sbt_listli1
+                                h4 设置新的收货地址
+                            li.sbt_listliL
+                                strong 省：
+                            li.sbt_listliR
+                                a.listliR_a1 省/直辖市/自治区
+                                span.listliR_span1
+                                    strong 市：
+                                a.listliR_a1 地区/市
+                                span.listliR_span2
+                                    strong 邮政编码：
+                                input.listliR_input1(name="", type="text")
+                            li.sbt_listliL
+                                strong 县/区/街道：
+                            li.sbt_listliR
+                                textarea.listliR_textarea1( name="", cols="", rows="")
+                            li.sbt_listliL
+                                strong 收货人姓名：
+                            li.sbt_listliR
+                                input.listliR_input2(name="", type="text")
+                            li.sbt_listliL
+                                strong 手机号：
+                            li.sbt_listliR
+                                input.listliR_input2(name="", type="text")
+                            li.sbt_listliL
+                                strong 设置默认：
+                            li.sbt_listliR
+                                input.listliR_input3(name="" ,type="checkbox",value="")
+                            li.sbt_listliL
+                            li.sbt_listliR
+                                a.sbt_newsbtn1
+                                    h3 确认
+                                a.sbt_newsbtn1
+                                    h3 取消
+{% endblock %}

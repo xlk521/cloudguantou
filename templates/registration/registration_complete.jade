@@ -1,0 +1,9 @@
+{% extends "base.jade" %}
+{% block title %}激活您的邮箱{% endblock %}
+{% block content %}
+div.container( style="padding-top:100px;" )
+    div(style="font-size:20pt")
+        p 感谢您的注册!
+        p 已经发送给你{{model.user.email}}一封包含激活链接的邮件。
+        p 我们会在服务器上保存帐号激活信息 7 天。
+{% endblock %}

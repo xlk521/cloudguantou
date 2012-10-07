@@ -1,0 +1,64 @@
+{% extends "login_base.jade" %}
+{% block title %}注册{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block index %}
+div#content_login_divspan4
+    form#register_form#margin_left15(action ="/accounts/register/",method="POST") {% csrf_token %}
+        fieldset.control-group.success#margin_left25
+            div.control-group
+                div.controls
+                    div.rightside_text
+                        b  使用邮箱注册
+            div#margin_top-5
+                strong 用户名
+                label.control-label
+                div.controls
+                    {{form.username}}
+                    div#id_usernameTip.onShow 请输入用户名
+                {% if form.username.errors %}
+                p.errmsg#err_msg{{ form.username.errors|join:", " }}
+                {% else %}
+                p#err_msg &nbsp;
+                {% endif %}
+            div#margin_top-10
+                strong 邮箱
+                label.control-label
+                div.controls
+                    {{form.email}}
+                    div#id_emailTip.onShow 请输入邮箱
+                {% if form.email.errors %}
+                p.errmsg#err_msg {{ form.email.errors|join:", " }}
+                {% else %}
+                p#err_msg &nbsp;
+                {% endif %}
+            div#margin_top-10
+                strong 密码
+                label.control-label
+                div.controls
+                    {{form.password1}}
+                    div#id_password1Tip.onShow 请输入密码
+                {% if form.password1.errors %}
+                p.errmsg#err_msg{{ form.password1.errors|join:", " }}
+                {% else %}
+                p#err_msg&nbsp;
+                {% endif %}
+            div#margin_top-10
+                strong 密码确认
+                label.control-label
+                div.controls
+                    {{form.password2}}
+                    div#id_password2Tip.onShow 请再次输入密码
+                {% if form.password2.errors %}
+                p.errmsg#err_msg{{ form.password2.errors|join:", " }}
+                {% else %}
+                p#err_msg &nbsp;
+                {% endif %}
+            div#margin_top-10
+                div.controls
+                    p.p2  验证邮箱，有20%几率获得罐头工场折扣券
+            div#margin_top15
+                div.controls
+                    button.btn.btn-success#button_color(type="submit")
+                        strong &nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;
+{% endblock %}

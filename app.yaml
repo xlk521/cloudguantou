@@ -1,0 +1,37 @@
+application: popcan-production
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+builtins:
+- remote_api: on
+
+inbound_services:
+- warmup
+
+libraries:
+- name: django
+  version: latest
+
+handlers:
+- url: /_ah/queue/deferred
+  script: djangoappengine.deferred.handler.application
+  login: admin
+
+- url: /_ah/stats/.*
+  script: djangoappengine.appstats.application
+
+- url: /media/admin
+  static_dir: django/contrib/admin/media
+  expiration: '0'
+
+- url: /statics
+  static_dir: static
+
+- url: /(robots\.txt|favicon\.ico)
+  static_files: static/\1
+  upload: sta
+
+- url: /.*
+  script: djangoappengine.main.application
