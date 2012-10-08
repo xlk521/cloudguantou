@@ -8,6 +8,7 @@ from oauth2 import RRClient
 import json
 import logging
 
+log = logging.getLogger()
 
 client_id = settings.RENREN_APP_KEY
 client_secret = settings.RENREN_APP_SECRET
@@ -44,7 +45,8 @@ def __save_rr_userinfo(request, client):
         user_info = client.user_getInfo()
         user_info = json.loads(user_info)[0]
     except Exception as e:
-        logging.error(e.message)
+        log.error(e.message)
+    log.debug(user_info)
     if user_info['hometown_location'].has_key('country'):
         user_info['hometown_location_country'] = user_info['hometown_location']['country']
     else:
@@ -68,5 +70,5 @@ def __save_rr_userinfo(request, client):
             f.save()
             __authenticate_and_login(request=request, username=cans_id, password=password)
         else:
-            logging.error(f.errors)
+            log.error(f.errors)
         return __handle_newcomer(request)

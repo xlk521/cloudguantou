@@ -35,7 +35,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     nickname = models.CharField(max_length=256)
     gender = models.BooleanField(choices=GENDER_CHOICES)
-    head = models.URLField()
+    head = models.CharField(max_length=256)
     cans_id = models.CharField(max_length=128)
     followers_count = models.CharField(max_length=128, default=0)
     friends_count = models.CharField(max_length=128, default=0)
@@ -55,17 +55,11 @@ class UserProfile(models.Model):
             details[field.name]=field.value_to_string(self)
         return details
 
-class PhotoItem(db.Model):
-    name = db.StringProperty()
-    photo = blobstore.BlobReferenceProperty()
-
 class NormalIdentityForm(ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('followers_count', 'friends_count', 'works_count')
-        widgets = {
-            'gender': forms.RadioSelect
-        }
+        widgets = {'gender': forms.RadioSelect}
 
     def __init__(self, *args, **kwargs):
         from django.forms.widgets import HiddenInput

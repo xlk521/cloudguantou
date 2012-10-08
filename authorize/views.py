@@ -1,7 +1,7 @@
 #coding=utf8
 # Create your views here.
 from .forms import PhotoForm
-from .models import UserProfile, NormalIdentityForm, DesignerIdentityForm, PhotoItem
+from .models import UserProfile, NormalIdentityForm, DesignerIdentityForm
 from base.models import Province, City
 from django.conf import settings
 from django.contrib.auth import authenticate, login
@@ -68,30 +68,17 @@ def get_cities(request):
 
 @require_http_methods(["POST"])
 def handle_head_upload(request):
-    log.debug('head_upload')
-    log.debug(request)
-    results = []
-    blob_keys = []
-    #for name, fieldStorage in request.POST.get('head_file')
+    blob_info = request.FILES['head_file']
+    if blob_info and hasattr(blob_info, 'blobstore_info'):
+        blob_key = str(blob_info.blobstore_info.key())
+        profile = request.user.get_profile()
+        profile.head = blob_key
+        profile.save()
+    return HttpResponse(json.dumps({'success':True, 'key':str(blob_info.blobstore_info.key())}))
 
-    #photo_blobs = get_uploads(request, field_name="qqfile", populate_post=True)
-    #logging.debug(photo_blobs)
-    #form = PhotoForm(request.POST)
-    #if form.is_valid():
-        #logging.debug('form valid')
-        #photo_item = PhotoItem(name=form.cleaned_data['name'], photo=photo_blobs[0])
-        #photo_item.put()
-        #return {'success':True}
-    #else:
-        #logging.error(form.errors)
-        #return {'failed':True}
-    return HttpResponse(json.dumps({'success':True}))
-    """
-    allowedExtension = [".jpg",".png"]
-    uploader = HeadFileUploader(allowedExtension)
-    result, filename = uploader.handleUpload(request, settings.MEDIA_ROOT + "upload/")
-    request.session['upload_head'] = filename
-    """
+@require_http_methods(["GET"])
+def serve_head(request):
+    key = request.GET.get('key', False)
     
 def __create_new_profile():
     cans_id = str(uuid4())

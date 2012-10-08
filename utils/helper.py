@@ -54,6 +54,7 @@ def get_uploads(request, field_name=None, populate_post=False):
     log.debug('get uploads')
     log.debug(request)
 
+    """
     if hasattr(request,'__uploads') == False:
         request.META['wsgi.input'].seek(0)
         fields = cgi.FieldStorage(request.META['wsgi.input'], environ=request.META)
@@ -67,7 +68,8 @@ def get_uploads(request, field_name=None, populate_post=False):
                 request.__uploads.setdefault(key, []).append(blobstore.parse_blob_info(field))
             elif populate_post:
                 request.POST[key] = field.value
- 
+    """
+
     if field_name:
         try:
             return list(request.__uploads[field_name])
