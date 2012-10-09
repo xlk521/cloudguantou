@@ -1,14 +1,16 @@
 '''
 Created on 2012-10-1
-
 @author: damon
 '''
-import logging
-import json
-from uuid import uuid4
+from google.appengine.api import images
 from google.appengine.ext import blobstore
+from uuid import uuid4
+import json
+import logging
 
 log = logging.getLogger()
+log.setLevel(logging.DEBUG)
+
 
 class HeadFileUploader(object):
     def __init__(self, allowedExtensions = [], sizeLimit = 1024*1024*1024*100):
@@ -37,46 +39,25 @@ class HeadFileUploader(object):
         filename, extension = os.path.splitext(fileName)
         return extension.lower()
 
-def get_uploads(request, field_name=None, populate_post=False):
-    """
-    http://appengine-cookbook.appspot.com/recipe/blobstore-get_uploads-helper-function-for-django-request/
- 
-    Get uploads sent to this handler.
- 
-    Args:
-    field_name: Only select uploads that were sent as a specific field.
-    populate_post: Add the non blob fields to request.POST
- 
-    Returns:
-    A list of BlobInfo records corresponding to each upload.
-    Empty list if there are no blob-info records for field_name.
-    """
-    log.debug('get uploads')
-    log.debug(request)
+class ImageFactory(object):   
+    def __init__(self, image):
+        #获取图片Exif信息
+        image.rotate(0)
+        image.execute_transforms(output_encoding=images.PNG, quality=100, parse_source_metadata=True)
+        exif = image.get_original_metadata()
+        if exif:
+            orientation = exif['Orientation']
+            log.debug(orientation)
+            if orientation==1 or orientation==2:
+                pass
+            elif orientation==3 or orientation==4:
+                image.rotate(180)
+            elif orientation==5 or orientation==6:
+                image.rotate(90)
+            elif orientation==7 or orientation==8:
+                image.rotate(90)
+        return
 
-    """
-    if hasattr(request,'__uploads') == False:
-        request.META['wsgi.input'].seek(0)
-        fields = cgi.FieldStorage(request.META['wsgi.input'], environ=request.META)
-        request.__uploads = {}
-        if populate_post:
-            request.POST = {}
-        for key in fields.keys():
-            log.debug(key)
-            field = fields[key]
-            if isinstance(field, cgi.FieldStorage) and 'blob-key' in field.type_options:
-                request.__uploads.setdefault(key, []).append(blobstore.parse_blob_info(field))
-            elif populate_post:
-                request.POST[key] = field.value
-    """
-
-    if field_name:
-        try:
-            return list(request.__uploads[field_name])
-        except KeyError:
-            return []
-    else:
-        results = []
-        for uploads in request.__uploads.itervalues():
-            results += uploads
-        return results
+    def get_exif(self):
+        return self.image.get_original_metadata()
+        

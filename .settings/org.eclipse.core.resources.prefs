@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//account_settings/urls.py=utf8
 encoding//base/models.py=utf8
 encoding//brand/models.py=utf8
@@ -14,3 +15,10 @@ encoding//utils/location.py=utf8
 encoding//utils/views.py=utf8
 encoding/settings.py=utf8
 encoding/urls.py=utf8
+=======
+encoding//base/views.py=utf8
+encoding/settings.py=utf8
+>>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
+eclipse.preferences.version=1
+encoding//base/views.py=utf8
+encoding/settings.py=utf8

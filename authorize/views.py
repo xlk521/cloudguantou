@@ -8,17 +8,19 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.views.decorators.http import require_http_methods
 from google.appengine.ext import blobstore
-from utils import HeadFileUploader, render_to_json, get_uploads
+from google.appengine.api import images
+from utils import HeadFileUploader, render_to_json, ImageFactory
 from uuid import uuid4
 import logging
 import json
 
 log = logging.getLogger()
+log.setLevel(logging.DEBUG)
 
 @login_required
 @require_http_methods(["POST", "GET"])
@@ -68,17 +70,22 @@ def get_cities(request):
 
 @require_http_methods(["POST"])
 def handle_head_upload(request):
-    blob_info = request.FILES['head_file']
-    if blob_info and hasattr(blob_info, 'blobstore_info'):
-        blob_key = str(blob_info.blobstore_info.key())
+    blob = request.FILES['head_file']
+    if blob and hasattr(blob, 'blobstore_info'):
+        blob_key = str(blob.blobstore_info.key())
         profile = request.user.get_profile()
         profile.head = blob_key
         profile.save()
-    return HttpResponse(json.dumps({'success':True, 'key':str(blob_info.blobstore_info.key())}))
+        image_factory = ImageFactory(images.Image(image_data=blobstore.BlobReader(blob_key).read()))
+    return HttpResponse(json.dumps({'success':True, 'photo_key':str(blob.blobstore_info.key())}))
 
 @require_http_methods(["GET"])
-def serve_head(request):
-    key = request.GET.get('key', False)
+def serve_head(request, photo_key):
+    blob = blobstore.get(photo_key)
+    if not blob:
+        raise Http404
+    else:
+        return HttpResponse(blobstore.BlobReader(blob.key()).read(), content_type=blob.content_type)
     
 def __create_new_profile():
     cans_id = str(uuid4())
