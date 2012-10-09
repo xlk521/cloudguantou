@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//account_settings/urls.py=utf8
+encoding//base/models.py=utf8
+encoding//brand/models.py=utf8
+encoding//content/models.py=utf8
+encoding//content/test.py=utf8
+encoding//content/urls.py=utf8
+encoding//friendships/models.py=utf8
+encoding//friendships/urls.py=utf8
+encoding//identity/urls.py=utf8
+encoding//payment/urls.py=utf8
+encoding//shopping_cart/urls.py=utf8
+encoding//utils/location.py=utf8
+encoding//utils/views.py=utf8
+encoding/settings.py=utf8
+encoding/urls.py=utf8
