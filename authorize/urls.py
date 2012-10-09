@@ -5,6 +5,8 @@ urlpatterns = patterns('authorize.views',
     url(r'identity/', 'identity'),
     #用户上传图像
     url(r'head_upload/', 'handle_head_upload'),
+    #获取用户头像
+    url(r'head/(?P<photo_key>\S+)', 'serve_head'),
     #根据省名称获取对应城市名称
     url(r'get_cities/', 'get_cities'),
 )
