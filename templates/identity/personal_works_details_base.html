@@ -2,7 +2,7 @@
 {% block title %}个人信息{% endblock %}
 {% block headright %}
 {% endblock %}
-{% block head %}
+{% block head %} 
 <script type="text/javascript">
 $(document).ready(function(){
     $(function () {
@@ -34,80 +34,71 @@ $(document).ready(function(){
 {% endblock %}
 {% block content %}
 <div id="div_span9">
-    <form action="." method="post">{% csrf_token %}
-        <fieldset class="control-group success">
-            {% block content_works %}{% endblock %}
-            <div class="controls">
-                <label class="control-label">
-                    <font size="4px">用户昵称</font>
-                    {{ form.nickname }}
-                    {% if form.nickname.errors %}
-                    <p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
-                    {% else %}
-                    <p id="err_msg">&nbsp;</p>
-                    {% endif %}
-                </label>
-            </div>
-        
-            <div class="controls">
-                <label class="control-label">
-                    <font size="4px" style="margin-left:35px">头像</font>
-                    <input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple>
-                    <div id="progress">
-                        <div class="bar" style="width: 0%;"></div>
-                    </div>
-                </label>
-            </div>
-            <div class="controls">
-                <label style="margin-left:105px" class="control-label">
-                    <font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font>
-                </label>
-            </div>
-            <div class="controls">
-                <label style="margin-left:105px" class="control-label">
-                    <img id="user-head" src="/statics/img/picture_load.gif"/>
-                </label>
-            </div>
-            <div class="controls">
-                <label class="control-label">
-                    <font size="4px" style="margin-left:35px">性别</font>
-                    {{ form.gender }}
-                    {% if form.gender.errors %}
-                    <p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
-                    {% else %}
-                    <p id="err_msg">&nbsp;</p>
-                    {% endif %}
-                </label>
-            </div>
-            <div class="controls">
-                <label class="control-label">
-                    <font size="4px" style="margin-left:15px">所在地</font>
-                    {{ form.province }}
-                    {% if form.province.errors %}
-                    <p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
-                    {% else %}
-                    <p id="err_msg">&nbsp;</p>
-                    {% endif %}
-                    <select name="city" id="id_city">
-                        <option>市/区</option>
-                    </select>
-                </label>
-            </div>
-            <div class="controls">
-                <p>{{ form.introduction }}
-                    {% if form.introduction.errors %}
-                    <p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
-                    {% else %}
-                    <p id="err_msg">&nbsp;</p>
-                    {% endif %}
-                </p>
-            </div>
-            <div class="controls">
-                <button type="submit" style="background:#7cbe31;margin-left:100px" href ="#" class="btn btn-success">
-                    <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong>
-                </button>
-            </div>
-        </fieldset>
-    </form>
+	<form action="." method="post">
+		{% csrf_token %}
+		<fieldset class="control-group success">
+			{% block content_works %}{% endblock %}
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px">用户昵称</font> {{ form.nickname }}
+				{% if form.nickname.errors %}
+				<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				</label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px" style="margin-left:35px">头像</font>
+				<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple>
+				<div id="progress">
+					<div class="bar" style="width: 0%;"></div>
+				</div>
+				</label>
+			</div>
+			<div class="controls">
+				<label style="margin-left:105px" class="control-label"> <font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font> </label>
+			</div>
+			<div class="controls">
+				<label style="margin-left:105px" class="control-label"> <img id="user-head" src="/statics/img/picture_load.gif"/> </label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px" style="margin-left:35px">性别</font> {{ form.gender }}
+				{% if form.gender.errors %}
+				<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				</label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px" style="margin-left:15px">所在地</font> {{ form.province }}
+				{% if form.province.errors %}
+				<p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				<select name="city" id="id_city">
+					<option>市/区</option>
+				</select>
+				</label>
+			</div>
+			<div class="controls">
+				<p>{{ form.introduction }}
+					{% if form.introduction.errors %}
+				<p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				</p>
+			</div>
+			<div class="controls">
+				<button type="submit" style="background:#7cbe31;margin-left:100px" href ="#" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
+			</div>
+		</fieldset>
+	</form>
 </div>
 {% endblock %}

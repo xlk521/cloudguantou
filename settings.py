@@ -37,6 +37,14 @@ INSTALLED_APPS = (
     
     'authorize',
     'base',
+    'content',
+    'account_settings',
+
+    'brand',
+    'friendships',
+    'identity',
+    'payment',
+    'shopping_cart',
 )
 
 MIDDLEWARE_CLASSES = (

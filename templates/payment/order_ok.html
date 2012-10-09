@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}确认订单页{% endblock %}
+{% block content %}
+<div class="sbt-ift">
+	<div class="sbt-ift1">
+		<h3>订单提交成功</h3>
+	</div>
+	<div id="order_ok">
+		<div class="order_ok_works"><s class="icon-suc"></s>
+			<div class="order_ok_tip">
+				<h3 class="h3green">订单已提交，请尽快付款！</h3>
+				<div class="order_ok_tipl">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td class="order_ok_tiptd1 order_ok_tiptd2">订单号</td>
+							<td class="order_ok_tiptd1 order_ok_tiptd2">金额</td>
+							<td class="order_ok_tiptd1 order_ok_tiptd2">支付方式</td>
+							<td class="order_ok_tiptd1 order_ok_tiptd2">配送方式</td>
+						</tr>
+						<tr>
+							<td class="order_ok_tiptd1">2536152465</td>
+							<td class="order_ok_tiptd1"><b><i class="ibg3"></i><em>1200 .00</em></b></td>
+							<td class="order_ok_tiptd1">在线支付</td>
+							<td class="order_ok_tiptd1">顺丰快递</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="order_ok">
+		<p class="ok_helpright"><span>请您在2小时内完成支付，否则订单会被自动取消。</span><a>使用帮助</a></p>
+		<div class="order_ok_payment">
+			<div class="mc">
+				<ul class="tab">
+					<li class="okh1"><a href="#" class="okh1_a">储蓄卡</a></li>
+					<li><a href="#">信用卡</a></li>
+					<li><a href="#">信用卡</a></li>
+				</ul>
+			</div>
+			<div class="mt">
+				<div class="mt_tit">
+					<p class="mt_tit_p1"><span>请选择在下支付的方式:</span></p>
+					<p class="mt_tit_p2"><strong>网银支付</strong><span>需要开通网银</span></p>
+				</div>
+				<ul class="mt_con">
+					<li>
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn1"></a></li>
+					<li class="mt_con_limargin1">
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn2"></a></li>
+					<li class="mt_con_limargin1">
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn3"></a></li>
+					<li>
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn4"></a></li>
+					<li class="mt_con_limargin1">
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn5"></a></li>
+					<li class="mt_con_limargin1">
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn6"></a></li>
+					<li>
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn7"></a></li>
+					<li class="mt_con_limargin1">
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn8"></a></li>
+					<li class="mt_con_limargin1">
+						<input name="" type="radio" value=""/>
+						<a class="mt_con_btn9"></a></li>
+				</ul>
+				<div class="mt_div_btn"><a class="mt_btn">确认支付方式</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

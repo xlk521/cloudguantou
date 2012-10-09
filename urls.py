@@ -13,4 +13,16 @@ urlpatterns = patterns('',
     url(r'^authorize/', include('authorize.urls')),
 
     url(r'^$', include('base.urls')),
+    
+    url(r'^content/', include('content.urls')),
+    
+    url(r'^account_settings/', include('account_settings.urls')),
+    
+    url(r'^identity/', include('identity.urls')),
+    
+    url(r'^payment/', include('payment.urls')),
+    
+    url(r'^friendships/', include('friendships.urls')),
+    
+    url(r'shopping_cart/', include('shopping_cart.urls')),
 )

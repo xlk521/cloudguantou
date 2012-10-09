@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}邀请好友{% endblock %}
+{% block content %}
+<div id="mycans">
+	<div id="mycans_left">
+		<dl class="mycans_dl1">
+			<dt><i></i><a>账号设置</a></dt>
+			<dd><a>基本信息</a></dd>
+			<dd><a>收货地址</a></dd>
+		</dl>
+		<dl class="mycans_dl2">
+			<dt><a>关联账号</a></dt>
+		</dl>
+		<dl class="mycans_dl3">
+			<dt class="O_c_dt"><a>我的订单</a></dt>
+		</dl>
+		<dl class="mycans_dl4">
+			<dt><a>邀请好友</a></dt>
+		</dl>
+	</div>
+	<div id="mycans_right">
+		<div class="mycans_div">
+			<div class="mycans_tit">
+				<h3>我的订单</h3>
+			</div>
+			<div id="order_con">
+				<div class="order_topNav">
+					<ul>
+						<li><a class="order_topNavA">
+							<h5>未付款(2)</h5>
+							</a></li>
+						<li><a>
+							<h5>正在处理(0)</h5>
+							</a></li>
+						<li><a>
+							<h5>正在装配(0)</h5>
+							</a></li>
+						<li><a>
+							<h5>正在发货(0)</h5>
+							</a></li>
+						<li><a>
+							<h5>已完成</h5>
+							</a></li>
+						<li><a>
+							<h5>已取消</h5>
+							</a></li>
+					</ul>
+				</div>
+				<div class="order_conList">
+					<div class="order_conListTit">
+						<ul>
+							<li class="o_List_li1">作品名称</li>
+							<li class="o_List_li2">作者</li>
+							<li class="o_List_li3">类别</li>
+							<li class="o_List_li4">框架</li>
+							<li class="o_List_li5">数量</li>
+							<li class="o_List_li6">单价</li>
+							<li class="o_List_li7">小计</li>
+							<li class="o_List_li8"></li>
+						</ul>
+					</div>
+					<dl class="o_aList">
+						<dt><strong>订单号：</strong><span>3258946</span><strong>成交时间：</strong><span>2012年9月18日</span><strong>收货人：</strong><span>姚远</span><span class="o_operation"><a>取消订单</a><a>查看详情</a></span><span class="o_operation1">请您尽快付款，订单将在2小时之后自动取消。</span></dt>
+						<dd>
+							<table width="792" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="o_List_li"><img src="/statics/IMG/cp1.jpg" width="107" height="85"/></td>
+									<td class="o_List_li1"><strong><a>阿斯大阿斯</a></strong></td>
+									<td class="o_List_li2"><a>姚远</a></td>
+									<td class="o_List_li3"><a>摄影</a></td>
+									<td class="o_List_li4">黑色</td>
+									<td class="o_List_li5">1</td>
+									<td class="o_List_li6"><em>600.00</em></td>
+									<td class="o_List_li7"><b>600.00</b></td>
+									<td class="o_List_li8">
+										<div class="order_conListDiv"><a class="order_conListBtn">收藏</a><a class="order_conListBtn">分享</a></div>
+									</td>
+								</tr>
+							</table>
+							<table width="792" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="o_List_li"><img src="/statics/IMG/cp1.jpg" width="107" height="85"/></td>
+									<td class="o_List_li1"><strong><a>阿斯大阿斯</a></strong></td>
+									<td class="o_List_li2"><a>姚远</a></td>
+									<td class="o_List_li3"><a>摄影</a></td>
+									<td class="o_List_li4">黑色</td>
+									<td class="o_List_li5">1</td>
+									<td class="o_List_li6"><em>600.00</em></td>
+									<td class="o_List_li7"><b>600.00</b></td>
+									<td class="o_List_li8">
+										<div class="order_conListDiv"><a class="order_conListBtn">收藏</a><a class="order_conListBtn">分享</a></div>
+									</td>
+								</tr>
+							</table>
+							<div class="o_aListBottom"><strong>总计：</strong><b>1800.00</b><i>+</i><strong>框架费：</strong><b>300.00</b><i>+</i><strong>运费：</strong><b>0.00</b><i>+</i><strong>折扣：</strong><b>0.00</b><i>=</i><strong>成交价：</strong><b>2100.00</b><a>付款</a></div>
+						</dd>
+					</dl>
+				</div>
+				<div class="o_OrderInfo"><span>等待付款订单：</span><b>2 &nbsp;&nbsp;</b><span>正在处理的订单：</span><b>2&nbsp;&nbsp;</b><span>正在装配的订单：</span><b>2&nbsp;&nbsp;</b><span>正在发货的订单：</span><b>2&nbsp;&nbsp;</b><span>已完成的订单：</span><b>2&nbsp;&nbsp;</b><span>已取消订单：</span><b>2&nbsp;&nbsp;</b><span>订单总数：</span><b>2&nbsp;&nbsp;</b></div>
+				<div class="o_page"><a class="o_apagebtnOk">确定</a><span>共<em>2</em><em>页  到第</em>
+					<input name="" type="text"/>
+					<em>页</em></span><a class="o_apagebtnright"></a><a class="o_apagebtn2"></a><a class="o_apagebtn1"></a><a class="o_apagebtnleft"></a></div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

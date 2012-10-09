@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}我的购物车{% endblock %}
+{% block content %}
+<div id="cart_div">
+	<div id="cart_tit">
+		<div class="cart_tit_left">
+			<h3>我的购物车</h3>
+		</div>
+		<div class="cart_tit_right">
+			<ul class="num5">
+				<li class="current"><span class="first">1. 查看购物车</span></li>
+				<li><span>2. 填写订单信息</span></li>
+				<li><span>3. 确认订单信息</span></li>
+				<li class="last"><span>4. 订单提交完成</span></li>
+			</ul>
+		</div>
+	</div>
+	<div id="cart_content">
+		<div class="div_marginw25px">
+			<div class="cart_content_tit">总计（含运费：<b><i class="ibg2"></i><i>1200 .00</i></b><a class="cart_checkout_btn1">结算</a></div>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr class="cart_content_nav">
+					<td class="cart_w25">
+						<input name="" type="checkbox" value=""/>
+					</td>
+					<td class="cart_w50">全选</td>
+					<td class="cart_w117">&nbsp;</td>
+					<td class="cart_w140">作品名称</td>
+					<td class="cart_w70">类别</td>
+					<td class="cart_w80">框架</td>
+					<td class="cart_w142">数量</td>
+					<td class="cart_w105">单价</td>
+					<td class="cart_w145">小计</td>
+					<td class="cart_w60">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="10">
+						<div class="content_div_marginw25px">
+							<dl>
+								<hr class="bottom_line2"/>
+								<dt>
+									<input name="" type="checkbox" value=""/>
+									<strong>品牌：</strong><span>西南游采风</span><strong>创作者：</strong><span>姚远</span></dt>
+								<hr class="bottom_line"/>
+								<dd>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td class="cart_w50">
+												<input name="" type="checkbox" value=""/>
+											</td>
+											<td class="cart_w117"><img src="/statics/img/cp1.jpg" width="107" height="85"/></td>
+											<td class="cart_w140"><strong>云贵水田油墨风云贵水田油墨风景云贵水田油墨风景云贵水田油墨风景景</strong></td>
+											<td class="cart_w70">摄影</td>
+											<td class="cart_w80">黑色框架</td>
+											<td class="cart_w142">
+												<div class="w124_margintop"><a class="ddnumbera1"></a>
+													<input type="text" value=" 2" maxlength="5" class="ddinputw60h21"/>
+													<a class="ddnumbera2"></a></div>
+											</td>
+											<td class="cart_w105"><em><i class="ibg1"></i><i>600 .00</i></em></td>
+											<td class="cart_w145"><b><i class="ibg2"></i><i>1200 .00</i></b></td>
+											<td class="cart_w60">
+												<div class="cart_w60_div"><a class="cart_w60_a">收藏</a><a class="cart_w60_a">删除</a></div>
+											</td>
+										</tr>
+									</table>
+								</dd>
+								<hr class="bottom_line"/>
+								<dd>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td class="cart_w50">
+												<input name="" type="checkbox" value=""/>
+											</td>
+											<td class="cart_w117"><img src="/statics/img/cp1.jpg" width="107" height="85"/></td>
+											<td class="cart_w140"><strong>云贵水田油墨风云贵水田油墨风景云贵水田油墨风景云贵水田油墨风景景</strong></td>
+											<td class="cart_w70">摄影</td>
+											<td class="cart_w80">黑色框架</td>
+											<td class="cart_w142">
+												<div class="w124_margintop"><a class="ddnumbera1"></a>
+													<input type="text" value=" 2" maxlength="5" class="ddinputw60h21"/>
+													<a class="ddnumbera2"></a></div>
+											</td>
+											<td class="cart_w105"><em><i class="ibg1"></i><i>600 .00</i></em></td>
+											<td class="cart_w145"><b><i class="ibg2"></i><i>1200 .00</i></b></td>
+											<td class="cart_w60">
+												<div class="cart_w60_div"><a class="cart_w60_a">收藏</a><a class="cart_w60_a">删除</a></div>
+											</td>
+										</tr>
+									</table>
+								</dd>
+								<hr class="bottom_line"/>
+							</dl>
+						</div>
+					</td>
+				</tr>
+				<tr class="cart_content_nav">
+					<td class="cart_w25">
+						<input name="" type="checkbox" value=""/>
+					</td>
+					<td class="cart_w50">全选</td>
+					<td class="cart_w117"><a class="cart_w117_a">批量删除</a></td>
+					<td colspan="7" class="cart_w742">
+						<div class="cart_w742_div">总计（含运费）：<b><i class="ibg2"></i><i>1200 .00</i></b></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="cart_content_tit"><a class="cart_checkout_btn2">结&nbsp;&nbsp;&nbsp;&nbsp;算</a></div>
+	</div>
+</div>
+{% endblock %}
