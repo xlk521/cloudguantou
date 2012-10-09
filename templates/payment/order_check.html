@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}确认订单页{% endblock %}
+{% block content %}
+<div class="sbt-ift">
+	<div class="sbt-ift1">
+		<h3>填写订单信息</h3>
+	</div>
+	<div class="sbt-ift2">
+		<div class="sbt-ift21">
+			<h4>填写收货地址:</h4>
+		</div>
+		<div class="sbt-ift22">
+			<ul>
+				<li class="t-red"><span class="tip">寄送至</span>
+					<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
+					<em class="em1"> 1854545454</em></li>
+			</ul>
+		</div>
+	</div>
+	<div class="sbt-ift2">
+		<div class="sbt-ift21">
+			<h4>支付和配送方式:</h4>
+		</div>
+		<div class="sbt-ift22"><b class="b1">支付方式：</b>
+			<ul>
+				<li>
+					<label class="label1">在线支付</label>
+					<em class="em1">即时到帐，支持绝大数银行借记卡及部分银行信用卡</em><a class="a1">查看银行及限额</a></li>
+			</ul>
+			<b class="b1">配送方式:</b>
+			<ul>
+				<li class="dt_ddlogistics">
+					<label class="label1">顺丰快递</label>
+					<span>
+					<div class="tb-postAgeCont">至   北京</div>
+					</span><span>快递费用：<b>3</b><em>元(人民币)/千克</em></span></li>
+			</ul>
+		</div>
+	</div>
+	<div class="sbt-ift2">
+		<div class="sbt-ift21">
+			<div>.订单信息</div>
+		</div>
+		<div class="sbt-ift23">
+			<ul class="ul1">
+				<li class="li1"></li>
+				<li class="li2">作品名</li>
+				<li class="li3">类别</li>
+				<li class="li4">框架</li>
+				<li class="li5">数量</li>
+				<li class="li6">单价</li>
+				<li class="li7">小计</li>
+			</ul>
+			<ul class="ul2">
+				<li class="li1 hg"><img src="/statics/IMG/cp1.jpg" width="107" height="85"/></li>
+				<li class="li2 hg">
+					<div>云贵水田油墨风景</div>
+				</li>
+				<li class="li3 hg">
+					<div>摄影</div>
+				</li>
+				<li class="li4 hg">
+					<div>黑色框架</div>
+				</li>
+				<li class="li5 hg">
+					<div>2</div>
+				</li>
+				<li class="li6 hg">
+					<div>600</div>
+				</li>
+				<li class="li7 hg">
+					<div><strong class="strong">￥1200.00</strong></div>
+				</li>
+			</ul>
+		</div>
+		<div class="order-go">
+			<p class="p1">总计（含运费）:<strong>￥1250.00</strong></p>
+			<p><a class="a3"></a>
+				<input type="submit" value="" class="dpl-button"/>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

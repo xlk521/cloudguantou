@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}上传作品{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block content %}<script id="movieTemplate" type="text/x-jquery-tmpl"><div style="margin-top:0px;width:984px;overflow:hidden;"><div style="float:left;height:80px;width:108px;line-height:80px;text-align:center;position:relative; border:1px #FFF solid;background-color:#FFF;"><font style="font-size:60px">1</font></div><div style="float:left;height:285px;line-height:80px;width:268px;margin-left:30px;text-align:center; position:relative; border:1px #FFF solid; background-color:#FFF;"><div style="height:200px;width:230px;margin:30px auto;"><img src="/statics/img/upload_bg.GIF"/><button style="float:right" class="btn btn-mini">删除</button></div></div><div style="float:left;height:285px;width:572px;  position:relative; border:1px #FFF solid; background-color:#FFF;"><label style="padding-top:30px;padding-left:20px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品名称：</font><input type="text" style="border-color:#444242 " class="success"/></label><label style="padding-top:20px;padding-left:20px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品描述：&nbsp;</font><textarea name="message" style="width:420px;height:150px;border-color:#444242"></textarea></label></div></div></script>
+<div id="uploadpage" style="font-size:15px;width:984px">
+	<form action ="{%url django.contrib.auth.views.login%}" method="post">
+		{% csrf_token %}
+		<fieldset class="control-group success">
+			<div style="width:984px">
+				<div id="uploadpage_headdiv" class="controls"><strong>上传作品</strong></div>
+				<div id="uploadpage_bodydiv_left" class="controls">
+					<label style="padding-top:15px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">系列名称：</font>
+						<input type="text" style="border-color:#444242" class="success"/>
+						<br/>
+						<font style="font-size:13px;color:#ababab;margin-left:95px">只能使用汉字，字母，阿拉伯数字，“-”“_”符号。</font></label>
+					<label style="margin-top:5px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品类别：</font>
+						<input type="text" style="border-color:#444242" class="success"/>
+					</label>
+					<label style="margin-top:20px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">创作时间：</font>
+						<select style="width:100px;height:30px;border-color:#444242">
+							<option>年</option>
+							<option>1</option>
+						</select>
+						<select style="width:40px;height:30px;border-color:#444242">
+							<option>月</option>
+							<option>1</option>
+						</select>
+						<select style="width:40px;height:30px;border-color:#444242">
+							<option>日</option>
+							<option>1</option>
+						</select>
+					</label>
+				</div>
+				<div id="uploadpage_bodydiv_right" class="controls">
+					<label style="padding-top:15px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">系列作品描述：</font>
+						<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242"></textarea>
+					</label>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<form style="width:984px">
+		<fieldset id="movieList" style="margin-top:0px" class="control-group success">
+		</fieldset>
+		<a href="javascript:add()" id="uploadButton"><font style="font-weight:bold;font-size:20px">+</font><font style="text-decoration:underline;font-size:15px">上传文件</font></a>
+	</form>
+	<script type="text/javascript">$( "#uploadButton" ).click( function() {
+    $( "#movieTemplate" ).tmpl( ).prependTo( "#movieList" );
+});</script></div>
+{% endblock %}
