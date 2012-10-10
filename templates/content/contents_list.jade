@@ -2,32 +2,19 @@
 {% block title %}主页{% endblock %}
 {% block content %}
 div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-height:450px;width:100%;")
-    div#contents_list_left(style="position:relative;width:740px;min-height:450px;background:#000;float:left")
-        div#contents_list_work(style="position:relative;width:690px;background:#fff;float:left")
-            div#contents_list_date(style="position:relative;width:690px;min-height:200px;background:#f00;overflow:hidden")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#fff;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#ff1;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#f1f;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#fff;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#ff1;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#f1f;float:left")
-            div#contents_list_date(style="position:relative;width:690px;background:#f00;overflow:hidden")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#fff;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#ff1;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#f1f;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#fff;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#ff1;float:left")
-                div#contents_work(style="position:relative;width:130px;height:130px;background:#ff1;float:left")
-        div#contents_list_a(style="position:relative;width:50px;min-height:200px;background:#00f;float:left")
-            button#work_up.btn向上
-            button#work_down.btn向下
-    div#contents_list_button(style="position:relative;width:20px;min-height:450px;background:#0f0;float:left")
-        button#list_button_shrink.btn <
-        button#list_button_extend.btn(style="display:none") >
-    div#contents_list_right(style="position:relative;min-height:450px;background:#fff;float:left;overflow:hidden")
-        div#contents_list_center(style="position:relative;width:450px;min-height:450px;background:#fff;float:left")
-            div(style="position:relative;width:450px;height:140px;background:#faa;")
-        div#contents_list_img(style="position:relative;min-height:450px;background:#000;float:left")
-        a.carousel-control.left#contents_control_left(href="#relationList_f",data-slide="prev",style="margin:auto;display:none")&lsaquo;
-        a.carousel-control.right#contents_control_right(href="#relationList_f",data-slide="next",style="margin:auto;display:none")&rsaquo;
+    div#contents_list_left(style="position:relative;width:740px;min-height:450px;float:left")
+        div#contents_list_work(style="position:relative;width:690px;float:left;z-index:10;background:#FFF")
+        div#contents_list_a(style="position:relative;width:50px;min-height:200px;float:left;z-index:10;background:#FFF")
+            a#work_up
+                img(src="/statics/img/contents_list_up.GIF",style="position:absolute;top:40px")
+            a#work_down
+                img(src="/statics/img/contents_list_down.GIF",style="position:absolute;bottom:40px")
+    div#contents_list_button(style="position:relative;width:20px;min-height:450px;float:left;z-index:100;background:#FFF;border-right-color:#aaa;border-right-style:solid;border-right-width:1px; ")
+        a#list_button_shrink
+            img(src="/statics/img/contents_list_extend.GIF",style="position:absolute;top:140px")
+        a#list_button_extend(style="display:none")
+            img(src="/statics/img/contents_list_extend2.GIF",style="position:absolute;top:140px")
+    div#contents_list_right(style="position:relative;min-height:450px;float:left;")
+    a.carousel-control.left#contents_control_left(href="#relationList_f",data-slide="prev",style="margin:auto;display:none")&lsaquo;
+    a.carousel-control.right#contents_control_right(href="#relationList_f",data-slide="next",style="margin:auto;display:none")&rsaquo;
 {% endblock %}
