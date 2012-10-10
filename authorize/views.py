@@ -14,6 +14,7 @@ from django.shortcuts import render_to_response
 from django.views.decorators.http import require_http_methods
 from google.appengine.ext import blobstore
 from google.appengine.api import images
+from google.appengine.api.images import NotImageError
 from utils import HeadFileUploader, render_to_json, ImageFactory
 from uuid import uuid4
 import logging
@@ -73,11 +74,15 @@ def handle_head_upload(request):
     blob = request.FILES['head_file']
     if blob and hasattr(blob, 'blobstore_info'):
         blob_key = str(blob.blobstore_info.key())
-        profile = request.user.get_profile()
-        profile.head = blob_key
-        profile.save()
-        image_factory = ImageFactory(images.Image(image_data=blobstore.BlobReader(blob_key).read()))
-    return HttpResponse(json.dumps({'success':True, 'photo_key':str(blob.blobstore_info.key())}))
+        try:
+            factory = ImageFactory(blob_key)
+            profile = request.user.get_profile()
+            new_blob_key = str(factory.get_blob_key())
+            profile.head = new_blob_key
+            profile.save()
+        except NotImageError:
+            return HttpResponse(json.dumps({'success':False}))
+    return HttpResponse(json.dumps({'success':True, 'photo_key':new_blob_key}))
 
 @require_http_methods(["GET"])
 def serve_head(request, photo_key):
