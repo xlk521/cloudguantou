@@ -10,6 +10,7 @@ $(document).ready(function(){
             dataType: 'json',
             autoUpload: true,
             singleFileUploads: true,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             /**
             done: function (e, data) {
                 $.each(data.result, function (index, file) {
