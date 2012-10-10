@@ -757,20 +757,6 @@ $(document).ready(function(){
             for(var i=0;i<2;i++){contentslist();}
         });
     });
-    var uploader = new qq.FileUploader({
-        // pass the dom node (ex. $(selector)[0] for jQuery users)
-        element: document.getElementById('file-uploader'),
-        customHeaders: {"X-CSRFToken":csrftoken},
-        // path to server-side upload script
-        action: '/authorise/head_upload/',
-        autoUpload: true,
-        multiple: false,
-        uploadButtonText: '选择上传图片',
-        cancelButtonText: '取消上传',
-        onComplete: function(id, fileName, responseJSON) {
-            $('img#user-head').attr('src', '/user-upload/'+responseJSON.file);
-        }
-    });
 });
 function open_auth_window(url) {
     var left = (screen.width - 600) / 2;
