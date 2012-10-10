@@ -1,3 +1,4 @@
+#coding=utf8
 '''
 Created on 2012-10-1
 @author: damon

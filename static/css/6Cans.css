@@ -121,9 +121,6 @@ img {
 	width:90px;
 	text-align:center;
 }
-#wrap{
-    height: 88%;
-}
 /*主体   */
 #content {
 	width:410px;
@@ -945,6 +942,45 @@ div#homepage_content form fieldset.control-group{
     background:#aaa;
     float:left;
     height:100%;
+}
+/*个人目录页*/
+.contents_list_divleft{
+    position:relative;
+    width:663px;
+    margin-left:25px;
+    height:40px;
+    border-left-color:#aaa;
+    border-left-style:solid;
+    border-left-width:1px;
+    overflow:hidden;
+}
+.contents_list_divleft h3{
+    color:#a6a5ad;
+    font-size:17px;
+    margin-left:10px;
+    padding-top:5px;
+}
+#contents_list_date{
+    position:relative;
+    width:663px;
+    margin-left:25px;
+    min-height:158px;
+    border:1px solid #aaa;
+    border-right-color:#FFF;
+    border-bottom-color: #fff;
+    overflow:hidden;
+}
+#contents_work{
+    position:relative;
+    width:130px;
+    height:130px;
+    float:left;
+    margin: 28px 0px 0px 30px;
+}
+#contents_work div{
+    line-height:30px;
+    font-size:14px;
+    text-align:center;
 }
 
 #id_city {margin-left:30px;width:125px;height:35px;background:#f7f7f7;border-width:3px}
