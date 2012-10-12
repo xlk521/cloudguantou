@@ -50,21 +50,17 @@ class ImageFactory(object):
         image.rotate(0)
         image.execute_transforms(parse_source_metadata=True)
         exif = image.get_original_metadata()
-        log.debug(exif)
         if exif:
-            orientation = exif['Orientation']
-            log.debug(orientation)
-            if orientation==1 or orientation==2:
-                pass
-            elif orientation==3 or orientation==4:
-                log.debug('rotate 180')
-                image.rotate(180)
-            elif orientation==5 or orientation==6:
-                log.debug('rotate 90')
-                image.rotate(90)
-            elif orientation==7 or orientation==8:
-                log.debug('rotate 90 2')
-                image.rotate(-90)
+            orientation = exif.get('Orientation', False)
+            if orientation:
+                if orientation==1 or orientation==2:
+                    pass
+                elif orientation==3 or orientation==4:
+                    image.rotate(180)
+                elif orientation==5 or orientation==6:
+                    image.rotate(90)
+                elif orientation==7 or orientation==8:
+                    image.rotate(-90)
         width, height = image.width, image.height
         if width>height:
             scale = int(width/self.resize_width)

@@ -1,0 +1,9 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+manage.py
+.idea/workspace.xml
+.idea/*.*
+yan.db
+.DS_Store
