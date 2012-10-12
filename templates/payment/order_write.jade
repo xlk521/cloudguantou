@@ -1,27 +1,14 @@
 {% extends "base.jade" %}
 {% block title %}填写订单{% endblock %}
 {% block content %}
-div.sbt-ift
+div.sbt-ift#order_write
     div.sbt-ift1
         h3 填写订单信息
     div.sbt-ift2
         div.sbt-ift21
             h4 填写收货地址:
         div.sbt-ift22
-            ul
-                li.t-red
-                    span.tip 寄送至
-                    a.delete 删除
-                    input.radio(type="radio" ,checked="checked")
-                    label.label1 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
-                    em.em1 13125456654
-                    a.dft 设为默认地址
-                li
-                    a.delete 删除
-                    input.radio(type="radio" ,checked="checked")
-                    label.label1 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
-                    em.em1 13125456654
-                    a.dft 设为默认地址
+            ul#order_write_address
             a.set-address
     div.sbt-ift2
         div.sbt-ift21
@@ -67,23 +54,7 @@ div.sbt-ift
                 li.li5 数量
                 li.li6 单价
                 li.li7 小计
-            ul.ul2
-                li.li1.hg
-                    img(src="/statics/IMG/cp1.jpg" ,width="107", height="85")
-                li.li2.hg
-                    div 云贵水田油墨风景
-                li.li3.hg
-                    div 摄影
-                li.li4.hg
-                    div 黑色框架
-                li.li5.hg
-                    div 2
-                li.li6.hg
-                    div
-                        strong 600
-                li.li7.hg
-                    div
-                        strong.strong1 ￥1200.00
+            ul.ul2#order_write_work
         div.order-go
             p.p1
                 总计（含运费）:

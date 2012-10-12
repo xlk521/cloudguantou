@@ -98,7 +98,7 @@ $.template("contents_list_rightimg_footliadvise", contents_rightimg_footliadvise
 $.template("contents_list_rightimg_footliattention",  contents_rightimg_footliattention );
 //我的购物车---模版以及相关变量的设置
 var mycart_head='<dl id="my_cart_head"><hr class="bottom_line2" /><dt><input name="" type="checkbox" value="" /><strong>品牌：</strong><span>西南游采风</span><strong>创作者：</strong><span>遥远</span></dt></dl>';
-var mycart_content='<hr class="bottom_line" /><dd><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr id="mycart_content"> </tr></table></dd><hr class="bottom_line2" />';
+var mycart_content='<hr class="bottom_line" /><dd><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr id="mycart_content"> </tr></table></dd><hr class="bottom_line" />';
 var mycart_top=' <td class="cart_w50"><input name="" type="checkbox" value="" /></td><td class="cart_w117"><img src="/statics/IMG/cp1.jpg" width="107" height="85" /></td><td class="cart_w140"><strong>云贵水田油墨风云贵水田油墨风景云贵水田油墨风景云贵水田油墨风景景</strong></td><td class="cart_w70">摄影</td><td class="cart_w80">黑色框架</td>';
 var mycart_center='<td class="cart_w142"><div class="w124_margintop"><a class="ddnumbera1"></a><input type="text" class="ddinputw60h21" value=" 2" maxlength="5" style="padding:0"/> <a class="ddnumbera2"></a></div></td>';
 var mycart_bottom='<td class="cart_w105"><em><i class="ibg1"></i>600.00</em></td><td class="cart_w145"><b><i class="ibg2"></i>1200.00</b></td><td class="cart_w60"><div class="cart_w60_div"><a class="cart_w60_a">收藏</a><a class="cart_w60_a">删除</a></div></td>';
@@ -107,6 +107,88 @@ $.template("cart_content", mycart_content );
 $.template("cart_top", mycart_top );
 $.template("cart_center",mycart_center );
 $.template("cart_bottom",mycart_bottom );
+//订单填写页的模版
+//地址模版
+var order_write_addressli='<li class="t-red" id="order_write_adli"></li>';
+var order_write_addressspan='<span class="tip">寄送至</span>';
+var order_write_addresscontent='<a class="delete">删除</a><input class="radio" type="radio" checked="checked" />'+
+	'<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>'+
+	'<em class="em1">1854545454</em><a class="dft">设为默认地址</a>';
+$.template("order_write_li",  order_write_addressli );
+$.template("order_write_span",  order_write_addressspan );
+$.template("order_write_content",  order_write_addresscontent );
+//作品模版
+var order_write_work='<li class="li1 hg"><img src="IMG/cp1.jpg" width="107" height="85" /></li>'+
+    '<li class="li2 hg"><div>云贵水田油墨风景</div></li>'+
+    '<li class="li3 hg"><div>摄影</div></li>'+
+    '<li class="li4 hg"><div>黑色框架</div></li>'+
+    '<li class="li5 hg"><div>2</div></li>'+
+    '<li class="li6 hg"><div><strong>600</strong></div></li>'+
+    '<li class="li7 hg"><div><strong class="strong1">￥1200.00</strong></div></li>';
+$.template("order_write_works",  order_write_work );
+//订单成功页
+var order_ok_li='<li class="ok_f1">订单号<strong>：2536152465</strong></li><li class="ok_f2">应付金额：<strong>1200.00</strong></li>';
+$.template("order_okli",  order_ok_li );
+//订单确认页的模板
+var order_check_ul='<ul><li class="t-red"><span class="tip">寄送至</span>'+
+    '<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>'+
+    '<em class="em1">1854545454</em></li></ul>';
+$.template("order_checkul",  order_check_ul );
+var order_check_offerli='<label class="label1">在线支付</label><em class="em1">即时到帐，支持绝大数银行借记卡及部分银行信用卡</em><a class="a1" >查看银行及限额</a>';
+var order_check_sendli=' <label class="label1">顺丰快递</label><span><div class="tb-postAgeCont">至   北京</div></span><span> 快递费用：<b>3</b> 元(人民币)/千克</span>';
+$.template("order_check_offer_li", order_check_offerli );
+$.template("order_check_send_li",  order_check_sendli );
+var order_check_ul2='<li class="li1 hg"><img src="IMG/cp1.jpg" width="107" height="85" /></li>'+
+                    '<li class="li2 hg"><div>云贵水田油墨风景</div></li>'+
+                    '<li class="li3 hg"><div>摄影</div></li>'+
+                    '<li class="li4 hg"><div>黑色框架</div></li>'+
+                    '<li class="li5 hg"><div>2</div></li>'+
+                    '<li class="li6 hg"><div><strong>600</strong></div></li>'+
+                    '<li class="li7 hg"><div><strong class="strong1">￥1200.00</strong></div></li>';
+$.template("order_checkul2",order_check_ul2);
+//product产品页的模版
+var product_h30='<h3>青藏高原</h3>';
+var product_h24='<span>类别：</span><em>摄影</em><span>品牌：</span><em>金色闪光</em><span>作者：</span><em>遥远</em>';
+var product_h410='<img src="/statics/IMG/cp.jpg" width="510" height="410" />';
+var product_otherwork='<em>走进西藏的春与秋</em> ';
+$.template("product_list_h30",product_h30);
+$.template("product_list_h24",product_h24);
+$.template("product_list_h410",product_h410);
+$.template("product_other_work",product_otherwork);
+//product产品页的模版生成函数
+function product_details(){
+    $.tmpl( "product_list_h30").appendTo( "#h30" );
+    $.tmpl( "product_list_h24").appendTo( "#h24" );
+    $.tmpl( "product_list_h410").appendTo( "#h410" );
+    $.tmpl( "product_other_work").appendTo( "#other_product_name" );
+}
+//订单成功页的模版生成
+function order_ok(){
+    $.tmpl( "order_okli").appendTo( "#order_ok_ul" );
+}
+//订单确认页的模版
+function order_check(){
+    $.tmpl( "order_checkul").appendTo( ".sbt-ift22" );
+    $.tmpl( "order_check_offer_li").appendTo( "#order_check_offer" );
+    $.tmpl( "order_check_send_li").appendTo( "#order_check_send" );
+    $.tmpl( "order_checkul2").appendTo( ".ul2" );
+}
+//订单填写页的模版生成函数
+function order_write(){
+    //地址模版
+    for(var i=0;i<2;i++){
+        $.tmpl( "order_write_li").appendTo( "#order_write_address" );
+        if(i==0){
+        	$.tmpl( "order_write_span").appendTo( "#order_write_adli" );
+        }
+        $.tmpl( "order_write_content").appendTo( "#order_write_adli" );
+        $('#order_write_adli').removeAttr('id');
+    }
+    //作品模板
+    for(var i=0;i<2;i++){
+    	$.tmpl( "order_write_works").appendTo( "#order_write_work" );
+    }
+}
 //个人目录页--添加模版的函数
 function contents_right_left(){
     var tmpl_arraynum=0;
@@ -597,6 +679,11 @@ function contents_show(leftwidth){
 }
 $(document).ready(function(){
     //author_rightshow();
+    $(".box").hover(function(){
+    	$(this).css({opacity: 0.8});
+    },function(){
+    	$(this).css({opacity: 1});
+    });
     $("#logo_registbutton").click(function(){
         window.location.href ="/accounts/register/"
     });
@@ -654,10 +741,13 @@ $(document).ready(function(){
         }},function(){}
     );
     $("#author_followright").hover(function(){//我的粉丝界面的移动按钮
-         if(have_next_page==true){
-             author_getRelation("/content/content_following/",'following',author_x_num, author_y_num,"relationTemplate","#relationList_first",'render_follower');//调取数据
-         }},function(){}
+        if(have_next_page==true){
+            author_getRelation("/content/content_following/",'following',author_x_num, author_y_num,"relationTemplate","#relationList_first",'render_follower');//调取数据
+        }},function(){}
     );
+    $("#detail_content_div").show(function(){
+        product_details();
+    });
     $("#cart_div").show(function(){mycart_tmpl();});
     $("#contents_list").show(function(){//目录页的内容初始设计
         contents_show(1210);
@@ -677,11 +767,14 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
- $("#contents_list_right").show(function(){ contents_right_left();});
+    $("#contents_list_right").show(function(){ contents_right_left();});
     /*$("#author_friend").hover(function(){
         $("#author_friend_show").show();
         $("#author_follow_show").hide();
     });
+    $("#order_ok").show(function(){order_ok();});
+    $("#order_check").show(function(){order_check(); });
+    $("#order_write").show(function(){order_write();});
     $("#author_follow").hover(function(){
         $("#author_friend_show").hide();
         $("#author_follow_show").show();
@@ -746,7 +839,7 @@ $(document).ready(function(){
     $("#contents_control_right").click(function(){
         contents_rightchange("next");
     });
-
+	$("#homepage_content").show(function(){$("#foot").hide();});
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
         $("#author_content_followright").show(function(){author_resize("/content/content_following/",'following');});//作者列表页的设计
@@ -756,6 +849,20 @@ $(document).ready(function(){
             contents_right_left();
             for(var i=0;i<2;i++){contentslist();}
         });
+    });
+    var uploader = new qq.FileUploader({
+        // pass the dom node (ex. $(selector)[0] for jQuery users)
+        element: document.getElementById('file-uploader'),
+        customHeaders: {"X-CSRFToken":csrftoken},
+        // path to server-side upload script
+        action: '/authorise/head_upload/',
+        autoUpload: true,
+        multiple: false,
+        uploadButtonText: '选择上传图片',
+        cancelButtonText: '取消上传',
+        onComplete: function(id, fileName, responseJSON) {
+            $('img#user-head').attr('src', '/user-upload/'+responseJSON.file);
+        }
     });
 });
 function open_auth_window(url) {

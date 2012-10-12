@@ -34,7 +34,7 @@ img {
 }
 /*关于跨浏览器的设置*/
 .box {
-    opacity: .5;
+    opacity: 1;
     float:left;
     padding-left:10px;
 }
@@ -401,12 +401,12 @@ img {
 	margin-left:30px;
 	}
 #foot {
- height:44px;
- line-height:44px;
- background:#f7f7f7;
- border-top:1px solid #d2d2d2;
- overflow:hidden;
- min-width: 984px;
+	 height:44px;
+	 line-height:44px;
+	 background:#f7f7f7;
+	 border-top:1px solid #d2d2d2;
+	 overflow:hidden;
+	 min-width: 984px;
 }
 #foot p{
 	width:984px;
@@ -984,3 +984,25 @@ div#homepage_content form fieldset.control-group{
 }
 
 #id_city {margin-left:30px;width:125px;height:35px;background:#f7f7f7;border-width:3px}
+/*置顶*/
+.backToTop ,.backShow{
+	 display: none;
+	 width: 18px;
+	 line-height: 1.2;
+	 padding: 5px 0;
+	 background-color: #000;
+	 color: #fff;
+	 font-size: 12px;
+	 text-align: center;
+	 position: fixed;
+	 _position: absolute;
+	 right: 10px;
+	 bottom: 100px;
+	 _bottom: "auto";
+	 cursor: pointer;
+	 opacity: .6;
+	 filter: Alpha(opacity=60);
+}
+.backShow{
+bottom:200px
+}

@@ -8,6 +8,8 @@ html
         <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         link(rel="stylesheet" ,type="text/css" ,href="/statics/css/bootstrap.css")
         link(rel="stylesheet" ,type="text/css" ,href="/statics/css/GT_css.css")
+        link(rel="stylesheet" ,type="text/css" ,href="/statics/css/GT_min.css")
+        link(rel="stylesheet" ,type="text/css" ,href="/statics/css/GT_trade.css")
         link(rel="stylesheet" ,type="text/css" ,href="/statics/css/GT_Transaction.css")
         link(rel="stylesheet" ,type="text/css" ,href="/statics/css/6Cans.css")
         link(rel="stylesheet" ,type="text/css" ,href="/statics/css/mycans_css.css")
@@ -21,6 +23,8 @@ html
         script(type="text/javascript",src="/statics/js/formValidator_min.js",charset="UTF-8")
         script(type="text/javascript",src="/statics/js/formValidatorRegex.js",charset="UTF-8")
         script(type="text/javascript",src="/statics/js/6cans.js",charset="UTF-8")
+        script(type="text/javascript",src="/statics/js/GT_layer.js",charset="UTF-8")
+        script(type="text/javascript",src="/statics/js/GT_Trading.js",charset="UTF-8")
         {% block head %}{% endblock %}
     //分割线
     body(style="width:100%;min-height:450px;")
@@ -48,7 +52,7 @@ html
                     a#navigation_shoppingcart_num(href="#",style="background-position:48% 30%")
         {% block content %}{% endblock %}
         //底部标签
-        div#foot
+        div#foot.navbar-fixed-bottom
             div(style="float:left")
                 font(size="12pt")
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@1997-2012&nbsp;&nbsp;&nbsp;
