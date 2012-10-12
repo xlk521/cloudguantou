@@ -11,7 +11,7 @@ urlpatterns = patterns('content.views',
     url(r'content_following/', 'getFriendsProfile', {'page':'following'}),
     
     url(r'personal/', 'personal_index'),
-    
+    #(P<user_id>)
     url(r'content_indxe/', 'content_index'),
     
     url(r'content_follower/', 'getFriendsProfile', {'page' :'follower'}),
