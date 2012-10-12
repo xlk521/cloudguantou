@@ -12,11 +12,20 @@ $(document).ready(function(){
             singleFileUploads: true,
             /**
             done: function (e, data) {
+<<<<<<< HEAD
                 $.each(data.result, function (index, file) {
                     $('<p/>').text(file.name).appendTo(document.body);
                 });
             }
             **/
+=======
+            	console.log(e)
+            	console.log(data.jqXHR.responseText)
+            	var obj = jQuery.parseJSON(data.jqXHR.responseText);
+				console.log( obj.photo_key );
+				$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+            },
+>>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .bar').css(

@@ -16,6 +16,4 @@ urlpatterns = patterns('content.views',
     
     url(r'content_follower/', 'getFriendsProfile', {'page' :'follower'}),
     
-    url(r'upload/', 'up_load')
-    
 )
