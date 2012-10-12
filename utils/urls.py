@@ -9,6 +9,8 @@ urlpatterns = patterns('utils.views',
 
     url(r'^initialization/', 'initialization'),
     
-    url(r'^cleanupData/', 'cleanupDataBase')
+    url(r'^cleanupData/', 'cleanupDataBase'),
+    
+    url(r'^initProvince/', 'WriteLoctionJsonToDatabase'),
     
 )
