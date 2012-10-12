@@ -11,11 +11,10 @@ from django.shortcuts import render, render_to_response
 def personal_index(request):
     return render_to_response('content/personal_homepage.jade')
 
-
 def content_index(request):
     return render_to_response('content/contents_list.jade')
 
-@login_required
+#@login_required
 def up_load(request):
     return render_to_response('upload/uploadpage.jade')
 

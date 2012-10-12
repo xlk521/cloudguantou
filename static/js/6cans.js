@@ -269,6 +269,26 @@ $(function() {
         var province = $(this).val();
         getPost("/authorize/get_cities/", {province:province});
     });
+    $('#uploadButton').fileupload({
+        dataType: 'json',
+        autoUpload: true,
+        singleFileUploads: true,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        done: function (e, data) {
+            console.log(e)
+            console.log(data.jqXHR.responseText)
+            var obj = jQuery.parseJSON(data.jqXHR.responseText);
+            console.log( obj.photo_key );
+            $("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    });
 });
 // 只是用来测试作者列表界面的排版----当点击按钮时添加新的内容
 function author_getRelation(url,relation, x_num, y_num,id_relationTemplate,id_relationList,switch_num){
