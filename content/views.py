@@ -16,6 +16,10 @@ def content_index(request):
     return render_to_response('content/contents_list.jade')
 
 @login_required
+def up_load(request):
+    return render_to_response('upload/uploadpage.jade')
+
+@login_required
 def getFriendsProfile(request, page):
     if request.method == 'GET':
         request.session['cursor'] = 0
