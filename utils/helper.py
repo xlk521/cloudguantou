@@ -1,9 +1,8 @@
-#coding=utf8
 '''
 Created on 2012-10-1
 @author: damon
 '''
-from google.appengine.api import images, files
+from google.appengine.api import images
 from google.appengine.ext import blobstore
 from uuid import uuid4
 import json
@@ -41,44 +40,23 @@ class HeadFileUploader(object):
         return extension.lower()
 
 class ImageFactory(object):   
-    def __init__(self, blob_key):
-        self.resize_width=800
-        self.resize_height=600
-
-        #获取图片Exif信息
-        image = images.Image(image_data=blobstore.BlobReader(blob_key).read())
+    def __init__(self, image):
         image.rotate(0)
-        image.execute_transforms(parse_source_metadata=True)
+        image.execute_transforms(output_encoding=images.PNG, quality=100, parse_source_metadata=True)
         exif = image.get_original_metadata()
         if exif:
-            orientation = exif.get('Orientation', False)
-            if orientation:
-                if orientation==1 or orientation==2:
-                    pass
-                elif orientation==3 or orientation==4:
-                    image.rotate(180)
-                elif orientation==5 or orientation==6:
-                    image.rotate(90)
-                elif orientation==7 or orientation==8:
-                    image.rotate(-90)
-        width, height = image.width, image.height
-        if width>height:
-            scale = int(width/self.resize_width)
-            image.resize(width=self.resize_width, height=int(height/scale))
-        else:
-            scale = int(height/self.resize_height)
-            image.resize(width=int(width>scale), height=self.resize_height)
-        new_image = image.execute_transforms(output_encoding=images.PNG)
-        file_name = files.blobstore.create(mime_type='image/png')
-        with files.open(file_name, 'a') as f:
-            f.write(new_image)
-        files.finalize(file_name)
-        blobstore.delete(blob_key)
-        self.blob_key = files.blobstore.get_blob_key(file_name)
+            orientation = exif['Orientation']
+            log.debug(orientation)
+            if orientation==1 or orientation==2:
+                pass
+            elif orientation==3 or orientation==4:
+                image.rotate(180)
+            elif orientation==5 or orientation==6:
+                image.rotate(90)
+            elif orientation==7 or orientation==8:
+                image.rotate(90)
+        return
 
     def get_exif(self):
         return self.image.get_original_metadata()
-
-    def get_blob_key(self):
-        return self.blob_key
         
