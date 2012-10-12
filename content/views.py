@@ -11,7 +11,7 @@ from django.shortcuts import render, render_to_response
 def personal_index(request):
     return render_to_response('content/personal_homepage.jade')
 
-@login_required
+
 def content_index(request):
     return render_to_response('content/contents_list.jade')
 
