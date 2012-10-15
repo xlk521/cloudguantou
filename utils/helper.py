@@ -39,24 +39,43 @@ class HeadFileUploader(object):
         filename, extension = os.path.splitext(fileName)
         return extension.lower()
 
-class ImageFactory(object):   
-    def __init__(self, image):
+class ImageFactory(object):
+    def __init__(self, blob_key):
+        self.resize_width=800
+        self.resize_height=600
+        image = images.Image(image_data=blobstore.BlobReader(blob_key).read())
         image.rotate(0)
-        image.execute_transforms(output_encoding=images.PNG, quality=100, parse_source_metadata=True)
+        image.execute_transforms(parse_source_metadata=True)
+
         exif = image.get_original_metadata()
         if exif:
-            orientation = exif['Orientation']
-            log.debug(orientation)
-            if orientation==1 or orientation==2:
-                pass
-            elif orientation==3 or orientation==4:
-                image.rotate(180)
-            elif orientation==5 or orientation==6:
-                image.rotate(90)
-            elif orientation==7 or orientation==8:
-                image.rotate(90)
-        return
+            orientation = exif.get('Orientation', False)
+            if orientation:
+                if orientation==1 or orientation==2:
+                    pass
+                elif orientation==3 or orientation==4:
+                    image.rotate(180)
+                elif orientation==5 or orientation==6:
+                    image.rotate(90)
+                elif orientation==7 or orientation==8:
+                    image.rotate(-90)
+        width, height = image.width, image.height
+        if width>height:
+            scale = int(width/self.resize_width)
+            image.resize(width=self.resize_width, height=int(height/scale))
+        else:
+            scale = int(height/self.resize_height)
+            image.resize(width=int(width>scale), height=self.resize_height)
+        new_image = image.execute_transforms(output_encoding=images.PNG)
+        file_name = files.blobstore.create(mime_type='image/png')
+        with files.open(file_name, 'a') as f:
+            f.write(new_image)
+        files.finalize(file_name)
+        blobstore.delete(blob_key)
+        self.blob_key = files.blobstore.get_blob_key(file_name)
 
     def get_exif(self):
         return self.image.get_original_metadata()
         
+    def get_blob_key(self):
+        return self.blob_key

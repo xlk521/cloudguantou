@@ -7,7 +7,7 @@ Created on 2012-9-19
 from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('content.views',
-                       
+    
     url(r'content_following/', 'getFriendsProfile', {'page':'following'}),
     
     url(r'personal/', 'personal_index'),
