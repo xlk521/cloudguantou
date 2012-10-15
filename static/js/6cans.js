@@ -269,26 +269,6 @@ $(function() {
         var province = $(this).val();
         getPost("/authorize/get_cities/", {province:province});
     });
-    $('#uploadButton').fileupload({
-        dataType: 'json',
-        autoUpload: true,
-        singleFileUploads: true,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        done: function (e, data) {
-            console.log(e)
-            console.log(data.jqXHR.responseText)
-            var obj = jQuery.parseJSON(data.jqXHR.responseText);
-            console.log( obj.photo_key );
-            $("#user-head").attr("src","/authorize/head/"+obj.photo_key);
-        },
-        progressall: function (e, data) {
-            var progress = parseInt(data.loaded / data.total * 100, 10);
-            $('#progress .bar').css(
-                'width',
-                progress + '%'
-            );
-        }
-    });
 });
 // 只是用来测试作者列表界面的排版----当点击按钮时添加新的内容
 function author_getRelation(url,relation, x_num, y_num,id_relationTemplate,id_relationList,switch_num){
@@ -591,8 +571,7 @@ function contents_left_init(){//目录页初始时显示界面----left部分
     }
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
-
- contents_show(1210);
+    contents_show(1210);
 }
 function contents_show(leftwidth){
     //$("#contents_list").show(function(){//目录页的内容初始设计
@@ -766,7 +745,26 @@ $(document).ready(function(){
     $("#contents_control_right").click(function(){
         contents_rightchange("next");
     });
-
+    $('#uploadButton').fileupload({
+        dataType: 'json',
+        autoUpload: true,
+        singleFileUploads: true,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        done: function (e, data) {
+            console.log(e)
+            console.log(data.jqXHR.responseText)
+            var obj = jQuery.parseJSON(data.jqXHR.responseText);
+            console.log( obj.photo_key );
+            $("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    });
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
         $("#author_content_followright").show(function(){author_resize("/content/content_following/",'following');});//作者列表页的设计

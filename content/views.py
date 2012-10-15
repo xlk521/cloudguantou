@@ -67,9 +67,3 @@ def __send_friend_profiles(relation, profile, cursor, count, result):
     else:
         have_next_page = True
     return alluser[cursor:amount], have_next_page
-
-    
-    
-    
-
-    
