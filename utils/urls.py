@@ -13,4 +13,6 @@ urlpatterns = patterns('utils.views',
     
     url(r'^initProvince/', 'WriteLoctionJsonToDatabase'),
     
+    url(r'^initContentIndex/', 'initContentIndex')
+    
 )
