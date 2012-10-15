@@ -3,15 +3,13 @@ from django.db import models
 from django.forms import ModelForm
 from authorize.models import UserProfile
 from django.contrib import admin
+import uuid
 # Create your models here.
 class CategoryModelManager(models.Manager):
     pass
 
 class CategoryModel(models.Model):
     name = models.CharField(max_length=64)
-    #photograph = models.BooleanField('摄影', default = False)
-    #handicraft = models.BooleanField('手工艺', default = False)
-    #illustration = models.BooleanField('插画', default = False)
     
     object = CategoryModelManager()
     
@@ -29,17 +27,28 @@ class AlbumModelManager(models.Manager):
 
 class AlbumModel(models.Model):
     
+    def get_or_none_by_cansid(self, albumid):
+        u = self.filter(albumid=albumid)
+        if len(u):
+            return u[0]
+        else:
+            return None
+        
+    albumid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
-    category = models.ManyToManyField(CategoryModel)
+    category = models.ForeignKey(CategoryModel)
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
-    create_time = models.DateTimeField(auto_now=True, auto_now_add=True)
+    datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
     object = AlbumModelManager()
     
     def __unicode__(self):
         return '%s Album'%self.title
+    
+    class Meta:
+        ordering = ["-datetime"]
     
 class AlbumModelForm(ModelForm):
     class Meta:
@@ -50,6 +59,15 @@ class PhotoModelManager(models.Manager):
     pass
 
 class PhotoModel(models.Model):
+    
+    def get_or_none_by_cansid(self, photoid):
+        u = self.filter(photoid=photoid)
+        if len(u):
+            return u[0]
+        else:
+            return None
+        
+    photoid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
     profile = models.ForeignKey(UserProfile)
     album = models.ForeignKey(AlbumModel)
     title = models.CharField(max_length=128)
@@ -58,6 +76,8 @@ class PhotoModel(models.Model):
     parameter = models.CharField(max_length=128, blank=True)
     
     object = PhotoModelManager()
+    def __unicode__(self):
+        return '%s Photo'%self.title
     
     
    

@@ -1,7 +1,7 @@
 {% extends "base.jade" %}
 {% block title %}确认订单页{% endblock %}
 {% block content %}
-div.sbt-ift
+div.sbt-ift#check_ok
     div.sbt-ift1
         h3 订单提交成功
     div#order_ok
@@ -9,24 +9,13 @@ div.sbt-ift
             s.icon-suc
             div.order_ok_tip
                 h3.h3green 订单已提交，请尽快付款！
+                	span 请您在
+                		strong 2小时
+                		内完成支付，否则订单会被自动取消。
                 div.order_ok_tipl
-                    table(width="100%" ,border="0", cellspacing="0", cellpadding="0")
-                        tr
-                            td.order_ok_tiptd1.order_ok_tiptd2 订单号
-                            td.order_ok_tiptd1.order_ok_tiptd2 金额
-                            td.order_ok_tiptd1.order_ok_tiptd2 支付方式
-                            td.order_ok_tiptd1.order_ok_tiptd2 配送方式
-                        tr
-                            td.order_ok_tiptd1 2536152465
-                            td.order_ok_tiptd1
-                                b
-                                    i.ibg3
-                                    em 1200 .00
-                            td.order_ok_tiptd1 在线支付
-                            td.order_ok_tiptd1 顺丰快递
+                    ul#order_ok_ul
     div#order_ok
         p.ok_helpright
-            span 请您在2小时内完成支付，否则订单会被自动取消。
             a 使用帮助
         div.order_ok_payment
             div.mc

@@ -4,6 +4,14 @@
 div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-height:450px;width:100%;")
     div#contents_list_left(style="position:relative;width:740px;min-height:450px;float:left")
         div#contents_list_work(style="position:relative;width:690px;float:left;z-index:10;background:#FFF")
+            div.contents_list_divleft
+                h3 {{ datetime }} 
+            div#contents_list_date.contents_list_date
+                div#contents_work
+                    a
+                        img.img_delay_load(data-url="/statics/img/content_list.GIF", src="http://www.zhangxinxu.com/study/image/pixel.gif", style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;")
+                        div
+                            b 草麦山系列
         div#contents_list_a(style="position:relative;width:50px;min-height:200px;float:left;z-index:10;background:#FFF")
             a#work_up
                 img(src="/statics/img/contents_list_up.GIF",style="position:absolute;top:40px")
