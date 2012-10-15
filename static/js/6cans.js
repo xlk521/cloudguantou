@@ -56,11 +56,6 @@ $.template("relationTemplate_friend", markup_content_friend );
 $.template("relationTemplate_intro", markup_content_intro );
 $.template("relationTemplate_right", markup_content_right );
 //作者列表的目录页的左半部分的模版
-var markupcontents_left_data='<div class="contents_list_divleft"><h3>{{ datetime }} </h3></div><div id="contents_list_date" class="contents_list_date"></div>';
-$.template("contents_left_data", markupcontents_left_data );
-var markupcontents_left_work='<div id="contents_work"><a><img class="img_delay_load" data-url="/statics/img/content_list.GIF" src="http://www.zhangxinxu.com/study/image/pixel.gif" style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;" />'+
-    '<div style=""><b>草麦山系列</b></div></a></div>';
-$.template("contents_left_work", markupcontents_left_work );
 //目录页右半部分的模版
 //中间简介区域的模版
 var contents_center='<div id="contents_list_center" style="position:absolute;width:450px;min-height:450px;background:#fff;left:0px"><div id="contents_centerleft" style="position:relative;width:400px;height:140px;top:50%;margin:auto;"></div></div>';
@@ -428,14 +423,6 @@ function author_list_num(){//作者列表页，计算能容纳多少作者的信
     width_num=single_x;
     count=author_x_num*author_y_num;
 }
-function contentslist(){//生成目录页的模版===一个完整的信息模板
-    //$("#contents_list_date").removeAttr('id');//初始界面上有几个同样的id就要移除几次
-    $(".contents_list_date").removeAttr('class');
-    $.tmpl( "contents_left_data").appendTo( "#contents_list_work" );
-    //for(var i=0;i<模版个数;i++){}
-    $.tmpl( "contents_left_work").appendTo( ".contents_list_date" );
-    $.tmpl( "contents_left_work").appendTo( ".contents_list_date" );
-}
 function author_active(x_num,y_num,id_active,id_relationList,users_num)//每调用一次，生成一个完整的界面
 {
     //用来生成界面
@@ -647,18 +634,6 @@ function contents_getJson(url,neednum){//目录页---发送请求并获取数据
         dataType:'json'
     });
     console.log("执行函数：contents_getJson");//打印LOG
-}
-function contents_left_init(){//目录页初始时显示界面----left部分
-    var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
-    var left_show_num=Math.ceil(hei/200);//初始显示时需要加载的模版各抒
-    console.log("left_show_num:"+left_show_num);
-    for(var i=0;i<left_show_num;i++){
-        contentslist();
-    }
-    for(var i=0;i<10;i++){
-        contentslist();
-    }
-
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
     contents_show(1210);
