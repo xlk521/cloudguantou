@@ -20,6 +20,7 @@ var user_followings = new Array();//粉丝
 var user_allfriends = new Array();//首次取出的数据
 var aythor_users = new Array();//取出已登录作者的信息
 //作者目录页变量设置
+var contents_left_right=0;
 var work_top=0;//向上移动的距离
 var work_next=0;//向左移动的距离
 var contents_leftarray=new Array();//存储目录页的向上/向下的属性（top）变更的大小
@@ -57,7 +58,8 @@ $.template("relationTemplate_right", markup_content_right );
 //作者列表的目录页的左半部分的模版
 var markupcontents_left_data='<div class="contents_list_divleft"><h3>2012年8月18日上传</h3></div><div id="contents_list_date" class="contents_list_date"></div>';
 $.template("contents_left_data", markupcontents_left_data );
-var markupcontents_left_work='<div id="contents_work"><a><img src="/statics/img/content_list.GIF" /><div style=""><b>草麦山系列</b></div></a></div>';
+var markupcontents_left_work='<div id="contents_work"><a><img class="img_delay_load" data-url="/statics/img/content_list.GIF" src="http://www.zhangxinxu.com/study/image/pixel.gif" style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;" />'+
+    '<div style=""><b>草麦山系列</b></div></a></div>';
 $.template("contents_left_work", markupcontents_left_work );
 //目录页右半部分的模版
 //中间简介区域的模版
@@ -594,9 +596,6 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
         contents_leftarray[contents_leftnum]=work_top;
         console.log("up:"+work_top);
         $("#contents_list_work").animate({top:work_top});
-        for(var i=0;i<left_show_num;i++){
-            contentslist();
-        }
     }
     else if(up_down=="down" && contents_leftnum>-1){//如果点击向下按钮，并且数组没有到达第一组
         contents_leftnum=contents_leftnum-1;
@@ -605,6 +604,11 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
         $("#contents_list_work").animate({top:work_top});
         console.log("down:"+work_top);
     }
+    var change_img=new Array();
+    for(var i=0;i<5;i++){
+        change_img[0]="/statics/img/content_list.GIF";
+    }
+    $(".img_delay_load").attr("src","/statics/img/content_list.GIF");
 }
 
 function contents_rightchange(next_prive){//设置目录页的变换
@@ -651,6 +655,10 @@ function contents_left_init(){//目录页初始时显示界面----left部分
     for(var i=0;i<left_show_num;i++){
         contentslist();
     }
+    for(var i=0;i<10;i++){
+        contentslist();
+    }
+
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
 
@@ -676,6 +684,56 @@ function contents_show(leftwidth){
         console.log("wid:"+wid);
         //contents_left_init();
    // });
+}
+function keyDown(){
+    var body_class=document.getElementById('change_id').className;
+    if(body_class=="body_contents_list"){
+        if($("#contents_list_left").css("display")=="none"){
+            if(window.event.keyCode==37){
+                contents_rightchange("prive");
+                if(contents_list_array==-1){
+                    if(contents_left_right==0){contents_left_right=1;}
+                    else if(contents_left_right==1){list_button_extend();contents_left_right=0;}
+                    else{contents_left_right=0;}
+                    console.log("contents_left_right:"+contents_left_right);
+                }
+            }
+            else if(window.event.keyCode==39){contents_rightchange("next");contents_left_right=contents_left_right+1;}
+            else if(window.event.keyCode==70){list_button_extend();}
+        }
+        else{
+            if(window.event.keyCode==38){contents_leftchange("up");}
+            else if(window.event.keyCode==40){contents_leftchange("down");}
+            else if((window.event.keyCode==70)||(window.event.keyCode==39&&(contents_list_array==0||contents_list_array==-1))){list_button_shrink();contents_left_right=contents_left_right+1;}
+        }
+    }
+}
+function list_button_extend(){//目录页：展开左半边
+    $("#contents_list_left").show();
+    $("#list_button_shrink").show();
+    $("#list_button_extend").hide();
+    var wid=document.body.clientWidth-2;//网页可见区域宽-2px
+    var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+    console.log("wid"+wid);
+    var right_width=wid-1210;
+    $("#contents_list").css({width:wid});
+    //$("#contents_list_img").css({width:right_width});
+    $("#contents_control_left").hide();
+    $("#contents_control_right").hide();
+    var img_h=hei-35;
+    var img_w=img_h*4/3;
+    $("#contents_list_img2").css({height:hei,width:img_w});
+}
+function list_button_shrink(){//目录页：收缩左半边
+    $("#contents_list_left").hide();
+    $("#list_button_shrink").hide();
+    $("#list_button_extend").show();
+    var wid=document.body.clientWidth-2;//网页可见区域宽-2px
+    var right_width=wid-470;
+    $("#contents_list").css({width:wid});
+    //$("#contents_list_img").css({width:right_width});
+    $("#contents_control_left").show();
+    $("#contents_control_right").show();
 }
 $(document).ready(function(){
     //author_rightshow();
@@ -768,64 +826,11 @@ $(document).ready(function(){
         console.log("show--ing");
     });
     $("#contents_list_right").show(function(){ contents_right_left();});
-    /*$("#author_friend").hover(function(){
-        $("#author_friend_show").show();
-        $("#author_follow_show").hide();
-    });
-    $("#order_ok").show(function(){order_ok();});
-    $("#order_check").show(function(){order_check(); });
-    $("#order_write").show(function(){order_write();});
-    $("#author_follow").hover(function(){
-        $("#author_friend_show").hide();
-        $("#author_follow_show").show();
-    });
-    $("#author_follow").click(function(){
-        $("#author_right").hide();
-        $("#author_left").hide();
-        $("#author_followleft").show();
-        $("#author_followright").show();
-        author_init();
-        console.log("author_init();"+cursor);
-        author_list_num(),
-        $("#relationList_form").empty(),
-        author_getRelation("/content/getRelationProfile/",'follower',author_x_num, author_y_num,"relationTemplate_active","#relationList_active",'render_follower');//调取数据
-    });
-    $("#author_friend").click(function(){
-        $("#author_right").show();
-        $("#author_left").show();
-        $("#author_followleft").hide();
-        $("#author_followright").hide();
-        author_init();
-        author_list_num(),
-        $("#relationList_form").empty(),
-        author_getRelation("/content/getRelationProfile/",'follower',author_x_num, author_y_num,"relationTemplate_active","#relationList_active",'render_follower');//调取数据
-    });*/
     $("#list_button_shrink").click(function(){
-        $("#contents_list_left").hide();
-        $("#list_button_shrink").hide();
-        $("#list_button_extend").show();
-        var wid=document.body.clientWidth-2;//网页可见区域宽-2px
-        var right_width=wid-470;
-        $("#contents_list").css({width:wid});
-        //$("#contents_list_img").css({width:right_width});
-        $("#contents_control_left").show();
-        $("#contents_control_right").show();
+        list_button_shrink();
     });
     $("#list_button_extend").click(function(){
-        $("#contents_list_left").show();
-        $("#list_button_shrink").show();
-        $("#list_button_extend").hide();
-        var wid=document.body.clientWidth-2;//网页可见区域宽-2px
-        var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
-        console.log("wid"+wid);
-        var right_width=wid-1210;
-        $("#contents_list").css({width:wid});
-        //$("#contents_list_img").css({width:right_width});
-        $("#contents_control_left").hide();
-        $("#contents_control_right").hide();
-        var img_h=hei-35;
-        var img_w=img_h*4/3;
-        $("#contents_list_img2").css({height:hei,width:img_w});
+        list_button_extend();
     });
     $("#work_up").click(function(){
         contents_leftchange("up");
@@ -839,6 +844,8 @@ $(document).ready(function(){
     $("#contents_control_right").click(function(){
         contents_rightchange("next");
     });
+
+    $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
 	$("#homepage_content").show(function(){$("#foot").hide();});
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
