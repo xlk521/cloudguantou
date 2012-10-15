@@ -689,27 +689,19 @@ function keyDown(){
     var body_class=document.getElementById('change_id').className;
     if(body_class=="body_contents_list"){
         if($("#contents_list_left").css("display")=="none"){
-            if(window.event.keyCode==37){
-                contents_rightchange("prive");
-                if(contents_list_array==-1){
-                    if(contents_left_right==0){contents_left_right=1;}
-                    else if(contents_left_right==1){list_button_extend();contents_left_right=0;}
-                    else{contents_left_right=0;}
-                    console.log("contents_left_right:"+contents_left_right);
-                }
-            }
-            else if(window.event.keyCode==39){contents_rightchange("next");contents_left_right=contents_left_right+1;}
+            if(window.event.keyCode==37){contents_rightchange("prive"); }
+            else if(window.event.keyCode==39){contents_rightchange("next");}
             else if(window.event.keyCode==70){list_button_extend();}
         }
         else{
             if(window.event.keyCode==38){contents_leftchange("up");}
             else if(window.event.keyCode==40){contents_leftchange("down");}
-            else if((window.event.keyCode==70)||(window.event.keyCode==39&&(contents_list_array==0||contents_list_array==-1))){list_button_shrink();contents_left_right=contents_left_right+1;}
+            else if((window.event.keyCode==70)||(window.event.keyCode==39&&(contents_list_array==0||contents_list_array==-1))){list_button_shrink();}
         }
     }
 }
 function list_button_extend(){//目录页：展开左半边
-    $("#contents_list_left").show();
+    $("#contents_list_left").show(50);
     $("#list_button_shrink").show();
     $("#list_button_extend").hide();
     var wid=document.body.clientWidth-2;//网页可见区域宽-2px
@@ -725,7 +717,7 @@ function list_button_extend(){//目录页：展开左半边
     $("#contents_list_img2").css({height:hei,width:img_w});
 }
 function list_button_shrink(){//目录页：收缩左半边
-    $("#contents_list_left").hide();
+    $("#contents_list_left").hide(50);
     $("#list_button_shrink").hide();
     $("#list_button_extend").show();
     var wid=document.body.clientWidth-2;//网页可见区域宽-2px
