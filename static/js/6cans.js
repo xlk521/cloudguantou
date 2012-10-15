@@ -811,26 +811,32 @@ $(document).ready(function(){
         contents_rightchange("next");
     });
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
-	$("#homepage_content").show(function(){$("#foot").hide();});
-    /**
-    $('#album-upload').fileupload({
-        dataType: 'json',
+    $("#homepage_content").show(function(){$("#foot").hide();});
+    $("#album-upload").fileupload({
         autoUpload: false,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        init: function() {
-            console.log('init');
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/,
+        /**
+        process: [{
+            action: 'load',
+            fileTypes: /^image\/(gif|jpeg|png)$/,
+            maxFileSize: 20000000 // 20MB
+        }, {
+            action: 'resize',
+            maxWidth: 1920,
+            maxHeight: 1200,
+            minWidth: 800,
+            minHeight: 600
+        }, {
+            action: 'save'
+        }],**/
+        add: function(e, data) {
+            console.log(e);
+            console.log(data);
+            $("#movieTemplate").tmpl().prependTo("#movieList");
         },
-        uploadFormFilter: function(index) {
-            console.log('upload form filter');
-            console.log(index);
-        },
-        fileInputFilter: function(index) {
-            console.log('file input filter');
-            conslle.log(index);
-        },
-        buildUploadRow: function(files, index) {
-            console.log(files);
-            console.log(index);
+        change: function(e, data) {
+            var length = data.files.length;
+
         },
         done: function (e, data) {
             console.log(e)
@@ -846,23 +852,6 @@ $(document).ready(function(){
                 progress + '%'
             );
         }
-    });
-    **/
-    $('#album-upload').fileUploadUI({
-        uploadTable: $('#album-files'),
-        buildUploadRow: function (files, index, handler) {
-            return $('<tr><td>' + files[index].name + '<\/td>' +
-                    '<td class="file_upload_progress"><div><\/div><\/td>' +
-                    '<td class="file_upload_cancel">' +
-                    '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-                    '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
-                    '<\/button><\/td><\/tr>');
-        },
-        buildDownloadRow: function (file, handler) {
-            return $('<tr><td>' + file.name + '<\/td><\/tr>');
-        },
-        multipart: false,
-        maxChunkSize: 10000000
     });
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
