@@ -7,3 +7,4 @@ manage.py
 .idea/*.*
 yan.db
 .DS_Store
+.settings/org.eclipse.core.resources.prefs
