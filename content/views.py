@@ -12,7 +12,8 @@ def personal_index(request):
     return render_to_response('content/personal_homepage.jade')
 
 def content_index(request):
-    return render_to_response('content/contents_list.jade')
+    
+    return render(request, 'content/contents_list.jade', {'datetime':'ddd'})
 
 #@login_required
 def up_load(request):
@@ -67,3 +68,17 @@ def __send_friend_profiles(relation, profile, cursor, count, result):
     else:
         have_next_page = True
     return alluser[cursor:amount], have_next_page
+'''
+def getUserWork(request):
+    if request.method == 'POST':
+        result={}
+        result['work_date'] = __get_useralbum_workdate()
+        result['work_num'] = __get_useralbum_num()
+        result['img_src'] = photo_src
+        result['img_id'] = photo_id
+        result['img_title'] = photo_title
+        return HttpResponse(convertjson(result))
+
+'''
+    
+        

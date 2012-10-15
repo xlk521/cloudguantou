@@ -55,7 +55,7 @@ $.template("relationTemplate_friend", markup_content_friend );
 $.template("relationTemplate_intro", markup_content_intro );
 $.template("relationTemplate_right", markup_content_right );
 //作者列表的目录页的左半部分的模版
-var markupcontents_left_data='<div class="contents_list_divleft"><h3>2012年8月18日上传</h3></div><div id="contents_list_date" class="contents_list_date"></div>';
+var markupcontents_left_data='<div class="contents_list_divleft"><h3>{{ datetime }}</h3></div><div id="contents_list_date" class="contents_list_date"></div>';
 $.template("contents_left_data", markupcontents_left_data );
 var markupcontents_left_work='<div id="contents_work"><a><img src="/statics/img/content_list.GIF" /><div style=""><b>草麦山系列</b></div></a></div>';
 $.template("contents_left_work", markupcontents_left_work );
