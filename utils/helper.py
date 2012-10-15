@@ -2,7 +2,7 @@
 Created on 2012-10-1
 @author: damon
 '''
-from google.appengine.api import images
+from google.appengine.api import images, files
 from google.appengine.ext import blobstore
 from uuid import uuid4
 import json
@@ -46,7 +46,6 @@ class ImageFactory(object):
         image = images.Image(image_data=blobstore.BlobReader(blob_key).read())
         image.rotate(0)
         image.execute_transforms(parse_source_metadata=True)
-
         exif = image.get_original_metadata()
         if exif:
             orientation = exif.get('Orientation', False)
