@@ -26,8 +26,18 @@ $(document).ready(function(){
                 );
             }
         });
-        $('#user-head').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 210 });
+        
+        $('#user-head').imgAreaSelect({
+        	handles:'corners',movable:true,
+    		onSelectEnd: function (img, selection) {
+        	alert('x1'+selection.x1 + 'y1'+selection.y1+'x2'+selection.x2+'y2'+selection.y2+'width: ' + selection.width + '; height: ' + selection.height);}
+		});
+
     });
+
+	function submitform(){
+    	document.forms["normaluser"].submit();
+	}
 });
 </script>
 <style type="text/css">
@@ -36,7 +46,7 @@ $(document).ready(function(){
 {% endblock %}
 {% block content %}
 <div id="div_span9">
-	<form action="." method="post">
+	<form action="submit_form" method="post" name='normaluser'>
 		{% csrf_token %}
 		<fieldset class="control-group success">
 			{% block content_works %}{% endblock %}
@@ -98,7 +108,7 @@ $(document).ready(function(){
 				</p>
 			</div>
 			<div class="controls">
-				<button type="submit" style="background:#7cbe31;margin-left:100px" href ="#" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
+				<button type="submit" style="background:#7cbe31;margin-left:100px" href ="javascript: submitform()" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
 			</div>
 		</fieldset>
 	</form>
