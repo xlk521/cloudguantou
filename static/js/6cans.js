@@ -670,7 +670,7 @@ function contents_show(leftwidth){
         var right_width=wid-leftwidth;
         // var num_x=Math.floor(wid/400);//向下取整，分别计算长和宽能容纳多少数据
         $("#contents_list").css({width:wid,height:hei,background:"#aaa"});
-        $("#contents_list_left").css({height:hei,background:"#efa"});
+        $("#contents_list_left").css({height:hei,background:"#FFF"});
         $("#contents_list_button").css({height:hei});
         $("#contents_list_center").css({height:hei});
        // $("#contents_list_work").css({height:hei});
