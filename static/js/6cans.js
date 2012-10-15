@@ -56,7 +56,7 @@ $.template("relationTemplate_friend", markup_content_friend );
 $.template("relationTemplate_intro", markup_content_intro );
 $.template("relationTemplate_right", markup_content_right );
 //作者列表的目录页的左半部分的模版
-var markupcontents_left_data='<div class="contents_list_divleft"><h3>{{ datetime }}</h3></div><div id="contents_list_date" class="contents_list_date"></div>';
+var markupcontents_left_data='<div class="contents_list_divleft"><h3>datetime </h3></div><div id="contents_list_date" class="contents_list_date"></div>';
 $.template("contents_left_data", markupcontents_left_data );
 var markupcontents_left_work='<div id="contents_work"><a><img class="img_delay_load" data-url="/statics/img/content_list.GIF" src="http://www.zhangxinxu.com/study/image/pixel.gif" style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;" />'+
     '<div style=""><b>草麦山系列</b></div></a></div>';
@@ -835,11 +835,8 @@ $(document).ready(function(){
     $("#contents_control_right").click(function(){
         contents_rightchange("next");
     });
-<<<<<<< HEAD
-
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
 	$("#homepage_content").show(function(){$("#foot").hide();});
-=======
     $('#uploadButton').fileupload({
         dataType: 'json',
         autoUpload: true,
@@ -860,7 +857,6 @@ $(document).ready(function(){
             );
         }
     });
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
         $("#author_content_followright").show(function(){author_resize("/content/content_following/",'following');});//作者列表页的设计
@@ -870,20 +866,6 @@ $(document).ready(function(){
             contents_right_left();
             for(var i=0;i<2;i++){contentslist();}
         });
-    });
-    var uploader = new qq.FileUploader({
-        // pass the dom node (ex. $(selector)[0] for jQuery users)
-        element: document.getElementById('file-uploader'),
-        customHeaders: {"X-CSRFToken":csrftoken},
-        // path to server-side upload script
-        action: '/authorise/head_upload/',
-        autoUpload: true,
-        multiple: false,
-        uploadButtonText: '选择上传图片',
-        cancelButtonText: '取消上传',
-        onComplete: function(id, fileName, responseJSON) {
-            $('img#user-head').attr('src', '/user-upload/'+responseJSON.file);
-        }
     });
 });
 function open_auth_window(url) {
