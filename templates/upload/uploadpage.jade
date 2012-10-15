@@ -56,12 +56,6 @@ div#uploadpage(style="font-size:15px;width:984px")
                         textarea(name="message", style="width:420px;height:150px;background:#f7f7f7;border-color:#444242")
     form(style="width:984px")
         fieldset.control-group.success#movieList(style="margin-top:0px")
-        input(id="head-upload",type="file",name="head_file",data-url="{{ upload_url }}",multiple)
-        a#uploadButton
-            font(style="font-weight:bold;font-size:20px") +
-            font(style="text-decoration:underline;font-size:15px")上传文件
-    script(type="text/javascript")
-            //$( "#uploadButton" ).click( function() {
-            //    $( "#movieTemplate" ).tmpl( ).prependTo( "#movieList" );
-            //});
+        input(id="album-upload",type="file",name="album_files",multiple)
+        div(id="album-files")
 {% endblock %}
