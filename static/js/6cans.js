@@ -800,7 +800,7 @@ $(document).ready(function(){
     $("#cart_div").show(function(){mycart_tmpl();});
     $("#contents_list").show(function(){//目录页的内容初始设计
         contents_show(1210);
-        contents_left_init();
+       // contents_left_init();
     });
     $("#author_content_right").show(function(){
         $('.carousel').carousel('pause');
