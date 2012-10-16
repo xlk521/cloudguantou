@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 script#movieTemplate(type="text/x-jquery-tmpl")
-    form(style="margin-top:0px;width:984px;overflow:hidden;",action="${action}",method="POST",enctype="multipart/form-data")
+    form(style="margin-top:0px;width:984px;overflow:hidden;",class="file-upload",action="${action}",method="POST",enctype="multipart/form-data")
         div(style="float:left;height:80px;width:108px;line-height:80px;text-align:center;position:relative; border:1px #FFF solid;background-color:#FFF;")
             font(style="font-size:60px") 1
         div(style="float:left;height:285px;line-height:80px;width:268px;margin-left:30px;text-align:center; position:relative; border:1px #FFF solid; background-color:#FFF;")
@@ -21,7 +21,7 @@ script#movieTemplate(type="text/x-jquery-tmpl")
                 font(style="font-size:15px") 作品描述：&nbsp;
                 textarea(name="message", style="width:420px;height:150px;border-color:#444242")
 div#uploadpage(style="font-size:15px;width:984px")
-    form(action !="{%url django.contrib.auth.views.login%}",method="post") {% csrf_token %}
+    form(action!="{%url django.contrib.auth.views.login%}",method="post"){% csrf_token %}
         fieldset.control-group.success
             div(style="width:984px")
                 div.controls#uploadpage_headdiv
@@ -54,8 +54,10 @@ div#uploadpage(style="font-size:15px;width:984px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列作品描述：
                         textarea(name="message", style="width:420px;height:150px;background:#f7f7f7;border-color:#444242")
-    form(style="width:984px")
-        fieldset.control-group.success#movieList(style="margin-top:0px")
-        input(id="album-upload",type="file",name="album_files",multiple)
-        div(id="album-files")
+            input(id="album-upload",type="file",name="album_files",multiple)
+            div#progress
+                div.bar(style="width: 0%;")
+            table.table.table-striped(role="presentation")
+                tbody.files(data-toggle="modal-gallery",data-target="#modal-gallery")
+            div.control-group.success#movieList(style="width:984px;margin-top:0px")
 {% endblock %}
