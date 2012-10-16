@@ -813,7 +813,6 @@ $(document).ready(function(){
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
     $("#homepage_content").show(function(){$("#foot").hide();});
     $("#album-upload").fileupload({
-        /**
         autoUpload: true,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/,
         process: [{
@@ -860,7 +859,7 @@ $(document).ready(function(){
                 progress + '%'
             );
         },
-        **/
+        /**
         uploadTemplateId: null,
         downloadTemplateId: null,
         uploadTemplate: function (o) {
@@ -919,6 +918,7 @@ $(document).ready(function(){
             });
             return rows;
         }
+        **/
     });
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
