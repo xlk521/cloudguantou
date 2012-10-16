@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 script#movieTemplate(type="text/x-jquery-tmpl")
-    div(style="margin-top:0px;width:984px;overflow:hidden;")
+    form(style="margin-top:0px;width:984px;overflow:hidden;",action="${action}",method="POST",enctype="multipart/form-data")
         div(style="float:left;height:80px;width:108px;line-height:80px;text-align:center;position:relative; border:1px #FFF solid;background-color:#FFF;")
             font(style="font-size:60px") 1
         div(style="float:left;height:285px;line-height:80px;width:268px;margin-left:30px;text-align:center; position:relative; border:1px #FFF solid; background-color:#FFF;")

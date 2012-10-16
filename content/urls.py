@@ -17,5 +17,7 @@ urlpatterns = patterns('content.views',
     url(r'content_follower/', 'getFriendsProfile', {'page' :'follower'}),
     
     url(r'upload/', 'up_load'),
+    #批量获得上传路径
+    url(r'batch_upload_urls/', 'batch_upload_urls'),
     
 )

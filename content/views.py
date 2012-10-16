@@ -1,11 +1,18 @@
 #coding = utf8
 # Create your views here.
-from django.contrib.auth.decorators import login_required
 from authorize.models import UserProfile
-from friendships.models import UserFriendshipProfileModel
-from django.http import HttpResponse, HttpResponseRedirect
-from utils.views import convertjson
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, render_to_response
+from friendships.models import UserFriendshipProfileModel
+from google.appengine.ext import blobstore
+from utils.views import convertjson
+import logging
+
+
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)
+
 
 @login_required
 def personal_index(request):
@@ -18,6 +25,23 @@ def content_index(request):
 #@login_required
 def up_load(request):
     return render_to_response('upload/uploadpage.jade')
+
+@login_required
+def batch_upload_urls(request):
+    quantity = int(request.GET.get('quantity', False))
+    if not quantity:
+        raise Http404
+    else:
+        urls = []
+        for i in range(quantity-1):
+            url = {}
+            url['action'] = blobstore.create_upload_url('/authorize/head_upload/')
+            urls.append(url)
+        result = {
+            'quantity':quantity,
+            'urls':urls
+        }
+        return HttpResponse(convertjson(result))
 
 @login_required
 def getFriendsProfile(request, page):

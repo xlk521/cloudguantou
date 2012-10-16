@@ -830,13 +830,24 @@ $(document).ready(function(){
             action: 'save'
         }],**/
         add: function(e, data) {
-            console.log(e);
-            console.log(data);
-            $("#movieTemplate").tmpl().prependTo("#movieList");
         },
         change: function(e, data) {
             var length = data.files.length;
-
+            $.ajax({
+                type: 'GET',
+                url: '/content/batch_upload_urls/',
+                headers: {"X-CSRFToken":csrftoken},
+                dataType:'json',
+                data: {quantity:length},
+                success:function(message){
+                    console.log(message);
+                    var quantity = message.quantity;
+                    console.log(quantity);
+                    for(var i=0; i<quantity; i++) {
+                        $("#movieTemplate").tmpl(message.urls).prependTo("#movieList");
+                    }
+                }
+            });
         },
         done: function (e, data) {
             console.log(e)
