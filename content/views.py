@@ -3,17 +3,43 @@
 from django.contrib.auth.decorators import login_required
 from authorize.models import UserProfile
 from friendships.models import UserFriendshipProfileModel
+from content.models import AlbumModel, PhotoModel
+
 from django.http import HttpResponse, HttpResponseRedirect
 from utils.views import convertjson
 from django.shortcuts import render, render_to_response
+from django.core.cache import cache
+from django.template.defaultfilters import date as _date
+from datetime import datetime
 
 @login_required
 def personal_index(request):
     return render_to_response('content/personal_homepage.jade')
 
 def content_index(request):
+    user_id_year={} 
+    month_album={}
+    albumlist=[]
     
-    return render(request, 'content/contents_list.jade', {'datetime':'ddd'})
+    user = request.user.get_profile()
+    user_id = user.cans_id
+    datetime_year = _date(datetime.now(), "Y")
+    datetime_month = _date(datetime.now(), "m")
+    albums = AlbumModel.object.filter(profile=user)
+    for album in albums:
+        album_details={}
+        album_details['title'] = album.title
+        album_details['albumid'] =album.albumid
+        album_details['frontcover'] = album.frontcover
+        albumlist.append(album_details)
+    month_album['%s'%datetime_month] = albumlist
+    user_id_year['%s%s'%(user_id,datetime_year)] = month_album
+    cache.set('user_id_years',user_id_year)
+    
+    #return HttpResponse(cache.get('user_id_years')['392012'])    
+    return render(request, 'content/contents_list.jade',
+              {'user_id_years':cache.get('user_id_years')
+              })
 
 #@login_required
 def up_load(request):

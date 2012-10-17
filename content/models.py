@@ -35,6 +35,7 @@ class AlbumModel(models.Model):
             return None
         
     albumid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
+    frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
     category = models.ForeignKey(CategoryModel)
