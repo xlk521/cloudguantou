@@ -43,6 +43,7 @@ class ImageFactory(object):
     def __init__(self, blob_key):
         self.resize_width=800
         self.resize_height=600
+        scale = 1
         image = images.Image(image_data=blobstore.BlobReader(blob_key).read())
         image.rotate(0)
         image.execute_transforms(parse_source_metadata=True)
@@ -59,12 +60,16 @@ class ImageFactory(object):
                 elif orientation==7 or orientation==8:
                     image.rotate(-90)
         width, height = image.width, image.height
+        log.debug(width)
+        log.debug(height)
         if width>height:
-            scale = int(width/self.resize_width)
+            if width>self.resize_width:
+                scale = int(width/self.resize_width)
             image.resize(width=self.resize_width, height=int(height/scale))
         else:
-            scale = int(height/self.resize_height)
-            image.resize(width=int(width>scale), height=self.resize_height)
+            if height>self.resize_height:
+                scale = int(height/self.resize_height)
+            image.resize(width=int(width/scale), height=self.resize_height)
         new_image = image.execute_transforms(output_encoding=images.PNG)
         file_name = files.blobstore.create(mime_type='image/png')
         with files.open(file_name, 'a') as f:

@@ -20,7 +20,6 @@ import logging
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
 
 @login_required
 def personal_index(request):
