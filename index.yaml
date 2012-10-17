@@ -26,3 +26,15 @@ indexes:
 # manually, move them above the marker line.  The index.yaml file is
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
+
+- kind: content_albummodel
+  properties:
+  - name: profile_id
+  - name: datetime
+    direction: desc
+
+- kind: content_albummodel
+  properties:
+  - name: title
+  - name: datetime
+    direction: desc
