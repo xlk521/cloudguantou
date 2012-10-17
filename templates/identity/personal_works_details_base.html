@@ -6,7 +6,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $(function () {
-    	var img_url;
         $('#head-upload').fileupload({
             dataType: 'json',
             autoUpload: true,
@@ -15,6 +14,8 @@ $(document).ready(function(){
             	var obj = jQuery.parseJSON(data.jqXHR.responseText);
 				$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
 				img_url = $('#user-head').attr("src");
+				$('#user_upload_thumbnail').attr("src",img_url)
+				
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -22,9 +23,9 @@ $(document).ready(function(){
                     'width',
                     progress + '%'
                 );
-            }
+            }	
         });
-        $('<div><img id="user_upload_thumbil" src="/statics/img/picture_load.gif" style="position: relative;" /><div>')
+        $('<div><img id="user_upload_thumbnail" src="/statics/img/picture_load.gif" style="position: relative;" /><div>')	
         .css({
             float: 'left',
             position: 'relative',
@@ -33,6 +34,7 @@ $(document).ready(function(){
             height: '100px'
         })
         .insertAfter($('#user-head'));
+        
         
 
 
