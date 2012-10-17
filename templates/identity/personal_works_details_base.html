@@ -10,22 +10,10 @@ $(document).ready(function(){
             dataType: 'json',
             autoUpload: true,
             singleFileUploads: true,
-            /**
             done: function (e, data) {
-<<<<<<< HEAD
-                $.each(data.result, function (index, file) {
-                    $('<p/>').text(file.name).appendTo(document.body);
-                });
-            }
-            **/
-=======
-            	console.log(e)
-            	console.log(data.jqXHR.responseText)
             	var obj = jQuery.parseJSON(data.jqXHR.responseText);
-				console.log( obj.photo_key );
 				$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
             },
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .bar').css(
@@ -34,15 +22,12 @@ $(document).ready(function(){
                 );
             }
         });
-        
         $('#user-head').imgAreaSelect({
         	handles:'corners',movable:true,
     		onSelectEnd: function (img, selection) {
         	alert('x1'+selection.x1 + 'y1'+selection.y1+'x2'+selection.x2+'y2'+selection.y2+'width: ' + selection.width + '; height: ' + selection.height);}
 		});
-
     });
-
 	function submitform(){
     	document.forms["normaluser"].submit();
 	}

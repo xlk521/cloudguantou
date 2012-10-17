@@ -1,10 +1,9 @@
 eclipse.preferences.version=1
 encoding//account_settings/urls.py=utf8
+encoding//authorize/models.py=utf8
+encoding//authorize/urls.py=utf8
+encoding//authorize/views.py=utf8
 encoding//base/forms.py=utf8
-encoding//authorize/urls.py=utf8
-encoding//authorize/urls.py=utf8
-encoding//authorize/urls.py=utf8
-encoding//authorize/urls.py=utf8
 encoding//base/models.py=utf8
 encoding//base/views.py=utf8
 encoding//brand/models.py=utf8
