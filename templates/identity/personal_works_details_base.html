@@ -13,6 +13,9 @@ $(document).ready(function(){
             done: function (e, data) {
             	var obj = jQuery.parseJSON(data.jqXHR.responseText);
 				$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+				img_url = $('#user-head').attr("src");
+				$('#user_upload_thumbnail').attr("src",img_url)
+				
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -20,18 +23,40 @@ $(document).ready(function(){
                     'width',
                     progress + '%'
                 );
-            }
+            }	
         });
-        $('#user-head').imgAreaSelect({
-        	handles:'corners',movable:true,
-    		onSelectEnd: function (img, selection) {
-        	alert('x1'+selection.x1 + 'y1'+selection.y1+'x2'+selection.x2+'y2'+selection.y2+'width: ' + selection.width + '; height: ' + selection.height);}
-		});
+        $('<div><img id="user_upload_thumbnail" src="/statics/img/picture_load.gif" style="position: relative;" /><div>')	
+        .css({
+            float: 'left',
+            position: 'relative',
+            overflow: 'hidden',
+            width: '100px',
+            height: '100px'
+        })
+        .insertAfter($('#user-head'));
+        
+        
+
+
+    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
     });
+
 	function submitform(){
     	document.forms["normaluser"].submit();
 	}
 });
+function preview(img, selection) {
+    var scaleX = 100 / (selection.width || 1);
+    var scaleY = 100 / (selection.height || 1);
+  	var wid=$("#user-head").width();
+   	var hei=$("#user-head").height();
+    $('#user-head + div > img').css({
+        width: Math.round(scaleX * wid) + 'px',
+        height: Math.round(scaleY * hei) + 'px',
+        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+    });
+}
 </script>
 <style type="text/css">
 .bar {height:18px;  background:green;}
@@ -66,7 +91,7 @@ $(document).ready(function(){
 				<label style="margin-left:105px" class="control-label"> <font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font> </label>
 			</div>
 			<div class="controls">
-				<label style="margin-left:105px" class="control-label"> <img id="user-head" src="/statics/img/picture_load.gif"/> </label>
+				<label style="margin-left:105px" class="control-label"> <img id="user-head" src="/statics/img/picture_load.gif" style="float:left "/> </label>
 			</div>
 			<div class="controls">
 				<label class="control-label">
