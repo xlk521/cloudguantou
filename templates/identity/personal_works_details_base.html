@@ -34,10 +34,6 @@ $(document).ready(function(){
             height: '100px'
         })
         .insertAfter($('#user-head'));
-        
-        
-
-
     $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
     });
 	function submitform(){
@@ -67,7 +63,7 @@ function preview(img, selection) {
 		{% csrf_token %}
 		<fieldset class="control-group success">
 			{% block content_works %}{% endblock %}
-			<div class="controls">
+			<div class="controls"style="overflow: hidden;">
 				<label class="control-label">
 				<font size="4px">用户昵称</font> {{ form.nickname }}
 				{% if form.nickname.errors %}
@@ -77,7 +73,7 @@ function preview(img, selection) {
 				{% endif %}
 				</label>
 			</div>
-			<div class="controls">
+			<div class="controls"style="overflow: hidden;">
 				<label class="control-label">
 				<font size="4px" style="margin-left:35px">头像</font>
 				<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple>
@@ -86,23 +82,26 @@ function preview(img, selection) {
 				</div>
 				</label>
 			</div>
-			<div class="controls">
+			<div class="controls"style="overflow: hidden;">
 				<label style="margin-left:105px" class="control-label"> <font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font> </label>
 			</div>
-			<div class="controls">
+			<div class="controls" style="overflow: hidden;">
 				<label style="margin-left:105px" class="control-label"> <img id="user-head" src="/statics/img/picture_load.gif" style="float:left "/> </label>
 			</div>
-			<div class="controls">
-				<label class="control-label">
-				<font size="4px" style="margin-left:35px">性别</font> {{ form.gender }}
-				{% if form.gender.errors %}
-				<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
-				{% else %}
-				<p id="err_msg">&nbsp;</p>
-				{% endif %}
+			<div class="controls"style="overflow: hidden;">
+				<label >
+					<font size="4px" style="margin-left:35px">性别</font>
+					<div style="overflow: hidden;margin-left:35px">
+						{{ form.gender }}
+					</div>
+					{% if form.gender.errors %}
+					<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
+					{% else %}
+					<p id="err_msg">&nbsp;</p>
+					{% endif %}
 				</label>
 			</div>
-			<div class="controls">
+			<div class="controls"style="overflow: hidden;">
 				<label class="control-label">
 				<font size="4px" style="margin-left:15px">所在地</font> {{ form.province }}
 				{% if form.province.errors %}
@@ -115,7 +114,7 @@ function preview(img, selection) {
 				</select>
 				</label>
 			</div>
-			<div class="controls">
+			<div class="controls"style="overflow: hidden;">
 				<p>{{ form.introduction }}
 					{% if form.introduction.errors %}
 				<p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
@@ -124,7 +123,7 @@ function preview(img, selection) {
 				{% endif %}
 				</p>
 			</div>
-			<div class="controls">
+			<div class="controls"style="overflow: hidden;">
 				<button type="submit" style="background:#7cbe31;margin-left:100px" href ="javascript: submitform()" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
 			</div>
 		</fieldset>
