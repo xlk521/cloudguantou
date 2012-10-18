@@ -60,8 +60,6 @@ class ImageFactory(object):
                 elif orientation==7 or orientation==8:
                     image.rotate(-90)
         width, height = image.width, image.height
-        log.debug(width)
-        log.debug(height)
         if width>height:
             if width>self.resize_width:
                 scale = int(width/self.resize_width)

@@ -1,16 +1,15 @@
 #coding = utf8
 # Create your views here.
 from authorize.models import UserProfile
-from friendships.models import UserFriendshipProfileModel
 from content.models import AlbumModel, PhotoModel
-from django.http import HttpResponse, HttpResponseRedirect
-from utils.views import convertjson
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render, render_to_response
-from django.core.cache import cache
-from django.template.defaultfilters import date as _date
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.views.decorators.http import require_http_methods
+from django.shortcuts import render, render_to_response
+from django.template.defaultfilters import date as _date
 from friendships.models import UserFriendshipProfileModel
 from google.appengine.ext import blobstore
 from utils.views import convertjson
@@ -50,9 +49,15 @@ def content_index(request):
               {'user_id_years':cache.get('user_id_years')
               })
 
-#@login_required
+@login_required
+@require_http_methods(["POST", "GET"])
 def up_load(request):
-    return render_to_response('upload/uploadpage.jade')
+    if request.method == "GET":
+        upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
+        return render(request, 'upload/uploadpage.jade', {'upload_url':upload_url})
+    elif request.method == "POST":
+        log.debug(request.POST)
+        return render_to_response('content/contents_list.jade')
 
 @login_required
 def batch_upload_urls(request):
