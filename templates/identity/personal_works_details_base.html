@@ -38,11 +38,12 @@ $(document).ready(function(){
         
 
 
-    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
+	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview ,
+	    	onSelectEnd:function (img, selection){}
+	    });
     });
-
 	function submitform(){
-    	document.forms["normaluser"].submit();
+    	console.log("hello")
 	}
 });
 function preview(img, selection) {
@@ -64,7 +65,7 @@ function preview(img, selection) {
 {% endblock %}
 {% block content %}
 <div id="div_span9">
-	<form action="submit_form" method="post" name='normaluser'>
+	<form action="submit_form" method="post" id="submit_form">
 		{% csrf_token %}
 		<fieldset class="control-group success">
 			{% block content_works %}{% endblock %}
@@ -126,7 +127,7 @@ function preview(img, selection) {
 				</p>
 			</div>
 			<div class="controls">
-				<button type="submit" style="background:#7cbe31;margin-left:100px" href ="javascript: submitform()" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
+				<button type="submit" value="确定" onclick="document.getElementById('submit_form').submit();" style="background:#7cbe31;margin-left:100px" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
 			</div>
 		</fieldset>
 	</form>

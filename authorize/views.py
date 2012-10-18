@@ -1,7 +1,7 @@
 #coding=utf8
 # Create your views here.
-from .forms import PhotoForm
-from .models import UserProfile, NormalIdentityForm, DesignerIdentityForm
+from forms import PhotoForm
+from models import UserProfile, NormalIdentityForm, DesignerIdentityForm
 from base.models import Province, City
 from django.conf import settings
 from django.contrib.auth import authenticate, login
