@@ -28,7 +28,7 @@ def content_index(request):
     user_id_year={} 
     month_album={}
     albumlist=[]
-    
+    month=[]
     user = request.user.get_profile()
     user_id = user.cans_id
     datetime_year = _date(datetime.now(), "Y")
@@ -44,6 +44,8 @@ def content_index(request):
             albumlist.append(album_details)
         else:
             month_album['%s'%cur_datetime] = albumlist
+            month.append(month_album)
+            month_album={}
             cur_datetime = _date(album.datetime, "m")
             album_details={}
             album_details['title'] = album.title
@@ -52,16 +54,12 @@ def content_index(request):
             albumlist=[]
             albumlist.append(album_details)
     month_album['%s'%cur_datetime] = albumlist
-    sorted_x = sorted(month_album.items())
-    user_id_year['%s%s'%(user_id,datetime_year)] = dict(sorted_x)
-    cache.set('user_id_years',user_id_year)
+    month.append(month_album)
+    user_id_year['%s%s'%(user_id,datetime_year)] = month
+    cache.set('works',user_id_year)
     
-    return HttpResponse(user_id_year["392012"])   
-    #===========================================================================
-    # return render(request, 'content/contents_list.jade',
-    #       {'user_id_years':cache.get('user_id_years')
-    #       })
-    #===========================================================================
+    #return HttpResponse(user_id_year["392012"][1])   
+    return render(request, 'content/contents_list.jade', {'works':user_id_year})
 
 @login_required
 @require_http_methods(["POST", "GET"])

@@ -35,16 +35,9 @@ $(document).ready(function(){
         })
         .insertAfter($('#user-head'));
         
-	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview ,
-	    	onSelectEnd:function (img, selection){}
+	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview
 	    });
-	    function showValues() {
-	      var str = $("form").serialize();
-	      $("#results").text(str);
-	    }
-	    $(":checkbox, :radio").click(showValues);
-	    $("select").change(showValues);
-	    showValues();
+	  
     	
     }
 })	
