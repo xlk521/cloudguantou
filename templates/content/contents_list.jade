@@ -6,6 +6,11 @@ div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-
         div#contents_list_work(style="position:relative;width:690px;float:left;z-index:10;background-color:#FFF")
             {% for years, years_value in works.items %}
             {% for month in years_value %}    
+
+        div#contents_listborder_left(style="position:relative;width:24px;float:left;z-index:10;background-color:#FFF;border-right:1px solid #aaa;min-height:450px")
+        div#contents_list_work(style="position:relative;width:665px;float:left;z-index:10;background-color:#FFF")
+            {% for user_id_year_key,user_id_year_value in user_id_years.items %}
+            {% for month_key,month_value in user_id_year_value.items %}    
             div.contents_list_divleft
                 h3 {{ years }}年{{ month.keys.0 }}月 
             
@@ -21,7 +26,7 @@ div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-
                 
             {% endfor %}
             {% endfor %}
-        div#contents_list_a(style="position:relative;width:50px;min-height:200px;float:left;z-index:10;background:#FFF")
+        div#contents_list_a(style="position:relative;width:50px;min-height:450px;float:left;z-index:10;background:#FFF")
             a#work_up
                 img(src="/statics/img/contents_list_up.GIF",style="position:absolute;top:40px")
             a#work_down

@@ -577,6 +577,7 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
         var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
         var left_show_num=Math.floor(hei/400);//计算每次加载的模版个数，向下取整
         console.log("left_show_num--400:"+left_show_num);
+        var contents_work_height=$("#contents_work").height();
         var up_num=left_show_num*200;
         work_top=work_top-up_num;
         contents_leftnum=contents_leftnum+1;
@@ -648,7 +649,7 @@ function contents_show(leftwidth){
         $("#contents_list_left").css({height:hei,background:"#FFF"});
         $("#contents_list_button").css({height:hei});
         $("#contents_list_center").css({height:hei});
-       // $("#contents_list_work").css({height:hei});
+        $("#contents_listborder_left").css({height:hei});
         $("#contents_list_a").css({height:hei});
         //$("#contents_list_img").css({width:right_width,height:hei});
         $("#contents_list_img").css({height:hei});
@@ -876,7 +877,6 @@ $(document).ready(function(){
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
             contents_right_left();
-            for(var i=0;i<2;i++){contentslist();}
         });
     });
 });
