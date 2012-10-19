@@ -10,14 +10,15 @@ div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-
             div.contents_list_divleft
                 h3 {{ user_id_year_key }}年{{ month_key }}月 
             
-            div#contents_list_date.contents_list_date
+            div#contents_list_date.contents_list_date.contentslist_workdate
                 {% for album in month_value %}
                 
                 div#contents_work
-                    a
-                        img.img_delay_load(data-url="/statics/img/content_list.GIF", src="http://www.zhangxinxu.com/study/image/pixel.gif", style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;")
-                        div
-                            b {{ album.title }}
+                    div(style="overfloat:hidden")
+                        a
+                            img.img_delay_load(data-url="/statics/img/content_list.GIF", src="http://www.zhangxinxu.com/study/image/pixel.gif", style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;", onclick="contents_getimgid(this)")
+                            div
+                                b {{ album.title }}
                      
                               
                 {% endfor %}

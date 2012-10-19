@@ -20,6 +20,8 @@ var user_followings = new Array();//粉丝
 var user_allfriends = new Array();//首次取出的数据
 var aythor_users = new Array();//取出已登录作者的信息
 //作者目录页变量设置
+var contents_line_num=0;//记录行高的列表移动的位置
+var line_array=new Array();//用来存放行高的列表
 var contents_left_right=0;
 var work_top=0;//向上移动的距离
 var work_next=0;//向左移动的距离
@@ -73,7 +75,7 @@ var contents_rightimg='<div id="contents_list_img2" class="contents_list_img2" s
 var contents_rightimg_head='<div style="height:45px;background:#fff;line-height:40px;">'+
     '<span style="float:left;background:#aaa;font-size:19px;margin-left:5px">【照片的名称】</span>'+
     '<a style="float:right;margin-top:10px;margin-right:5px"><img src="/statics/img/contents_cart.GIF"></a><a style="float:right;margin-top:20px;margin-right:5px"><img src="/statics/img/contents_share.GIF"></a></div>';
-var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img src="/statics/img/content_right.gif" style="min-height:380px;"></a></div>';
+var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src="/statics/img/content_right.gif" style="min-height:450px;"></a></div>';
 var contents_rightimg_footul='<div style="height:25px;background:#fff;"><ul id="contents_rightimg_ul"></ul></div>';
 var contents_rightimg_footliwork='<li class="dropdown"><a style="float:left;margin-left:5px;" data-toggle="dropdown" href="#" class="dropdown-toggle">'+
     '<img src="/statics/img/contents_work_details.GIF" style="height:22px"></a><ul id="list_work_details" style="margin-top:-140px;min-width:300px;" class="dropdown-menu">'+
@@ -254,6 +256,7 @@ function contents_right_left(){
         left_less=contents_nextarray[contents_list_array];
         $("#contents_list_right").css({left:left_less});
         console.log("left_less:"+left_less);
+        contents_left_resize();
     }
     console.log("resize--contents");
 }
@@ -572,16 +575,85 @@ function base_foot(id){
     var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
     var content_h=$(id).height();
 }
+function contentlist_content_imgnum(div_id){//通过包含图片的div区域id，判断有多少图片，获取每行的高
+    var line_imgnum=4;//每行图片的数目
+    var line_num=0;//每个模块中的行数
+    var line_height=0;//获取每个图片区域的高度
+    var title_height=$(".contents_list_divleft").height();//获取每个日期区域的高度
+    console.log("line_height---->"+line_height);
+    console.log("title_height---->"+title_height);
+    //var line_array=new Array();//简历列表，存放区域数据
+    var array_num=0;
+    while($("#"+div_id).length>0){//获取当前的排版行数以及每行的大小
+        var testUL = document.getElementById(div_id);   
+        var listItems = testUL.getElementsByTagName("img"); 
+        var num=0;
+        for (var i=0; i<listItems.length; i++) {
+            num=num+1;
+        }
+        line_num=Math.ceil(num/line_imgnum);//向上取整，获取当前行数
+        console.log("num-----:>"+num+"<-------:"+line_num);//指定内容中的img个数
+        line_height=$("#"+div_id).height();
+        line_height=line_height/line_num;
+        line_array[array_num]=title_height;
+        for(var i=0;i<line_num;i++){
+            array_num=array_num+1;
+            line_array[array_num]=line_height;
+        }
+        $("#"+div_id).removeAttr("id");//消除当前区域的id
+        array_num=array_num+1;
+    }
+}
+function contents_left_resize(){//作者目录页的做部分：上下移动的问题
+    var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+    console.log("resize:>>>>"+hei);
+    var left_show_num=Math.floor(hei/2);//获取内容界面的高度的1/2，向下取整
+    var contents_height_num=2;
+    var lineArayLenght=line_array.length;
+    var left_num=0;
+    var off_height=0;//记录保留的页面高度
+    var last_array_num=lineArayLenght-1;
+    var left_last_height=0;//获取最后一次移动的距离
+    contents_leftarray=new Array();
+    work_top=0;
+    contents_line_num=0;
+    for(var i=last_array_num;i>-1;i--){
+        off_height=off_height+line_array[i];
+        if(off_height>=hei){
+            left_last_height=off_height-hei;//获取最后一次移动的距离
+            console.log("off_height>>>>"+off_height);
+            last_array_num=i;
+            break;
+        }
+        else if(i==0){
+            left_last_height=-1;
+        }
+    }
+    if(left_last_height!=-1){//禁用上下按钮的功能
+        for(var i=contents_line_num;i<last_array_num;i++){
+            contents_height_num=contents_height_num+line_array[contents_line_num];
+            contents_line_num=contents_line_num+1;
+            if(contents_height_num>=left_show_num || contents_line_num==last_array_num){
+                work_top=work_top-contents_height_num;
+                contents_height_num=2;
+                console.log("up:"+work_top);
+                contents_leftarray[left_num]=work_top;
+                left_num=left_num+1;
+            }
+        }
+        if(left_last_height!=0){
+            work_top=work_top-left_last_height;
+            contents_leftarray[left_num]=work_top;
+        }
+    }
+}
 function contents_leftchange(up_down){//记录目录页向上移动的数据，每当点击向上按钮（#work_up）,符合条件时添加数据
-    if(up_down=="up"){//如果是向上按钮并且还允许调取数据库，数组计数加一
-        var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
-        var left_show_num=Math.floor(hei/400);//计算每次加载的模版个数，向下取整
-        console.log("left_show_num--400:"+left_show_num);
-        var contents_work_height=$("#contents_work").height();
-        var up_num=left_show_num*200;
-        work_top=work_top-up_num;
+    var up_num=contents_leftarray.length;
+    up_num=up_num-1;
+    console.log("up_num---->>"+up_num);
+    if(up_down=="up" && contents_leftnum<up_num){//如果是向上按钮并且还允许调取数据库，数组计数加一
         contents_leftnum=contents_leftnum+1;
-        contents_leftarray[contents_leftnum]=work_top;
+        work_top=contents_leftarray[contents_leftnum];
         console.log("up:"+work_top);
         $("#contents_list_work").animate({top:work_top});
     }
@@ -656,6 +728,8 @@ function contents_show(leftwidth){
         var img_h=hei-35;
         var img_w=img_h*4/3+1;
         $(".contents_list_img2").css({height:hei,width:img_w});//所有的模板统一大小的设置
+        var img_hei=hei-25;
+        $(".contents_changeimg").css({height:img_hei});
         console.log("wid:"+wid);
         //contents_left_init();
    // });
@@ -701,6 +775,10 @@ function list_button_shrink(){//目录页：收缩左半边
     //$("#contents_list_img").css({width:right_width});
     $("#contents_control_left").show();
     $("#contents_control_right").show();
+}
+function contents_getimgid(obj){//目录页--获取图片的id
+     $("#contents_list_right").empty();
+     contents_right_left();
 }
 $(document).ready(function(){
     //author_rightshow();
@@ -776,6 +854,8 @@ $(document).ready(function(){
     $("#cart_div").show(function(){mycart_tmpl();});
     $("#contents_list").show(function(){//目录页的内容初始设计
         contents_show(1210);
+        contentlist_content_imgnum("contents_list_date");
+        contents_left_resize();
        // contents_left_init();
     });
     $("#author_content_right").show(function(){

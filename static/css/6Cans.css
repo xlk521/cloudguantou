@@ -959,7 +959,7 @@ div#homepage_content form fieldset.control-group{
     margin-left:10px;
     padding-top:5px;
 }
-#contents_list_date{
+.contentslist_workdate{
     position:relative;
     width:663px;
     min-height:158px;
@@ -971,6 +971,7 @@ div#homepage_content form fieldset.control-group{
 }
 #contents_work{
     position:relative;
+    overflow: hidden;
     width:130px;
     height:130px;
     float:left;
