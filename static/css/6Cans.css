@@ -947,9 +947,8 @@ div#homepage_content form fieldset.control-group{
 .contents_list_divleft{
     position:relative;
     width:663px;
-    margin-left:25px;
     height:40px;
-    border-left-color:#aaa;
+    border-left-color:#fff;
     border-left-style:solid;
     border-left-width:1px;
     overflow:hidden;
@@ -963,11 +962,11 @@ div#homepage_content form fieldset.control-group{
 #contents_list_date{
     position:relative;
     width:663px;
-    margin-left:25px;
     min-height:158px;
     border:1px solid #aaa;
     border-right-color:#FFF;
     border-bottom-color: #fff;
+    border-left-color: #fff;
     overflow:hidden;
 }
 #contents_work{
