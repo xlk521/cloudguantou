@@ -27,6 +27,11 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: base_city
+  properties:
+  - name: province_id
+  - name: ordering_letter
+
 - kind: content_albummodel
   properties:
   - name: profile_id

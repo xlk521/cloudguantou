@@ -35,17 +35,12 @@ $(document).ready(function(){
         })
         .insertAfter($('#user-head'));
         
-        
-
-
-	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview ,
-	    	onSelectEnd:function (img, selection){}
+	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview
 	    });
-    });
-	function submitform(){
-    	console.log("hello")
-	}
-});
+	  
+    	
+    })
+})	
 function preview(img, selection) {
     var scaleX = 100 / (selection.width || 1);
     var scaleY = 100 / (selection.height || 1);
@@ -127,7 +122,7 @@ function preview(img, selection) {
 				</p>
 			</div>
 			<div class="controls">
-				<button type="submit" value="确定" onclick="document.getElementById('submit_form').submit();" style="background:#7cbe31;margin-left:100px" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
+				<button type="submit" value="确定" style="background:#7cbe31;margin-left:100px" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
 			</div>
 		</fieldset>
 	</form>
