@@ -14,7 +14,7 @@ from friendships.models import UserFriendshipProfileModel
 from google.appengine.ext import blobstore
 from utils.views import convertjson
 import logging
-
+import operator
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
@@ -32,22 +32,36 @@ def content_index(request):
     user = request.user.get_profile()
     user_id = user.cans_id
     datetime_year = _date(datetime.now(), "Y")
-    datetime_month = _date(datetime.now(), "m")
-    albums = AlbumModel.object.filter(profile=user)
+    
+    albums = AlbumModel.object.filter(profile=user).order_by('-datetime')
+    cur_datetime = _date(albums[0].datetime, "m")
     for album in albums:
-        album_details={}
-        album_details['title'] = album.title
-        album_details['albumid'] =album.albumid
-        album_details['frontcover'] = album.frontcover
-        albumlist.append(album_details)
-    month_album['%s'%datetime_month] = albumlist
-    user_id_year['%s%s'%(user_id,datetime_year)] = month_album
+        if _date(album.datetime, "m") ==cur_datetime:
+            album_details={}
+            album_details['title'] = album.title
+            album_details['albumid'] =album.albumid
+            album_details['frontcover'] = album.frontcover
+            albumlist.append(album_details)
+        else:
+            month_album['%s'%cur_datetime] = albumlist
+            cur_datetime = _date(album.datetime, "m")
+            album_details={}
+            album_details['title'] = album.title
+            album_details['albumid'] =album.albumid
+            album_details['frontcover'] = album.frontcover
+            albumlist=[]
+            albumlist.append(album_details)
+    month_album['%s'%cur_datetime] = albumlist
+    sorted_x = sorted(month_album.items())
+    user_id_year['%s%s'%(user_id,datetime_year)] = dict(sorted_x)
     cache.set('user_id_years',user_id_year)
     
-    #return HttpResponse(cache.get('user_id_years')['392012'])    
-    return render(request, 'content/contents_list.jade',
-              {'user_id_years':cache.get('user_id_years')
-              })
+    return HttpResponse(user_id_year["392012"])   
+    #===========================================================================
+    # return render(request, 'content/contents_list.jade',
+    #       {'user_id_years':cache.get('user_id_years')
+    #       })
+    #===========================================================================
 
 @login_required
 @require_http_methods(["POST", "GET"])

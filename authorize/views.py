@@ -15,7 +15,7 @@ from django.views.decorators.http import require_http_methods
 from google.appengine.ext import blobstore
 from google.appengine.api import images
 from google.appengine.api.images import NotImageError
-from utils import HeadFileUploader, render_to_json, ImageFactory, convertjson
+from utils import HeadFileUploader, render_to_json, ImageFactory
 from uuid import uuid4
 import logging
 import json
@@ -23,7 +23,7 @@ import json
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
-@login_required
+#@login_required
 @require_http_methods(["POST", "GET"])
 def identity(request):
     if request.method == 'GET':
@@ -58,16 +58,16 @@ def identity(request):
 @require_http_methods(["POST"])
 #@render_to_json
 def get_cities(request):
-    result = []
     province = request.POST.get('province', False)
     province = Province.objects.get_or_none(name=province)
     if province:
-        cities = City.objects.filter(province=province.name).values('name')
+        cities = City.objects.filter(province=province).values('name')
+        result = []
         for city in cities:
             result.extend(city.values())
+        return result
     else:
-        result = {}
-    return HttpResponse(convertjson(result))
+        return {}
 
 @require_http_methods(["POST"])
 def handle_head_upload(request):

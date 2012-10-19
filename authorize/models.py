@@ -59,12 +59,13 @@ class NormalIdentityForm(ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('followers_count', 'friends_count', 'works_count')
-        widgets = {'gender': forms.RadioSelect}
+        widgets = {'gender': forms.RadioSelect, 'province':forms.Select}
 
     def __init__(self, *args, **kwargs):
         from django.forms.widgets import HiddenInput
         super(NormalIdentityForm, self).__init__(*args, **kwargs)
         self.fields['head'].widget = HiddenInput()
+
 
 class DesignerIdentityForm(ModelForm):
     class Meta:
