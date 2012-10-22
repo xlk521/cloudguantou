@@ -48,8 +48,10 @@ class AlbumModel(models.Model):
     def __unicode__(self):
         return '%s Album'%self.title
     
-    class Meta:
-        ordering = ["-datetime"]
+    #===========================================================================
+    # class Meta:
+    #    ordering = ["-datetime"]
+    #===========================================================================
     
 class AlbumModelForm(ModelForm):
     class Meta:

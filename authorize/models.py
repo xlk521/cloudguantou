@@ -64,6 +64,7 @@ class NormalIdentityForm(ModelForm):
         super(NormalIdentityForm, self).__init__(*args, **kwargs)
         self.fields['head'].widget = HiddenInput()
 
+
 class DesignerIdentityForm(ModelForm):
     class Meta:
         model = UserProfile

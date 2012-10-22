@@ -1,3 +1,4 @@
+#coding=utf8
 """
 Helper functions for creating Form classes from Django models
 and database field objects.
@@ -897,7 +898,7 @@ class ModelChoiceField(ChoiceField):
                             u' the available choices.'),
     }
 
-    def __init__(self, queryset, empty_label=u"---------", cache_choices=False,
+    def __init__(self, queryset, empty_label=u"省/市", cache_choices=False,
                  required=True, widget=None, label=None, initial=None,
                  help_text=None, to_field_name=None, *args, **kwargs):
         if required and (initial is not None):

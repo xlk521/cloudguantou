@@ -4,12 +4,31 @@ Created on 2012-10-1
 '''
 from google.appengine.api import images, files
 from google.appengine.ext import blobstore
+from django import template
+from django.utils.datastructures import SortedDict
 from uuid import uuid4
 import json
 import logging
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
+
+register = template.Library()
+@register.filter(name='sort')
+def listsort(value):
+  if isinstance(value,dict):
+    new_dict = SortedDict()
+    key_list = value.keys()
+    key_list.sort()
+    for key in key_list:
+      new_dict[key] = value[key]
+    return new_dict
+  elif isinstance(value, list):
+    new_list = list(value)
+    new_list.sort()
+    return new_list
+  else:
+    return value
 
 
 class HeadFileUploader(object):
