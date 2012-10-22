@@ -20,8 +20,10 @@ from uuid import uuid4
 import logging
 import json
 
+
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
+
 
 @login_required
 @require_http_methods(["POST", "GET"])

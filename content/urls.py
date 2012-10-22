@@ -18,6 +18,7 @@ urlpatterns = patterns('content.views',
     
     url(r'upload/', 'up_load'),
     #批量获得上传路径
-    url(r'batch_upload_urls/', 'batch_upload_urls'),
+    url(r'work_upload/', 'work_upload'),
     
+    url(r'batch_upload_test/', 'batch_upload_test'),
 )

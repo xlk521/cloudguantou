@@ -25,7 +25,7 @@ def personal_index(request):
     return render_to_response('content/personal_homepage.jade')
 
 def content_index(request):
-    user_id_year={} 
+    user_id_year={}
     month_album={}
     albumlist=[]
     
@@ -42,14 +42,18 @@ def content_index(request):
         albumlist.append(album_details)
     month_album['%s'%datetime_month] = albumlist
     user_id_year['%s%s'%(user_id,datetime_year)] = month_album
-    cache.set('user_id_years',user_id_year)
-    
-    #return HttpResponse(cache.get('user_id_years')['392012'])    
+
+    """
+    profile = request.user.get_profile()
+    albums = AlbumModel.objects.filter(profile=profile).values('title', 'albumid', 'frontconver')
+    """
+
+    #return HttpResponse(cache.get('user_id_years')['392012'])
     return render(request, 'content/contents_list.jade',
               {'user_id_years':cache.get('user_id_years')
               })
 
-@login_required
+#@login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
@@ -59,22 +63,24 @@ def up_load(request):
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
 
-@login_required
-def batch_upload_urls(request):
-    quantity = int(request.GET.get('quantity', False))
-    if not quantity:
-        raise Http404
-    else:
-        urls = []
-        for i in range(quantity-1):
-            url = {}
-            url['action'] = blobstore.create_upload_url('/authorize/head_upload/')
-            urls.append(url)
-        result = {
-            'quantity':quantity,
-            'urls':urls
-        }
-        return HttpResponse(convertjson(result))
+#@login_required
+def work_upload(request):
+    log.debug('request.GET')
+    if request.method == "GET":
+        log.debug('get page')
+        if not request.GET.get('upload'):
+            return render(request, 'content/publish_page.html', {})
+        else:
+            upload_url = blobstore.create_upload_url(reverse('content.views.work_upload'))
+            return HttpResponse(upload_url)
+    elif request.method == "POST":
+        log.debug(request.GET)
+        return HttpResponse("hello world")
+
+def batch_upload_test(request):
+    if request.method == "GET":
+        upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
+        return render(request, 'content/publish_page.html', {'upload_url':upload_url})
 
 @login_required
 def getFriendsProfile(request, page):
