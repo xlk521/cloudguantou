@@ -1,7 +1,7 @@
 {% extends "base.jade" %}
 {% block title %}填写订单{% endblock %}
 {% block content %}
-div.sbt-ift#order_write
+div.sbt-ift#order_write(style="margin:0 auto")
     div.sbt-ift1
         h3 填写订单信息
     div.sbt-ift2
@@ -17,24 +17,24 @@ div.sbt-ift#order_write
             b.b1 支付方法
             ul
                 li
-                    input.radio(type="radio" ,checked="checked")
+                    input.radio(type="radio" ,checked="checked",name="order_write_offer")
                     label.label1 在线支付
                     em.em1 通过第三方支付平台转账，转账后1-3个工作日内到账
                     a.a1 查看银行及限额
                 li
-                    input.radio(type="radio" ,checked="checked")
+                    input.radio(type="radio" ,checked="checked",name="order_write_offer")
                     label.label1 公司转账
                     em.em1 通过第三方支付平台转账，转账后1-3个工作日内到账
                     a.a1 查看账户信息
                 li
-                    input.radio(type="radio" ,checked="checked")
+                    input.radio(type="radio" ,checked="checked",name="order_write_offer")
                     label.label1 银行汇款
                     em.em1 通过第三方支付平台转账，转账后1-3个工作日内到账
                     a.a1 查看帮助
             b.b1 配送方式
             ul
                 li.dt_ddlogistics
-                    input.radio(type="radio" ,checked="checked")
+                    input.radio(type="radio" ,checked="checked",name="order_write_address")
                     label.label1.label2 顺丰快递
                     span
                         div.tb-postAgeCont 至   北京

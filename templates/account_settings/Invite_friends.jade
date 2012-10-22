@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "base.jade" %}
 {% block title %}邀请好友{% endblock %}
 {% block content %}
-div#mycans
-    div#mycans_left
+#mycans(style="margin:0 auto")
+    #mycans_left
         dl.mycans_dl1
             dt
                 i
@@ -20,11 +20,11 @@ div#mycans
         dl.mycans_dl4
             dt.I_f_dt
                 a 邀请好友
-    div#mycans_right
-        div.mycans_div
-            div.mycans_tit
+    #mycans_right
+        .mycans_div
+            .mycans_tit
                 h3 邀请好友
-            div#I_f_con
+            #I_f_con
                 p 邀请好友获得代金券！
                 p 成功邀请10名好友，获得30元代金券。
                 p 成功邀请20名好友，获得40元代金券。
