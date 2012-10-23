@@ -24,43 +24,57 @@ log.setLevel(logging.DEBUG)
 def personal_index(request):
     return render_to_response('content/personal_homepage.jade')
 
-def content_index(request):
-    user_id_year={} 
-    month_album={}
-    albumlist=[]
-    month=[]
-    user = request.user.get_profile()
-    user_id = user.cans_id
-    datetime_year = _date(datetime.now(), "Y")
-    
-    albums = AlbumModel.object.filter(profile=user).order_by('-datetime')
-    cur_datetime = _date(albums[0].datetime, "m")
-    for album in albums:
-        if _date(album.datetime, "m") ==cur_datetime:
-            album_details={}
-            album_details['title'] = album.title
-            album_details['albumid'] =album.albumid
-            album_details['frontcover'] = album.frontcover
-            albumlist.append(album_details)
+def content_index(request, cans_id):
+    if request.method == "GET":
+        if cans_id:
+            #cans_id = request.POST.get('cans_id', False)
+            user = UserProfile.objects.get(cans_id=cans_id)
         else:
-            month_album['%s'%cur_datetime] = albumlist
-            month.append(month_album)
-            month_album={}
-            cur_datetime = _date(album.datetime, "m")
-            album_details={}
-            album_details['title'] = album.title
-            album_details['albumid'] =album.albumid
-            album_details['frontcover'] = album.frontcover
-            albumlist=[]
-            albumlist.append(album_details)
-    month_album['%s'%cur_datetime] = albumlist
-    month.append(month_album)
-    user_id_year['%s%s'%(user_id,datetime_year)] = month
-    cache.set('works',user_id_year)
-    
-    #return HttpResponse(user_id_year["392012"][1])   
-    return render(request, 'content/contents_list.jade', {'works':user_id_year})
+            user = request.user.get_profile()
+        works = __get_album(user)
+    return render(request, 'content/contents_list.jade', {'works':works})
 
+def __get_album(user):
+    year=2012
+    album_years=True
+    albums_years_list=[]
+    user_id_year={} 
+    while album_years:
+        album_years=[]
+        album_years = AlbumModel.object.filter(datetime__year=year, profile=user).order_by('-datetime')
+        if album_years:
+            albums_years_list.append(album_years)
+            year = year+1
+    for albums in albums_years_list:
+        month_album={}
+        albumlist=[]
+        month=[]
+        year = _date(albums[0].datetime, "Y")
+        cmp_month = _date(albums[0].datetime, "m")
+        for album in albums:
+            if _date(album.datetime, "m") ==cmp_month:
+                album_details={}
+                album_details['title'] = album.title
+                album_details['albumid'] =album.albumid
+                album_details['frontcover'] = album.frontcover
+                albumlist.append(album_details)
+            else:
+                month_album['%s'%cmp_month] = albumlist
+                month.append(month_album)
+                month_album={}
+                cmp_month = _date(album.datetime, "m")
+                album_details={}
+                album_details['title'] = album.title
+                album_details['albumid'] =album.albumid
+                album_details['frontcover'] = album.frontcover
+                albumlist=[]
+                albumlist.append(album_details)
+        month_album['%s'%cmp_month] = albumlist
+        month.append(month_album)
+        user_id_year['%s'%(year)] = month
+        month=[]
+    cache.set('works',user_id_year)
+    return user_id_year
 @login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
