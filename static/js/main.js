@@ -49,22 +49,17 @@ $(function () {
         ],
         submit: function(e, data) {
             var $this = $(this);
-            /**
-            $.getJSON('/content/work_upload/', function (result) {
-                console.log(result);
-                data.url = url;
-                $this.fileupload('send', data);
-            });
-            **/
             $.ajax({
                 type: 'GET',
                 url: '/content/work_upload/',
                 headers: {"X-CSRFToken":csrftoken},
-                //dataType: 'json',
-                //data: data,
-                success:function(message){
+                dataType: 'json',
+                data: {'upload':1},
+                success: function(message) {
                     console.log(message);
-                }
+                    data.url = message.url;
+                    $this.fileupload('send', data);
+                },
             });
         return false;
         }

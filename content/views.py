@@ -7,14 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, render_to_response
 from django.template.defaultfilters import date as _date
+from django.views.decorators.http import require_http_methods
 from friendships.models import UserFriendshipProfileModel
+from google.appengine.api.images import NotImageError
 from google.appengine.ext import blobstore
-from utils.views import convertjson
+from utils import ImageFactory, convertjson
+import json
 import logging
 import operator
+
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
@@ -73,23 +76,31 @@ def up_load(request):
 
 #@login_required
 def work_upload(request):
-    log.debug('request.GET')
     if request.method == "GET":
-        log.debug('get page')
         if not request.GET.get('upload'):
             return render(request, 'content/publish_page.html', {})
         else:
             upload_url = blobstore.create_upload_url(reverse('content.views.work_upload'))
-            return HttpResponse(upload_url)
-    elif request.method == "POST":
-        log.debug(request.GET)
-        return HttpResponse("hello world")
-
-def batch_upload_test(request):
-    if request.method == "GET":
-        upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        return render(request, 'content/publish_page.html', {'upload_url':upload_url})
-
+            return HttpResponse(convertjson({'url':upload_url}))
+    else:
+        blob = request.FILES['works']
+        if blob and hasattr(blob, 'blobstore_info'):
+            blob_key = str(blob.blobstore_info.key())
+            log.debug(blob_key)
+            try:
+                factory = ImageFactory(blob_key, resize=(230, 170))
+                blob_key = factory.get_blobkey()
+            except NotImageError:
+                return HttpResponse(json.dumps({'success':False}))
+            return HttpResponse(json.dumps([{
+                'name':blob.blobstore_info.filename,
+                'size':blob.blobstore_info.size,
+                'url':'http://www.6cans.com/authorize/head/%s'%(blob_key),
+                'thumbnail_url':'http://www.6cans.com/authorize/head/%s'%(blob_key),
+                'delete_url':'http://www.6cans.com/content/delete/%s'%(blob_key),
+                'delete_type':'DELETE'}]))
+        raise Http404
+        
 @login_required
 def getFriendsProfile(request, page):
     if request.method == 'GET':
