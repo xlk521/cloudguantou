@@ -30,7 +30,6 @@ def personal_index(request):
 def content_index(request, cans_id):
     if request.method == "GET":
         if cans_id:
-            #cans_id = request.POST.get('cans_id', False)
             user = UserProfile.objects.get(cans_id=cans_id)
         else:
             user = request.user.get_profile()
@@ -39,6 +38,7 @@ def content_index(request, cans_id):
 
 
 def __get_album(user):
+    #year=_date(AlbumModel.object.filter(profile=user).order_by('-datetime')[0], "Y")
     year=2012
     album_years=True
     albums_years_list=[]
