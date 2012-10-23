@@ -84,62 +84,8 @@ div#uploadpage(style="font-size:15px;width:984px")
                         i.icon-arrow-right.icon-white
 <script id="template-upload" type="text/x-tmpl">
 {% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
-    <tr class="template-upload fade">
-        <td class="preview"><span class="fade"></span></td>
-        <td class="name"><input type="text" class="input-xlarge" id="input01" name='title' placeholder={% templatetag openblock %}=file.name{% templatetag closeblock %}></td>
-        <td class="size"><span>{% templatetag openblock %}=o.formatFileSize(file.size){% templatetag closeblock %}</span></td>
-        {% templatetag openblock %} if (file.error) { {% templatetag closeblock %}
-            <td class="error" colspan="2">
-                <span class="label label-important">{% templatetag openblock %}=locale.fileupload.error{% templatetag closeblock %}</span> {% templatetag openblock %}=locale.fileupload.errors[file.error] || file.error{% templatetag closeblock %}</td>
-        {% templatetag openblock %} } else if (o.files.valid && !i) { {% templatetag closeblock %}
-            <td>
-                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
-            </td>
-            <td class="start">{% templatetag openblock %} if (!o.options.autoUpload) { {% templatetag closeblock %}
-                <button class="btn btn-primary">
-                    <i class="icon-upload icon-white"></i>
-                    <span>{% templatetag openblock %}=locale.fileupload.start{% templatetag closeblock %}</span>
-                </button>
-            {% templatetag openblock %} } {% templatetag closeblock %}</td>
-        {% templatetag openblock %} } else { {% templatetag closeblock %}
-            <td colspan="2"></td>
-        {% templatetag openblock %} } {% templatetag closeblock %}
-        <td class="cancel">{% templatetag openblock %} if (!i) { {% templatetag closeblock %}
-            <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i>
-                <span>{% templatetag openblock %}=locale.fileupload.cancel{% templatetag closeblock %}</span>
-            </button>
-        {% templatetag openblock %} } {% templatetag closeblock %}</td>
-    </tr>
-{% templatetag openblock %} } {% templatetag closeblock %}
-</script>
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-{% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
-    <tr class="template-download fade">
-        {% templatetag openblock %} if (file.error) { {% templatetag closeblock %}
-            <td></td>
-            <td class="name"><span>{% templatetag openblock %}=file.name{% templatetag closeblock %}</span></td>
-            <td class="size"><span>{% templatetag openblock %}=o.formatFileSize(file.size){% templatetag closeblock %}</span></td>
-            <td class="error" colspan="2"><span class="label label-important">{% templatetag openblock %}=locale.fileupload.error{% templatetag closeblock %}</span> {% templatetag openblock %}=locale.fileupload.errors[file.error] || file.error{% templatetag closeblock %}</td>
-        {% templatetag openblock %} } else { {% templatetag closeblock %}
-            <td class="preview">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
-                <a href="{% templatetag openblock %}=file.url{% templatetag closeblock %}" title="{% templatetag openblock %}=file.name{% templatetag closeblock %}" rel="gallery" download="{% templatetag openblock %}=file.name{% templatetag closeblock %}"><img src="{% templatetag openblock %}=file.thumbnail_url{% templatetag closeblock %}"></a>
-            {% templatetag openblock %} } {% templatetag closeblock %}</td>
-            <td class="name">
-                <a href="{% templatetag openblock %}=file.url{% templatetag closeblock %}" title="{% templatetag openblock %}=file.name{% templatetag closeblock %}" rel="{% templatetag openblock %}=file.thumbnail_url&&'gallery'{% templatetag closeblock %}" download="{% templatetag openblock %}=file.name{% templatetag closeblock %}">{% templatetag openblock %}=file.title{% templatetag closeblock %}</a>
-            </td>
-            <td class="size"><span>{% templatetag openblock %}=o.formatFileSize(file.size){% templatetag closeblock %}</span></td>
-            <td colspan="2"></td>
-        {% templatetag openblock %} } {% templatetag closeblock %}
-        <td class="delete">
-            <button class="btn btn-danger" data-type="{% templatetag openblock %}=file.delete_type{% templatetag closeblock %}" data-url="{% templatetag openblock %}=file.delete_url{% templatetag closeblock %}">
-                <i class="icon-trash icon-white"></i>
-                <span>{% templatetag openblock %}=locale.fileupload.destroy{% templatetag closeblock %}</span>
-            </button>
-            <input type="checkbox" name="delete" value="1">
-        </td>
-    </tr>
+<tr class="template-upload fade">
+</tr>
 {% templatetag openblock %} } {% templatetag closeblock %}
 </script>
 {% endblock %}

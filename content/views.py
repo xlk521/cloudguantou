@@ -69,7 +69,7 @@ def content_index(request):
 def up_load(request):
     if request.method == "GET":
         upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        return render(request, 'upload/uploadpage.jade', {'upload_url':upload_url})
+        return render(request, 'content/uploadpage.jade', {'upload_url':upload_url})
     elif request.method == "POST":
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
