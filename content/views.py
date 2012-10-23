@@ -31,21 +31,27 @@ def content_index(request, cans_id):
     if request.method == "GET":
         if cans_id:
             user = UserProfile.objects.get(cans_id=cans_id)
+            #cans_id = request.POST.get('cans_id', False)
+            profile = UserProfile.objects.get(cans_id=cans_id)
         else:
-            user = request.user.get_profile()
-        works = __get_album(user)
+            profile = request.user.get_profile()
+        works = __get_album(profile)
     return render(request, 'content/contents_list.jade', {'works':works})
 
 
-def __get_album(user):
+def __get_album(profile):
+    """
     #year=_date(AlbumModel.object.filter(profile=user).order_by('-datetime')[0], "Y")
+=======
+def __get_album(profile):
+    
     year=2012
     album_years=True
     albums_years_list=[]
     user_id_year={} 
     while album_years:
         album_years=[]
-        album_years = AlbumModel.object.filter(datetime__year=year, profile=user).order_by('-datetime')
+        album_years = AlbumModel.objects.filter(datetime__year=year, profile=user).order_by('-datetime')
         if album_years:
             albums_years_list.append(album_years)
             year = year+1
@@ -79,13 +85,29 @@ def __get_album(user):
         month=[]
     cache.set('works',user_id_year)
     return user_id_year
+    """
+    works = {}
+    albums = AlbumModel.objects.filter(profile=profile).order_by('-datetime')
+    for album in albums:
+        year = _date(album.datetime, 'Y')
+        if not works.has_key(year):
+            works[year] = {}
+        month = _date(album.datetime, 'm')
+        if not works[year].has_key(month):
+            works[year][month] = []
+        work = {}
+        work['title'] = album.title
+        work['albumid'] = album.albumid
+        work['frontcover'] = album.frontcover
+        works[year][month].append(work)
+    return works
 
 @login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
         upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        return render(request, 'upload/uploadpage.jade', {'upload_url':upload_url})
+        return render(request, 'content/uploadpage.jade', {'upload_url':upload_url})
     elif request.method == "POST":
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
