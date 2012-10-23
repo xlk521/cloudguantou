@@ -12,7 +12,7 @@ urlpatterns = patterns('content.views',
     
     url(r'^personal/', 'personal_index'),
     
-    url(r'^content_index/', 'content_index'),
+    url(r'content_index/(.+)/$', 'content_index'),
     
     url(r'^content_follower/', 'getFriendsProfile', {'page' :'follower'}),
     
