@@ -2,13 +2,13 @@
 from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('authorize.views',
-    url(r'identity/', 'identity'),
+    url(r'^identity/', 'identity'),
     #用户上传图像
-    url(r'head_upload/', 'handle_head_upload'),
+    url(r'^head_upload/', 'handle_head_upload'),
     #获取用户头像
-    url(r'head/(?P<photo_key>\S+)', 'serve_head'),
+    url(r'^head/(?P<photo_key>\S+)', 'serve_head'),
     #根据省名称获取对应城市名称
-    url(r'get_cities/', 'get_cities'),
+    url(r'^get_cities/', 'get_cities'),
 )
 
 urlpatterns += patterns('authorize.qq_views',
@@ -27,14 +27,14 @@ urlpatterns += patterns('authorize.sina_views',
 
 urlpatterns += patterns('authorize.douban_views',
     # 豆瓣授权
-    url(r'doubanauth/', 'doubanauth'),
+    url(r'^doubanauth/', 'doubanauth'),
 
-    url(r'doubancallback', 'doubancallback'),
+    url(r'^doubancallback', 'doubancallback'),
 )
 
 urlpatterns += patterns('authorize.renren_views',
     
-    url(r'renrenauth/', 'renrenauth'),
+    url(r'^renrenauth/', 'renrenauth'),
     
-    url(r'renrencallback/', 'renrencallback'),
+    url(r'^renrencallback/', 'renrencallback'),
 )

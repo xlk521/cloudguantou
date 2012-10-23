@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.forms import ModelForm
-from google.appengine.ext import blobstore
-from google.appengine.ext import db
 # Create your models here.
 
 

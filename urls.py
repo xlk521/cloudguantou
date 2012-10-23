@@ -1,5 +1,6 @@
 #coding=utf8
 from django.conf.urls.defaults import patterns, url, include
+from django.http import HttpResponse
 
 handler500 = 'djangotoolbox.errorviews.server_error'
 
@@ -13,6 +14,8 @@ urlpatterns = patterns('',
     url(r'^authorize/', include('authorize.urls')),
 
     url(r'^$', include('base.urls')),
+
+    url(r'^status', 'base.views.status'),
     
     url(r'^content/', include('content.urls')),
     

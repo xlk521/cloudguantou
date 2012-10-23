@@ -813,54 +813,29 @@ $(document).ready(function(){
     });
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
     $("#homepage_content").show(function(){$("#foot").hide();});
+    var files;
     $("#album-upload").fileupload({
         autoUpload: true,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/,
-        process: [{
-            action: 'load',
-            fileTypes: /^image\/(gif|jpeg|png)$/,
-            maxFileSize: 20000000 // 20MB
-        }, {
-            action: 'resize',
-            maxWidth: 1920,
-            maxHeight: 1200,
-            minWidth: 800,
-            minHeight: 600
-        }, {
-            action: 'save'
-        }],
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         add: function(e, data) {
             console.log(data);
-            /**
-            $.each(data.result, function (index, file) {
-                $('<p/>').text(file.name).appendTo(document.body);
-            });
-            **/
         },
         change: function(e, data) {
-            var length = data.files.length;
-            /**
-            $.ajax({
-                type: 'GET',
-                url: '/content/batch_upload_urls/',
-                headers: {"X-CSRFToken":csrftoken},
-                dataType:'json',
-                data: {quantity:length},
-                success:function(message){
-                    console.log(message);
-                    var quantity = message.quantity;
-                    console.log(quantity);
-                    //$("#movieTemplate").tmpl(message.urls).prependTo("#movieList");
-                }
+            console.log(data.files);
+            console.log(data.result);
+            files = data.files;
+            $.each(data.files, function(index, file) {
+                $("#files").tmpl().prependTo("#movieList");
             });
-            **/
         },
         done: function (e, data) {
+            /**
             console.log(e)
             console.log(data.jqXHR.responseText)
             var obj = jQuery.parseJSON(data.jqXHR.responseText);
             console.log( obj.photo_key );
             $("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+            **/
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);

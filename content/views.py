@@ -7,14 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, render_to_response
 from django.template.defaultfilters import date as _date
+from django.views.decorators.http import require_http_methods
 from friendships.models import UserFriendshipProfileModel
+from google.appengine.api.images import NotImageError
 from google.appengine.ext import blobstore
-from utils.views import convertjson
+from utils import ImageFactory, convertjson
+import json
 import logging
 import operator
+
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
@@ -33,6 +36,7 @@ def content_index(request, cans_id):
             user = request.user.get_profile()
         works = __get_album(user)
     return render(request, 'content/contents_list.jade', {'works':works})
+
 
 def __get_album(user):
     year=2012
@@ -75,6 +79,7 @@ def __get_album(user):
         month=[]
     cache.set('works',user_id_year)
     return user_id_year
+
 @login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
@@ -85,23 +90,33 @@ def up_load(request):
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
 
-@login_required
-def batch_upload_urls(request):
-    quantity = int(request.GET.get('quantity', False))
-    if not quantity:
-        raise Http404
+#@login_required
+def work_upload(request):
+    if request.method == "GET":
+        if not request.GET.get('upload'):
+            return render(request, 'content/publish_page.html', {})
+        else:
+            upload_url = blobstore.create_upload_url(reverse('content.views.work_upload'))
+            return HttpResponse(convertjson({'url':upload_url}))
     else:
-        urls = []
-        for i in range(quantity-1):
-            url = {}
-            url['action'] = blobstore.create_upload_url('/authorize/head_upload/')
-            urls.append(url)
-        result = {
-            'quantity':quantity,
-            'urls':urls
-        }
-        return HttpResponse(convertjson(result))
-
+        blob = request.FILES['works']
+        if blob and hasattr(blob, 'blobstore_info'):
+            blob_key = str(blob.blobstore_info.key())
+            log.debug(blob_key)
+            try:
+                factory = ImageFactory(blob_key, resize=(230, 170))
+                blob_key = factory.get_blobkey()
+            except NotImageError:
+                return HttpResponse(json.dumps({'success':False}))
+            return HttpResponse(json.dumps([{
+                'name':blob.blobstore_info.filename,
+                'size':blob.blobstore_info.size,
+                'url':'http://www.6cans.com/authorize/head/%s'%(blob_key),
+                'thumbnail_url':'http://www.6cans.com/authorize/head/%s'%(blob_key),
+                'delete_url':'http://www.6cans.com/content/delete/%s'%(blob_key),
+                'delete_type':'DELETE'}]))
+        raise Http404
+        
 @login_required
 def getFriendsProfile(request, page):
     if request.method == 'GET':

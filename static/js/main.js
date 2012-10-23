@@ -28,51 +28,53 @@ $(function () {
         )
     );
 
-    if (window.location.hostname === 'blueimp.github.com') {
-        // Demo settings:
-        $('#fileupload').fileupload('option', {
-            url: '//jquery-file-upload.appspot.com/',
-            maxFileSize: 5000000,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-            process: [
-                {
-                    action: 'load',
-                    fileTypes: /^image\/(gif|jpeg|png)$/,
-                    maxFileSize: 20000000 // 20MB
-                },
-                {
-                    action: 'resize',
-                    maxWidth: 1440,
-                    maxHeight: 900
-                },
-                {
-                    action: 'save'
-                }
-            ]
-        });
-        // Upload server status check for browsers with CORS support:
-        if ($.support.cors) {
+    $('#fileupload').fileupload('option', {
+        url: '/content/work_upload/',
+        maxFileSize: 5000000,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        process: [
+            {
+                action: 'load',
+                fileTypes: /^image\/(gif|jpeg|png)$/,
+                maxFileSize: 20000000 // 20MB
+            },
+            {
+                action: 'resize',
+                maxWidth: 1440,
+                maxHeight: 900
+            },
+            {
+                action: 'save'
+            }
+        ],
+        submit: function(e, data) {
+            var $this = $(this);
             $.ajax({
-                url: '//jquery-file-upload.appspot.com/',
-                type: 'HEAD'
-            }).fail(function () {
-                $('<span class="alert alert-error"/>')
-                    .text('Upload server currently unavailable - ' +
-                            new Date())
-                    .appendTo('#fileupload');
+                type: 'GET',
+                url: '/content/work_upload/',
+                headers: {"X-CSRFToken":csrftoken},
+                dataType: 'json',
+                data: {'upload':1},
+                success: function(message) {
+                    console.log(message);
+                    data.url = message.url;
+                    $this.fileupload('send', data);
+                },
             });
+        return false;
         }
-    } else {
-        // Load existing files:
-        $('#fileupload').each(function () {
-            var that = this;
-            $.getJSON(this.action, function (result) {
-                if (result && result.length) {
-                    $(that).fileupload('option', 'done')
-                        .call(that, null, {result: result});
-                }
-            });
+    });
+    // Upload server status check for browsers with CORS support:
+    if ($.support.cors) {
+        $.ajax({
+            url: '/status',
+            type: 'GET'
+        }).fail(function () {
+            /**
+            $('<span class="alert alert-error"/>')
+                .text('Upload server currently unavailable - ' + new Date())
+                .appendTo('#fileupload');
+            **/
         });
     }
-
 });

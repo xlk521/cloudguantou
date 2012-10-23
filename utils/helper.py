@@ -10,8 +10,10 @@ from uuid import uuid4
 import json
 import logging
 
+
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
+
 
 register = template.Library()
 @register.filter(name='sort')
@@ -59,15 +61,15 @@ class HeadFileUploader(object):
         return extension.lower()
 
 class ImageFactory(object):
-    def __init__(self, blob_key):
-        self.resize_width=800
-        self.resize_height=600
+    def __init__(self, blob_key, rotate=True, resize=(800, 600)):
+        self.resize_width=resize[0]
+        self.resize_height=resize[1]
         scale = 1
         image = images.Image(image_data=blobstore.BlobReader(blob_key).read())
         image.rotate(0)
         image.execute_transforms(parse_source_metadata=True)
         exif = image.get_original_metadata()
-        if exif:
+        if exif and rotate:
             orientation = exif.get('Orientation', False)
             if orientation:
                 if orientation==1 or orientation==2:
@@ -98,5 +100,5 @@ class ImageFactory(object):
     def get_exif(self):
         return self.image.get_original_metadata()
         
-    def get_blob_key(self):
+    def get_blobkey(self):
         return self.blob_key
