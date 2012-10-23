@@ -27,13 +27,15 @@ class AlbumModelManager(models.Manager):
 
 class AlbumModel(models.Model):
     
+    """
     def get_or_none_by_cansid(self, albumid):
         u = self.filter(albumid=albumid)
         if len(u):
             return u[0]
         else:
             return None
-        
+    """
+
     albumid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
@@ -43,7 +45,7 @@ class AlbumModel(models.Model):
     parameter = models.CharField(max_length=128, blank=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
-    object = AlbumModelManager()
+    objects = AlbumModelManager()
     
     def __unicode__(self):
         return '%s Album'%self.title
