@@ -38,52 +38,6 @@ def content_index(request, cans_id):
 
 
 def __get_album(profile):
-    """
-    #year=_date(AlbumModel.object.filter(profile=user).order_by('-datetime')[0], "Y")
-=======
-def __get_album(profile):
-    
-    year=2012
-    album_years=True
-    albums_years_list=[]
-    user_id_year={} 
-    while album_years:
-        album_years=[]
-        album_years = AlbumModel.objects.filter(datetime__year=year, profile=user).order_by('-datetime')
-        if album_years:
-            albums_years_list.append(album_years)
-            year = year+1
-    for albums in albums_years_list:
-        month_album={}
-        albumlist=[]
-        month=[]
-        year = _date(albums[0].datetime, "Y")
-        cmp_month = _date(albums[0].datetime, "m")
-        for album in albums:
-            if _date(album.datetime, "m") ==cmp_month:
-                album_details={}
-                album_details['title'] = album.title
-                album_details['albumid'] =album.albumid
-                album_details['frontcover'] = album.frontcover
-                albumlist.append(album_details)
-            else:
-                month_album['%s'%cmp_month] = albumlist
-                month.append(month_album)
-                month_album={}
-                cmp_month = _date(album.datetime, "m")
-                album_details={}
-                album_details['title'] = album.title
-                album_details['albumid'] =album.albumid
-                album_details['frontcover'] = album.frontcover
-                albumlist=[]
-                albumlist.append(album_details)
-        month_album['%s'%cmp_month] = albumlist
-        month.append(month_album)
-        user_id_year['%s'%(year)] = month
-        month=[]
-    cache.set('works',user_id_year)
-    return user_id_year
-    """
     works = {}
     albums = AlbumModel.objects.filter(profile=profile).order_by('-datetime')
     for album in albums:
