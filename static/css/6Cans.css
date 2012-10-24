@@ -1049,3 +1049,19 @@ bottom:200px
 	    -moz-border-radius: 3px;
 	        border-radius: 3px;
 }
+/*个人目录页的评论框属性*/
+.contents_advice_tit{ font-size:14px; padding:0; margin:0; height:31px; line-height:31px; width:340px; background: url(/statics/img/titbg.gif) center top repeat-x #CBE4EF;}
+.contents_advice_tit b{ float:left; margin-left:15px;}
+.contents_advice_tit a{ float:right; margin-right:5px; margin-top:6px; display:inline;}
+a.cls{height:18px; width:18px;display:block; overflow:hidden; line-height:200px;}
+.nr{padding:10px; text-align:left;}
+a.cls,a.cls:link,a.cls:visited{background:url(/statics/img/cls.gif) center 0 no-repeat;}
+a.cls:hover{background:url(/statics/img/cls.gif) center -20px no-repeat;}
+.contents_advice_box{ border:1px #999999 solid; background:#FFF;}
+/*圆角边框*/
+.lt,.rt,.lb,.rb{ background-image:url(abg.png);filter:alpha(opacity=10);-moz-opacity:.1;opacity:.1;line-height:0;}
+.lt,.rt,.lb,.rb{ height:6px;width:6px;}.t,.b,.l,.r{ background:#000000;filter:alpha(opacity=10);-moz-opacity:.1;opacity:.1;line-height:0;}
+.l,.r{width:6px;}.t,.b{height:6px;}.lt{ background-position:0 0;}.rt{ background-position:right 0;}.lb{ background-position:0 bottom;}.rb{ background-position:right bottom;}
+.contents_advice_open{ position:relative; width:150px; height:25px;line-height:180%; border:1px solid #FF9900; background:#FFCC00;margin:12% auto 0 400px; text-align:center;}
+.contents_advice_open span{cursor:pointer; display:block; width:100%;}
+.contents_advice_odiv{ position:relative; margin-top:-300px; width:300px;z-index:1;}
