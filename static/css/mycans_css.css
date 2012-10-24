@@ -164,7 +164,7 @@
 #order_con .o_aList dd td{ vertical-align:middle;text-align:center;}
 #order_con .o_aList dd td strong{ width:120px; text-align:left;}
 #order_con .order_conListDiv{ width:55px; height:40px;}
-#order_con .order_conListBtn{display: inline-block; width:40px; height:20px;  line-height:20px;  border-radius: 2px; border:1px #ffffff solid; font-size:12px; color:#36c;}
+#order_con .order_conListBtn{display: inline-block; width:40px; height:20px;  line-height:20px;  border-radius: 2px; border:1px #ffffff solid; font-size:12px; color:#d6b190;}
 #order_con .order_conListBtn:hover{ background-color:#faecdd; border:1px #d6b190 solid;}
 #order_con .o_aListBottom{ height:32px; line-height:32px; border:1px #f2f2f2 solid; background-color:#f8f8f8;padding-left:10px; color:#878787; text-align:right;}
 #order_con .o_aListBottom strong,#order_con .o_aListBottom b{ margin:0 2px;}

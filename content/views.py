@@ -30,14 +30,24 @@ def personal_index(request):
 def content_index(request, cans_id):
     if request.method == "GET":
         if cans_id:
+<<<<<<< HEAD
+=======
+            #user = UserProfile.objects.get(cans_id=cans_id)
+            #cans_id = request.POST.get('cans_id', False)
+>>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
             profile = UserProfile.objects.get(cans_id=cans_id)
         else:
             profile = request.user.get_profile()
         works = __get_album(profile)
     return render(request, 'content/contents_list.jade', {'works':works})
 
+
 def __get_album(profile):
     """
+    #year=_date(AlbumModel.object.filter(profile=user).order_by('-datetime')[0], "Y")
+=======
+def __get_album(profile):
+    
     year=2012
     album_years=True
     albums_years_list=[]
