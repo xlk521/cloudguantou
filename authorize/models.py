@@ -63,7 +63,7 @@ class NormalIdentityForm(ModelForm):
         from django.forms.widgets import HiddenInput
         super(NormalIdentityForm, self).__init__(*args, **kwargs)
         self.fields['head'].widget = HiddenInput()
-
+        
 
 class DesignerIdentityForm(ModelForm):
     class Meta:

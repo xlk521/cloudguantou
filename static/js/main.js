@@ -32,6 +32,7 @@ $(function () {
         url: '/content/work_upload/',
         maxFileSize: 5000000,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        limitConcurrentUploads: 3,
         process: [
             {
                 action: 'load',
