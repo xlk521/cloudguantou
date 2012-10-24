@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'friendships',
     'identity',
     'payment',
-    'shopping_cart',
+    'shopping',
 )
 
 MIDDLEWARE_CLASSES = (
