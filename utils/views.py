@@ -102,7 +102,7 @@ def initContentIndex():
     
     userProfile = UserProfile.objects.filter(nickname = 'nick39')[0]
     category = CategoryModel.object.filter(name='Photography')[0]
-    for i in range(10):
+    for i in range(20):
         AlbumModel.objects.create(profile=userProfile, title='title%d'%i, category=category,
                                   description='description%d'%i, parameter='parameter%d'%i)
     

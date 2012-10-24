@@ -608,7 +608,8 @@ function contentlist_content_imgnum(div_id){//通过包含图片的div区域id�
         }
         line_num=Math.ceil(num/line_imgnum);//向上取整，获取当前行数
         var div_height=line_num*160-1;
-        $('.contents_list_date').height(div_height);
+        $("#"+div_id).height(div_height);//设置所在div的高度
+        //将区域内所有的div块添加到列表中，等待调用
         line_array[array_num]=title_height;
         for(var i=0;i<line_num;i++){
             array_num=array_num+1;
@@ -628,29 +629,33 @@ function contents_left_resize(){//作者目录页的做部分：上下移动的�
     var off_height=0;//记录保留的页面高度
     var last_array_num=lineArayLenght-1;
     var left_last_height=0;//获取最后一次移动的距离
+    var title_height=$(".contents_list_divleft").height();//获取每个日期区域的高度
     contents_leftarray=new Array();
     work_top=0;
     contents_line_num=0;
     for(var i=last_array_num;i>-1;i--){
         off_height=off_height+line_array[i];
-        if(off_height>hei){
+        if(off_height>=hei){
             left_last_height=off_height-hei;//获取最后一次移动的距离
-            last_array_num=i-1;
-            console.log("i=================="+i);
-            break;
-        }
-        else if(off_height==hei){
             last_array_num=i;
+            break;
         }
         else if(i==0){
             left_last_height=-1;
+            break;
         }
     }
-    if(left_last_height!=-1){//禁用上下按钮的功能
+    if(left_last_height!=-1){//如果是-1，禁用上下按钮的功能，否则获取移动的距离分布情况
         var the_last_num=last_array_num-1;
         for(var i=contents_line_num;i<last_array_num;i++){
             contents_height_num=contents_height_num+line_array[contents_line_num];
             if(contents_height_num>=left_show_num || contents_line_num==the_last_num){
+                if(contents_line_num==the_last_num){console.log("已经到达最后一个位置！");}
+                if(line_array[contents_line_num]==title_height && contents_line_num!=the_last_num){
+                    contents_height_num=contents_height_num-line_array[contents_line_num];
+                    contents_line_num=contents_line_num-1;
+                    i=i-1;
+                }
                 work_top=work_top-contents_height_num;
                 contents_height_num=0;
                 contents_leftarray[left_num]=work_top;
@@ -672,7 +677,6 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
     if(up_down=="up" && contents_leftnum<up_num){//如果是向上按钮并且还允许调取数据库，数组计数加一
         contents_leftnum=contents_leftnum+1;
         work_top=contents_leftarray[contents_leftnum];
-        console.log("up:"+work_top);
         $("#contents_list_work").animate({top:work_top});
     }
     else if(up_down=="down" && contents_leftnum>-1){//如果点击向下按钮，并且数组没有到达第一组
@@ -680,7 +684,6 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
         if(contents_leftnum==-1){work_top=0;}
         else{work_top=contents_leftarray[contents_leftnum];}
         $("#contents_list_work").animate({top:work_top});
-        console.log("down:"+work_top);
     }
     var change_img=new Array();
     for(var i=0;i<5;i++){

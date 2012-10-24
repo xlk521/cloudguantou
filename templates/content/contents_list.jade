@@ -1,7 +1,7 @@
 {% extends "base.jade" %}
 {% block title %}主页{% endblock %}
 {% block content %}
-div#contents_list(style="overflow:hidden;position:relative;min-width:984px;min-height:450px;width:100%;")
+div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-height:450px;width:100%;")
     div#contents_list_left(style="position:relative;width:740px;min-height:450px;float:left;background-color:white")
         div#contents_listborder_left(style="position:relative;width:24px;float:left;z-index:10;background-color:#FFF;border-right:1px solid #aaa;min-height:450px")
         div#contents_list_work(style="position:relative;width:665px;float:left;z-index:10;background-color:#FFF")
@@ -23,10 +23,8 @@ div#contents_list(style="overflow:hidden;position:relative;min-width:984px;min-h
             {% for years, month_works in works.items %}
             {% for month, albums in month_works.items %}
             div.contents_list_divleft
-                h3 {{ years }}年{{ month.keys.0 }}月 
                 h3 {{ years }}年{{ month }}月
             div#contents_list_date.contents_list_date.contentslist_workdate
-                {% for album in month.values.0 %}
                 {% for album in albums %}
                 div#contents_work
                     div(style="overfloat:hidden")
