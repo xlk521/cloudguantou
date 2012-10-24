@@ -78,7 +78,7 @@ def cleanupDataBase():
     UserProfile.objects.all().delete();
     UserFriendshipProfileModel.objects.all().delete();
     CategoryModel.object.all().delete();
-    AlbumModel.object.all().delete();
+    AlbumModel.objects.all().delete();
     PhotoModel.object.all().delete();
         
     
@@ -103,10 +103,10 @@ def initContentIndex():
     userProfile = UserProfile.objects.filter(nickname = 'nick39')[0]
     category = CategoryModel.object.filter(name='Photography')[0]
     for i in range(10):
-        AlbumModel.object.create(profile=userProfile, title='title%d'%i, category=category,
+        AlbumModel.objects.create(profile=userProfile, title='title%d'%i, category=category,
                                   description='description%d'%i, parameter='parameter%d'%i)
     
-    album = AlbumModel.object.filter(title ='title1')[0]
+    album = AlbumModel.objects.filter(title ='title1')[0]
     
     for i in range(2):
         PhotoModel.object.create(profile=userProfile, album=album, title='title%d'%i, 

@@ -30,7 +30,7 @@ def personal_index(request):
 def content_index(request, cans_id):
     if request.method == "GET":
         if cans_id:
-            user = UserProfile.objects.get(cans_id=cans_id)
+            #user = UserProfile.objects.get(cans_id=cans_id)
             #cans_id = request.POST.get('cans_id', False)
             profile = UserProfile.objects.get(cans_id=cans_id)
         else:
