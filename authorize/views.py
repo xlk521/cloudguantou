@@ -9,8 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.views.decorators.http import require_http_methods
 from google.appengine.ext import blobstore
 from google.appengine.api import images
@@ -53,7 +52,6 @@ def identity(request):
             print(form.errors)
         return HttpResponseRedirect('/content/personal')
 
-
 @login_required
 @require_http_methods(["POST"])
 #@render_to_json
@@ -77,7 +75,7 @@ def handle_head_upload(request):
         try:
             factory = ImageFactory(blob_key)
             profile = request.user.get_profile()
-            new_blob_key = str(factory.get_blob_key())
+            new_blob_key = str(factory.get_blobkey())
             profile.head = new_blob_key
             profile.save()
         except NotImageError:

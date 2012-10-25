@@ -18,24 +18,12 @@ class CategoryModel(models.Model):
    
 class CategoryModelForm(ModelForm):
     class Meta:
-        model = CategoryModel()   
-
-
+        model = CategoryModel()
 
 class AlbumModelManager(models.Manager):
     pass
 
 class AlbumModel(models.Model):
-    
-    """
-    def get_or_none_by_cansid(self, albumid):
-        u = self.filter(albumid=albumid)
-        if len(u):
-            return u[0]
-        else:
-            return None
-    """
-
     albumid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
@@ -50,27 +38,18 @@ class AlbumModel(models.Model):
     def __unicode__(self):
         return '%s Album'%self.title
     
-    #===========================================================================
-    # class Meta:
-    #    ordering = ["-datetime"]
-    #===========================================================================
-    
 class AlbumModelForm(ModelForm):
     class Meta:
         model = AlbumModel
 
-
 class PhotoModelManager(models.Manager):
-    pass
+    def get_or_none(self, **kwargs):
+        try:
+            return self.get(**kwargs)
+        except self.model.DoesNotExist:
+            return None
 
 class PhotoModel(models.Model):
-    
-    def get_or_none_by_cansid(self, photoid):
-        u = self.filter(photoid=photoid)
-        if len(u):
-            return u[0]
-        else:
-            return None
         
     photoid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
     profile = models.ForeignKey(UserProfile)
@@ -79,21 +58,16 @@ class PhotoModel(models.Model):
     url = models.CharField(max_length=128)
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
+    price = models.FloatField(blank=True)
     
-    object = PhotoModelManager()
+    objects = PhotoModelManager()
+
     def __unicode__(self):
         return '%s Photo'%self.title
     
-    
-   
 class PhotoModelForm(ModelForm):
     class Meta:
         model = PhotoModel()
-        
-   
-
-    
-
 
 class AlbumModelAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)

@@ -36,7 +36,6 @@ def content_index(request, cans_id):
         works = __get_album(profile)
     return render(request, 'content/contents_list.jade', {'works':works})
 
-
 def __get_album(profile):
     works = {}
     albums = AlbumModel.objects.filter(profile=profile).order_by('-datetime')
