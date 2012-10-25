@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     
     url(r'^friendships/', include('friendships.urls')),
     
-    url(r'^shopping_cart/', include('shopping_cart.urls')),
+    url(r'^shopping/', include('shopping.urls')),
     
     url(r'^utils/', include('utils.urls'))
 )
