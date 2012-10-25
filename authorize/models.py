@@ -67,7 +67,7 @@ class NormalIdentityForm(ModelForm):
         self.fields['head'].widget = HiddenInput()
         self.fields['head'].required = False
 
-
+        
 class DesignerIdentityForm(ModelForm):
     class Meta:
         model = UserProfile

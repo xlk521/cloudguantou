@@ -36,7 +36,7 @@ class AlbumModel(models.Model):
     objects = AlbumModelManager()
     
     def __unicode__(self):
-        return '%s Album'%self.title
+        return '%s Album'%self.title    
 
 class AlbumModelForm(ModelForm):
     class Meta:
