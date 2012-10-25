@@ -1,3 +1,10 @@
+//物品详情页
+var product_num=1;//要购买的物品，最初始的个数
+var product_paynum_size=0;//按照大小，选择对应的金钱
+var product_paynum_side=0;//按照边框，选择对应的金钱
+var product_paynum=0;//选择完毕后，总的金钱
+var money=0;
+var add_num=0;//单张增加的金额数目
 //作者界面所能容纳的行数和列数
 var author_x_num=0;
 var author_y_num=0;
@@ -371,6 +378,40 @@ $(function() {
         getPost("/authorize/get_cities/", {province:province});
     });
 });
+//product产品详情页的js函数
+function product_count_paynum(obj){//产品详情页--计算产品需要支付的money
+    var myA = document.getElementById("product_offer");
+    var add_money=parseFloat(obj.value);
+    var clss=obj.className;
+    if(clss=="product_size_pay"){
+        product_paynum_size=add_money;
+    }
+    else if(clss=="product_side_pay"){
+        product_paynum_side=add_money
+    }
+    add_num=product_paynum_size+product_paynum_side;
+    add_money=product_paynum+add_num;
+    myA.innerText=add_money;
+    money=add_money;
+    product_num=1;
+    $(".ddinputw60h21").attr('value',product_num);
+    console.log("product_paynum:"+product_paynum);
+    console.log("add_money:"+add_money);
+}
+function product_pay(add_nav){//物品数量与资金的关系函数
+    if(add_nav=="nav"){
+        if(product_num>1){product_num -=1;}
+    }
+    else if(add_nav=="add"){
+        var max_num=$(".ddinputw60h21").attr('maxlength');
+        if(product_num<max_num){product_num +=1;}
+    }
+    var myA = document.getElementById("product_offer");
+    var money_pay=money*product_num;
+    myA.innerText=money_pay;
+    //product_paynum=money_pay;
+    $(".ddinputw60h21").attr('value',product_num);
+}
 //homepage界面的添加图片
 function homepage_addimg(){
     for(var i=0;i<12;i++){
@@ -964,12 +1005,40 @@ $(document).ready(function(){
     $("#contents_control_right").click(function(){
         contents_rightchange("next");
     });
+    //增加或者减少购买物品数量的按钮事件
+    $(".ddnumbera1").click(function(){
+        
+        if(product_num>1){product_num -=1;}
+        $(".ddinputw60h21").attr('value',product_num);
+    });
+    $(".ddnumbera2").click(function(){
+        var max_num=$(".ddinputw60h21").attr('maxlength');
+        if(product_num<max_num){product_num +=1;}
+        $(".ddinputw60h21").attr('value',product_num);
+    });
+
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
     $("#homepage_content").show(function(){
         homepage_addimg();
         $("#foot").hide();
     });
     $("#homepage_content").show(function(){$("#foot").hide();});
+    //product产品详情页
+    
+    $("#detail_content_div").show(function(){
+        //变量初始化，获取总共需要支付的money
+        var myA = document.getElementById("product_offer");
+        product_paynum=parseFloat(myA.innerText);
+        money=parseFloat(myA.innerText);
+    });
+    $(".ddnumbera1").click(function(){  
+        product_pay("nav");
+    });
+    $(".ddnumbera2").click(function(){
+        product_pay("add");
+    });
+    
+
     var files;
     $("#album-upload").fileupload({
         autoUpload: true,
