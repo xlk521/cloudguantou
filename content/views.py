@@ -30,14 +30,11 @@ def personal_index(request):
 def content_index(request, cans_id):
     if request.method == "GET":
         if cans_id:
-            #user = UserProfile.objects.get(cans_id=cans_id)
-            #cans_id = request.POST.get('cans_id', False)
             profile = UserProfile.objects.get(cans_id=cans_id)
         else:
             profile = request.user.get_profile()
         works = __get_album(profile)
     return render(request, 'content/contents_list.jade', {'works':works})
-
 
 def __get_album(profile):
     works = {}
@@ -56,7 +53,7 @@ def __get_album(profile):
         works[year][month].append(work)
     return works
 
-@login_required
+#@login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
