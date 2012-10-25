@@ -1039,3 +1039,19 @@ var QueryString = function () {
     }
     return query_string;
 } ();
+window.locale = {
+    "fileupload": {
+        "errors": {
+            "maxFileSize": "文件超过限制大小",
+            "minFileSize": "文件未达到规定大小",
+            "acceptFileTypes": "暂不支持此文件类型",
+            "maxNumberOfFiles": "超出文件上传数目的最大范围",
+            "uploadedBytes": "上传的字节数超过文件大小",
+            "emptyResult": "文件为空，请查证后重新上传"
+        },
+        "error": "错误",
+        "start": "开始上传",
+        "cancel": "取消上传",
+        "destroy": "删除作品"
+    }
+};

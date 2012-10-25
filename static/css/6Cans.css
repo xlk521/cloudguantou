@@ -1054,8 +1054,9 @@ bottom:200px
     margin-bottom: 5px;
 }
 /*本地加载的图片的属性设置*/
-.preview span.fade canvas{height:170px;width:230px;margin-top: 10px;margin-bottom: 10px;}
+.preview span.fade canvas,.uploaded_img{height:170px;width:230px;margin-top: 10px;margin-bottom: 10px;}
 .files .progress{width:230px;margin-bottom: 10px;}
+
 /*个人目录页的评论框属性*/
 .contents_advice_tit{ font-size:14px; padding:0; margin:0; height:31px; line-height:31px; width:340px; background: url(/statics/img/titbg.gif) center top repeat-x #CBE4EF;}
 .contents_advice_tit b{ float:left; margin-left:15px;}
