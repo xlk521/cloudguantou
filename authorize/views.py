@@ -50,6 +50,7 @@ def identity(request):
                 profile.city = city
         form = NormalIdentityForm(request.POST, instance=profile)
         if form.is_valid():
+            form.cleaned_data
             form.save()
         else:
             print(form.errors)
