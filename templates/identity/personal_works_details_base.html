@@ -14,7 +14,8 @@ $(document).ready(function(){
             	var obj = jQuery.parseJSON(data.jqXHR.responseText);
 				$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
 				img_url = $('#user-head').attr("src");
-				$('#user_upload_thumbnail').attr("src",img_url)
+				$('#user_upload_thumbnail').attr("src",img_url);
+				$('input[name="img_url"]').val(img_url);
 				
             },
             progressall: function (e, data) {
@@ -34,8 +35,13 @@ $(document).ready(function(){
             height: '100px'
         })
         .insertAfter($('#user-head'));
-        
-	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview
+	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview,
+	    	onSelectEnd: function (img, selection) {
+            $('input[name="x1"]').val(selection.x1);
+            $('input[name="y1"]').val(selection.y1);
+            $('input[name="x2"]').val(selection.x2);
+            $('input[name="y2"]').val(selection.y2);
+        	}
 	    });
 	  
     	
@@ -60,7 +66,7 @@ function preview(img, selection) {
 {% endblock %}
 {% block content %}
 <div id="div_span9">
-	<form action="submit_form" method="post" id="submit_form">
+	<form action="" method="post" id="submit_form">
 		{% csrf_token %}
 		<fieldset class="control-group success">
 			{% block content_works %}{% endblock %}
@@ -97,6 +103,15 @@ function preview(img, selection) {
 				{% else %}
 				<p id="err_msg">&nbsp;</p>
 				{% endif %}
+				</label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+					<input type="hidden" name="x1" value="" />
+  					<input type="hidden" name="y1" value="" />
+  					<input type="hidden" name="x2" value="" />
+  					<input type="hidden" name="y2" value="" />
+  					<input type="hidden" name="img_url" value="">
 				</label>
 			</div>
 			<div class="controls">
