@@ -49,7 +49,7 @@ def identity(request):
         if form.is_valid():
             form.save()
         else:
-            print(form.errors)
+            log.error(form.errors)
         return HttpResponseRedirect('/content/personal')
 
 @login_required

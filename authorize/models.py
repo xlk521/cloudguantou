@@ -262,22 +262,16 @@ class RenRenProfileForm(ModelForm):
     class Meta:
         model = RenRenProfileModel
         exclude = ('cans_profile',)
-    
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'nickname')
-
 class DoubanProfileAdmin(admin.ModelAdmin):
     list_display = ('uid', 'name',)
-
 class QQProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 class SINAProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 class RenRenProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(DoubanProfileModel, DoubanProfileAdmin)
 admin.site.register(QQProfileModel, QQProfileAdmin)
