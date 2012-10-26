@@ -41,31 +41,31 @@ div#detail_content_div(style="margin:0 auto")
             dl.ulmarginw25
                 dt.lifontsize 请选择尺寸：
                 dd.lifontsize_dd
-                    input(name="",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="")
                     em 20  X  30CM
                     strong
                         i.ibg1
                         em 100 .00
                 dd.lifontsize_dd
-                    input(name="",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="")
                     em 20  X  30CM
                     strong
                         i.ibg1
                         em 100 .00
                 dd.lifontsize_dd
-                    input(name="",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="")
                     em 20  X  30CM
                     strong
                         i.ibg1
                         em 100 .00
                 dd.lifontsize_dd
-                    input(name="",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="")
                     em 20  X  30CM
                     strong
                         i.ibg1
                         em 100 .00
                 dd.lifontsize_dd
-                    input(name="",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="")
                     em 20  X  30CM
                     strong
                         i.ibg1
@@ -75,17 +75,17 @@ div#detail_content_div(style="margin:0 auto")
                 dt.lifontsize 请选择画框
                 dd.ddh112
                     li.liw20
-                        input(type="radio", name="subProduct")
+                        input.product_side_pay(type="radio", name="subProduct")
                     li
                         img(src="/statics/IMG/GT_detail_none20120913.jpg", alt="", width="83", height="82")
                         p +0RMB
                     li.liw20
-                        input(type="radio",name="subProduct")
+                        input.product_side_pay(type="radio",name="subProduct")
                     li
                         img(src="/statics/IMG/GT_detail_black20120913.jpg", alt="", width="83", height="82")
                         p +100RMB
                     li.liw20
-                        input(type="radio",name="subProduct")
+                        input.product_side_pay(type="radio",name="subProduct")
                     li
                         img(src="/statics/IMG/GT_detail_white20120913.jpg", alt="", width="83", height="82")
                         p +100RMB
@@ -94,7 +94,7 @@ div#detail_content_div(style="margin:0 auto")
                 dt.ifontsize 请填写购买的数量:
                 dd.ddnumber
                     a.ddnumbera1
-                    input.ddinputw60h21( name="", type="text", value="1", maxlength="5")
+                    input.ddinputw60h21( name="",id="product_num" type="text", value="1", maxlength="5")
                     a.ddnumbera2
                     span 件,(仅 5 件)
             hr.bottom_line
@@ -115,7 +115,7 @@ div#detail_content_div(style="margin:0 auto")
                     em kg
                 p
                     总价：
-                    b 1233 .00
+                    b#product_offer 1233 .00
                     em RMB
             div.de_right_btright
                 a.btright_btn 加入购物车

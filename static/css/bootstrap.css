@@ -1839,7 +1839,7 @@ table {
 }
 
 .table th,
-.table td {
+ {/*.table td*/
   padding: 8px;
   line-height: 20px;
   text-align: left;
@@ -1953,7 +1953,7 @@ table {
 
 .table-striped tbody tr:nth-child(odd) td,
 .table-striped tbody tr:nth-child(odd) th {
-  background-color: #f9f9f9;
+  /*background-color: #f9f9f9;*/
 }
 
 .table-hover tbody tr:hover td,

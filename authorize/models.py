@@ -8,6 +8,7 @@ from django.db.models.signals import post_save
 from django.forms import ModelForm
 from google.appengine.ext import blobstore
 from google.appengine.ext import db
+from brand.models import BrandProfile
 # Create your models here.
 
 
@@ -58,18 +59,20 @@ class UserProfile(models.Model):
 class NormalIdentityForm(ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('followers_count', 'friends_count', 'works_count')
+        exclude = ('followers_count', 'city', 'friends_count',  'works_count', 'user', 'cans_id')
         widgets = {'gender': forms.RadioSelect}
 
     def __init__(self, *args, **kwargs):
         from django.forms.widgets import HiddenInput
         super(NormalIdentityForm, self).__init__(*args, **kwargs)
         self.fields['head'].widget = HiddenInput()
-        
+        self.fields['head'].required = False
 
+        
 class DesignerIdentityForm(ModelForm):
     class Meta:
-        model = UserProfile
+        model = BrandProfile
+        fields = ('name', 'introduction')
   
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
