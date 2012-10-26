@@ -22,7 +22,7 @@ import json
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
-#@login_required
+@login_required
 @require_http_methods(["POST", "GET"])
 def identity(request):
     if request.method == 'GET':
@@ -41,17 +41,33 @@ def identity(request):
     elif request.method == 'POST':
         profile = request.user.get_profile()
         city_name = request.POST.get('city', False)
+        head = request.POST.get('img_url', False)
+        x1 = request.POST.get('x1', False)
+        y1 = request.POST.get('y1', False)
+        x2 = request.POST.get('x2', False)
+        y2 = request.POST.get('y2', False)
+        
         if city_name:
             city = City.objects.get_or_none(name=city_name)
             if city:
                 profile.city = city
         form = NormalIdentityForm(request.POST, instance=profile)
         if form.is_valid():
-            form.cleaned_data
-            form.save()
+            nickname = form.cleaned_data['nickname']
+            province = form.cleaned_data['province']
+            gender = form.cleaned_data['gender']
+            introduction = form.cleaned_data['introduction']
+            profile.province = province
+            profile.gender = gender
+            profile.head = head
+            profile.introduction = introduction
+            profile.nickname = nickname
+            profile.save()
+            
         else:
             print(form.errors)
-        return HttpResponseRedirect('/content/personal')
+        return HttpResponse(head)
+        #return HttpResponseRedirect('/content/personal')
 
 @login_required
 @require_http_methods(["POST"])
