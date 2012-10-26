@@ -4,10 +4,11 @@ from base.models import City
 from content.models import PhotoModel
 from django.db import models
 from django.forms import ModelForm
+from utils import BaseModelManager
 import uuid
 
 # Create your models here.
-class DeliveryManager(models.Manager):
+class DeliveryManager(BaseModelManager):
     pass
 
 class Delivery(models.Model):
@@ -16,18 +17,18 @@ class Delivery(models.Model):
 
     objects = DeliveryManager()
 
-class DeliveryPriceManager(models.Manager):
+class DeliveryPriceManager(BaseModelManager):
     pass
 
 class DeliveryPrice(models.Model):
     did = models.CharField("快递ID", max_length=36, default=str(uuid.uuid5(uuid.NAMESPACE_DNS, 'shopping_bank')))
-    _from = models.ForeignKey(City)
-    _to = models.ForeignKey(City)
+    _from = models.ForeignKey(City, related_name='_from')
+    _to = models.ForeignKey(City, related_name='_to')
     price = models.FloatField()
 
     objects = DeliveryPriceManager()
 
-class BankManager(models.Manager):
+class BankManager(BaseModelManager):
     pass
 
 class Bank(models.Model):
@@ -36,7 +37,7 @@ class Bank(models.Model):
 
     objects = BankManager()
 
-class TransactionManager(models.Manager):
+class TransactionManager(BaseModelManager):
     pass
 
 class Transaction(models.Model):
@@ -44,7 +45,7 @@ class Transaction(models.Model):
 
     objects = TransactionManager()
 
-class PaymentManager(models.Manager):
+class PaymentManager(BaseModelManager):
     pass
 
 class Payment(models.Model):
@@ -61,7 +62,7 @@ class Payment(models.Model):
 
     objects = PaymentManager()
 
-class SizeManager(models.Manager):
+class SizeManager(BaseModelManager):
     pass
 
 class Size(models.Model):
@@ -72,7 +73,7 @@ class Size(models.Model):
 
     objects = SizeManager()
 
-class OrderManager(models.Manager):
+class OrderManager(BaseModelManager):
     pass
 
 class Order(models.Model):
@@ -82,7 +83,7 @@ class Order(models.Model):
 
     objects = OrderManager()
 
-class ProductManager(models.Manager):
+class ProductManager(BaseModelManager):
     pass
 
 class Product(models.Model):
@@ -102,7 +103,7 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product
 
-class PackageManager(models.Manager):
+class PackageManager(BaseModelManager):
     pass
 
 class Package(models.Model):
