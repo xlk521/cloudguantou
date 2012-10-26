@@ -1,6 +1,7 @@
 #coding=utf8
 from django.db import models
 from authorize.models import UserProfile
+from django.forms import ModelForm
 
 # Create your models here.
 class Brand(models.Model):
@@ -15,6 +16,11 @@ class Brand(models.Model):
     follower_count = models.IntegerField(default=0)
     favorite_count = models.IntegerField(default=0)
     master = models.ForeignKey(UserProfile, related_name='master')
+    
+class DesignerIdentityForm(ModelForm):
+    class Meta:
+        model = Brand
+        fields = ('name', 'introduction')
     
 class Membership(models.Model):
     class Meta:

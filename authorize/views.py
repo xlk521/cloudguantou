@@ -1,20 +1,17 @@
 #coding=utf8
 # Create your views here.
-from forms import PhotoForm
-from models import UserProfile, NormalIdentityForm, DesignerIdentityForm
+from .models import UserProfile, NormalIdentityForm
+from brand.models import DesignerIdentityForm
 from base.models import Province, City
-from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, render
 from django.views.decorators.http import require_http_methods
 from google.appengine.ext import blobstore
-from google.appengine.api import images
 from google.appengine.api.images import NotImageError
-from utils import HeadFileUploader, render_to_json, ImageFactory, convertjson
+from utils import ImageFactory, convertjson
 from uuid import uuid4
 import logging
 import json

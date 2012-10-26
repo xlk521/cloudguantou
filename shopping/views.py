@@ -41,7 +41,7 @@ def get_product(request, work_id):
         price_id = request.POST.get(delivery_price, False)
         size_id = request.POST.get(size_id, False)
         package_id = request.POST.get(ackage_id, False)
-        if work_id and delivery_id, and delivery_price and size_id:
+        if work_id and delivery_id and delivery_price and size_id:
             work = PhotoModel.objects.get_or_none(photoid=work_id)
             delivery = Delivery.objects.get_or_none(did=delivery_id)
             price = DeliveryPrice.objects.get_or_none(pid=price_id)

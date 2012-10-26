@@ -8,7 +8,6 @@ from django.db.models.signals import post_save
 from django.forms import ModelForm
 from google.appengine.ext import blobstore
 from google.appengine.ext import db
-from brand.models import Brand
 # Create your models here.
 
 
@@ -67,12 +66,6 @@ class NormalIdentityForm(ModelForm):
         super(NormalIdentityForm, self).__init__(*args, **kwargs)
         self.fields['head'].widget = HiddenInput()
         self.fields['head'].required = False
-
-        
-class DesignerIdentityForm(ModelForm):
-    class Meta:
-        model = Brand
-        fields = ('name', 'introduction')
   
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

@@ -92,7 +92,7 @@ class Product(models.Model):
     quantity = models.FloatField('产品定价')
     delivery = models.ForeignKey(Delivery)
     delivery_price = models.ForeignKey(DeliveryPrice)
-    order = models.ForeignKey(order, blank=True)
+    order = models.ForeignKey(Order, blank=True)
     size = models.ForeignKey(Size)
     add_date = models.DateTimeField(auto_now=True)
 
