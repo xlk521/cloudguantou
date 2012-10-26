@@ -69,7 +69,7 @@
 #detail_content_right_bottom .de_right_btleft{ float:left;}
 #detail_content_right_bottom .de_right_btright{ float:right;}
 #detail_content_right_bottom p{font-size:14px; height:26px; padding:0; margin:0; line-height:26px;}
-#detail_content_right_bottom .btright_btn,#detail_content_right_bottom .btright_btn:hover{ display:inline-block; width:112px; height:30px;  border-radius: 2px; background-position:-110px 3px; font-size:15px; color:white; font-weight:bold; line-height:30px; text-align:right; margin-top:10px; padding-right:10px;}
+#detail_content_right_bottom .btright_btn,#detail_content_right_bottom .btright_btn:hover{ display:inline-block; width:112px; height:30px;  border-radius: 2px; background-position:-110px 3px; font-size:15px; color:white; font-weight:bold; line-height:30px; text-align:center; margin-top:10px; padding-right:10px;}
 #detail_content_right_bottom .btright_btn{ border:1px #bc4c01 solid;  background-color:#f60;}
 #detail_content_right_bottom .btright_btn:hover{background-color:#ff8400; border:1px #d16a0f solid;}
 

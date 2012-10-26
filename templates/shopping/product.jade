@@ -10,7 +10,10 @@ div#detail_content_div(style="margin:0 auto")
             hr.bottom_line
             ul.ulmarginw25
                 li.h410#h410
-                li.hauto1
+                    div(style="width:510px;height:410px;background:#aaa;position:absolute;")
+                        div#product_side_imgbg(style="width:380px;height:330px;background:#aaa;margin:40px auto")
+                            img(src="/statics/IMG/cp.gif",style="width:340px;height:290px;margin:20px 20px")
+                li.hauto1   
                     p 所有复制品均有6cans统一扫描、制定、装订。所有纸张均为康颂纸，画框均为____材质，6cans为您保证质量。
         div#detail_content_left_bottom
             div.dclb
@@ -19,17 +22,10 @@ div#detail_content_div(style="margin:0 auto")
                     strong#other_product_name
                     》中的其它作品
                 div.detail_left_content_w510
+                    div.detail_left_content_w470(style="overflow:hidden;width:456px;position:relative;margin-left:25px")
+                        div.detail_left_content_w(style="position:relative")
                     a.detail_slide_right(target="_self")
-                    a.detail_slide_left(target="_self")
-                    div.detail_left_content_w470
-                        a
-                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
-                        a
-                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
-                        a
-                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
-                        a
-                            img(src="/statics/IMG/xq_cps1.jpg", width="110", height="83")
+                    a.detail_slide_left(target="_self",style="position: absolute;")
     div#detail_content_right
         div#detail_content_right_top
             ul.ulmarginw25
@@ -41,60 +37,60 @@ div#detail_content_div(style="margin:0 auto")
             dl.ulmarginw25
                 dt.lifontsize 请选择尺寸：
                 dd.lifontsize_dd
-                    input.product_size_pay(name="choose_size",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="0",onclick="product_count_paynum(this)",checked="checked")
                     em 20  X  30CM
                     strong
                         i.ibg1
-                        em 100 .00
+                        em 0.00
                 dd.lifontsize_dd
-                    input.product_size_pay(name="choose_size",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="200",onclick="product_count_paynum(this)")
                     em 20  X  30CM
                     strong
                         i.ibg1
-                        em 100 .00
+                        em 200 .00
                 dd.lifontsize_dd
-                    input.product_size_pay(name="choose_size",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="300",onclick="product_count_paynum(this)")
                     em 20  X  30CM
                     strong
                         i.ibg1
-                        em 100 .00
+                        em 300 .00
                 dd.lifontsize_dd
-                    input.product_size_pay(name="choose_size",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="400",onclick="product_count_paynum(this)")
                     em 20  X  30CM
                     strong
                         i.ibg1
-                        em 100 .00
+                        em 400 .00
                 dd.lifontsize_dd
-                    input.product_size_pay(name="choose_size",type="radio",value="")
+                    input.product_size_pay(name="choose_size",type="radio",value="500",onclick="product_count_paynum(this)")
                     em 20  X  30CM
                     strong
                         i.ibg1
-                        em 100 .00
+                        em 500 .00
             hr.bottom_line
             dl.ulmarginw25
                 dt.lifontsize 请选择画框
                 dd.ddh112
                     li.liw20
-                        input.product_side_pay(type="radio", name="subProduct")
+                        input.product_side_pay(type="radio", name="subProduct",title="无框",value="0",onclick="product_count_paynum(this)",checked="checked")
                     li
                         img(src="/statics/IMG/GT_detail_none20120913.jpg", alt="", width="83", height="82")
                         p +0RMB
                     li.liw20
-                        input.product_side_pay(type="radio",name="subProduct")
+                        input.product_side_pay(type="radio",name="subProduct",title="黑框",value="300",onclick="product_count_paynum(this)")
                     li
                         img(src="/statics/IMG/GT_detail_black20120913.jpg", alt="", width="83", height="82")
-                        p +100RMB
+                        p +300RMB
                     li.liw20
-                        input.product_side_pay(type="radio",name="subProduct")
+                        input.product_side_pay(type="radio",name="subProduct",title="白框",value="500",onclick="product_count_paynum(this)")
                     li
                         img(src="/statics/IMG/GT_detail_white20120913.jpg", alt="", width="83", height="82")
-                        p +100RMB
+                        p +500RMB
             hr.bottom_line
             dl.ulmarginw25
                 dt.ifontsize 请填写购买的数量:
                 dd.ddnumber
                     a.ddnumbera1
-                    input.ddinputw60h21( name="",id="product_num" type="text", value="1", maxlength="5")
+                    input.ddinputw60h21( name="",id="product_num", type="text", value="1", maxlength="5")
                     a.ddnumbera2
                     span 件,(仅 5 件)
             hr.bottom_line
@@ -119,7 +115,7 @@ div#detail_content_div(style="margin:0 auto")
                     em RMB
             div.de_right_btright
                 a.btright_btn 加入购物车
-div#d_service
+div#d_service(style="width:984px;position:relative;margin:0 auto;")
     ul
         li.d_serviceli1
             div.d_serviceDIV1

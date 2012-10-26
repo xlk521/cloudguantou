@@ -1,10 +1,14 @@
-//物品详情页
+//product物品详情页
 var product_num=1;//要购买的物品，最初始的个数
 var product_paynum_size=0;//按照大小，选择对应的金钱
 var product_paynum_side=0;//按照边框，选择对应的金钱
 var product_paynum=0;//选择完毕后，总的金钱
 var money=0;
 var add_num=0;//单张增加的金额数目
+
+var product_left=0;//同类商品的左右移动
+var product_other_left=new Array();//存放布局时的列表
+var product_others_worknum=9;//同类产品的个数
 //作者界面所能容纳的行数和列数
 var author_x_num=0;
 var author_y_num=0;
@@ -167,23 +171,39 @@ $.template("order_checkul2",order_check_ul2);
 //product产品页的模版
 var product_h30='<h3>青藏高原</h3>';
 var product_h24='<span>类别：</span><em>摄影</em><span>品牌：</span><em>金色闪光</em><span>作者：</span><em>遥远</em>';
-var product_h410='<img src="/statics/IMG/cp.jpg" width="510" height="410" />';
+var product_h410='<div style="width:510px;height:410px;background:#aaa;position:absolute;">'+
+    '<div id="product_side_imgbg" style="width:380px;height:330px;background:#000;margin:40px auto"><img src="/statics/IMG/cp.gif" width="340" height="290" style="margin:20px 20px" /></div></div>';
 var product_otherwork='<em>走进西藏的春与秋</em> ';
 $.template("product_list_h30",product_h30);
 $.template("product_list_h24",product_h24);
 $.template("product_list_h410",product_h410);
 $.template("product_other_work",product_otherwork);
+//product同系列商品的模版
+var product_other_works='<div class="product_otherdiv" style="float:left;position:absolute"><a ><img src="/statics/IMG/xq_cps1.jpg" width="110" height="83" /></a></div>';
+$.template("product_otherworks", product_other_works );
 //homepage页面的模版
 var num1='<li><div class="project-cover"><a><img class="project-cover-img" src="/statics/IMG/cp2.jpg" width="221" height="166" style="opacity: 1; "/></a>'+
                             '<div class="project-cover-div"><div><h4  title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">和俩暖色调阿斯达暖色调阿斯暖色调阿斯</h4><em>#摄影</em></div>'+
                                 '<p><span class="font1">FROM:</span><a class="font2">简易</a>的品牌<a class="font2">净世界</a></p></div></div></li>';                             
 $.template("tmpl_num1",num1);
+//
 //product产品页的模版生成函数
 function product_details(){
     $.tmpl( "product_list_h30").appendTo( "#h30" );
     $.tmpl( "product_list_h24").appendTo( "#h24" );
-    $.tmpl( "product_list_h410").appendTo( "#h410" );
+    //$.tmpl( "product_list_h410").appendTo( "#h410" );
     $.tmpl( "product_other_work").appendTo( "#other_product_name" );
+}
+//product同系列商品的模版生成函数
+function product_others(){//产品详情页布模版
+    for(var i=0;i<product_others_worknum;i++){
+        var other_distence=0;
+        other_distence=114*i;
+        $.tmpl( "product_otherworks").appendTo( ".detail_left_content_w" );
+        $(".product_otherdiv").css({left:other_distence});
+        product_other_left[i]=-other_distence;
+        $('.product_otherdiv').removeAttr('class');  
+    }
 }
 //订单成功页的模版生成
 function order_ok(){
@@ -379,6 +399,17 @@ $(function() {
     });
 });
 //product产品详情页的js函数
+function product_next_prive(next_prive){//产品详情页的其他相关作品的移动
+    var last_works=product_others_worknum-5;//停止移动的位置
+    if(next_prive=="next" && product_left<last_works){
+        product_left +=1;
+    }
+    else if(next_prive=="prive" && product_left>0){
+        product_left -=1;
+    }
+    
+    $( ".detail_left_content_w" ).animate({left:product_other_left[product_left]});
+}
 function product_count_paynum(obj){//产品详情页--计算产品需要支付的money
     var myA = document.getElementById("product_offer");
     var add_money=parseFloat(obj.value);
@@ -388,13 +419,25 @@ function product_count_paynum(obj){//产品详情页--计算产品需要支付�
     }
     else if(clss=="product_side_pay"){
         product_paynum_side=add_money
+        if(obj.title=="白框"){
+            console.log("1");
+            //$("#product_side_imgbg").attr("background","#aaa");
+            document.getElementById('product_side_imgbg').style.backgroundColor='#ffffff';
+        }
+        else if(obj.title=="黑框"){
+            console.log("2");
+            document.getElementById('product_side_imgbg').style.backgroundColor='#000000';
+        }
+        else{
+            console.log("3");
+            document.getElementById('product_side_imgbg').style.backgroundColor='#aaaaaa';
+        }
     }
     add_num=product_paynum_size+product_paynum_side;
     add_money=product_paynum+add_num;
-    myA.innerText=add_money;
+    var money_pay=add_money*product_num;
+    myA.innerText=money_pay;
     money=add_money;
-    product_num=1;
-    $(".ddinputw60h21").attr('value',product_num);
     console.log("product_paynum:"+product_paynum);
     console.log("add_money:"+add_money);
 }
@@ -409,7 +452,6 @@ function product_pay(add_nav){//物品数量与资金的关系函数
     var myA = document.getElementById("product_offer");
     var money_pay=money*product_num;
     myA.innerText=money_pay;
-    //product_paynum=money_pay;
     $(".ddinputw60h21").attr('value',product_num);
 }
 //homepage界面的添加图片
@@ -658,8 +700,6 @@ function contentlist_content_imgnum(div_id){//通过包含图片的div区域id�
     var line_num=0;//每个模块中的行数
     var line_height=0;//获取每个图片区域的高度
     var title_height=$(".contents_list_divleft").height();//获取每个日期区域的高度
-    console.log("line_height---->"+line_height);
-    console.log("title_height---->"+title_height);
     var array_num=0;
     var count_line=0;
     line_height=160;
@@ -1006,16 +1046,18 @@ $(document).ready(function(){
         contents_rightchange("next");
     });
     //增加或者减少购买物品数量的按钮事件
-    $(".ddnumbera1").click(function(){
+    $(".ddnumbera1").mousedown(function(){
         
         if(product_num>1){product_num -=1;}
         $(".ddinputw60h21").attr('value',product_num);
-    });
-    $(".ddnumbera2").click(function(){
+    },function(){}
+    );
+    $(".ddnumbera2").mousedown(function(){
         var max_num=$(".ddinputw60h21").attr('maxlength');
         if(product_num<max_num){product_num +=1;}
         $(".ddinputw60h21").attr('value',product_num);
-    });
+    },function(){}
+    );
 
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
     $("#homepage_content").show(function(){
@@ -1024,12 +1066,18 @@ $(document).ready(function(){
     });
     $("#homepage_content").show(function(){$("#foot").hide();});
     //product产品详情页
-    
+    $(".detail_slide_left").click(function(){  
+        product_next_prive("prive");
+    });
+    $(".detail_slide_right").click(function(){  
+        product_next_prive("next");
+    });
     $("#detail_content_div").show(function(){
         //变量初始化，获取总共需要支付的money
         var myA = document.getElementById("product_offer");
         product_paynum=parseFloat(myA.innerText);
         money=parseFloat(myA.innerText);
+        product_others();
     });
     $(".ddnumbera1").click(function(){  
         product_pay("nav");
