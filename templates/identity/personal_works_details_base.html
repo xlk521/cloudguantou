@@ -35,7 +35,7 @@ $(document).ready(function(){
             height: '100px'
         })
         .insertAfter($('#user-head'));
-	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview,
+	    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview,maxWidth: 120, maxHeight: 120,minWidth:120, minHeight:120,
 	    	onSelectEnd: function (img, selection) {
             $('input[name="x1"]').val(selection.x1);
             $('input[name="y1"]').val(selection.y1);

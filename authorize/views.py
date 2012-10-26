@@ -1,57 +1,76 @@
 #coding=utf8
 # Create your views here.
-from forms import PhotoForm
-from models import UserProfile, NormalIdentityForm, DesignerIdentityForm
+from .models import UserProfile, NormalIdentityForm
+from brand.models import DesignerIdentityForm, Brand
 from base.models import Province, City
-from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, render
 from django.views.decorators.http import require_http_methods
 from google.appengine.ext import blobstore
-from google.appengine.api import images
 from google.appengine.api.images import NotImageError
-from utils import HeadFileUploader, render_to_json, ImageFactory, convertjson
+from utils import ImageFactory, convertjson
 from uuid import uuid4
 import logging
 import json
 
+
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
-#@login_required
+
+@login_required
 @require_http_methods(["POST", "GET"])
 def identity(request):
     if request.method == 'GET':
         iden = request.GET.get('iden')
         upload_url = blobstore.create_upload_url('/authorize/head_upload/')
+        form = NormalIdentityForm()
+        formdesign = ""
         if iden == 'normal':
             page = 'identity/personal_details.html'
-            form = NormalIdentityForm()
         elif iden == 'designer':
             page = 'identity/works_details.html'
-            form = DesignerIdentityForm()
+            formdesign = DesignerIdentityForm()
         else:
             page = 'identity/choose_identity.html'
             form = ""
-        return render(request, page, {'form':form,'upload_url':upload_url})
+        return render(request, page, {'form':form,'formdesign':formdesign, 'upload_url':upload_url})
+    
     elif request.method == 'POST':
+        iden = request.POST.get('iden', False)
         profile = request.user.get_profile()
+        brandprofile = Brand(master = profile)
+        if iden == 'designer':
+            formdesign = DesignerIdentityForm(request.POST, instance=brandprofile)
+            if formdesign.is_valid():
+                log.debug('formdesign saving')
+                formdesign.save()
+                log.debug('formdesign saving done')
+            else:
+                log.debug(formdesign.errors)
         city_name = request.POST.get('city', False)
+        head = request.POST.get('img_url', False)
+        x1 = request.POST.get('x1', False)
+        y1 = request.POST.get('y1', False)
+        x2 = request.POST.get('x2', False)
+        y2 = request.POST.get('y2', False)
+        
         if city_name:
             city = City.objects.get_or_none(name=city_name)
             if city:
                 profile.city = city
         form = NormalIdentityForm(request.POST, instance=profile)
         if form.is_valid():
-            form.cleaned_data
+            #form直接可以存....
             form.save()
+            profile.head=head
+            profile.save()
         else:
-            print(form.errors)
-        return HttpResponseRedirect('/content/personal')
+            log.error(form.errors)
+    return HttpResponseRedirect('/content/personal')
 
 @login_required
 @require_http_methods(["POST"])

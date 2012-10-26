@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.forms import ModelForm
-from google.appengine.ext import blobstore
-from google.appengine.ext import db
 # Create your models here.
 
 
@@ -58,7 +56,7 @@ class UserProfile(models.Model):
 class NormalIdentityForm(ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('followers_count', 'friends_count', 'works_count', 'user', 'cans_id')
+        exclude = ('followers_count', 'city', 'friends_count',  'works_count', 'user', 'cans_id')
         widgets = {'gender': forms.RadioSelect}
 
     def __init__(self, *args, **kwargs):
@@ -66,11 +64,6 @@ class NormalIdentityForm(ModelForm):
         super(NormalIdentityForm, self).__init__(*args, **kwargs)
         self.fields['head'].widget = HiddenInput()
         self.fields['head'].required = False
-
-        
-class DesignerIdentityForm(ModelForm):
-    class Meta:
-        model = UserProfile
   
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -263,22 +256,16 @@ class RenRenProfileForm(ModelForm):
     class Meta:
         model = RenRenProfileModel
         exclude = ('cans_profile',)
-    
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'nickname')
-
 class DoubanProfileAdmin(admin.ModelAdmin):
     list_display = ('uid', 'name',)
-
 class QQProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 class SINAProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 class RenRenProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(DoubanProfileModel, DoubanProfileAdmin)
 admin.site.register(QQProfileModel, QQProfileAdmin)

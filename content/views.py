@@ -53,7 +53,7 @@ def __get_album(profile):
         works[year][month].append(work)
     return works
 
-#@login_required
+@login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
@@ -63,7 +63,8 @@ def up_load(request):
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
 
-#@login_required
+@login_required
+@require_http_methods(["POST", "GET"])
 def work_upload(request):
     if request.method == "GET":
         if not request.GET.get('upload'):

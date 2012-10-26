@@ -1,15 +1,12 @@
-#coding=utf8
+# coding=utf8
 from django.db import models
 from django.contrib import admin
 from django.db.models.signals import pre_save
+from utils import get_first_letter, BaseModelManager
 
 # Create your models here.
-class ProvinceManager(models.Manager):
-    def get_or_none(self, **kwargs):
-        try:
-            return self.get(**kwargs)
-        except self.model.DoesNotExist:
-            return None
+class ProvinceManager(BaseModelManager):
+    pass
 
 class Province(models.Model):
     class Meta:
@@ -25,16 +22,12 @@ class Province(models.Model):
         return self.name
 
 class CityManager(models.Manager):
-    def get_or_none(self, **kwargs):
-        try:
-            return self.get(**kwargs)
-        except self.model.DoesNotExist:
-            return None
+    pass
 
 class City(models.Model):
     class Meta:
         verbose_name_plural = u'市级名称'
-        unique_together = ('name','province')
+        unique_together = ('name', 'province')
         ordering = ['ordering_letter']
 
     ordering_letter = models.CharField(max_length=2)
@@ -53,7 +46,7 @@ class CityInLine(admin.TabularInline):
         field = super(CityInLine, self).formfield_for_foreignkey(db_field, request, **kwargs)
         if db_field.name == 'inside_root':
             if request._obj__ is not None:
-                field.queryset = field.queryset.filter(building__exact = request._obj_)
+                field.queryset = field.queryset.filter(building__exact=request._obj_)
             else:
                 field.queryset = field.queryset.none()
 
@@ -72,57 +65,7 @@ admin.site.register(Province, ProvinceAdmin)
 admin.site.register(City, CityAdmin)
 
 def __update_ording_letter(sender, instance, **kwargs):
-    instance.ordering_letter = __get_first_letter(instance.name)
+    instance.ordering_letter = get_first_letter(instance.name)
 pre_save.connect(__update_ording_letter, sender=Province)
 pre_save.connect(__update_ording_letter, sender=City)
 
-def __get_first_letter(name):
-    str = name.encode('GBK')
-    if str<"\xb0\xa1" or str>"\xd7\xf9":
-        return ""
-    if str<"\xb0\xc4":
-        return "A"
-    if str<"\xb2\xc0":
-        return "B"
-    if str<"\xb4\xed":
-        return "C"
-    if str<"\xb6\xe9":
-        return "D"
-    if str<"\xb7\xa1":
-        return "E"
-    if str<"\xb8\xc0":
-        return "F"
-    if str<"\xb9\xfd":
-        return "G"
-    if str<"\xbb\xf6":
-        return "H"
-    if str<"\xbf\xa5":
-        return "J"
-    if str<"\xc0\xab":
-        return "K"
-    if str<"\xc2\xe7":
-        return "L"
-    if str<"\xc4\xc2":
-        return "M"
-    if str<"\xc5\xb5":
-        return "N"
-    if str<"\xc5\xbd":
-        return "O"
-    if str<"\xc6\xd9":
-        return "P"
-    if str<"\xc8\xba":
-        return "Q"
-    if str<"\xc8\xf5":
-        return "R"
-    if str<"\xcb\xf9":
-        return "S"
-    if str<"\xcd\xd9":
-        return "T"
-    if str<"\xce\xf3":
-        return "W"
-    if str<"\xd1\x88":
-        return "X"
-    if str<"\xd4\xd0":
-        return "Y"
-    if str<"\xd7\xf9":
-        return "Z"

@@ -24,7 +24,7 @@ class AlbumModelManager(models.Manager):
     pass
 
 class AlbumModel(models.Model):
-    albumid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
+    albumid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
@@ -51,7 +51,7 @@ class PhotoModelManager(models.Manager):
 
 class PhotoModel(models.Model):
         
-    photoid = models.CharField(default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
+    photoid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
     profile = models.ForeignKey(UserProfile)
     album = models.ForeignKey(AlbumModel)
     title = models.CharField(max_length=128)
