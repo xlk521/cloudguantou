@@ -1,7 +1,7 @@
 #coding=utf8
 # Create your views here.
 from .models import UserProfile, NormalIdentityForm
-from brand.models import DesignerIdentityForm
+from brand.models import DesignerIdentityForm, Brand
 from base.models import Province, City
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -42,12 +42,15 @@ def identity(request):
     elif request.method == 'POST':
         iden = request.POST.get('iden', False)
         profile = request.user.get_profile()
+        brandprofile = Brand(master = profile)
         if iden == 'designer':
-            formdesign = DesignerIdentityForm(request.POST)
+            formdesign = DesignerIdentityForm(request.POST, instance=brandprofile)
             if formdesign.is_valid():
+                log.debug('formdesign saving')
                 formdesign.save()
+                log.debug('formdesign saving done')
             else:
-                log.error(formdesign.errors)
+                log.debug(formdesign.errors)
         city_name = request.POST.get('city', False)
         head = request.POST.get('img_url', False)
         x1 = request.POST.get('x1', False)
@@ -63,7 +66,7 @@ def identity(request):
         if form.is_valid():
             #form直接可以存....
             form.save()
-            profile.head = head
+            profile.head=head
             profile.save()
         else:
             log.error(form.errors)

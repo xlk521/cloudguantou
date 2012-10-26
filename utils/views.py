@@ -111,7 +111,7 @@ def initContentIndex():
     
     for i in range(2):
         PhotoModel.objects.create(profile=userProfile, album=album, title='title%d'%i, 
-                                  url = '/statics/img/content_list.GIF',price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
+                                  url='/statics/img/content_list.GIF', price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
       
     
     
