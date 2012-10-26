@@ -27,22 +27,27 @@ def identity(request):
     if request.method == 'GET':
         iden = request.GET.get('iden')
         upload_url = blobstore.create_upload_url('/authorize/head_upload/')
+        form = NormalIdentityForm()
+        formdesign = ""
         if iden == 'normal':
             page = 'identity/personal_details.html'
-            form = NormalIdentityForm()
         elif iden == 'designer':
             page = 'identity/works_details.html'
-            form = DesignerIdentityForm()
+            formdesign = DesignerIdentityForm()
         else:
             page = 'identity/choose_identity.html'
             form = ""
-        return render(request, page, {'form':form,'upload_url':upload_url})
+        return render(request, page, {'form':form,'formdesign':formdesign, 'upload_url':upload_url})
+    
     elif request.method == 'POST':
         iden = request.POST.get('iden', False)
         profile = request.user.get_profile()
-        cans_id = profile.cans_id
         if iden == 'designer':
             formdesign = DesignerIdentityForm(request.POST)
+            if formdesign.is_valid():
+                formdesign.save()
+            else:
+                log.error(formdesign.errors)
         city_name = request.POST.get('city', False)
         head = request.POST.get('img_url', False)
         x1 = request.POST.get('x1', False)
