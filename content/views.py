@@ -1,12 +1,10 @@
 #coding = utf8
 # Create your views here.
 from authorize.models import UserProfile
-from content.models import AlbumModel, PhotoModel
-from datetime import datetime
+from content.models import AlbumModel
 from django.contrib.auth.decorators import login_required
-from django.core.cache import cache
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, Http404
 from django.shortcuts import render, render_to_response
 from django.template.defaultfilters import date as _date
 from django.views.decorators.http import require_http_methods
@@ -16,7 +14,6 @@ from google.appengine.ext import blobstore
 from utils import ImageFactory, convertjson
 import json
 import logging
-import operator
 
 
 log = logging.getLogger()
@@ -53,7 +50,7 @@ def __get_album(profile):
         works[year][month].append(work)
     return works
 
-@login_required
+#@login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":

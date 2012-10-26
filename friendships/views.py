@@ -1,9 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from authorize.models import UserProfile
 from friendships.models import UserFriendshipProfileModel
-from django.http import HttpResponse, HttpResponseRedirect
-from utils.views import convertjson
-from django.shortcuts import render, render_to_response
+from django.http import HttpResponse
+from utils import convertjson
 
 @login_required
 def concerned_about_friends(request):

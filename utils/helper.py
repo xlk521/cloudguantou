@@ -11,6 +11,7 @@ from uuid import uuid4
 import json
 import logging
 import os
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 log = logging.getLogger()
@@ -160,3 +161,11 @@ def get_first_letter(name):
         return "Y"
     if letter < "\xd7\xf9":
         return "Z"
+
+
+def convertjson(result):
+    try:
+        result =  json.dumps(result, ensure_ascii=False, separators=(',',':'), cls=DjangoJSONEncoder)      
+    except Exception as e:
+        print(e)
+    return result
