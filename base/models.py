@@ -21,7 +21,7 @@ class Province(models.Model):
     def __unicode__(self):
         return self.name
 
-class CityManager(models.Manager):
+class CityManager(BaseModelManager):
     pass
 
 class City(models.Model):

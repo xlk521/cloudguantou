@@ -74,7 +74,6 @@ def identity(request):
 
 @login_required
 @require_http_methods(["POST"])
-#@render_to_json
 def get_cities(request):
     result = []
     province = request.POST.get('province', False)

@@ -4,7 +4,6 @@
 import sys
 import traceback
 import json
-from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from authorize.models import UserProfile
@@ -23,13 +22,6 @@ def formatExceptionInfo(maxTBlevel=5):
         excArgs = "<no args>"
     excTb = traceback.format_tb(trbk, maxTBlevel)
     return (excName, excArgs, excTb)
-
-def convertjson(result):
-    try:
-        result =  json.dumps(result, ensure_ascii=False, separators=(',',':'), cls=DjangoJSONEncoder)      
-    except Exception as e:
-        print(e)
-    return result
 
 def initialization(request):
     cleanupDataBase()
