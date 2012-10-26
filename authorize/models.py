@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 from django.forms import ModelForm
 from google.appengine.ext import blobstore
 from google.appengine.ext import db
-from brand.models import BrandProfile
+from brand.models import Brand
 # Create your models here.
 
 
@@ -71,7 +71,7 @@ class NormalIdentityForm(ModelForm):
         
 class DesignerIdentityForm(ModelForm):
     class Meta:
-        model = BrandProfile
+        model = Brand
         fields = ('name', 'introduction')
   
 def create_user_profile(sender, instance, created, **kwargs):
@@ -265,22 +265,16 @@ class RenRenProfileForm(ModelForm):
     class Meta:
         model = RenRenProfileModel
         exclude = ('cans_profile',)
-    
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'nickname')
-
 class DoubanProfileAdmin(admin.ModelAdmin):
     list_display = ('uid', 'name',)
-
 class QQProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 class SINAProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 class RenRenProfileAdmin(admin.ModelAdmin):
     list_display = ('name',)
-
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(DoubanProfileModel, DoubanProfileAdmin)
 admin.site.register(QQProfileModel, QQProfileAdmin)

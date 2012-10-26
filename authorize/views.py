@@ -18,7 +18,6 @@ from utils import HeadFileUploader, render_to_json, ImageFactory, convertjson
 from uuid import uuid4
 import logging
 import json
-from brand.models import BrandProfile
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
@@ -63,9 +62,8 @@ def identity(request):
             profile.head = head
             profile.save()
         else:
-            print(form.errors)
-        return HttpResponse(profile.city)
-        #return HttpResponseRedirect('/content/personal')
+            log.error(form.errors)
+    return HttpResponseRedirect('/content/personal')
 
 @login_required
 @require_http_methods(["POST"])
