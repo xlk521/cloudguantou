@@ -1,7 +1,7 @@
 #coding=utf8
 from django.db import models
 from authorize.models import UserProfile
-from django.forms import ModelForm
+from django.forms import ModelForm,Textarea
 
 # Create your models here.
 class Brand(models.Model):
@@ -21,6 +21,9 @@ class DesignerIdentityForm(ModelForm):
     class Meta:
         model = Brand
         fields = ('name', 'introduction')
+        widgets = {
+            'introduction': Textarea(attrs={'cols': 20, 'rows': 5}),
+        }
     
 class Membership(models.Model):
     class Meta:
