@@ -41,7 +41,11 @@ def identity(request):
             form = ""
         return render(request, page, {'form':form,'upload_url':upload_url})
     elif request.method == 'POST':
+        iden = request.POST.get('iden', False)
         profile = request.user.get_profile()
+        cans_id = profile.cans_id
+        if iden == 'designer':
+            formdesign = DesignerIdentityForm(request.POST)
         city_name = request.POST.get('city', False)
         head = request.POST.get('img_url', False)
         x1 = request.POST.get('x1', False)
@@ -55,20 +59,13 @@ def identity(request):
                 profile.city = city
         form = NormalIdentityForm(request.POST, instance=profile)
         if form.is_valid():
-            nickname = form.cleaned_data['nickname']
-            province = form.cleaned_data['province']
-            gender = form.cleaned_data['gender']
-            introduction = form.cleaned_data['introduction']
-            profile.province = province
-            profile.gender = gender
+            #form直接可以存....
+            form.save()
             profile.head = head
-            profile.introduction = introduction
-            profile.nickname = nickname
             profile.save()
-            
         else:
             log.error(form.errors)
-        return HttpResponseRedirect('/content/personal')
+    return HttpResponseRedirect('/content/personal')
 
 @login_required
 @require_http_methods(["POST"])
