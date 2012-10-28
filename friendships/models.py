@@ -1,11 +1,12 @@
 #coding=utf8
 import logging
-
 from django.contrib import admin
 from django.db import models
 from django.forms import ModelForm
 from authorize.models import UserProfile
-class UserFriendProfileManager(models.Manager):
+from utils import BaseModelManager
+
+class UserFriendProfileManager(BaseModelManager):
     pass
         
 class UserFriendshipProfileModel(models.Model):
@@ -26,15 +27,8 @@ class UserFriendshipProfileForm(ModelForm):
     class Meta:
         model = UserFriendshipProfileModel
           
-class DoubanFriendProfileManager(models.Manager):
-
-    def get_or_none(self, cans_id, uid):
-        u = self.filter(cans_id=cans_id, uid=uid)
-        if len(u):
-            print(u[0])
-            return u[0]
-        else:
-            return None
+class DoubanFriendProfileManager(BaseModelManager):
+    pass
 
 class DoubanFriendProfileModel(models.Model):
     cans_id = models.CharField(max_length=36)
@@ -49,22 +43,12 @@ class DoubanFriendProfileModel(models.Model):
 
     objects = DoubanFriendProfileManager()
 
-
-
 class DoubanFriendProfileForm(ModelForm):
     class Meta:
         model = DoubanFriendProfileModel
 
-class QQFriendProfileManager(models.Manager):
-
-    def get_or_none(self, cans_id, uid):
-        u = self.filter(cans_id=cans_id, uid=uid)
-        if len(u):
-            print(u[0])
-            return u[0]
-        else:
-            return None
-
+class QQFriendProfileManager(BaseModelManager):
+    pass
 
 class QQFriendshipsModel(models.Model):
 
@@ -89,17 +73,10 @@ class QQFriendshipsModel(models.Model):
     tag = models.TextField(blank=True)
     object = QQFriendProfileManager()
 
-class SINAFriendshipsManager(models.Manager):
-    def get_or_none(self, cans_id, uid):
-        u = self.filter(cans_id=cans_id, uid=uid)
-        if len(u):
-            print(u[0])
-            return u[0]
-        else:
-            return None
+class SINAFriendshipsManager(BaseModelManager):
+    pass
 
 class SINAFriendshipsModel(models.Model):
-    
     class Meta:
         unique_together = (("cans_id", "uid"),)
         
@@ -134,7 +111,6 @@ class SINAFriendshipsModel(models.Model):
     is_follower = models.BooleanField(blank=True)
 
     objects = SINAFriendshipsManager()
-
 
 class SINAFriendshipsForm(ModelForm):
     class Meta:

@@ -3,9 +3,10 @@ from django.db import models
 from django.forms import ModelForm
 from authorize.models import UserProfile
 from django.contrib import admin
+from utils import BaseModelManager
 import uuid
 # Create your models here.
-class CategoryModelManager(models.Manager):
+class CategoryModelManager(BaseModelManager):
     pass
 
 class CategoryModel(models.Model):
@@ -20,10 +21,10 @@ class CategoryModelForm(ModelForm):
     class Meta:
         model = CategoryModel()
 
-class AlbumModelManager(models.Manager):
+class PortfolioManager(BaseModelManager):
     pass
 
-class AlbumModel(models.Model):
+class Portfolio(models.Model):
     albumid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
@@ -33,52 +34,47 @@ class AlbumModel(models.Model):
     parameter = models.CharField(max_length=128, blank=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
-    objects = AlbumModelManager()
+    objects = PortfolioManager()
     
     def __unicode__(self):
         return '%s Album'%self.title    
 
-class AlbumModelForm(ModelForm):
+class PortfolioForm(ModelForm):
     class Meta:
-        model = AlbumModel
+        model = Portfolio
 
-class PhotoModelManager(models.Manager):
-    def get_or_none(self, **kwargs):
-        try:
-            return self.get(**kwargs)
-        except self.model.DoesNotExist:
-            return None
+class WorkManager(BaseModelManager):
+    pass
 
-class PhotoModel(models.Model):
-        
+class Work(models.Model):
     photoid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
     profile = models.ForeignKey(UserProfile)
-    album = models.ForeignKey(AlbumModel)
+    album = models.ForeignKey(Portfolio)
     title = models.CharField(max_length=128)
     url = models.CharField(max_length=128)
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
     
-    objects = PhotoModelManager()
+    objects = WorkManager()
 
     def __unicode__(self):
         return '%s Photo'%self.title
     
-class PhotoModelForm(ModelForm):
+class WorkForm(ModelForm):
     class Meta:
-        model = PhotoModel()
+        model = Work()
 
-class AlbumModelAdmin(admin.ModelAdmin):
+class PortfolioAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)
 
-class PhotoModelAdmin(admin.ModelAdmin):
+class WorkAdmin(admin.ModelAdmin):
     list_display = ('profile', 'album', 'title')
     
 class CategoryModelAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-admin.site.register(PhotoModel, PhotoModelAdmin)
-admin.site.register(AlbumModel, AlbumModelAdmin)
+admin.site.register(Work, WorkAdmin)
+admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(CategoryModel, CategoryModelAdmin)
     

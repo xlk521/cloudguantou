@@ -1,7 +1,7 @@
 #coding=utf8
 from authorize.models import UserProfile
 from base.models import City
-from content.models import PhotoModel
+from content.models import Work
 from django.db import models
 from django.forms import ModelForm
 from utils import BaseModelManager
@@ -69,7 +69,7 @@ class Size(models.Model):
     sid = models.CharField("尺寸ID", max_length=36, default=str(uuid.uuid5(uuid.NAMESPACE_DNS, 'shopping_size')))
     name = models.CharField(max_length=128)
     price = models.CharField(max_length=128)
-    work = models.ForeignKey(PhotoModel)
+    work = models.ForeignKey(Work)
 
     objects = SizeManager()
 
@@ -88,7 +88,7 @@ class ProductManager(BaseModelManager):
 
 class Product(models.Model):
     pid = models.CharField('物品ID', max_length=36, default=str(uuid.uuid5(uuid.NAMESPACE_DNS, 'shopping_product')))
-    work = models.ForeignKey(PhotoModel)
+    work = models.ForeignKey(Work)
     profile = models.ForeignKey(UserProfile)
     quantity = models.FloatField('产品定价')
     delivery = models.ForeignKey(Delivery)
@@ -111,6 +111,6 @@ class Package(models.Model):
     name = models.CharField('包装名称', max_length=128)
     weight = models.IntegerField('包装重量')
     price = models.FloatField('包装价格')
-    work = models.ForeignKey(PhotoModel)
+    work = models.ForeignKey(Work)
 
     objects = PackageManager()

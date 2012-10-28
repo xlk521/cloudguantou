@@ -32,13 +32,13 @@ indexes:
   - name: province_id
   - name: ordering_letter
 
-- kind: content_albummodel
+- kind: content_Portfolio
   properties:
   - name: profile_id
   - name: datetime
     direction: desc
 
-- kind: content_albummodel
+- kind: content_Portfolio
   properties:
   - name: title
   - name: datetime

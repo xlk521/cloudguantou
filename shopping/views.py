@@ -1,6 +1,6 @@
 #coding=utf8
 # Create your views here.
-from content.models import PhotoModel
+from content.models import Work
 from .models import Product, Size, Package, Delivery, DeliveryPrice, ProductForm
 from base.models import City
 from django.shortcuts import render
@@ -16,7 +16,7 @@ log.setLevel(logging.DEBUG)
 @require_http_methods(["POST", "GET"])
 def get_product(request, work_id):
     if request.method == "GET":
-        work = PhotoModel.objects.get_or_none(photoid=work_id)
+        work = Work.objects.get_or_none(photoid=work_id)
         if work:
             form = ProductForm()
             #获得图片尺寸
@@ -24,7 +24,7 @@ def get_product(request, work_id):
             #获得包装或装饰
             packages = Package.objects.filter(work=work)
             #获得同系列的其他作品
-            brothers = PhotoModel.objects.filter(album=work.album)
+            brothers = Work.objects.filter(album=work.album)
             #获得快递信息
             deliveries = Delivery.objects.all()
             #获得城市列表
@@ -42,7 +42,7 @@ def get_product(request, work_id):
         size_id = request.POST.get('size_id', False)
         package_id = request.POST.get('package_id', False)
         if work_id and delivery_id and price_id and size_id:
-            work = PhotoModel.objects.get_or_none(photoid=work_id)
+            work = Work.objects.get_or_none(photoid=work_id)
             delivery = Delivery.objects.get_or_none(did=delivery_id)
             price = DeliveryPrice.objects.get_or_none(pid=price_id)
             size = Size.objects.get_or_none(sid=size_id)
