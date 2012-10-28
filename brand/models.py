@@ -11,7 +11,7 @@ class Brand(models.Model):
     name = models.CharField(max_length=128, primary_key=True)
     logo = models.URLField()
     create_date = models.DateTimeField(auto_now=True, auto_now_add=True)
-    cancelled_date = models.DateTimeField(blank=True)
+    cancelled_date = models.DateTimeField(blank=True, null=True)
     introduction = models.TextField()
     follower_count = models.IntegerField(default=0)
     favorite_count = models.IntegerField(default=0)

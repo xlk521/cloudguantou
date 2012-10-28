@@ -1,7 +1,7 @@
 #coding = utf8
 # Create your views here.
 from authorize.models import UserProfile
-from content.models import AlbumModel
+from content.models import AlbumModel, AlbumModelForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
@@ -55,7 +55,8 @@ def __get_album(profile):
 def up_load(request):
     if request.method == "GET":
         upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        return render(request, 'content/uploadpage.jade', {'upload_url':upload_url})
+        form = AlbumModelForm()
+        return render(request, 'content/uploadpage.jade', {'upload_url':upload_url, 'form':form})
     elif request.method == "POST":
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')

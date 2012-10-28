@@ -1,9 +1,11 @@
 #coding=utf8
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from authorize.models import UserProfile
+from brand.models import Brand
 from django.contrib import admin
 import uuid
+from django.contrib.admin import widgets        
 # Create your models here.
 class CategoryModelManager(models.Manager):
     pass
@@ -20,6 +22,22 @@ class CategoryModelForm(ModelForm):
     class Meta:
         model = CategoryModel()
 
+class ReCategoryBrandModelManager(models.Manager):
+    pass
+
+class ReCategoryBrandModel(models.Model):
+    category = models.ForeignKey(CategoryModel)
+    brand = models.ForeignKey(Brand)
+    
+    objects = ReCategoryBrandModelManager()
+    
+    def __unicode__(self):
+        return '%s'%self.name
+   
+class ReCategoryBrandModelForm(ModelForm):
+    class Meta:
+        model = ReCategoryBrandModel()
+        
 class AlbumModelManager(models.Manager):
     pass
 
@@ -31,6 +49,7 @@ class AlbumModel(models.Model):
     category = models.ForeignKey(CategoryModel)
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
+    createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
     objects = AlbumModelManager()
@@ -41,6 +60,16 @@ class AlbumModel(models.Model):
 class AlbumModelForm(ModelForm):
     class Meta:
         model = AlbumModel
+        fields=('title', 'description', 'createtime')
+        widgets = {
+            'description': Textarea(attrs={'cols': 20, 'rows': 5})
+        }
+         
+    def __init__(self, *args, **kwargs):
+        super(AlbumModelForm, self).__init__(*args, **kwargs)
+        self.fields['createtime'].widget = widgets.AdminDateWidget()
+        #self.fields['mytime'].widget = widgets.AdminTimeWidget()
+        #self.fields['mydatetime'].widget = widgets.AdminSplitDateTime()
 
 class PhotoModelManager(models.Manager):
     def get_or_none(self, **kwargs):
@@ -68,6 +97,7 @@ class PhotoModel(models.Model):
 class PhotoModelForm(ModelForm):
     class Meta:
         model = PhotoModel()
+        fields=('title', 'description', 'url')
 
 class AlbumModelAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)

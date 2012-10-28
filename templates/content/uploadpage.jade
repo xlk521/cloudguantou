@@ -13,7 +13,7 @@ div#uploadpage(style="font-size:15px;width:984px")
                     label.control-label(style="padding-top:15px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列名称：
-                        input.success.uploadpage_input(type="text",style="border-color:#444242")
+                        {{ form.title }}
                         br
                         font(style="font-size:13px;color:#ababab;margin-left:95px")只能使用汉字，字母，阿拉伯数字，“-”“_”符号。
                     label.control-label(style="margin-top:5px")
@@ -36,7 +36,8 @@ div#uploadpage(style="font-size:15px;width:984px")
                     label.control-label(style="padding-top:15px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列作品描述：
-                        textarea(name="message", style="width:420px;height:150px;background:#f7f7f7;border-color:#444242")
+                        {{ form.description }}
+                        {{ form.createtime}}
     form#fileupload(action="{{ upload_url }}",method="POST",enctype="multipart/form-data"){% csrf_token %}
         div.row.fileupload-buttonbar(style="margin:0 auto")
             div(style="width:395px;float:left")
