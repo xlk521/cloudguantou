@@ -9,6 +9,13 @@ var add_num=0;//单张增加的金额数目
 var product_left=0;//同类商品的左右移动
 var product_other_left=new Array();//存放布局时的列表
 var product_others_worknum=9;//同类产品的个数
+//my_cart购物车页面的相关变量
+var mycart_allpays=0.00;
+var single_work;
+var mycart_b;
+var mycart_length=0;//价钱的列表长度
+var mycart_array_pay=new Array();
+var mrcart_add=new Array();
 //作者界面所能容纳的行数和列数
 var author_x_num=0;
 var author_y_num=0;
@@ -398,6 +405,150 @@ $(function() {
         getPost("/authorize/get_cities/", {province:province});
     });
 });
+//my_cart界面的js功能实现
+function mycart_init(){//购物车界面的数据初始化
+    single_work=document.getElementById("cart_con");
+    mycart_b=single_work.getElementsByTagName("b"); 
+    mycart_length=mycart_b.length;//价钱的列表长度
+    for(var i=0;i<mycart_length;i++){
+        mycart_array_pay[i]=parseFloat(mycart_b[i].innerText);
+        mrcart_add[i]=0;
+        console.log(mycart_array_pay[i]);
+    }
+}
+function mycart_all_choose(obj,num_my,end_mynum){//判定购物车中的商品是否全选中
+    var mycart_choose = document.getElementById(obj.value);
+    var list_input = mycart_choose.getElementsByTagName("input"); 
+    var num=list_input.length;
+    var checkbox_num=0;
+    var input_choose_id = document.getElementById("cart_con");
+    var input_choose=input_choose_id.getElementsByTagName("input");       
+    var input_length=input_choose.length;
+    var checked_num=0;
+    var checked_array=new Array();
+    if(obj.checked==true){ 
+        if(obj.name=="single_work"){
+            for(var i=0;i<num;i++){
+                console.log(i);
+                if(list_input[i].type=="checkbox" && list_input[i].checked==false){
+                    checkbox_num=checkbox_num+1; 
+                }
+            }
+            if(checkbox_num==1){
+                for(var i=0;i<num;i++){
+                    if(list_input[i].type=="checkbox" && list_input[i].name=="single_works"){
+                        list_input[i].checked=true;
+                        break;
+                    }
+                } 
+            }
+            mycart_allpays=mycart_allpays+mycart_array_pay[num_my];//获取当前物品的价钱
+            mrcart_add[num_my]=num_my;
+        }
+        else{
+            for(var i=0;i<num;i++){
+                if(list_input[i].type=="checkbox"){
+                    list_input[i].checked=true;
+                }
+            }
+            if(num_my==0){
+                num_my=2;
+                end_mynum=mycart_length-2;
+            }
+            for(var i=num_my;i<=end_mynum;){
+                mycart_allpays=mycart_allpays+mycart_array_pay[i];//获取当前物品的价钱
+                mrcart_add[i]=i;
+                i+=2;
+            }
+        }
+        for(var i=0;i<input_length;i++){//实现全选功能
+            if(input_choose[i].type=="checkbox" && input_choose[i].checked==false){
+                checked_array[checked_num]=input_choose[i];
+                checked_num +=1;
+                console.log("checked_num:"+checked_num);
+            }
+        }
+        if(checked_num==2){
+            for(var i=0;i<2;i++){
+                checked_array[i].checked=true;
+            }
+        }
+        
+    }
+    else{
+        if(obj.name=="single_work"){
+            for(var i=0;i<num;i++){
+                if(list_input[i].type=="checkbox" && list_input[i].name=="single_works"){
+                    list_input[i].checked=false;
+                    break;
+                }
+            } 
+            mycart_allpays=mycart_allpays-mycart_array_pay[num_my];//获取当前物品的价钱
+            mrcart_add[num_my]=0;
+        }
+        else{
+            for(var i=0;i<num;i++){
+                if(list_input[i].type=="checkbox"){
+                    list_input[i].checked=false;
+                }
+            }
+            if(num_my==0){
+                num_my=2;
+                end_mynum=mycart_length-2;
+            }
+            for(var i=num_my;i<=end_mynum;){
+                mycart_allpays=mycart_allpays-mycart_array_pay[i];//获取当前物品的价钱
+                mrcart_add[i]=0;
+                i+=2;
+            }
+        }
+        for(var i=0;i<input_length;i++){//实现：判定是否还是全选
+            if(input_choose[i].type=="checkbox" && input_choose[i].name=="choose_all"){
+                input_choose[i].checked=false;
+            }
+        }
+        
+    }
+    console.log("mycart_allpays:"+mycart_allpays+"----------num:"+num_my);
+    for(var i=0;i<mycart_length;i++){
+        //mycart_array_pay[i]=parseFloat(mycart_b[i].innerText);
+        console.log(mycart_array_pay[i]);
+    }
+    mycart_b[0].innerText=mycart_allpays;
+    mycart_b[mycart_length-1].innerText=mycart_allpays;
+}
+function mycart_pay(obj,num){//物品数量与资金的关系函数
+    console.log(obj.name);
+    var mycartnum=$("#"+obj.name).attr('value');
+    var single_pay=parseFloat(mycart_b[num].innerText);
+    var pay=0;
+    var old_pay=mycart_array_pay[num+1];
+    var new_pay=0;
+    if(mycartnum!=product_num){product_num=1;}
+    if(obj.className=="ddnumbera1"){
+        if(product_num>1){product_num -=1;}
+        console.log("111111");
+    }
+    else if(obj.className=="ddnumbera2"){
+        var max_num=$(".ddinputw60h21").attr('maxlength');
+        if(product_num<max_num){product_num +=1;}
+        console.log("222222");
+    }
+    console.log(mycart_b);
+    pay=single_pay*product_num;
+    num +=1;
+    mycart_array_pay[num]=pay;
+    mycart_b[num].innerText=pay;
+    $("#"+obj.name).attr('value',product_num);
+    if(mrcart_add[num]!=0){
+        console.log("num====>:"+num);
+        new_pay=old_pay-pay;
+        console.log("new_pay-------------====>:"+new_pay);
+        mycart_allpays=mycart_allpays-new_pay;//获取当前物品的价钱
+        mycart_b[0].innerText=mycart_allpays;
+        mycart_b[mycart_length-1].innerText=mycart_allpays;
+    }
+}
 //product产品详情页的js函数
 function product_next_prive(next_prive){//产品详情页的其他相关作品的移动
     var last_works=product_others_worknum-5;//停止移动的位置
