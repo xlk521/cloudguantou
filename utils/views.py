@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from authorize.models import UserProfile
 from friendships.models import UserFriendshipProfileModel
 from content.models import CategoryModel, Portfolio, Work
+import uuid
 import logging
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
@@ -92,7 +93,7 @@ def initContentIndex():
     userProfile = UserProfile.objects.filter(nickname = 'nick39')[0]
     category = CategoryModel.object.filter(name='Photography')[0]
     for i in range(20):
-        Portfolio.objects.create(profile=userProfile, title='title%d'%i, category=category,
+        Portfolio.objects.create(pid=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'),profile=userProfile, title='title%d'%i, category=category,
                                   description='description%d'%i, parameter='parameter%d'%i)
     
     album = Portfolio.objects.filter(title ='title1')[0]
