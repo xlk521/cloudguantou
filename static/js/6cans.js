@@ -972,7 +972,8 @@ function contents_rightchange(next_prive){//设置目录页的变换
         $("#contents_list_right").animate({left:distance});
     }
 }
-function contents_getJson(imgid=""){//目录页---发送请求并获取数据
+function contents_getJson(imgid){//目录页---发送请求并获取数据
+    imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
