@@ -973,7 +973,7 @@ function contents_rightchange(next_prive){//设置目录页的变换
     }
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
-    imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
+    //imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
