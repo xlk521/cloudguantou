@@ -259,7 +259,6 @@ function contents_right_left(){
     $.tmpl( "contents_center_left").appendTo( "#contents_list_right" );
     $.tmpl( "contents_center_leftup").appendTo( "#contents_centerleft" );
     $.tmpl( "contents_center_leftdown").appendTo( "#contents_centerleft" );
-    //$("#contents_list_center").css({height:hei});
     center_wid=$("#contents_list_center").width();//获取当前右侧区域的大小
     leftnum=center_wid;
     contents_nextnum[tmpl_arraynum]=center_wid;//用来存放每个模块的宽度
@@ -272,7 +271,6 @@ function contents_right_left(){
         $('#contents_list_img2').removeAttr('id');
         $('#contents_rightimg_ul').removeAttr('id');
         $.tmpl( "contents_list_rightimg").appendTo( "#contents_list_right" );
-        //$.tmpl( "contents_list_rightimg_head").appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_center").appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_footul").appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_footliwork").appendTo( "#contents_rightimg_ul" );
@@ -301,7 +299,6 @@ function contents_right_left(){
                 console.log("last_num:"+last_num);
             }
             work_next=i;
-            console.log("-------------------work_next:"+work_next);
             i=-1;
         }
     }
@@ -315,25 +312,8 @@ function contents_right_left(){
     }
     $("#contents_list_right").css({left:0});
     contents_list_array=-1;
-    console.log("resize--contents");
+    console.log("个人目录页--添加模版的函数");
 }
-//购物车---添加模版
-/*
-function mycart_tmpl(){//#mycart_content
-    $.tmpl( "cart_head").appendTo( "#mycart_list" );
-    $.tmpl( "cart_content").appendTo( "#my_cart_head" );
-    $.tmpl( "cart_top").appendTo( "#mycart_content" );
-    $.tmpl( "cart_center").appendTo( "#mycart_content" );
-    $.tmpl( "cart_bottom").appendTo( "#mycart_content" );
-    $('#my_cart_head').removeAttr('id');
-    $('#mycart_content').removeAttr('id');
-    $.tmpl( "cart_head").appendTo( "#mycart_list" );
-    $.tmpl( "cart_content").appendTo( "#my_cart_head" );
-    $.tmpl( "cart_top").appendTo( "#mycart_content" );
-    $.tmpl( "cart_center").appendTo( "#mycart_content" );
-    $.tmpl( "cart_bottom").appendTo( "#mycart_content" );
-}
-*/
 
 function out()
 {
@@ -620,7 +600,7 @@ function homepage_addimg(){
         $.tmpl("tmpl_num1").appendTo( "#HomeConList_ul" );
     }
 }
-// 只是用来测试作者列表界面的排版----当点击按钮时添加新的内容
+// 作者列表界面的排版----当点击按钮时添加新的内容
 function author_getRelation(url,relation, x_num, y_num,id_relationTemplate,id_relationList,switch_num){
     var need_num= x_num*y_num;
     var user=new Array();
@@ -665,7 +645,6 @@ function author_getRelation(url,relation, x_num, y_num,id_relationTemplate,id_re
 }
 function render_following(x_num, y_num,id_relationTemplate,id_relationList) {
     var count_num=cursor-count;
-    //user_followers=user_followers+user_allfriends;//   测试用
     author_active(author_x_num,author_y_num,id_relationTemplate,id_relationList,count_num);//将指定内容在特定位置显示
     console.log("执行函数：render_following");//打印LOG
 }
@@ -836,7 +815,7 @@ function author_left_right(left_right,num){
         }
     }
 }
-//contents：个人目录页的js功能函数
+//contents_list：个人目录页的js功能函数
 function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){//评论框的打开与关闭
     var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
     var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
@@ -975,7 +954,6 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
         change_img[0]="/statics/img/content_list.GIF";
     }
 }
-
 function contents_rightchange(next_prive){//设置目录页的变换
     var distance=0;
     if(next_prive=="next" && contents_list_array<work_next){
@@ -1011,7 +989,7 @@ function contents_getJson(url,neednum){//目录页---发送请求并获取数据
         },
         dataType:'json'
     });
-    console.log("执行函数：contents_getJson");//打印LOG
+    console.log("目录页---发送请求并获取数据");//打印LOG
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
     contents_show(1210);
