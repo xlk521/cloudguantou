@@ -980,7 +980,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         headers: {"X-CSRFToken":csrftoken},
         data: { imgid:imgid },
         success:function(msg){
-            console.log("msg====>>"+msg);
+            console.log("msg.description====>>"+msg.description);
             //user=msg.[];
             console.log("msg.length====>>"+msg.length);
             for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
