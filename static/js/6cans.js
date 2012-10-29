@@ -986,6 +986,10 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
             }
             //aythor_users=msg.users;//获取数据中关于已登录作者的数据
             console.log("user_allfriends:::json====>>"+contents_listuser);
+
+           // console.log("obj.className===>"+obj.className);
+            $("#contents_list_right").empty();
+            contents_right_left();
         },
         dataType:'json'
     });
