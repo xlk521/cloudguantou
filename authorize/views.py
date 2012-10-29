@@ -15,6 +15,7 @@ from utils import ImageFactory, convertjson
 from uuid import uuid4
 import logging
 import json
+from content.models import ReCategoryBrandModel, CategoryModel
 
 
 log = logging.getLogger()
@@ -40,15 +41,26 @@ def identity(request):
         return render(request, page, {'form':form,'formdesign':formdesign, 'upload_url':upload_url})
     
     elif request.method == 'POST':
-        iden = request.POST.get('iden', False)
+        iden = request.GET.get('iden', False)
         profile = request.user.get_profile()
         brandprofile = Brand(master = profile)
         if iden == 'designer':
             formdesign = DesignerIdentityForm(request.POST, instance=brandprofile)
+            log.debug(formdesign.is_valid())
             if formdesign.is_valid():
-                log.debug('formdesign saving')
                 formdesign.save()
-                log.debug('formdesign saving done')
+                photography = request.POST.get('photography', False)
+                illustration = request.POST.get('illustration', False)
+                painting = request.POST.get('painting', False)
+                photography = category_ischecked(photography)
+                if photography:
+                    ReCategoryBrandModel.objects.create(category=CategoryModel.object.get(name='photography'),
+                                         brand=brandprofile)
+                illustration = category_ischecked(illustration)
+                painting = category_ischecked(painting)
+                log.debug(photography)
+                log.debug(illustration)
+                log.debug(painting)
             else:
                 log.debug(formdesign.errors)
         city_name = request.POST.get('city', False)
@@ -70,8 +82,13 @@ def identity(request):
             profile.save()
         else:
             log.error(form.errors)
-    return HttpResponseRedirect('/content/personal')
-
+        #return HttpResponse(photography)
+        return HttpResponseRedirect('/content/personal')
+    
+def category_ischecked(item):
+    if item == 'on':
+        item = True
+    return item
 @login_required
 @require_http_methods(["POST"])
 def get_cities(request):
