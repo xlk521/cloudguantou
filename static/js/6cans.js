@@ -1174,9 +1174,10 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $("#contents_list_right").show(function(){ 
+    $("#contents_list_right").ready(function(){ 
         //contents_right_left();
         contents_getJson();
+        console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
