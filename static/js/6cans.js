@@ -81,11 +81,11 @@ $.template("relationTemplate_right", markup_content_right );
 //中间简介区域的模版
 var contents_center='<div id="contents_list_center" style="position:absolute;width:450px;min-height:450px;background:#fff;left:0px"><div id="contents_centerleft" style="position:relative;width:400px;height:140px;top:50%;margin:auto;"></div></div>';
 var contents_center_up='<div style="overflow:hidden;height:60px;border-bottom-color:#aaa;border-bottom-style:solid;border-bottom-width:1px;">'+
-    '<ul><li style="width:150px;float:left;margin-top:15px"><h2 style="font-size:20px;margin-left:35px;">乡村风情</h2></li>'+
+    '<ul><li style="width:150px;float:left;margin-top:15px"><h2 style="font-size:20px;margin-left:35px;">${title} </h2></li>'+
     '<li style="width:50px;float:left;margin-top:17px"><h3 style="font-size:16px;color:#aaa;">摄影</h3></li>'+
-    '<li style="float:left;margin-top:28px"><span style="font-size:16px;color:#AAA">创作时间：2012年8月</span></li></ul></div>';
+    '<li style="float:left;margin-top:28px"><span style="font-size:16px;color:#AAA">创作时间：${createtime}</span></li></ul></div>';
 var contents_center_down='<div style="overflow:hidden;height:90px;">'+
-    '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小浪的品牌小浪的博客小浪的品牌小浪的博客小浪的品牌小浪的博客小浪的品牌小浪的博客小浪的品牌小浪的博客... ...<a>阅读更多</a></p></div>';
+    '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${description}<a>阅读更多</a></p></div>';
 $.template("contents_center_left",  contents_center );
 $.template("contents_center_leftup",  contents_center_up );
 $.template("contents_center_leftdown",  contents_center_down );
@@ -244,7 +244,7 @@ function order_write(){
     }
 }
 //个人目录页--添加模版的函数
-function contents_right_left(){
+function contents_right_left(works_msg){
     var tmpl_arraynum=0;
     var next_left=0;
     var center_wid=0;
@@ -257,8 +257,8 @@ function contents_right_left(){
         }
     }
     $.tmpl( "contents_center_left").appendTo( "#contents_list_right" );
-    $.tmpl( "contents_center_leftup").appendTo( "#contents_centerleft" );
-    $.tmpl( "contents_center_leftdown").appendTo( "#contents_centerleft" );
+    $.tmpl( "contents_center_leftup",works_msg).appendTo( "#contents_centerleft" );
+    $.tmpl( "contents_center_leftdown",works_msg).appendTo( "#contents_centerleft" );
     center_wid=$("#contents_list_center").width();//获取当前右侧区域的大小
     leftnum=center_wid;
     contents_nextnum[tmpl_arraynum]=center_wid;//用来存放每个模块的宽度
@@ -991,7 +991,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
 
            // console.log("obj.className===>"+obj.className);
             $("#contents_list_right").empty();
-            contents_right_left();
+            contents_right_left(msg);
         },
         dataType:'json'
     });
@@ -1175,7 +1175,7 @@ $(document).ready(function(){
         console.log("show--ing");
     });
     $("#contents_list_right").show(function(){ 
-        contents_right_left();
+        //contents_right_left();
     });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
@@ -1269,7 +1269,7 @@ $(document).ready(function(){
         $("#contents_list").show(function(){//目录页的内容初始设计
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
-            contents_right_left();
+            //contents_right_left();
         });
     });
 });
