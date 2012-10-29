@@ -30,8 +30,15 @@ def content_index(request, cans_id):
             profile = UserProfile.objects.get(cans_id=cans_id)
         else:
             profile = request.user.get_profile()
+        
         works = __get_album(profile)
-    return render(request, 'content/contents_list.jade', {'works':works})
+        portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
+        work = Work.objects.filter(portfolio=portfolio).order_by('-datetime')[0]
+        initwork={}
+        initwork['url'] = work.url
+        initwork['description'] = work.description
+        initwork['parameter'] = work.parameter
+    return render(request, 'content/contents_list.jade', {'works':works, 'work':work})
 
 def __get_album(profile):
     works = {}
