@@ -102,7 +102,7 @@ class WorkAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)
 
 class PortfolioAdmin(admin.ModelAdmin):
-    list_display = ('profile', 'album', 'title')
+    list_display = ('profile', 'title')
     
 class CategoryModelAdmin(admin.ModelAdmin):
     list_display = ('name',)
