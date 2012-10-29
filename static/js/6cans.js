@@ -972,11 +972,11 @@ function contents_rightchange(next_prive){//设置目录页的变换
         $("#contents_list_right").animate({left:distance});
     }
 }
-function contents_getJson(url,neednum){//目录页---发送请求并获取数据
+function contents_getJson(imgid){//目录页---发送请求并获取数据
     var user=new Array();
     $.ajax({
         type: 'POST',
-        url:url ,//"/content/getRelationProfile/",
+        url:"/content",//"/content/getRelationProfile/",
         headers: {"X-CSRFToken":csrftoken},
         data: { contentslist_imgid:contentslist_imgid, count:need_num, relation:relation ,have_next_page:have_next_page},
         success:function(msg){

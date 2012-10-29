@@ -16,6 +16,11 @@ html
         link(rel="stylesheet",type="text/css",href="/statics/css/mycans_css.css")
         link(rel="stylesheet",type="text/css",href="/statics/css/jquery.fileupload-ui.css")
         link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap-image-gallery.min.css")
+        script
+            var is_authenticated = false
+            {% if user.is_authenticated %}
+                var is_authenticated = true
+            {% endif %} 
         {% block head %}{% endblock %}
     //分割线
     body#change_id(style="width:100%;min-height:450px;",onkeydown="keyDown()")
