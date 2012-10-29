@@ -93,7 +93,8 @@ def initContentIndex():
     userProfile = UserProfile.objects.filter(nickname = 'nick39')[0]
     category = CategoryModel.object.filter(name='Photography')[0]
     for i in range(20):
-        Portfolio.objects.create(pid=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'),profile=userProfile, title='title%d'%i, category=category,
+        pid = str(uuid.uuid5(uuid.NAMESPACE_DNS, 'Portfolio'))
+        Portfolio.objects.create(pid=pid,profile=userProfile, title='title%d'%i, category=category,
                                   description='description%d'%i, parameter='parameter%d'%i)
     
     album = Portfolio.objects.filter(title ='title1')[0]

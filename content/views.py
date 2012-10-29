@@ -62,11 +62,16 @@ def up_load(request):
         return render_to_response('content/contents_list.jade')
 
 @require_http_methods(["GET"])
-def get_works(request, portfolio_id):
+def get_works(request):
+    portfolio_id = request.GET.get('imgid', False)
     portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
+    clickportfolio = {}
+    clickportfolio['title'] = portfolio.title
+    clickportfolio['createtime'] = portfolio.createtime
+    clickportfolio['description'] = portfolio.description
     if portfolio:
         works = Work.objects.filter(portfolio=portfolio).values()
-        return HttpResponse(convertjson(works))
+        return HttpResponse(convertjson(clickportfolio))
 
 
 @login_required
