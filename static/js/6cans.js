@@ -973,19 +973,19 @@ function contents_rightchange(next_prive){//设置目录页的变换
     }
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
-    var user=new Array();
+    var contents_listuser=new Array();
     $.ajax({
         type: 'POST',
         url:"/content/content_index/",
         headers: {"X-CSRFToken":csrftoken},
-        data: { contentslist_imgid:contentslist_imgid, count:need_num, relation:relation ,have_next_page:have_next_page},
+        data: { imgid:imgid },
         success:function(msg){
             //user=msg.[];
-            //for(var i=0;i<user.length;i++){//将新旧数据拼接到一起
-             //user_allfriends[j+i]=user[i];
-          //  }
-            aythor_users=msg.users;//获取数据中关于已登录作者的数据
-            console.log("user_allfriends:::json>"+user_allfriends);
+            for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
+                contents_listuser[i]=msg[i];
+            }
+            //aythor_users=msg.users;//获取数据中关于已登录作者的数据
+            console.log("user_allfriends:::json>"+contents_listuser);
         },
         dataType:'json'
     });
