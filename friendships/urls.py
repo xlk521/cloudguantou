@@ -9,5 +9,5 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('friendships.views',
                        
    url(r'^concerned_about_friends/', 'concerned_about_friends')
-    
+       
 )
