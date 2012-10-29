@@ -4,11 +4,10 @@ from django.forms import ModelForm, Textarea
 from authorize.models import UserProfile
 from brand.models import Brand
 from django.contrib import admin
-from utils import BaseModelManager
 import uuid
 from django.contrib.admin import widgets        
 # Create your models here.
-class CategoryModelManager(BaseModelManager):
+class CategoryModelManager(models.Manager):
     pass
 
 class CategoryModel(models.Model):
@@ -23,7 +22,6 @@ class CategoryModelForm(ModelForm):
     class Meta:
         model = CategoryModel()
 
-<<<<<<< HEAD
 class ReCategoryBrandModelManager(models.Manager):
     pass
 
@@ -41,12 +39,9 @@ class ReCategoryBrandModelForm(ModelForm):
         model = ReCategoryBrandModel()
         
 class AlbumModelManager(models.Manager):
-=======
-class PortfolioManager(BaseModelManager):
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
     pass
 
-class Portfolio(models.Model):
+class AlbumModel(models.Model):
     albumid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
@@ -57,14 +52,13 @@ class Portfolio(models.Model):
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
-    objects = PortfolioManager()
+    objects = AlbumModelManager()
     
     def __unicode__(self):
         return '%s Album'%self.title    
 
-class PortfolioForm(ModelForm):
+class AlbumModelForm(ModelForm):
     class Meta:
-<<<<<<< HEAD
         model = AlbumModel
         fields=('title', 'description', 'createtime')
         widgets = {
@@ -76,47 +70,45 @@ class PortfolioForm(ModelForm):
         self.fields['createtime'].widget = widgets.AdminDateWidget()
         #self.fields['mytime'].widget = widgets.AdminTimeWidget()
         #self.fields['mydatetime'].widget = widgets.AdminSplitDateTime()
-=======
-        model = Portfolio
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
 
-class WorkManager(BaseModelManager):
-    pass
+class PhotoModelManager(models.Manager):
+    def get_or_none(self, **kwargs):
+        try:
+            return self.get(**kwargs)
+        except self.model.DoesNotExist:
+            return None
 
-class Work(models.Model):
+class PhotoModel(models.Model):
+        
     photoid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
     profile = models.ForeignKey(UserProfile)
-    album = models.ForeignKey(Portfolio)
+    album = models.ForeignKey(AlbumModel)
     title = models.CharField(max_length=128)
     url = models.CharField(max_length=128)
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
     
-    objects = WorkManager()
+    objects = PhotoModelManager()
 
     def __unicode__(self):
         return '%s Photo'%self.title
     
-class WorkForm(ModelForm):
+class PhotoModelForm(ModelForm):
     class Meta:
-<<<<<<< HEAD
         model = PhotoModel()
         fields=('title', 'description', 'url')
-=======
-        model = Work()
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
 
-class PortfolioAdmin(admin.ModelAdmin):
+class AlbumModelAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)
 
-class WorkAdmin(admin.ModelAdmin):
+class PhotoModelAdmin(admin.ModelAdmin):
     list_display = ('profile', 'album', 'title')
     
 class CategoryModelAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-admin.site.register(Work, WorkAdmin)
-admin.site.register(Portfolio, PortfolioAdmin)
+admin.site.register(PhotoModel, PhotoModelAdmin)
+admin.site.register(AlbumModel, AlbumModelAdmin)
 admin.site.register(CategoryModel, CategoryModelAdmin)
     

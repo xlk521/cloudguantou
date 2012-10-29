@@ -2,7 +2,6 @@
 # Create your views here.
 from authorize.models import UserProfile
 from content.models import AlbumModel, AlbumModelForm, PhotoModelForm
-from content.models import Portfolio
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
@@ -36,7 +35,7 @@ def content_index(request, cans_id):
 
 def __get_album(profile):
     works = {}
-    albums = Portfolio.objects.filter(profile=profile).order_by('-datetime')
+    albums = AlbumModel.objects.filter(profile=profile).order_by('-datetime')
     for album in albums:
         year = _date(album.datetime, 'Y')
         if not works.has_key(year):
