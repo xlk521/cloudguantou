@@ -1060,7 +1060,8 @@ function list_button_shrink(){//目录页：收缩左半边
     $("#contents_control_right").show();
 }
 function contents_getimgid(obj){//目录页--获取图片的id
-    
+    //console.log(obj.className);
+    /**/
     if(obj.className=="contents_adviceimg1"){
 
     }
