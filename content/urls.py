@@ -13,9 +13,12 @@ urlpatterns = patterns('content.views',
     url(r'^personal/', 'personal_index'),
     
     #url(r'^content_index/', 'content_index'),
-    
+    #目录页
     url(r'content_index/(.+)/$', 'content_index'),
     
+    #获取系列作品内容
+    url(r'getWorks/(?P<portfolio_id>\S+)', 'get_works'),
+
     url(r'^content_follower/', 'getFriendsProfile', {'page' :'follower'}),
     
     url(r'^upload/', 'up_load'),

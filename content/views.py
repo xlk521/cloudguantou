@@ -61,6 +61,14 @@ def up_load(request):
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
 
+@require_http_methods(["GET"])
+def get_works(request, portfolio_id):
+    portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
+    if portfolio:
+        works = Work.objects.filter(portfolio=portfolio).values()
+        return HttpResponse(convertjson(works))
+
+
 @login_required
 @require_http_methods(["POST", "GET"])
 def work_upload(request):
