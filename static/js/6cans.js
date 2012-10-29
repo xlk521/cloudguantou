@@ -980,10 +980,11 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         headers: {"X-CSRFToken":csrftoken},
         data: { imgid:imgid },
         success:function(msg){
+            console.log("msg====>>"+msg);
             //user=msg.[];
-            for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
-                contents_listuser[i]=msg[i];
-            }
+            //for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
+               // contents_listuser[i]=msg[i];
+            //}
             //aythor_users=msg.users;//获取数据中关于已登录作者的数据
             console.log("user_allfriends:::json====>>"+contents_listuser);
 
@@ -1064,7 +1065,7 @@ function list_button_shrink(){//目录页：收缩左半边
     $("#contents_control_right").show();
 }
 function contents_getimgid(obj){//目录页--获取图片的id
-    console.log(obj.id);
+    //console.log(obj.id);
     contents_getJson(obj.id);
     /*
     if(obj.className=="contents_adviceimg1"){
