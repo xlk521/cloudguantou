@@ -43,3 +43,9 @@ indexes:
   - name: title
   - name: datetime
     direction: desc
+
+- kind: content_portfolio
+  properties:
+  - name: profile_id
+  - name: datetime
+    direction: desc

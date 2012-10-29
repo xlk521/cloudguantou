@@ -31,6 +31,7 @@ def content_index(request, cans_id):
             profile = UserProfile.objects.get(cans_id=cans_id)
         else:
             profile = request.user.get_profile()
+        
         works = __get_album(profile)
     return render(request, 'content/contents_list.jade', {'works':works})
 
@@ -67,14 +68,39 @@ def up_load(request):
         else:
             log.debug(form.errors)
         return render_to_response('content/contents_list.jade')
-
+    
+@login_required
 @require_http_methods(["GET"])
-def get_works(request, portfolio_id):
-    portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
-    if portfolio:
-        works = Work.objects.filter(portfolio=portfolio).values()
-        return HttpResponse(convertjson(works))
+def get_works(request):
+    portfolio_id = request.GET.get('imgid', False)
+    if portfolio_id:
+        portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
+        clickportfolio = dealPortfoliodata(portfolio)
+    elif not portfolio_id: 
+        profile = request.user.get_profile()
+        portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
+        clickportfolio = dealPortfoliodata(portfolio)
+    #return HttpResponse(profile)
+    return HttpResponse(convertjson(clickportfolio))
 
+def dealPortfoliodata(portfolio):
+    clickportfolio = {}
+    clickportfolio['title'] = portfolio.title
+    clickportfolio['createtime'] = portfolio.createtime
+    clickportfolio['description'] = portfolio.description
+    if portfolio:
+        works = Work.objects.filter(portfolio=portfolio)
+        getwork = []
+        for work in works:
+            workdetails={}
+            workdetails['url'] = work.url
+            workdetails['description'] = work.description
+            workdetails['parameter'] = work.parameter
+            #work['collections'] = work.collections
+            getwork.append(workdetails)
+    clickportfolio['works'] = getwork
+    return clickportfolio
+    
 @login_required
 @require_http_methods(["POST", "GET"])
 def work_upload(request):

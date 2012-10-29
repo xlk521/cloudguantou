@@ -81,11 +81,11 @@ $.template("relationTemplate_right", markup_content_right );
 //中间简介区域的模版
 var contents_center='<div id="contents_list_center" style="position:absolute;width:450px;min-height:450px;background:#fff;left:0px"><div id="contents_centerleft" style="position:relative;width:400px;height:140px;top:50%;margin:auto;"></div></div>';
 var contents_center_up='<div style="overflow:hidden;height:60px;border-bottom-color:#aaa;border-bottom-style:solid;border-bottom-width:1px;">'+
-    '<ul><li style="width:150px;float:left;margin-top:15px"><h2 style="font-size:20px;margin-left:35px;">乡村风情</h2></li>'+
+    '<ul><li style="width:150px;float:left;margin-top:15px"><h2 style="font-size:20px;margin-left:35px;">${title} </h2></li>'+
     '<li style="width:50px;float:left;margin-top:17px"><h3 style="font-size:16px;color:#aaa;">摄影</h3></li>'+
-    '<li style="float:left;margin-top:28px"><span style="font-size:16px;color:#AAA">创作时间：2012年8月</span></li></ul></div>';
+    '<li style="float:left;margin-top:28px"><span style="font-size:16px;color:#AAA">创作时间：${createtime}</span></li></ul></div>';
 var contents_center_down='<div style="overflow:hidden;height:90px;">'+
-    '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小浪的品牌小浪的博客小浪的品牌小浪的博客小浪的品牌小浪的博客小浪的品牌小浪的博客小浪的品牌小浪的博客... ...<a>阅读更多</a></p></div>';
+    '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${description}<a>阅读更多</a></p></div>';
 $.template("contents_center_left",  contents_center );
 $.template("contents_center_leftup",  contents_center_up );
 $.template("contents_center_leftdown",  contents_center_down );
@@ -244,7 +244,7 @@ function order_write(){
     }
 }
 //个人目录页--添加模版的函数
-function contents_right_left(){
+function contents_right_left(works_msg){
     var tmpl_arraynum=0;
     var next_left=0;
     var center_wid=0;
@@ -257,8 +257,8 @@ function contents_right_left(){
         }
     }
     $.tmpl( "contents_center_left").appendTo( "#contents_list_right" );
-    $.tmpl( "contents_center_leftup").appendTo( "#contents_centerleft" );
-    $.tmpl( "contents_center_leftdown").appendTo( "#contents_centerleft" );
+    $.tmpl( "contents_center_leftup",works_msg).appendTo( "#contents_centerleft" );
+    $.tmpl( "contents_center_leftdown",works_msg).appendTo( "#contents_centerleft" );
     center_wid=$("#contents_list_center").width();//获取当前右侧区域的大小
     leftnum=center_wid;
     contents_nextnum[tmpl_arraynum]=center_wid;//用来存放每个模块的宽度
@@ -974,19 +974,25 @@ function contents_rightchange(next_prive){//设置目录页的变换
     }
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
-    var user=new Array();
+    //imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
+    var contents_listuser=new Array();
     $.ajax({
-        type: 'POST',
-        url:"/content",//"/content/getRelationProfile/",
+        type: 'get',
+        url:"/content/getWorks/",
         headers: {"X-CSRFToken":csrftoken},
-        data: { contentslist_imgid:contentslist_imgid, count:need_num, relation:relation ,have_next_page:have_next_page},
+        data: { imgid:imgid },
         success:function(msg){
+            console.log("msg.description====>>"+msg.description);
             //user=msg.[];
-            //for(var i=0;i<user.length;i++){//将新旧数据拼接到一起
-             //user_allfriends[j+i]=user[i];
-          //  }
-            aythor_users=msg.users;//获取数据中关于已登录作者的数据
-            console.log("user_allfriends:::json>"+user_allfriends);
+            //for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
+            contents_listuser[0]=[1,2,3];
+            //}
+            //aythor_users=msg.users;//获取数据中关于已登录作者的数据
+            console.log("user_allfriends:::json====>>"+contents_listuser);
+
+           // console.log("obj.className===>"+obj.className);
+            $("#contents_list_right").empty();
+            contents_right_left(msg);
         },
         dataType:'json'
     });
@@ -1061,7 +1067,9 @@ function list_button_shrink(){//目录页：收缩左半边
     $("#contents_control_right").show();
 }
 function contents_getimgid(obj){//目录页--获取图片的id
-    
+    //console.log(obj.id);
+    contents_getJson(obj.id);
+    /*
     if(obj.className=="contents_adviceimg1"){
 
     }
@@ -1070,6 +1078,8 @@ function contents_getimgid(obj){//目录页--获取图片的id
         $("#contents_list_right").empty();
         contents_right_left();
     }
+    */
+    
 }
 $(document).ready(function(){
     //author_rightshow();
@@ -1165,7 +1175,11 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $("#contents_list_right").show(function(){ contents_right_left();});
+    $("#contents_list_right").ready(function(){ 
+        //contents_right_left();
+        contents_getJson();
+        console.log("首次调取数据");
+    });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
     });
@@ -1269,7 +1283,7 @@ $(document).ready(function(){
         $("#contents_list").show(function(){//目录页的内容初始设计
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
-            contents_right_left();
+            //contents_right_left();
         });
     });
 });

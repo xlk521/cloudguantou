@@ -50,9 +50,26 @@ html
                             div
                                 span登出
                         {% else %}
-                        a#logo_registbutton(type="submit")
-                            div             
+                        a(data-toggle="modal",href="#myModal_login")
+                            div
                                 span 注册
+                        .modal#myModal_login(style="display:none")
+                            .modal-header
+                                a.close(data-dismiss="modal") ×
+                                h3 登录
+                            .modal-body
+                                #B_i_con
+                                    ul
+                                        li.B_i_con_li1 安全邮箱：
+                                        li.B_i_con_li2
+                                            input.B_i_con_input1(name="",type="text")
+                                            a.B_i_con_lia 验证邮箱
+                                        li.B_i_con_li1
+                                        li.B_i_con_li2
+                                            a.B_i_con_btn 完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成
+                            .modal-footer
+                                    a.btn(href="#",data-dismiss="modal")关闭
+                                    a.btn.btn-primary(href="#")保存更改
                         a#logo_loginbutton(type="submit")
                             div
                                 span 登录
