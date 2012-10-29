@@ -70,8 +70,18 @@ def get_works(request):
     clickportfolio['createtime'] = portfolio.createtime
     clickportfolio['description'] = portfolio.description
     if portfolio:
-        works = Work.objects.filter(portfolio=portfolio).values()
-        return HttpResponse(convertjson(clickportfolio))
+        works = Work.objects.filter(portfolio=portfolio)
+        getwork = []
+        for work in works:
+            workdetails={}
+            workdetails['url'] = work.url
+            workdetails['description'] = work.description
+            workdetails['parameter'] = work.parameter
+            #work['collections'] = work.collections
+            getwork.append(workdetails)
+    clickportfolio['works'] = getwork
+            
+    return HttpResponse(convertjson(clickportfolio))
 
 
 @login_required
