@@ -30,6 +30,7 @@ def content_index(request, cans_id):
             profile = UserProfile.objects.get(cans_id=cans_id)
         else:
             profile = request.user.get_profile()
+        
         works = __get_album(profile)
     return render(request, 'content/contents_list.jade', {'works':works})
 
@@ -64,7 +65,16 @@ def up_load(request):
 @require_http_methods(["GET"])
 def get_works(request):
     portfolio_id = request.GET.get('imgid', False)
-    portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
+    if not portfolio_id:
+        portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
+        clickportfolio = dealPortfoliodata(portfolio)
+    else: 
+        profile = request.user.get_profile()
+        portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
+        clickportfolio = dealPortfoliodata(portfolio)
+    return HttpResponse(convertjson(clickportfolio))
+
+def dealPortfoliodata(portfolio):
     clickportfolio = {}
     clickportfolio['title'] = portfolio.title
     clickportfolio['createtime'] = portfolio.createtime
@@ -80,10 +90,8 @@ def get_works(request):
             #work['collections'] = work.collections
             getwork.append(workdetails)
     clickportfolio['works'] = getwork
-            
-    return HttpResponse(convertjson(clickportfolio))
-
-
+    return clickportfolio
+    
 @login_required
 @require_http_methods(["POST", "GET"])
 def work_upload(request):
