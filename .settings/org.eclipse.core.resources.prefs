@@ -11,6 +11,7 @@ encoding//brand/models.py=utf8
 encoding//content/models.py=utf8
 encoding//content/test.py=utf8
 encoding//content/urls.py=utf8
+encoding//django/forms/models.py=utf8
 encoding//friendships/models.py=utf8
 encoding//friendships/urls.py=utf8
 encoding//identity/urls.py=utf8

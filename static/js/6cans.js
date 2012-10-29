@@ -337,6 +337,7 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 $(function() {
+    $(".datePicker").datepicker();
     $('#sina_auth').click(function() {
         open_auth_window('/authorize/sinaauth');
     });
@@ -1267,6 +1268,17 @@ $(document).ready(function(){
                 progress + '%'
             );
         }
+    });
+    $("#portfolio_post").click(function(){
+        $("#portfolio").submit(function(e) {
+            console.log(e);
+            console.log('hello world');
+            //$.each($('.template-download'), function(i, val) {
+            //    console.log(i);
+            //    console.log(val);
+            //});
+            return false;
+        });
     });
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计

@@ -4,41 +4,40 @@
 {% endblock %}
 {% block content %}
 div#uploadpage(style="font-size:15px;width:984px")
-    form(action="{{ upload_url }}",method="post",enctype="multipart/form-data"){% csrf_token %}
+    form(id="portfolio",action="",method="post",enctype="multipart/form-data"){% csrf_token %}
         fieldset.control-group.success
             div(style="width:984px")
                 div.controls#uploadpage_headdiv
                     strong 上传作品
+                    button.btn.btn-large.btn-danger#portfolio_post(type="button",style="float:right") 提交作品
                 div.controls#uploadpage_bodydiv_left
                     label.control-label(style="padding-top:15px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列名称：
-                        {{ albumform.title }}
+                        {{ form.title }}
                         br
                         font(style="font-size:13px;color:#ababab;margin-left:95px")只能使用汉字，字母，阿拉伯数字，“-”“_”符号。
                     label.control-label(style="margin-top:5px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 作品类别：
-                        input.success.uploadpage_input(type="text",style="border-color:#444242")
+                        //input.success.uploadpage_input(type="text",style="border-color:#444242")
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                        p.errmsg#err_msg {{ form.category.errors|join:", " }}
+                        {% else %}
+                        p#err_msg &nbsp;
+                        {% endif %}
                     label.control-label(style="margin-top:20px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 创作时间：
-                        select(style="width:100px;height:30px;border-color:#444242")
-                            option 年
-                            option 1
-                        select(style="width:40px;height:30px;border-color:#444242")
-                            option 月
-                            option 1
-                        select(style="width:40px;height:30px;border-color:#444242")
-                            option 日
-                            option 1
+                        input.datePicker(name="createtime",readonly="true",type="text",id="createtime")
                 div.controls#uploadpage_bodydiv_right
                     label.control-label(style="padding-top:15px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列作品描述：
-                        {{ albumform.description }}
+                        {{ form.description }}
                         
-    form#fileupload(action="{{ upload_url }}",method="POST",enctype="multipart/form-data"){% csrf_token %}
+    form#fileupload(action="",method="POST",enctype="multipart/form-data"){% csrf_token %}
         div.row.fileupload-buttonbar(style="margin:0 auto")
             div(style="width:395px;float:left")
                 span.btn.btn-success.fileinput-button

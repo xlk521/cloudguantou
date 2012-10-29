@@ -57,7 +57,6 @@ $(function () {
                 dataType: 'json',
                 data: {'upload':1},
                 success: function(message) {
-                    console.log(message);
                     data.url = message.url;
                     $this.fileupload('send', data);
                 },

@@ -4,6 +4,7 @@ from brand.models import Brand
 from django.contrib import admin
 from django.contrib.admin import widgets
 from django.db import models
+from django import forms
 from django.forms import ModelForm, Textarea
 from utils import BaseModelManager
 import uuid
@@ -13,9 +14,13 @@ class CategoryModelManager(BaseModelManager):
     pass
 
 class CategoryModel(models.Model):
+    class Meta:
+        verbose_name_plural = u'产品类别'
+        ordering = ['name']
+
     name = models.CharField(max_length=64)
     
-    object = CategoryModelManager()
+    objects = CategoryModelManager()
     
     def __unicode__(self):
         return '%s'%self.name
@@ -44,13 +49,11 @@ class PortfolioManager(BaseModelManager):
     pass
 
 class Portfolio(models.Model):
-    pid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
-    frontcover = models.CharField(max_length=128, blank=True)
+    pid = models.CharField(max_length=36, default=str(uuid.uuid4()))
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
     category = models.ForeignKey(CategoryModel)
     description = models.CharField(max_length=128, blank=True)
-    parameter = models.CharField(max_length=128, blank=True)
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
@@ -62,14 +65,19 @@ class Portfolio(models.Model):
 class PortfolioForm(ModelForm):
     class Meta:
         model = Portfolio
-        fields=('title', 'description', 'createtime')
-        widgets = {'description': Textarea(attrs={'cols': 20, 'rows': 5})}
+        fields=('title', 'description', 'createtime', 'category')
+        widgets = {
+            'description': Textarea(attrs={'cols': 20, 'rows': 5}),
+            'createtime': forms.DateTimeInput(format='%d%m%Y',attrs={
+                'class':'createtime',
+                'readonly':'readonly',
+                'size':'15',
+            })
+        }
          
     def __init__(self, *args, **kwargs):
         super(PortfolioForm, self).__init__(*args, **kwargs)
         self.fields['createtime'].widget = widgets.AdminDateWidget()
-        #self.fields['mytime'].widget = widgets.AdminTimeWidget()
-        #self.fields['mydatetime'].widget = widgets.AdminSplitDateTime()
 
 class WorkManager(models.Manager):
     def get_or_none(self, **kwargs):
@@ -87,7 +95,7 @@ class Work(models.Model):
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
-    #collections = models.FloatField(blank=True)
+    is_cover = models.BooleanField(default=False)
     
     objects = WorkManager()
 
