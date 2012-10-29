@@ -72,6 +72,11 @@ input[type="checkbox"]{width:20px;}
 	border-bottom:-1px;
 	overflow:hidden;
 }
+/*登录与注册*/
+#myModal_login{
+	top: 50%;
+  	left: 50%;
+}
 
 
 /*主体   */

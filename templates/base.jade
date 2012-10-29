@@ -49,12 +49,12 @@ html
                             div
                                 span登出
                         {% else %}
-                        a(type="submit",data-toggle="modal",href="#myModal_login")
+                        a(data-toggle="modal",href="#myModal_login")
                             div
                                 span 注册
                         .modal#myModal_login(style="display:none")
                             .modal-header
-                                a.close(data-dismiss="modal")×
+                                a.close(data-dismiss="modal") ×
                                 h3 登录
                             .modal-body
                                 #B_i_con
