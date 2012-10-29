@@ -985,7 +985,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
                 contents_listuser[i]=msg[i];
             }
             //aythor_users=msg.users;//获取数据中关于已登录作者的数据
-            console.log("user_allfriends:::json>"+contents_listuser);
+            console.log("user_allfriends:::json====>>"+contents_listuser);
         },
         dataType:'json'
     });
@@ -1061,6 +1061,7 @@ function list_button_shrink(){//目录页：收缩左半边
 }
 function contents_getimgid(obj){//目录页--获取图片的id
     console.log(obj.id);
+    contents_getJson(obj.id);
     /*
     if(obj.className=="contents_adviceimg1"){
 
