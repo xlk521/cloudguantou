@@ -10,6 +10,7 @@ var product_left=0;//同类商品的左右移动
 var product_other_left=new Array();//存放布局时的列表
 var product_others_worknum=9;//同类产品的个数
 //my_cart购物车页面的相关变量
+var mycart_product_num=1;
 var mycart_allpays=0.00;
 var single_work;
 var mycart_b;
@@ -126,6 +127,7 @@ $.template("contents_list_rightimg_footliwork",  contents_rightimg_footliwork );
 $.template("contents_list_rightimg_footliadvise", contents_rightimg_footliadvise );
 $.template("contents_list_rightimg_footliattention",  contents_rightimg_footliattention );
 //我的购物车---模版以及相关变量的设置
+/*
 var mycart_head='<dl id="my_cart_head"><hr class="bottom_line2" /><dt><input name="" type="checkbox" value="" /><strong>品牌：</strong><span>西南游采风</span><strong>创作者：</strong><span>遥远</span></dt></dl>';
 var mycart_content='<hr class="bottom_line" /><dd><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr id="mycart_content"> </tr></table></dd><hr class="bottom_line" />';
 var mycart_top=' <td class="cart_w50"><input name="" type="checkbox" value="" /></td><td class="cart_w117"><img src="/statics/IMG/cp1.jpg" width="107" height="85" /></td><td class="cart_w140"><strong>云贵水田油墨风云贵水田油墨风景云贵水田油墨风景云贵水田油墨风景景</strong></td><td class="cart_w70">摄影</td><td class="cart_w80">黑色框架</td>';
@@ -136,6 +138,8 @@ $.template("cart_content", mycart_content );
 $.template("cart_top", mycart_top );
 $.template("cart_center",mycart_center );
 $.template("cart_bottom",mycart_bottom );
+*/
+
 //订单填写页的模版
 //地址模版
 var order_write_addressli='<li class="t-red" id="order_write_adli"></li>';
@@ -314,6 +318,7 @@ function contents_right_left(){
     console.log("resize--contents");
 }
 //购物车---添加模版
+/*
 function mycart_tmpl(){//#mycart_content
     $.tmpl( "cart_head").appendTo( "#mycart_list" );
     $.tmpl( "cart_content").appendTo( "#my_cart_head" );
@@ -328,6 +333,8 @@ function mycart_tmpl(){//#mycart_content
     $.tmpl( "cart_center").appendTo( "#mycart_content" );
     $.tmpl( "cart_bottom").appendTo( "#mycart_content" );
 }
+*/
+
 function out()
 {
     if(window.event.toElement.id!="menu"  && window.event.toElement.id!="link")
@@ -417,6 +424,7 @@ function mycart_init(){//购物车界面的数据初始化
     }
 }
 function mycart_all_choose(obj,num_my,end_mynum){//判定购物车中的商品是否全选中
+    console.log("mycart_all_choose");
     var mycart_choose = document.getElementById(obj.value);
     var list_input = mycart_choose.getElementsByTagName("input"); 
     var num=list_input.length;
@@ -518,28 +526,29 @@ function mycart_all_choose(obj,num_my,end_mynum){//判定购物车中的商品�
     mycart_b[mycart_length-1].innerText=mycart_allpays;
 }
 function mycart_pay(obj,num){//物品数量与资金的关系函数
-    console.log(obj.name);
+    console.log("mycart_pay");
+    //console.log(obj.name);
     var mycartnum=$("#"+obj.name).attr('value');
     var single_pay=parseFloat(mycart_b[num].innerText);
     var pay=0;
     var old_pay=mycart_array_pay[num+1];
     var new_pay=0;
-    if(mycartnum!=product_num){product_num=1;}
+    if(mycartnum!=mycart_product_num){mycart_product_num=1;}
     if(obj.className=="ddnumbera1"){
-        if(product_num>1){product_num -=1;}
+        if(mycart_product_num>1){mycart_product_num -=1;}
         console.log("111111");
     }
     else if(obj.className=="ddnumbera2"){
         var max_num=$(".ddinputw60h21").attr('maxlength');
-        if(product_num<max_num){product_num +=1;}
+        if(mycart_product_num<max_num){mycart_product_num +=1;}
         console.log("222222");
     }
     console.log(mycart_b);
-    pay=single_pay*product_num;
+    pay=single_pay*mycart_product_num;
     num +=1;
     mycart_array_pay[num]=pay;
     mycart_b[num].innerText=pay;
-    $("#"+obj.name).attr('value',product_num);
+    $("#"+obj.name).attr('value',mycart_product_num);
     if(mrcart_add[num]!=0){
         console.log("num====>:"+num);
         new_pay=old_pay-pay;
@@ -876,7 +885,7 @@ function contentlist_content_imgnum(div_id){//通过包含图片的div区域id�
     }
 }
 function contents_left_resize(){//作者目录页的做部分：上下移动的问题
-    var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+    var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
     var left_show_num=Math.floor(hei/2);//获取内容界面的高度的1/2，向下取整
     var contents_height_num=0;
     var lineArayLenght=line_array.length;
@@ -929,7 +938,7 @@ var contents_begin_num=0;
 function contents_left_showimg(hei,begin_to_count){//实现左部分图片出现在屏幕显示区域时，再加载图片，进行显示
     var contents_showimg=new Array();//用来存放
     var lineArayLenght=line_array.length;
-    //var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+    //var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
     var height_single=0;
     for(var i=begin_to_count;i<lineArayLenght;i++){
         height_single=height_single+line_array[i];
@@ -943,7 +952,7 @@ function contents_left_showimg(hei,begin_to_count){//实现左部分图片出现
 }
 function contents_leftchange(up_down){//记录目录页向上移动的数据，每当点击向上按钮（#work_up）,符合条件时添加数据
     var up_num=contents_leftarray.length;
-    var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+    var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
     up_num=up_num-1;
     if(up_down=="up" && contents_leftnum<up_num){//如果是向上按钮并且还允许调取数据库，数组计数加一
         contents_leftnum=contents_leftnum+1;
@@ -1010,7 +1019,7 @@ function contents_resize(){//作者目录页---大小更换之后的函数
 function contents_show(leftwidth){
     //$("#contents_list").show(function(){//目录页的内容初始设计
         var wid=document.body.clientWidth-2;//网页可见区域宽-2px
-        var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+        var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
         var right_width=wid-leftwidth;
         // var num_x=Math.floor(wid/400);//向下取整，分别计算长和宽能容纳多少数据
         $("#contents_list").css({width:wid,height:hei,background:"#aaa"});
@@ -1050,7 +1059,7 @@ function list_button_extend(){//目录页：展开左半边
     $("#list_button_shrink").show();
     $("#list_button_extend").hide();
     var wid=document.body.clientWidth-2;//网页可见区域宽-2px
-    var hei=document.body.clientHeight-135;//网页可见区域高-上下导航
+    var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
     console.log("wid"+wid);
     var right_width=wid-1210;
     $("#contents_list").css({width:wid});
@@ -1094,7 +1103,7 @@ $(document).ready(function(){
         window.location.href ="/accounts/register/"
     });
     $("#logo_loginbutton").click(function(){
-        window.location.href ="/"
+        window.location.href ="/accounts/login/"
     });
     $("#logo_logoutbutton").click(function(){
         window.location.href ="/accounts/logout/"
@@ -1154,7 +1163,9 @@ $(document).ready(function(){
     $("#detail_content_div").show(function(){
         product_details();
     });
-    $("#cart_div").show(function(){mycart_tmpl();});
+    $("#cart_div").show(function(){
+        mycart_init();
+    });
     $("#contents_list").show(function(){//目录页的内容初始设计
         contents_show(1210);
         contentlist_content_imgnum("contents_list_date");
@@ -1213,9 +1224,9 @@ $(document).ready(function(){
     $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
     $("#homepage_content").show(function(){
         homepage_addimg();
-        $("#foot").hide();
+        $("#footer").hide();
     });
-    $("#homepage_content").show(function(){$("#foot").hide();});
+    $("#homepage_content").show(function(){$("#footer").hide();});
     //product产品详情页
     $(".detail_slide_left").click(function(){  
         product_next_prive("prive");
@@ -1230,14 +1241,6 @@ $(document).ready(function(){
         money=parseFloat(myA.innerText);
         product_others();
     });
-    $(".ddnumbera1").click(function(){  
-        product_pay("nav");
-    });
-    $(".ddnumbera2").click(function(){
-        product_pay("add");
-    });
-    
-
     var files;
     $("#album-upload").fileupload({
         autoUpload: true,

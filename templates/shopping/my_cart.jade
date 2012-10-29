@@ -1,11 +1,11 @@
 {% extends "base.jade" %}
 {% block title %}我的购物车{% endblock %}
 {% block content %}
-div#cart_div(style="margin:0 auto")
-    div#cart_tit
-        div.cart_tit_left
+#cart_div(style="margin:0 auto")
+    #cart_tit
+        .cart_tit_left
             h3 我的购物车
-        div.cart_tit_right
+        .cart_tit_right
             ul.num5
                 li.current
                     span.first 1. 查看购物车
@@ -15,41 +15,135 @@ div#cart_div(style="margin:0 auto")
                     span 3. 确认订单信息
                 li.last
                     span 4. 订单提交完成
-    div#cart_content
-        div.div_marginw25px
-            div.cart_content_tit
-                总计（含运费：
-                b
-                    i.ibg2
-                    i 1200 .00
-                a.cart_checkout_btn1 结算
-            table(width="100%",border="0",cellspacing="0",cellpadding="0")
-                tr.cart_content_nav
-                    td.cart_w25
-                        input(name="",type="checkbox",value="")
-                    td.cart_w50 全选
-                    td.cart_w117 &nbsp;
-                    td.cart_w140 作品名称
-                    td.cart_w70 类别
-                    td.cart_w80 框架
-                    td.cart_w142 数量
-                    td.cart_w105 单价
-                    td.cart_w145 小计
-                    td.cart_w60 &nbsp;
-                tr
-                    td(colspan="10")
-                        div#mycart_list.content_div_marginw25px
-                tr.cart_content_nav
-                    td.cart_w25
-                        input(name="",type="checkbox",value="")
-                    td.cart_w50 全选
-                    td.cart_w117
-                        a.cart_w117_a 批量删除
-                    td.cart_w742(colspan="7")
-                        div.cart_w742_div 总计（含运费）：
-                            b
-                                i.ibg2
-                                i 1200 .00
-        div.cart_content_tit
-            a.cart_checkout_btn2 结&nbsp;&nbsp;&nbsp;&nbsp;算
+    #cart_con
+        .contentdiv#contentdiv
+            .cart_con_tit 总计(含运费):
+                i.ibg2
+                b 0.00
+                a.cart_settlement.general_bgbtn(href="order_write.html")
+                    h2 结 算
+            ul.cart_con_nav
+                li.cart_w162
+                    div
+                        input( name="choose_all",type="checkbox", value="contentdiv" ,onclick="mycart_all_choose(this,0,0)")
+                        span 全选
+                li.cart_w4 作品名称
+                li.cart_w5 类别
+                li.cart_w6 框架
+                li.cart_w7 单价
+                li.cart_w8 数量
+                li.cart_w9 重量(千克)
+                li.cart_w10 小计
+                li.cart_w11 &nbsp;
+            .cart_content
+                dl#cart_work1
+                    dt
+                        input(name="single_works" ,type="checkbox",value="cart_work1" ,onclick="mycart_all_choose(this,2,4)")
+                        strong 品牌：
+                        span 西南游采风
+                        strong 创作者：
+                        span 遥远
+                    dd
+                        table(width="934", border="0", cellspacing="0" ,cellpadding="0")
+                            tr
+                                td.cart_w1
+                                td.cart_w2
+                                    input(name="single_work",  type="checkbox", value="cart_work1", onclick="mycart_all_choose(this,2,0)" )
+                                td.cart_w3
+                                    img(src="/statics/IMG/cp1.jpg" ,width="107" ,height="85" )
+                                td.cart_w4
+                                    strong
+                                        a 阿斯大阿阿斯大斯
+                                td.cart_w5 摄影
+                                td.cart_w6 黑色
+                                td.cart_w7
+                                    b#mycart_single 60000.00
+                                td.cart_w8
+                                    div
+                                        a.ddnumbera1(name="cart_input_text1",onclick="mycart_pay(this,1)")
+                                        input#cart_input_text1.ddinputw60h22.ddinputw60h21(name="",type="text",value="1", maxlength="5" )
+                                        a.ddnumbera2(name="cart_input_text1", onclick="mycart_pay(this,1)")
+                                td.cart_w9 5
+                                td.cart_w10
+                                    b#mycart_singles 60000.00
+                                td.cart_w11
+                                    div
+                                        a.general_bgbtnstyle1 收藏
+                                        a.general_bgbtnstyle1 删除
+                    dd
+                        table(width="934", border="0", cellspacing="0", cellpadding="0")
+                            tr
+                                td.cart_w1
+                                td.cart_w2
+                                    input(name="single_work",type="checkbox", value="cart_work1", onclick="mycart_all_choose(this,4,0)")
+                                td.cart_w3
+                                    img(src="/statics/IMG/cp1.jpg", width="107", height="85" )
+                                td.cart_w4
+                                    strong
+                                        a 阿斯大阿阿斯大斯
+                                td.cart_w5 摄影
+                                td.cart_w6 黑色
+                                td.cart_w7
+                                    b#mycart_single 60000.00
+                                td.cart_w8
+                                    div
+                                        a.ddnumbera1(name="cart_input_text2", onclick="mycart_pay(this,3)")
+                                        input#cart_input_text2.ddinputw60h22.ddinputw60h21(type="text", value="1", maxlength="5" )
+                                        a.ddnumbera2(name="cart_input_text2", onclick="mycart_pay(this,3)")
+                                td.cart_w9 5
+                                td.cart_w10
+                                    b#mycart_singles 60000.00
+                                td.cart_w11
+                                    div
+                                        a.general_bgbtnstyle1 收藏
+                                        a.general_bgbtnstyle1 删除
+                    hr.bottom_line2
+                dl#cart_work2
+                    dt
+                        input(name="single_works",type="checkbox",value="cart_work2",onclick="mycart_all_choose(this,6,6)")
+                        strong 品牌：
+                        span 东南游采风
+                        strong 创作者：
+                        span 遥远
+                    dd
+                        table(width="934", border="0", cellspacing="0" ,cellpadding="0")
+                            tr
+                                td.cart_w1
+                                td.cart_w2
+                                    input(name="single_work" , type="checkbox", value="cart_work2", onclick="mycart_all_choose(this,6,0)" )
+                                td.cart_w3
+                                    img(src="/statics/IMG/cp1.jpg", width="107", height="85" )
+                                td.cart_w4
+                                    strong
+                                        a 阿斯大阿阿斯大斯
+                                td.cart_w5 摄影
+                                td.cart_w6 黑色
+                                td.cart_w7
+                                    b 60000.00
+                                td.cart_w8
+                                    div
+                                        a.ddnumbera1(name="cart_input_text3",onclick="mycart_pay(this,5)")
+                                        input#cart_input_text3.ddinputw60h22.ddinputw60h21(name="", type="text",value="1",maxlength="5" )
+                                        a.ddnumbera2(name="cart_input_text3",onclick="mycart_pay(this,5)")
+                                td.cart_w9 5
+                                td.cart_w10
+                                    b 60000.00
+                                td.cart_w11
+                                    div
+                                        a.general_bgbtnstyle1 收藏
+                                        a.general_bgbtnstyle1 删除
+                    hr.bottom_line2
+            ul.cart_con_nav
+                li.cart_w162
+                    div
+                        input(name="choose_all", type="checkbox", value="contentdiv" ,onclick="mycart_all_choose(this,0,0)")
+                        span 全选
+                        a.general_textbtn 批量删除
+                li.cart_w772
+                    div 总计(含运费):
+                        i.ibg2
+                        b 0.00
+            div.cart_con_tit
+                a(href="order_write.html",class="general_bgbtn")
+                    h3 结&nbsp;&nbsp;&nbsp;&nbsp;算
 {% endblock %}

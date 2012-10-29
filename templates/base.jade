@@ -19,31 +19,41 @@ html
         {% block head %}{% endblock %}
     //分割线
     body#change_id(style="width:100%;min-height:450px;",onkeydown="keyDown()")
-        div#head(style="overflow:hidden")
-            div#logo(style="width:100%")
-                a#navigation_logo(href="/",style="margin-left:25px")
-                div#navigation_negative_filmhover
-                    div#navigation_negative_film
-                        a#navigation_film(href="#")
-                div#navigation_negative_filmhover
-                    div#navigation_negative_ikon
-                        a#navigation_ikon(href="#")
-                div#navigation_negative_filmhover
-                    div#navigation_negative_drawing
-                        a#navigation_drawing(href="#")
-                div(style="float:right")
-                    {% if user.is_authenticated %}
-                    button#logo_logoutbutton.button_wane.btn.btn-success(type="submit")登出
-                    {% else %}
-                    button#logo_registbutton.button_wane.btn.btn-success(type="submit")创建帐户
-                    button#logo_loginbutton.button_wane.btn.btn-success(type="submit")登录
-                    {% endif %}
-                div(style="float:right")
-                    a#navigation_shoppingcart(href="#",style="background-position:37.5% 32%")
-                    a#navigation_shoppingcart_num(href="#",style="background-position:48% 30%")
+        #header
+            .headerCon
+                ul
+                    a(href="/")
+                        li.logo1
+                    li#nav
+                        a
+                            div                 
+                                span 首页
+                        a
+                            div
+                                span 创作区
+                        a
+                            div
+                                span 个人主页
+                    li.headeright
+                        a
+                            div
+                                span.headerightaspan1 6
+                                span.headerightaspan2
+                        {% if user.is_authenticated %}
+                        a#logo_logoutbutton(type="submit")
+                            div
+                                span登出
+                        {% else %}
+                        a#logo_registbutton(type="submit")
+                            div             
+                                span 注册
+                        a#logo_loginbutton(type="submit")
+                            div
+                                span 登录
+                        {% endif %}
         {% block content %}{% endblock %}
         //底部标签
-        div#foot.navbar-fixed-bottom
+        #footer
             script(type="text/javascript",src="/statics/js/jquery-1.8.2.min.js",charset="UTF-8")
             script(type="text/javascript",src="/statics/js/jquery.tmpl.min.js",charset="UTF-8")
             script(type="text/javascript",src="/statics/js/vendor/jquery.ui.widget.js",charset="UTF-8")
@@ -65,17 +75,31 @@ html
             script(type="text/javascript",src="/statics/js/jquery.masonry.min.js",charset="UTF-8")
             script(type="text/javascript",src="/statics/js/6cans.js",charset="UTF-8")
             script(type="text/javascript",src="/statics/js/main.js",charset="UTF-8")
-            div(style="float:left")
-                font(size="12pt")
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@1997-2012&nbsp;&nbsp;&nbsp;
-                易拉互动网络科技有限公司版权所有&nbsp;&nbsp;&nbsp;京ICP备20030133号
-            div(style="float:right;width:340px")
-                a(href="#") 关于罐头工厂&nbsp;
-                |
-                a(href="#")联系我们&nbsp;
-                |
-                a(href="#")招贤纳士&nbsp;
-                |
-                a(href="#")移动客户端&nbsp;
-                |
-                a(href="#")官方微博
+            .footerCon
+                ul
+                    li.logo2
+                    li.footerLinks
+                        .footerDiva1
+                            a 创作者加入
+                            a 品牌商参与
+                            a 关于罐头工场
+                            a 招聘
+                            a 帮助&amp;常见问题
+                            a 联系我们
+                            a 客户服务
+                        .footerDiva2
+                            ul
+                                li
+                                    em ©
+                                    em 2012 罐头工场
+                                li
+                                    a 远程创作与跨界协作平台
+                                li
+                                    a 隐私权政策
+                                li 
+                                    a 使用条款
+                                li
+                                    a 版权说明
+                                li 京
+                                    a 128713
+                                    号
