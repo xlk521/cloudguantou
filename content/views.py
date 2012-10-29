@@ -1,7 +1,7 @@
 #coding = utf8
 # Create your views here.
 from authorize.models import UserProfile
-from content.models import Portfolio, PortfolioForm, WorkForm
+from content.models import Portfolio, Work, PortfolioForm, WorkForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
@@ -60,6 +60,14 @@ def up_load(request):
     elif request.method == "POST":
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
+
+@require_http_methods(["GET"])
+def get_works(request, portfolio_id):
+    portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
+    if portfolio:
+        works = Work.objects.filter(portfolio=portfolio).values()
+        return HttpResponse(convertjson(works))
+
 
 @login_required
 @require_http_methods(["POST", "GET"])

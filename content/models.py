@@ -5,9 +5,10 @@ from authorize.models import UserProfile
 from brand.models import Brand
 from django.contrib import admin
 import uuid
-from django.contrib.admin import widgets        
+from django.contrib.admin import widgets
+from utils import BaseModelManager
 # Create your models here.
-class CategoryModelManager(models.Manager):
+class CategoryModelManager(BaseModelManager):
     pass
 
 class CategoryModel(models.Model):
@@ -22,7 +23,7 @@ class CategoryModelForm(ModelForm):
     class Meta:
         model = CategoryModel()
 
-class ReCategoryBrandModelManager(models.Manager):
+class ReCategoryBrandModelManager(BaseModelManager):
     pass
 
 class ReCategoryBrandModel(models.Model):
@@ -38,7 +39,7 @@ class ReCategoryBrandModelForm(ModelForm):
     class Meta:
         model = ReCategoryBrandModel()
         
-class PortfolioManager(models.Manager):
+class PortfolioManager(BaseModelManager):
     pass
 
 class Portfolio(models.Model):
