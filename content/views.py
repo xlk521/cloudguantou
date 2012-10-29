@@ -68,7 +68,7 @@ def get_works(request):
     if not portfolio_id:
         portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
         clickportfolio = dealPortfoliodata(portfolio)
-    else: 
+    elif portfolio_id: 
         profile = request.user.get_profile()
         portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
         clickportfolio = dealPortfoliodata(portfolio)
