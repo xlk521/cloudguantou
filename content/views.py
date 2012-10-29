@@ -1,7 +1,7 @@
 #coding = utf8
 # Create your views here.
 from authorize.models import UserProfile
-from content.models import Portfolio, PortfolioForm, WorkForm
+from content.models import Portfolio, Work, PortfolioForm, WorkForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
