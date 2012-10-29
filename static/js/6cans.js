@@ -974,6 +974,7 @@ function contents_rightchange(next_prive){//设置目录页的变换
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
     //imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
+    var contents_dict=[];
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
@@ -983,10 +984,17 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         success:function(msg){
             console.log("msg.description====>>"+msg.description);
             //user=msg.[];
-
-            console.log("msg.works.length====>>"+msg.works.length);
+            contents_dict.push({
+                key: "description",
+                value: msg.description,
+                key: "title",
+                value: msg.title,
+                key: "createtime",
+                value: msg.createtime
+            });
+            console.log("contents_dict====>>"+contents_dict);
             //for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
-                contents_listuser[0]=msg;
+            contents_listuser[0]=msg;
             //}
             //aythor_users=msg.users;//获取数据中关于已登录作者的数据
             console.log("user_allfriends:::json====>>"+contents_listuser);
