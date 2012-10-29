@@ -96,11 +96,10 @@ def initContentIndex():
         pid = str(uuid.uuid5(uuid.NAMESPACE_DNS, 'Portfolio'))
         Portfolio.objects.create(pid=pid,profile=userProfile, title='title%d'%i, category=category,
                                   description='description%d'%i, parameter='parameter%d'%i)
-    
-    album = Portfolio.objects.filter(title ='title1')[0]
-    
-    for i in range(2):
-        Work.objects.create(profile=userProfile, portfolio=album, title='title%d'%i,
-            url='/statics/img/content_list.GIF', price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
+    for i in range(20):
+        album = Portfolio.objects.filter(title ='title%s'%i)[0]
+        for i in range(2):
+            Work.objects.create(profile=userProfile, portfolio=album, title='title%d'%i,
+                url='/statics/img/content_list.GIF', price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
     
     
