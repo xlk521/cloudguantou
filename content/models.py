@@ -1,12 +1,13 @@
 #coding=utf8
-from django.db import models
-from django.forms import ModelForm, Textarea
 from authorize.models import UserProfile
 from brand.models import Brand
 from django.contrib import admin
-import uuid
 from django.contrib.admin import widgets
+from django.db import models
+from django.forms import ModelForm, Textarea
 from utils import BaseModelManager
+import uuid
+
 # Create your models here.
 class CategoryModelManager(BaseModelManager):
     pass
@@ -62,9 +63,7 @@ class PortfolioForm(ModelForm):
     class Meta:
         model = Portfolio
         fields=('title', 'description', 'createtime')
-        widgets = {
-            'description': Textarea(attrs={'cols': 20, 'rows': 5})
-        }
+        widgets = {'description': Textarea(attrs={'cols': 20, 'rows': 5})}
          
     def __init__(self, *args, **kwargs):
         super(PortfolioForm, self).__init__(*args, **kwargs)
