@@ -982,7 +982,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         success:function(msg){
             console.log("msg.description====>>"+msg.description);
             //user=msg.[];
-            console.log("msg.length====>>"+msg.length);
+            console.log("msg.works.length====>>"+msg.works.length);
             for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
                 contents_listuser[i]=msg[i];
             }
@@ -1174,7 +1174,9 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $("#contents_list_right").show(function(){ contents_right_left();});
+    $("#contents_list_right").show(function(){ 
+        contents_right_left();
+    });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
     });
