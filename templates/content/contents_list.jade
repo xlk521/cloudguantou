@@ -14,9 +14,10 @@ div#contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-
                 div#contents_work
                     div(style="overfloat:hidden")
                         a
-                            img.img_delay_load(data-url="/statics/img/content_list.GIF", src="http://www.zhangxinxu.com/study/image/pixel.gif", style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;",onclick="contents_getimgid(this)")
+                            img.img_delay_load(data-url="/statics/img/content_list.GIF", src="http://www.zhangxinxu.com/study/image/pixel.gif",id!={{album.albumid}},style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;",onclick="contents_getimgid(this)")
                             div
                                 b {{ album.title }} 
+
                 {% endfor %}
             {% endfor %}
             {% endfor %}
