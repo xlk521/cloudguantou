@@ -1,7 +1,7 @@
 #coding = utf8
 # Create your views here.
 from authorize.models import UserProfile
-from content.models import AlbumModel, AlbumModelForm, PhotoModelForm
+from content.models import Portfolio, PortfolioForm, WorkForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
@@ -35,7 +35,7 @@ def content_index(request, cans_id):
 
 def __get_album(profile):
     works = {}
-    albums = AlbumModel.objects.filter(profile=profile).order_by('-datetime')
+    albums = Portfolio.objects.filter(profile=profile).order_by('-datetime')
     for album in albums:
         year = _date(album.datetime, 'Y')
         if not works.has_key(year):
@@ -55,7 +55,7 @@ def __get_album(profile):
 def up_load(request):
     if request.method == "GET":
         upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        albumform = AlbumModelForm()
+        albumform = PortfolioForm()
         return render(request, 'content/uploadpage.jade', {'upload_url':upload_url,'albumform':albumform})
     elif request.method == "POST":
         log.debug(request.POST)

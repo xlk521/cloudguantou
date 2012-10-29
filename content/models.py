@@ -38,11 +38,11 @@ class ReCategoryBrandModelForm(ModelForm):
     class Meta:
         model = ReCategoryBrandModel()
         
-class AlbumModelManager(models.Manager):
+class PortfolioManager(models.Manager):
     pass
 
-class AlbumModel(models.Model):
-    albumid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
+class Portfolio(models.Model):
+    pid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
@@ -52,63 +52,62 @@ class AlbumModel(models.Model):
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     
-    objects = AlbumModelManager()
+    objects = PortfolioManager()
     
     def __unicode__(self):
         return '%s Album'%self.title    
 
-class AlbumModelForm(ModelForm):
+class PortfolioForm(ModelForm):
     class Meta:
-        model = AlbumModel
+        model = Portfolio
         fields=('title', 'description', 'createtime')
         widgets = {
             'description': Textarea(attrs={'cols': 20, 'rows': 5})
         }
          
     def __init__(self, *args, **kwargs):
-        super(AlbumModelForm, self).__init__(*args, **kwargs)
+        super(PortfolioForm, self).__init__(*args, **kwargs)
         self.fields['createtime'].widget = widgets.AdminDateWidget()
         #self.fields['mytime'].widget = widgets.AdminTimeWidget()
         #self.fields['mydatetime'].widget = widgets.AdminSplitDateTime()
 
-class PhotoModelManager(models.Manager):
+class WorkManager(models.Manager):
     def get_or_none(self, **kwargs):
         try:
             return self.get(**kwargs)
         except self.model.DoesNotExist:
             return None
 
-class PhotoModel(models.Model):
-        
-    photoid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
+class Work(models.Model):
+    wid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
     profile = models.ForeignKey(UserProfile)
-    album = models.ForeignKey(AlbumModel)
+    portfolio = models.ForeignKey(Portfolio)
     title = models.CharField(max_length=128)
     url = models.CharField(max_length=128)
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
     
-    objects = PhotoModelManager()
+    objects = WorkManager()
 
     def __unicode__(self):
         return '%s Photo'%self.title
     
-class PhotoModelForm(ModelForm):
+class WorkForm(ModelForm):
     class Meta:
-        model = PhotoModel()
+        model = Work()
         fields=('title', 'description', 'url')
 
-class AlbumModelAdmin(admin.ModelAdmin):
+class WorkAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)
 
-class PhotoModelAdmin(admin.ModelAdmin):
+class PortfolioAdmin(admin.ModelAdmin):
     list_display = ('profile', 'album', 'title')
     
 class CategoryModelAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
-admin.site.register(PhotoModel, PhotoModelAdmin)
-admin.site.register(AlbumModel, AlbumModelAdmin)
+admin.site.register(Work, WorkAdmin)
+admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(CategoryModel, CategoryModelAdmin)
     
