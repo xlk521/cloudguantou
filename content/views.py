@@ -35,18 +35,18 @@ def content_index(request, cans_id):
 
 def __get_album(profile):
     works = {}
-    albums = Portfolio.objects.filter(profile=profile).order_by('-datetime')
-    for album in albums:
-        year = _date(album.datetime, 'Y')
+    portfolios = Portfolio.objects.filter(profile=profile).order_by('-datetime')
+    for portfolio in portfolios:
+        year = _date(portfolio.datetime, 'Y')
         if not works.has_key(year):
             works[year] = {}
-        month = _date(album.datetime, 'm')
+        month = _date(portfolio.datetime, 'm')
         if not works[year].has_key(month):
             works[year][month] = []
         work = {}
-        work['title'] = album.title
-        work['albumid'] = album.albumid
-        work['frontcover'] = album.frontcover
+        work['title'] = portfolio.title
+        work['albumid'] = portfolio.pid
+        work['frontcover'] = portfolio.frontcover
         works[year][month].append(work)
     return works
 
