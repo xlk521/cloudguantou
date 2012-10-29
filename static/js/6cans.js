@@ -1060,8 +1060,8 @@ function list_button_shrink(){//目录页：收缩左半边
     $("#contents_control_right").show();
 }
 function contents_getimgid(obj){//目录页--获取图片的id
-    //console.log(obj.className);
-    /**/
+    console.log(obj.id);
+    /*
     if(obj.className=="contents_adviceimg1"){
 
     }
@@ -1070,6 +1070,8 @@ function contents_getimgid(obj){//目录页--获取图片的id
         $("#contents_list_right").empty();
         contents_right_left();
     }
+    */
+    
 }
 $(document).ready(function(){
     //author_rightshow();
