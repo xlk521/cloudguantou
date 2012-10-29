@@ -14,6 +14,7 @@ from google.appengine.ext import blobstore
 from utils import ImageFactory, convertjson
 import json
 import logging
+import uuid
 
 
 log = logging.getLogger()
@@ -54,11 +55,17 @@ def __get_album(profile):
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
-        upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        albumform = PortfolioForm()
-        return render(request, 'content/uploadpage.jade', {'upload_url':upload_url,'albumform':albumform})
+        form = PortfolioForm()
+        return render(request, 'content/uploadpage.jade', {'form':form})
     elif request.method == "POST":
         log.debug(request.POST)
+        profile = request.user.get_profile()
+        portfolio = Portfolio(profile=profile)
+        form = PortfolioForm(request.POST, instance=portfolio)
+        if form.is_valid():
+            form.save()
+        else:
+            log.debug(form.errors)
         return render_to_response('content/contents_list.jade')
 
 @require_http_methods(["GET"])
@@ -67,7 +74,6 @@ def get_works(request, portfolio_id):
     if portfolio:
         works = Work.objects.filter(portfolio=portfolio).values()
         return HttpResponse(convertjson(works))
-
 
 @login_required
 @require_http_methods(["POST", "GET"])
@@ -82,7 +88,6 @@ def work_upload(request):
         blob = request.FILES['works']
         if blob and hasattr(blob, 'blobstore_info'):
             blob_key = str(blob.blobstore_info.key())
-            log.debug(blob_key)
             try:
                 factory = ImageFactory(blob_key, resize=(230, 170))
                 blob_key = factory.get_blobkey()

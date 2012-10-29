@@ -49,7 +49,8 @@ def initialization(request):
         related_user = UserProfile.objects.filter(nickname = 'nick39')[0]
         related_friend = UserProfile.objects.filter(nickname = 'nick%s'%i)[0]
         UserFriendshipProfileModel.objects.create(related_user = related_user,
-                                                  related_friend=related_friend, is_following=True)    
+                                                  related_friend=related_friend, is_following=True) 
+
     #===========================================================================
     # for i in range(20):
     #    related_user = UserProfile.objects.filter(nickname = 'nick39')[0]
@@ -67,7 +68,7 @@ def cleanupDataBase():
     User.objects.all().delete();
     UserProfile.objects.all().delete();
     UserFriendshipProfileModel.objects.all().delete();
-    CategoryModel.object.all().delete();
+    CategoryModel.objects.all().delete();
     Portfolio.objects.all().delete();
     Work.objects.all().delete();
     return HttpResponse('Hello World')
@@ -86,20 +87,19 @@ def WriteLoctionJsonToDatabase():
             c.save()
 
 def initContentIndex():
-    CategoryModel.object.create(name='Photography')
-    CategoryModel.object.create(name='Illustration')
-    CategoryModel.object.create(name='Handicraft')
+    CategoryModel.objects.create(name='摄影')
+    CategoryModel.objects.create(name='插画')
+    CategoryModel.objects.create(name='手工艺')
     
-    userProfile = UserProfile.objects.filter(nickname = 'nick39')[0]
-    category = CategoryModel.object.filter(name='Photography')[0]
+    userProfile = UserProfile.objects.get(nickname = 'nick39')
+    category = CategoryModel.objects.get(name='摄影')
     for i in range(20):
         Portfolio.objects.create(profile=userProfile, title='title%d'%i, category=category,
-                                  description='description%d'%i, parameter='parameter%d'%i)
+                                  description='description%d'%i)
     
-    album = Portfolio.objects.filter(title ='title1')[0]
+    portfolio = Portfolio.objects.filter(title ='title1')[0]
     
     for i in range(2):
-        Work.objects.create(profile=userProfile, album=album, title='title%d'%i,
+        Work.objects.create(profile=userProfile, portfolio=portfolio, title='title%d'%i,
             url='/statics/img/content_list.GIF', price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
-    
     
