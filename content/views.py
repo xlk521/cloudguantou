@@ -26,15 +26,13 @@ def personal_index(request):
 
 def content_index(request, cans_id):
     if request.method == "GET":
-        portfolio_id = request.GET.get('portfolio_id', False)
         if cans_id:
             profile = UserProfile.objects.get(cans_id=cans_id)
-            portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
-            clickportfolio = dealPortfoliodata(portfolio)
         else:
             profile = request.user.get_profile()
+        
         works = __get_album(profile)
-    return render(request, 'content/contents_list.jade', {'works':works}, convertjson(clickportfolio))
+    return render(request, 'content/contents_list.jade', {'works':works})
 
 def __get_album(profile):
     works = {}
@@ -70,8 +68,11 @@ def get_works(request):
     if not portfolio_id:
         portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
         clickportfolio = dealPortfoliodata(portfolio)
-    return HttpResponse(clickportfolio)
-    #return HttpResponse(profile)
+    elif portfolio_id: 
+        profile = request.user.get_profile()
+        portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
+        clickportfolio = dealPortfoliodata(portfolio)
+    return HttpResponse(convertjson(clickportfolio))
 
 def dealPortfoliodata(portfolio):
     clickportfolio = {}
