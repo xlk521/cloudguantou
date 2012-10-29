@@ -976,7 +976,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
     var user=new Array();
     $.ajax({
         type: 'POST',
-        url:"/content",//"/content/getRelationProfile/",
+        url:"/content/content_index/",
         headers: {"X-CSRFToken":csrftoken},
         data: { contentslist_imgid:contentslist_imgid, count:need_num, relation:relation ,have_next_page:have_next_page},
         success:function(msg){
