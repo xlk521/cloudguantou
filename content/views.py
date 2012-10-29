@@ -61,17 +61,19 @@ def up_load(request):
     elif request.method == "POST":
         log.debug(request.POST)
         return render_to_response('content/contents_list.jade')
-
+    
+@login_required
 @require_http_methods(["GET"])
 def get_works(request):
     portfolio_id = request.GET.get('imgid', False)
-    if not portfolio_id:
+    if portfolio_id:
         portfolio = Portfolio.objects.get_or_none(pid=portfolio_id)
         clickportfolio = dealPortfoliodata(portfolio)
-    elif portfolio_id: 
+    elif not portfolio_id: 
         profile = request.user.get_profile()
         portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
         clickportfolio = dealPortfoliodata(portfolio)
+    #return HttpResponse(profile)
     return HttpResponse(convertjson(clickportfolio))
 
 def dealPortfoliodata(portfolio):
