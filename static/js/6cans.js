@@ -972,7 +972,7 @@ function contents_rightchange(next_prive){//设置目录页的变换
         $("#contents_list_right").animate({left:distance});
     }
 }
-function contents_getJson(imgid){//目录页---发送请求并获取数据
+function contents_getJson(imgid=""){//目录页---发送请求并获取数据
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
@@ -1174,8 +1174,10 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $("#contents_list_right").show(function(){ 
+    $("#contents_list_right").ready(function(){ 
         //contents_right_left();
+        contents_getJson();
+        console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
