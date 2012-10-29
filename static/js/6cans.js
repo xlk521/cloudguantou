@@ -975,7 +975,7 @@ function contents_rightchange(next_prive){//设置目录页的变换
 function contents_getJson(imgid){//目录页---发送请求并获取数据
     var contents_listuser=new Array();
     $.ajax({
-        type: 'POST',
+        type: 'get',
         url:"/content/content_index/39/",
         headers: {"X-CSRFToken":csrftoken},
         data: { imgid:imgid },
