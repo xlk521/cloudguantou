@@ -87,6 +87,7 @@ class Work(models.Model):
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
+    #collections = models.FloatField(blank=True)
     
     objects = WorkManager()
 
