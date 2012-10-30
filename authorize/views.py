@@ -53,7 +53,7 @@ def identity(request):
                 painting = request.POST.get('painting', False)
                 photography = category_ischecked(photography)
                 if photography:
-                    ReCategoryBrandModel.objects.create(category=CategoryModel.object.get(name='photography'),
+                    ReCategoryBrandModel.objects.create(category=CategoryModel.objects.get(name='photography'),
                                          brand=brandprofile)
                 illustration = category_ischecked(illustration)
                 painting = category_ischecked(painting)

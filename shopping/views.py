@@ -16,7 +16,7 @@ log.setLevel(logging.DEBUG)
 @require_http_methods(["POST", "GET"])
 def get_product(request, work_id):
     if request.method == "GET":
-        work = Work.objects.get_or_none(photoid=work_id)
+        work = Work.objects.get_or_none(wid=work_id)
         if work:
             form = ProductForm()
             #获得图片尺寸

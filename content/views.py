@@ -49,7 +49,7 @@ def content_index(request, cans_id):
         work = {}
         work['title'] = portfolio.title
         work['albumid'] = portfolio.pid
-        work['frontcover'] = portfolio.cover_key
+        work['frontcover'] = reverse('content.views.serve_work', args=(portfolio.cover_key,))
         works[year][month].append(work)
 
     return render(request, 'content/contents_list.jade', {'works':works})
@@ -80,11 +80,14 @@ def up_load(request):
                             name = details[2]
                             description = details[3]
                             form.instance.cover_key=key
+                            form.instance.save()
                         else:
                             key = details[0]
                             name = details[1]
                             description = details[2]
+                        wid = str(uuid.uuid4())
                         Work.objects.create(
+                            wid=wid,
                             profile=profile, 
                             portfolio=form.instance, 
                             title=name, 

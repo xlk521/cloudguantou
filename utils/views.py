@@ -105,7 +105,6 @@ def initContentIndex():
         for i in range(2):
             work=Work.objects.create(wid=uuid.uuid4(), profile=userProfile, portfolio=album, title='title%d'%i,
                 url='/statics/img/content_list.GIF', price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
-<<<<<<< HEAD
             if i==0:
                 Portfolio.objects.update(frontcover=work.url)
     for i in range(20):
@@ -113,8 +112,3 @@ def initContentIndex():
                                        address='北京', worksample='/statics/img/content_list.GIF', id_type='身份证',
                                        id_num='1234567890', id_photo='/statics/img/content_list.GIF',
                                        personal_details='personal_details%s'%i)
-        
-    
-=======
-    
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
