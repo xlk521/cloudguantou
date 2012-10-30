@@ -69,7 +69,7 @@ class HeadFileUploader(object):
         return complete[2].lower()
 
 class ImageFactory(object):
-    def __init__(self, blob_key, rotate=True, resize=(800, 600)):
+    def __init__(self, blob_key, rotate=True, resize=(800, 600), remove=True):
         self.resize_width = resize[0]
         self.resize_height = resize[1]
         scale = 1
@@ -102,7 +102,8 @@ class ImageFactory(object):
         with files.open(file_name, 'a') as f:
             f.write(new_image)
         files.finalize(file_name)
-        blobstore.delete(blob_key)
+        if remove:
+            blobstore.delete(blob_key)
         self.blob_key = files.blobstore.get_blob_key(file_name)
 
     def get_exif(self):

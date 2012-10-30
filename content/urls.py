@@ -14,6 +14,9 @@ urlpatterns = patterns('content.views',
 
     #目录页
     url(r'^index/(?P<cans_id>\S+)$', 'content_index', name='content_index'),
+
+    #获取用户头像
+    url(r'^work/(?P<photo_key>\S+)', 'serve_work'),
     
     #获取系列作品内容
     url(r'getWorks/', 'get_works'),

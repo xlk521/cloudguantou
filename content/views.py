@@ -139,7 +139,7 @@ def work_upload(request):
         if blob and hasattr(blob, 'blobstore_info'):
             blob_key = str(blob.blobstore_info.key())
             try:
-                factory = ImageFactory(blob_key, resize=(230, 170))
+                factory = ImageFactory(blob_key, resize=(230, 170), remove=False)
                 blob_key = factory.get_blobkey()
             except NotImageError:
                 return HttpResponse(json.dumps({'success':False}))
@@ -149,8 +149,24 @@ def work_upload(request):
                 'url':'http://www.6cans.com/authorize/head/%s'%(blob_key),
                 'thumbnail_url':'http://www.6cans.com/authorize/head/%s'%(blob_key),
                 'delete_url':'http://www.6cans.com/content/delete/%s'%(blob_key),
-                'delete_type':'DELETE'}]))
+                'delete_type':'GET'}]))
         raise Http404
+
+@require_http_methods(["GET"])
+def serve_work(request, photo_key):
+    blob = blobstore.get(photo_key)
+    if not blob:
+        raise Http404
+    else:
+        return HttpResponse(blobstore.BlobReader(blob.key()).read(), content_type=blob.content_type)
+
+@require_http_methods(["GET"])
+def delete_work(request, photo_key):
+    try:
+        blobstore.delete(photo_key)
+    except:
+        pass
+    return HttpResponse()
         
 @login_required
 def getFriendsProfile(request, page):
