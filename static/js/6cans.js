@@ -975,7 +975,7 @@ function contents_rightchange(next_prive){//设置目录页的变换
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
     //imgid= typeof(imgid) == 'undefined' ? "" :imgid;
-    /**
+    /**/
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
@@ -1001,7 +1001,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         dataType:'json'
     });
     console.log("目录页---发送请求并获取数据");//打印LOG
-    **/
+    /**/
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
     contents_show(1210);
@@ -1180,10 +1180,9 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $("#contents_list_right").ready(function(){ 
-        //contents_right_left();
-        //contents_getJson();
-        //console.log("首次调取数据");
+    $('#contents_list_right').bind('ready', function() {
+        contents_getJson();
+        console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
