@@ -67,7 +67,7 @@ class NormalIdentityForm(ModelForm):
   
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance, cans_id=instance.username)
 post_save.connect(create_user_profile, sender=User)
 
 class TwitterProfileManager(models.Manager):

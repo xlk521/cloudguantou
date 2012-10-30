@@ -337,6 +337,7 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 $(function() {
+    $(".datePicker").datepicker();
     $('#sina_auth').click(function() {
         open_auth_window('/authorize/sinaauth');
     });
@@ -973,7 +974,8 @@ function contents_rightchange(next_prive){//设置目录页的变换
     }
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
-    //imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
+    //imgid= typeof(imgid) == 'undefined' ? "" :imgid;
+    /**
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
@@ -984,7 +986,10 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
             console.log("msg.description====>>"+msg.description);
             //user=msg.[];
             //for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
-            contents_listuser[0]=[1,2,3];
+            contents_listuser[0]=[msg.description,msg.title,msg.createtime];
+            console.log("user_allfriends:::json====>>"+contents_listuser);
+            contents_listuser[1]=msg.works;
+            console.log("user_allfriends:::json====>>"+contents_listuser);
             //}
             //aythor_users=msg.users;//获取数据中关于已登录作者的数据
             console.log("user_allfriends:::json====>>"+contents_listuser);
@@ -996,6 +1001,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         dataType:'json'
     });
     console.log("目录页---发送请求并获取数据");//打印LOG
+    **/
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
     contents_show(1210);
@@ -1176,8 +1182,8 @@ $(document).ready(function(){
     });
     $("#contents_list_right").ready(function(){ 
         //contents_right_left();
-        contents_getJson();
-        console.log("首次调取数据");
+        //contents_getJson();
+        //console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
@@ -1264,6 +1270,24 @@ $(document).ready(function(){
                 progress + '%'
             );
         }
+    });
+    $("#portfolio_post").click(function(){
+        var portfolio = "master&";
+        $.each($('.template-download'), function(i, val) {
+            var name = $(this).find('.input-xlarge').val();
+            var description = $(this).find('textarea').val();
+            var key = $(this).find('.preview').attr('id');
+            key = key.split('/')[5]
+            portfolio+=key+'&'+name+'&'+description+'|'
+        });
+        console.log(portfolio);
+        $('<input>').attr({
+            type: 'hidden',
+            id: 'works',
+            name: 'works',
+            value: portfolio
+        }).appendTo($('#portfolio'));
+        $('#portfolio').submit();
     });
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计

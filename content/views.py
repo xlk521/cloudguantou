@@ -4,7 +4,7 @@ from authorize.models import UserProfile
 from content.models import Portfolio, Work, PortfolioForm, WorkForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template.defaultfilters import date as _date
 from django.views.decorators.http import require_http_methods
@@ -14,6 +14,7 @@ from google.appengine.ext import blobstore
 from utils import ImageFactory, convertjson
 import json
 import logging
+import uuid
 
 
 log = logging.getLogger()
@@ -28,17 +29,14 @@ def personal_index(request):
     return render_to_response('content/personal_homepage.jade', 
                               {'profile':profile,'portfolio':portfolio})
 
+@login_required
+@require_http_methods(["GET"])
 def content_index(request, cans_id):
-    if request.method == "GET":
-        if cans_id:
-            profile = UserProfile.objects.get(cans_id=cans_id)
-        else:
-            profile = request.user.get_profile()
-        
-        works = __get_album(profile)
-    return render(request, 'content/contents_list.jade', {'works':works})
-
-def __get_album(profile):
+    if cans_id:
+        profile = UserProfile.objects.get(cans_id=cans_id)
+    else:
+        profile = request.user.get_profile()
+    
     works = {}
     portfolios = Portfolio.objects.filter(profile=profile).order_by('-datetime')
     for portfolio in portfolios:
@@ -51,20 +49,53 @@ def __get_album(profile):
         work = {}
         work['title'] = portfolio.title
         work['albumid'] = portfolio.pid
-        work['frontcover'] = portfolio.frontcover
+        work['frontcover'] = portfolio.cover_key
         works[year][month].append(work)
-    return works
 
-#@login_required
+    return render(request, 'content/contents_list.jade', {'works':works})
+
+@login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
-        upload_url = blobstore.create_upload_url(reverse('content.views.up_load'))
-        albumform = PortfolioForm()
-        return render(request, 'content/uploadpage.jade', {'upload_url':upload_url,'albumform':albumform})
+        form = PortfolioForm()
+        return render(request, 'content/uploadpage.jade', {'form':form})
     elif request.method == "POST":
         log.debug(request.POST)
-        return render_to_response('content/contents_list.jade')
+        profile = request.user.get_profile()
+        portfolio = Portfolio(profile=profile)
+        form = PortfolioForm(request.POST, instance=portfolio)
+        if form.is_valid():
+            form.save()
+            works = request.POST.get('works', False)
+            if works:
+                works = works.strip('|').split('|')
+                for work in works:
+                    details = work.split('&')
+                    try:
+                        master = False
+                        if len(details)>3:
+                            master = True
+                            key = details[1]
+                            name = details[2]
+                            description = details[3]
+                            form.instance.cover_key=key
+                        else:
+                            key = details[0]
+                            name = details[1]
+                            description = details[2]
+                        Work.objects.create(
+                            profile=profile, 
+                            portfolio=form.instance, 
+                            title=name, 
+                            description=description, 
+                            key=key, 
+                            is_cover=master)
+                    except Exception as e:
+                        log.error(e.message)
+        else:
+            log.debug(form.errors)
+        return HttpResponseRedirect(reverse('content.views.content_index', args=(profile.cans_id,)))
     
 @login_required
 @require_http_methods(["GET"])
@@ -111,7 +142,6 @@ def work_upload(request):
         blob = request.FILES['works']
         if blob and hasattr(blob, 'blobstore_info'):
             blob_key = str(blob.blobstore_info.key())
-            log.debug(blob_key)
             try:
                 factory = ImageFactory(blob_key, resize=(230, 170))
                 blob_key = factory.get_blobkey()

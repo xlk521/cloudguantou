@@ -52,7 +52,8 @@ def initialization(request):
         related_user = UserProfile.objects.filter(nickname = 'nick39')[0]
         related_friend = UserProfile.objects.filter(nickname = 'nick%s'%i)[0]
         UserFriendshipProfileModel.objects.create(related_user = related_user,
-                                                  related_friend=related_friend, is_following=True)    
+                                                  related_friend=related_friend, is_following=True) 
+
     #===========================================================================
     # for i in range(20):
     #    related_user = UserProfile.objects.filter(nickname = 'nick39')[0]
@@ -70,7 +71,7 @@ def cleanupDataBase():
     User.objects.all().delete();
     UserProfile.objects.all().delete();
     UserFriendshipProfileModel.objects.all().delete();
-    CategoryModel.object.all().delete();
+    CategoryModel.objects.all().delete();
     Portfolio.objects.all().delete();
     DesignerVerInfo.objects.all().delete();
     Work.objects.all().delete();
@@ -90,12 +91,12 @@ def WriteLoctionJsonToDatabase():
             c.save()
 
 def initContentIndex():
-    CategoryModel.object.create(name='Photography')
-    CategoryModel.object.create(name='Illustration')
-    CategoryModel.object.create(name='Handicraft')
+    CategoryModel.objects.create(name='摄影')
+    CategoryModel.objects.create(name='插画')
+    CategoryModel.objects.create(name='手工艺')
     
-    userProfile = UserProfile.objects.filter(nickname = 'nick39')[0]
-    category = CategoryModel.object.filter(name='Photography')[0]
+    userProfile = UserProfile.objects.get(nickname = 'nick39')
+    category = CategoryModel.objects.get(name='摄影')
     for i in range(20):
         Portfolio.objects.create(pid=uuid.uuid4(), profile=userProfile, title='title%d'%i, category=category,
                                   description='description%d'%i, parameter='parameter%d'%i)
@@ -104,6 +105,7 @@ def initContentIndex():
         for i in range(2):
             work=Work.objects.create(wid=uuid.uuid4(), profile=userProfile, portfolio=album, title='title%d'%i,
                 url='/statics/img/content_list.GIF', price='%f'%i, description='description%d'%i, parameter='parameter%d'%i)
+<<<<<<< HEAD
             if i==0:
                 Portfolio.objects.update(frontcover=work.url)
     for i in range(20):
@@ -113,3 +115,6 @@ def initContentIndex():
                                        personal_details='personal_details%s'%i)
         
     
+=======
+    
+>>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
