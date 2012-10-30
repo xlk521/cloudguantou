@@ -56,6 +56,7 @@ class Portfolio(models.Model):
     description = models.CharField(max_length=128, blank=True)
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
+    cover_key = models.CharField(max_length=512, null=True)
     
     objects = PortfolioManager()
     
@@ -76,6 +77,7 @@ class PortfolioForm(ModelForm):
         }
          
     def __init__(self, *args, **kwargs):
+        from django.forms.widgets import HiddenInput
         super(PortfolioForm, self).__init__(*args, **kwargs)
         self.fields['createtime'].widget = widgets.AdminDateWidget()
 
@@ -87,25 +89,25 @@ class WorkManager(models.Manager):
             return None
 
 class Work(models.Model):
-    wid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
+    wid = models.CharField(max_length=36, default=str(uuid.uuid4()))
     profile = models.ForeignKey(UserProfile)
     portfolio = models.ForeignKey(Portfolio)
     title = models.CharField(max_length=128)
-    url = models.CharField(max_length=128)
+    key = models.CharField(max_length=512)
     description = models.CharField(max_length=128, blank=True)
-    parameter = models.CharField(max_length=128, blank=True)
-    price = models.FloatField(blank=True)
+    price = models.FloatField(blank=True, default=0.0)
     is_cover = models.BooleanField(default=False)
+    audited = models.BooleanField(default=True)
     
     objects = WorkManager()
 
     def __unicode__(self):
-        return '%s Photo'%self.title
+        return '%s'%self.title
     
 class WorkForm(ModelForm):
     class Meta:
         model = Work()
-        fields=('title', 'description', 'url')
+        fields=('title', 'description', 'key')
 
 class WorkAdmin(admin.ModelAdmin):
     list_display = ('profile', 'title',)

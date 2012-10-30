@@ -85,7 +85,6 @@ div#uploadpage(style="font-size:15px;width:984px")
 <script id="template-upload" type="text/x-tmpl">
 {% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
 <tr class="template-upload fade" style="background:#fff;border-bottom:30px solid #f7f7f7">
-<td style="width:105px;height:280px;background:#F7F7F7;"><img src="/statics/img/upload_num.GIF" style="position:relative;margin-top:-115px"></td>
 <td style="width:30px;height:280px;background:#f7f7f7"></td>
 <td style="width:305px;text-align:center;">
 <table style="margin-left:35px">
@@ -137,7 +136,7 @@ div#uploadpage(style="font-size:15px;width:984px")
 <tr>
 <td>
 <font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品描述：</font>
-<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242"></textarea>
+<textarea class="introduction" name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242"></textarea>
 </td>
 </tr>
 </table>
@@ -159,7 +158,7 @@ div#uploadpage(style="font-size:15px;width:984px")
 {% templatetag openblock %}=locale.fileupload.errors[file.error] || file.error{% templatetag closeblock %}</td>
 {% templatetag openblock %} } else { {% templatetag closeblock %}
 <td><table style="margin-left:35px;"><tr>
-<td class="preview">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
+<td class="preview" id="{% templatetag openblock %}=file.url{% templatetag closeblock %}">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
 <a href="{% templatetag openblock %}=file.url{% templatetag closeblock %}" title="{% templatetag openblock %}=file.name{% templatetag closeblock %}" rel="gallery" download="{% templatetag openblock %}=file.name{% templatetag closeblock %}"><img class="uploaded_img" src="{% templatetag openblock %}=file.thumbnail_url{% templatetag closeblock %}"></a>
 {% templatetag openblock %} } {% templatetag closeblock %}</td>
 </tr></table>

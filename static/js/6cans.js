@@ -974,7 +974,8 @@ function contents_rightchange(next_prive){//设置目录页的变换
     }
 }
 function contents_getJson(imgid){//目录页---发送请求并获取数据
-    //imgid= typeof(imgid) == 'undefined' ? "" :imgid; 
+    //imgid= typeof(imgid) == 'undefined' ? "" :imgid;
+    /**
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
@@ -997,6 +998,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         dataType:'json'
     });
     console.log("目录页---发送请求并获取数据");//打印LOG
+    **/
 }
 function contents_resize(){//作者目录页---大小更换之后的函数
     contents_show(1210);
@@ -1177,8 +1179,8 @@ $(document).ready(function(){
     });
     $("#contents_list_right").ready(function(){ 
         //contents_right_left();
-        contents_getJson();
-        console.log("首次调取数据");
+        //contents_getJson();
+        //console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
@@ -1267,15 +1269,22 @@ $(document).ready(function(){
         }
     });
     $("#portfolio_post").click(function(){
-        $("#portfolio").submit(function(e) {
-            console.log(e);
-            console.log('hello world');
-            //$.each($('.template-download'), function(i, val) {
-            //    console.log(i);
-            //    console.log(val);
-            //});
-            return false;
+        var portfolio = "master&";
+        $.each($('.template-download'), function(i, val) {
+            var name = $(this).find('.input-xlarge').val();
+            var description = $(this).find('textarea').val();
+            var key = $(this).find('.preview').attr('id');
+            key = key.split('/')[5]
+            portfolio+=key+'&'+name+'&'+description+'|'
         });
+        console.log(portfolio);
+        $('<input>').attr({
+            type: 'hidden',
+            id: 'works',
+            name: 'works',
+            value: portfolio
+        }).appendTo($('#portfolio'));
+        $('#portfolio').submit();
     });
     $(window).resize(function() {//重置网页大小的监听函数
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
