@@ -1,0 +1,287 @@
+{
+    "type": "viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "MyViewport",
+        "designer|initialView": true
+    },
+    "id": "ExtBox1-ext-gen2642",
+    "designerId": "b3dd27aa-ee43-4f96-b813-522a65fd28e6",
+    "cn": [
+        {
+            "type": "toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyToolbar",
+                "height": 58
+            },
+            "designerId": "46f4dd58-0b1a-4f7b-bca6-5b9d96b3863e",
+            "cn": [
+                {
+                    "type": "tbtext",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "designer|userClassName": "MyTextItem",
+                        "text": "6Cans后台管理系统"
+                    },
+                    "designerId": "add6ffe1-be29-4ce2-8b2a-dc4dd1426935"
+                }
+            ]
+        },
+        {
+            "type": "tabpanel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyTabPanel",
+                "activeTab": 1
+            },
+            "designerId": "faa2408c-c91d-4936-bc78-c7e2d94e7167",
+            "cn": [
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyPanel",
+                        "title": "首页"
+                    },
+                    "designerId": "f9f93ec7-e86a-429e-affb-26af3282fad8",
+                    "cn": [
+                        {
+                            "type": "tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "TabConfig"
+                            },
+                            "designerId": "5bcb8256-dd3f-4890-ada5-0a75a4edbd42"
+                        }
+                    ]
+                },
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyPanel1",
+                        "layout": "fit",
+                        "title": "作品审核"
+                    },
+                    "designerId": "d1e961e3-4cb3-463e-9a0f-36f617d4963a",
+                    "cn": [
+                        {
+                            "type": "tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "TabConfig1"
+                            },
+                            "designerId": "aa9dfd36-55cc-4aef-81b9-900723afc1be"
+                        },
+                        {
+                            "type": "container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "designer|userClassName": "MyContainer2",
+                                "layout": "hbox"
+                            },
+                            "designerId": "6bd33385-8311-4275-b1d0-33e975a4041d",
+                            "cn": [
+                                {
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": 1,
+                                        "container|align": "stretch",
+                                        "designer|userClassName": "MyContainer",
+                                        "layout": "vbox"
+                                    },
+                                    "designerId": "54b4e744-300d-4ae0-8d2f-dd1160c2cf12",
+                                    "cn": [
+                                        {
+                                            "type": "gridpanel",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "layout|flex": 1,
+                                                "designer|userClassName": "MyGridPanel",
+                                                "title": "My Grid Panel",
+                                                "store": "PortfolioStore"
+                                            },
+                                            "designerId": "b3a17849-0185-4844-8423-344f80f8a556",
+                                            "cn": [
+                                                {
+                                                    "type": "gridcolumn",
+                                                    "reference": {
+                                                        "name": "columns",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "MyColumn",
+                                                        "designer|displayName": "提交用户",
+                                                        "dataIndex": "owner",
+                                                        "text": "提交用户"
+                                                    },
+                                                    "designerId": "ae1f6682-a5a8-40af-baeb-5e1c3694b54d"
+                                                },
+                                                {
+                                                    "type": "gridcolumn",
+                                                    "reference": {
+                                                        "name": "columns",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "MyColumn1",
+                                                        "designer|displayName": "作品名称",
+                                                        "dataIndex": "title",
+                                                        "text": "作品名称"
+                                                    },
+                                                    "designerId": "b9e7b77a-e47d-4415-b0d2-4242c3a997b0"
+                                                },
+                                                {
+                                                    "type": "gridcolumn",
+                                                    "reference": {
+                                                        "name": "columns",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "MyColumn2",
+                                                        "text": "提交时间"
+                                                    },
+                                                    "designerId": "47fb5c90-1ec5-431d-9d83-c3bebd55415e"
+                                                },
+                                                {
+                                                    "type": "gridview",
+                                                    "reference": {
+                                                        "name": "viewConfig",
+                                                        "type": "object"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|userClassName": "MyGridView"
+                                                    },
+                                                    "designerId": "e8c9c5ab-0d83-484b-bb04-cebc17c5289b"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "container",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout|flex": 2,
+                                        "designer|userClassName": "MyContainer1"
+                                    },
+                                    "designerId": "053f6bfd-5750-4670-b465-61eccff14e94"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyPanel2",
+                        "title": "订单处理"
+                    },
+                    "designerId": "3b2f336a-0bdc-4378-8dbc-5834b22149a4",
+                    "cn": [
+                        {
+                            "type": "tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "TabConfig2"
+                            },
+                            "designerId": "5e8023ea-8bef-4417-a732-de374347a07c"
+                        }
+                    ]
+                },
+                {
+                    "type": "panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyPanel2",
+                        "title": "属性调整"
+                    },
+                    "designerId": "8ee6ce70-7eb0-49c0-8f4b-c62762c5f717",
+                    "cn": [
+                        {
+                            "type": "tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|userClassName": "TabConfig2"
+                            },
+                            "designerId": "a45b08e9-bb6a-4c12-ab7e-69da55bcb7e8"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

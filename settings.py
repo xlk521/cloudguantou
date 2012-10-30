@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'djangoappengine',
     'registration',
     
+    'audit',
     'authorize',
     'base',
     'content',

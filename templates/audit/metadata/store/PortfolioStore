@@ -1,0 +1,44 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "PortfolioStore",
+        "storeId": "PortfolioStore",
+        "model": "PortfolioModel"
+    },
+    "id": "ExtBox1-ext-gen15667",
+    "designerId": "9dbe5fc6-c36f-4087-9f4f-9ca2837643d5",
+    "cn": [
+        {
+            "type": "ajaxproxy",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyAjaxProxy",
+                "url": "/audit/"
+            },
+            "designerId": "b6b6529b-fc5c-4b64-a7ab-3f863960cb1b",
+            "cn": [
+                {
+                    "type": "jsonreader",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "MyJsonReader"
+                    },
+                    "designerId": "c75245b6-0d0f-43c7-84f7-7b89a89d3c69"
+                }
+            ]
+        }
+    ]
+}
