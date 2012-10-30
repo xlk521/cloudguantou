@@ -27,7 +27,7 @@ def formatExceptionInfo(maxTBlevel=5):
     return (excName, excArgs, excTb)
 
 def initialization(request):
-    cleanupDataBase()
+    #cleanupDataBase()
     for i in range(40):
         User.objects.create_user(username='User%d'%i, email='liangcc611@sina.com', password='111111')
     for i in range(40):
@@ -99,7 +99,7 @@ def initContentIndex():
     category = CategoryModel.objects.get(name='摄影')
     for i in range(20):
         Portfolio.objects.create(pid=uuid.uuid4(), profile=userProfile, title='title%d'%i, category=category,
-                                  description='description%d'%i, parameter='parameter%d'%i)
+                                  description='description%d'%i)
     for i in range(20):
         album = Portfolio.objects.filter(title ='title%s'%i)[0]
         for i in range(2):
@@ -112,3 +112,4 @@ def initContentIndex():
                                        address='北京', worksample='/statics/img/content_list.GIF', id_type='身份证',
                                        id_num='1234567890', id_photo='/statics/img/content_list.GIF',
                                        personal_details='personal_details%s'%i)
+

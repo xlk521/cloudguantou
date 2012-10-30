@@ -58,7 +58,7 @@ class Portfolio(models.Model):
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     cover_key = models.CharField(max_length=512, null=True)
-    
+
     objects = PortfolioManager()
     
     def __unicode__(self):
