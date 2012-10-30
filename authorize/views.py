@@ -46,7 +46,6 @@ def identity(request):
         brandprofile = Brand(master = profile)
         if iden == 'designer':
             formdesign = DesignerIdentityForm(request.POST, instance=brandprofile)
-            log.debug(formdesign.is_valid())
             if formdesign.is_valid():
                 formdesign.save()
                 photography = request.POST.get('photography', False)

@@ -44,7 +44,7 @@ class PortfolioManager(BaseModelManager):
     pass
 
 class Portfolio(models.Model):
-    pid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'album'))
+    pid = models.CharField(max_length=36)
     frontcover = models.CharField(max_length=128, blank=True)
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
@@ -79,7 +79,7 @@ class WorkManager(models.Manager):
             return None
 
 class Work(models.Model):
-    wid = models.CharField(max_length=36, default=uuid.uuid5(uuid.NAMESPACE_DNS, 'photo'))
+    wid = models.CharField(max_length=36)
     profile = models.ForeignKey(UserProfile)
     portfolio = models.ForeignKey(Portfolio)
     title = models.CharField(max_length=128)
@@ -87,6 +87,8 @@ class Work(models.Model):
     description = models.CharField(max_length=128, blank=True)
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
+    datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
+
     #collections = models.FloatField(blank=True)
     
     objects = WorkManager()
