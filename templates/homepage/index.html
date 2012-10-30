@@ -105,7 +105,7 @@ $(document).ready(function(){
 			<div class="HomeConList">
 				<ul id="HomeConList_ul">	
 					{% for Portfolio in Portfolios%}
-					<li><div class="project-cover"><a href='/content/content_index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.frontcover }} width="221" height="166"></a><div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">{{ Portfolio.title }}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">{{ Portfolio.profile_id }}</a>的品牌<a href='/content/personal/?id={{Portfolio.profile_id}}' class="font2">净世界</a></p></div></div>
+					<li><div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.frontcover }} width="221" height="166"></a><div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">{{ Portfolio.title }}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">{{ Portfolio.profile_id }}</a>的品牌<a href='/content/personal/?id={{Portfolio.profile_id}}' class="font2">净世界</a></p></div></div>
 					</li>
 					{% endfor %}
 				</ul>
