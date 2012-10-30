@@ -27,7 +27,7 @@ def formatExceptionInfo(maxTBlevel=5):
     return (excName, excArgs, excTb)
 
 def initialization(request):
-    cleanupDataBase()
+    #cleanupDataBase()
     for i in range(40):
         User.objects.create_user(username='User%d'%i, email='liangcc611@sina.com', password='111111')
     for i in range(40):
