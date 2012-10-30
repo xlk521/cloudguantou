@@ -58,7 +58,7 @@ class Portfolio(models.Model):
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     cover_key = models.CharField(max_length=512, null=True)
-    
+
     objects = PortfolioManager()
     
     def __unicode__(self):
@@ -90,27 +90,20 @@ class WorkManager(models.Manager):
             return None
 
 class Work(models.Model):
-<<<<<<< HEAD
-    wid = models.CharField(max_length=36)
-=======
     wid = models.CharField(max_length=36, default=str(uuid.uuid4()))
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
     profile = models.ForeignKey(UserProfile)
     portfolio = models.ForeignKey(Portfolio)
     title = models.CharField(max_length=128)
     key = models.CharField(max_length=512)
     description = models.CharField(max_length=128, blank=True)
-<<<<<<< HEAD
     parameter = models.CharField(max_length=128, blank=True)
     price = models.FloatField(blank=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
-
+    url = models.CharField(max_length=128, blank=True)
     #collections = models.FloatField(blank=True)
-=======
     price = models.FloatField(blank=True, default=0.0)
     is_cover = models.BooleanField(default=False)
     audited = models.BooleanField(default=True)
->>>>>>> branch 'master' of https://github.com/guiyang/cloudguantou.git
     
     objects = WorkManager()
 
