@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     
     url(r'^content/', include('content.urls')),
     
-    url(r'^account_settings/', include('account_settings.urls')),
+    url(r'^settings/', include('account_settings.urls')),
     
     url(r'^identity/', include('identity.urls')),
     
