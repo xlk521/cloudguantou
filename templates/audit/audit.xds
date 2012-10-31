@@ -1,0 +1,67 @@
+{
+    "name": "audit",
+    "settings": {
+        "urlPrefix": "http://www.6cans.com/statics/js/",
+        "spacesToIndent": 4,
+        "exportPath": "",
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false
+    },
+    "xdsVersion": "2.1.0",
+    "xdsBuild": 640,
+    "schemaVersion": 1,
+    "upgradeVersion": 210000000498,
+    "framework": "ext41",
+    "topInstanceFileMap": {
+        "392ccff5-533e-4c3d-8206-15450de25e4b": {
+            "paths": [
+                "metadata/resource/Library"
+            ],
+            "className": "Library"
+        },
+        "b3dd27aa-ee43-4f96-b813-522a65fd28e6": {
+            "paths": [
+                "metadata/view/MyViewport",
+                "popcans/view/override/MyViewport.js",
+                "popcans/view/MyViewport.js",
+                "popcans/view/Viewport.js"
+            ],
+            "className": "MyViewport"
+        },
+        "2adb67f5-06ea-4257-aa70-b8425d413f38": {
+            "paths": [
+                "metadata/model/PortfolioModel",
+                "popcans/model/override/PortfolioModel.js",
+                "popcans/model/PortfolioModel.js"
+            ],
+            "className": "PortfolioModel"
+        },
+        "9dbe5fc6-c36f-4087-9f4f-9ca2837643d5": {
+            "paths": [
+                "metadata/store/PortfolioStore",
+                "popcans/store/override/PortfolioStore.js",
+                "popcans/store/PortfolioStore.js"
+            ],
+            "className": "PortfolioStore"
+        }
+    },
+    "viewOrderMap": {
+        "view": [
+            "b3dd27aa-ee43-4f96-b813-522a65fd28e6"
+        ],
+        "store": [
+            "9dbe5fc6-c36f-4087-9f4f-9ca2837643d5"
+        ],
+        "controller": [],
+        "model": [
+            "2adb67f5-06ea-4257-aa70-b8425d413f38"
+        ],
+        "resource": [
+            "392ccff5-533e-4c3d-8206-15450de25e4b"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

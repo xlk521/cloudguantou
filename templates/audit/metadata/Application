@@ -1,0 +1,24 @@
+{
+    "type": "application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "PortfolioModel"
+        ],
+        "stores": [
+            "PortfolioStore"
+        ],
+        "views": [
+            "MyViewport"
+        ],
+        "appFolder": "popcans",
+        "autoCreateViewport": true,
+        "name": "popcans"
+    },
+    "id": "ExtBox1-ext-gen1744",
+    "designerId": "application"
+}
