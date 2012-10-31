@@ -24,14 +24,10 @@ def get_product(request, work_id):
             #获得包装或装饰
             packages = Package.objects.filter(work=work)
             #获得同系列的其他作品
-            brothers = Work.objects.filter(album=work.album)
-            #获得快递信息
-            deliveries = Delivery.objects.all()
-            #获得城市列表
-            _from = _to = City.objects.all()
+            brothers = Work.objects.filter(portfolio=work.portfolio)
             return render(request, 'shopping/product.jade', {
                     'form':form, 'sizes':sizes, 'packages':packages, 
-                    'brothers':brothers, 'deliveries':deliveries, '_from':_from, '_to':_to
+                    'brothers':brothers, 'deliveries':deliveries, 'destination':destination
                 })
         else:
             raise Http404
@@ -41,13 +37,12 @@ def get_product(request, work_id):
         price_id = request.POST.get('delivery_price', False)
         size_id = request.POST.get('size_id', False)
         package_id = request.POST.get('package_id', False)
-        if work_id and delivery_id and price_id and size_id:
+        if work_id and price_id and size_id:
             work = Work.objects.get_or_none(photoid=work_id)
-            delivery = Delivery.objects.get_or_none(did=delivery_id)
             price = DeliveryPrice.objects.get_or_none(pid=price_id)
             size = Size.objects.get_or_none(sid=size_id)
             package = Package.objects.get_or_none(pid=package_id)
-            if work and delivery and price and size and package:
+            if work and price and size and package:
                 profile = request.user.get_profile()
                 product = Product(profile=profile, work=work, delivery=delivery, price=price, size=size, package=package)
                 form = ProductForm(request.POST, instance=product)

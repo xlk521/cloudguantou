@@ -61,9 +61,9 @@ def up_load(request):
         form = PortfolioForm()
         return render(request, 'content/uploadpage.jade', {'form':form})
     elif request.method == "POST":
-        log.debug(request.POST)
+        pid = str(uuid.uuid4())
         profile = request.user.get_profile()
-        portfolio = Portfolio(profile=profile)
+        portfolio = Portfolio(profile=profile, pid=pid)
         form = PortfolioForm(request.POST, instance=portfolio)
         if form.is_valid():
             form.save()

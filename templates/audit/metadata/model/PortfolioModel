@@ -20,8 +20,8 @@
             "codeClass": null,
             "userConfig": {
                 "designer|userClassName": "field",
-                "name": "owner",
-                "type": "string"
+                "name": "datetime",
+                "type": "date"
             },
             "designerId": "76ccb421-00d3-48bc-9fd2-2806adcb6be6"
         },
@@ -48,9 +48,38 @@
             "codeClass": null,
             "userConfig": {
                 "designer|userClassName": "field2",
-                "name": "category"
+                "name": "category",
+                "type": "string"
             },
             "designerId": "11afe95b-67b2-4f9b-8c90-1dae01208cb7"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field3",
+                "name": "pid",
+                "type": "string"
+            },
+            "designerId": "92c29778-41e5-4b2a-89e9-6b5ec7e9927e"
+        },
+        {
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "field4",
+                "name": "owner",
+                "type": "string"
+            },
+            "designerId": "2bdac2cd-6bb9-45f1-82df-9eaba1b1880b"
         }
     ]
 }
