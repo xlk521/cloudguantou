@@ -83,7 +83,7 @@ input[type="checkbox"]{width:20px;}
 #content {
 	width:410px;
 	margin:0 auto;
-	background:url(/statics/img/pic.gif) no-repeat 26px 58px;
+	/*background:url(/statics/img/pic.gif) no-repeat 26px 58px;*/
 	padding:35px 0 0 574px;/*修改间距*/
 }
 #homepage_content {
@@ -94,10 +94,8 @@ input[type="checkbox"]{width:20px;}
     margin:0 auto;
 }
 #content_div_span4{/*关联账号登录的属性*/
-    width: 300px;
-    margin-left: 20px;
-    background:#e5e5e5;
-    border:1px solid #cecece;
+    width: 220px;
+    float: right;
 }
 #content_div_span4 div{
     margin-top: -10px
@@ -1021,3 +1019,7 @@ a.cls:hover{background:url(/statics/img/cls.gif) center -20px no-repeat;}
 .contents_advice_open{ position:relative; width:150px; height:25px;line-height:180%; border:1px solid #FF9900; background:#FFCC00;margin:12% auto 0 400px; text-align:center;}
 .contents_advice_open span{cursor:pointer; display:block; width:100%;}
 .contents_advice_odiv{ position:relative; margin-top:-300px; width:300px;z-index:1;}
+/*登录*/
+.login_register{ float:left;width:66px; height:45px;border-right:1px solid #303030; border-left:1px solid #000;color:gainsboro; font-size:14px; font-weight:700; text-align:center; line-height:45px;}
+.modal-backdrop{ z-index:1; }
+#myModal_regist{ top:50%;left:50%; }

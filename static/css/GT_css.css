@@ -81,7 +81,7 @@ a.general:hover{ text-decoration:underline;}
 #header .headerCon li.logo1{ width:150px; height:32px; margin-top:7px;}
 #header li#nav{ width:264px;border-left:1px solid #303030; border-right:1px solid #000;}
 #header li#nav div{ float:left;width:86px; height:45px;border-right:1px solid #303030; border-left:1px solid #000;color:gainsboro; font-size:14px; font-weight:700; text-align:center; line-height:45px;}
-#header li#nav div:hover,#header li.headeright div:hover{ background: url(../IMG/gtheaderbg.JPG);}
+#header li#nav div:hover,.login_register:hover{ background: url(/statics/img/gtheaderbg.JPG);}
 /*#header li#nav span{ display:block; text-shadow:1px 2px 1px rgba(0, 0, 0, 1);}
 #header li#nav .nav1{ height:32px; background-position:32px -51px;}
 #header li#nav .nav2{ height:32px; background-position:-25px -52px;}
@@ -93,7 +93,7 @@ a.general:hover{ text-decoration:underline;}
 #header .headerightdiva1{ border-right: 1px dotted #424242;border-radius :3px 0 0  3px;}
 #header .headerightdiva2{ border-radius : 0 3px 3px 0;}
 #header .headerighta1{ position:relative; display:inline-block; min-width:66px; height:45px; }*/
-#header li.headeright div{ float:left;width:66px; height:45px;border-right:1px solid #303030; border-left:1px solid #000;color:gainsboro; font-size:14px; font-weight:700; text-align:center; line-height:45px;}
+/*#header li.headeright div{ float:left;width:66px; height:45px;border-right:1px solid #303030; border-left:1px solid #000;color:gainsboro; font-size:14px; font-weight:700; text-align:center; line-height:45px;}*/
 #header li.headeright span{ display:block;}
 #header .headerightaspan1{ width:18px; height:18px; border-radius:9px; background-color:#76ac04; float:right;position:relative; z-index:999; top:5px; right:10px; color:white; text-align:center; line-height:18px; font-weight:700; font-size:12px;}
 #header .headerightaspan2{ width:37px; height:26px; background-position:0 -99px;position:relative; z-index:1; top:14px; left:14px; margin:0; float:none;}
@@ -115,10 +115,3 @@ a.general:hover{ text-decoration:underline;}
 #footer li.footerLinks div.footerDiva2 ul li{ float:left; margin-right:10px;}
 #footer li.footerLinks div.footerDiva2 a:hover{color:white; text-decoration: underline;}
 #footer li.footerLinks div.footerDiva2 em{ font-size:12px;}
-
-
-
-
-
-
-
