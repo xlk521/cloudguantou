@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     
     #用户注册及登陆流程
     url(r'^accounts/', include('registration.backends.default.urls')),
+    
+    url(r'^audit/', include('audit.urls')),
 
     url(r'^authorize/', include('authorize.urls')),
 
