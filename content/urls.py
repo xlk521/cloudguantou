@@ -13,7 +13,7 @@ urlpatterns = patterns('content.views',
     url(r'^personal/', 'personal_index'),
 
     #目录页
-    url(r'^index/(?P<cans_id>\S+)$', 'content_index', name='content_index'),
+    url(r'^index/(?P<cans_id>\S+)/', 'content_index', name='content_index'),
 
     #获取用户头像
     url(r'^work/(?P<photo_key>\S+)', 'serve_work'),
