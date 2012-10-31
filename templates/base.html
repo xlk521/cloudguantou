@@ -1,80 +1,105 @@
 <!DOCTYPE html public "-//w3c//dtd html 4.01 transitional//en" "http://www.w3.org/tr/html4/loose.dtd">
-    <html>
-        <head>
-            <meta http-equiv="Content-Type" name="viewport" content="width=device-width,initial-scale=1.0"/>
-            <title>{% block title %}{% endblock %}</title>
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-            <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-            <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap.css"/>
-            <link rel="stylesheet" type="text/css" href="/statics/css/imgareaselect-default.css" />
-            <link rel="stylesheet" type="text/css" href="/statics/css/GT_css.css"/>
-            <link rel="stylesheet" type="text/css" href="/statics/css/GT_Transaction.css"/>
-            <link rel="stylesheet" type="text/css" href="/statics/css/6Cans.css"/>
-            <link rel="stylesheet" type="text/css" href="/statics/css/mycans_css.css"/>
-
-            
-            <script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/jquery.imgareaselect.pack.js"></script>
-            <script type="text/javascript" src="/statics/js/jquery.masonry.min.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/bootstrap.js" charset="UTF-8"></script>
-            <!--script type="text/javascript" src="/statics/js/fileuploader.js" charset="UTF-8"></script-->
-            <script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/jquery.imgareaselect.pack.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/formValidator_min.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/formValidatorRegex.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/vendor/jquery.ui.widget.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/jquery.iframe-transport.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/jquery.fileupload.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="/statics/js/6cans.js" charset="UTF-8"></script>
-            {% block head %}{% endblock %}
-        </head>
-        <body style="width:100%;min-height:450px;">
-            <div id="head" style="overflow:hidden">
-                <div id="logo" style="width:100%">
-                    <a id="navigation_logo" href="/" style="margin-left:25px"></a>
-                    <div id="navigation_negative_filmhover">
-                        <div id="navigation_negative_film">
-                            <a id="navigation_film" href="#"></a>
-                        </div>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta http-equiv="Content-Type"/>
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/GT_css.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/GT_min.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/GT_trade.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/imgareaselect-default.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/GT_Transaction.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/6Cans.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/mycans_css.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/jquery.fileupload-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/jquery-ui-1.9.1.css"/>
+    <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap-image-gallery.min.css"/>
+    <script>
+        var is_authenticated = false
+        {% if user.is_authenticated %}
+            var is_authenticated = true
+        {% endif %} 
+    </script>
+    {% block head %}{% endblock %}
+    </head>
+    <!--分割线-->
+    <body id="change_id" style="width:100%;min-height:450px;" onkeydown="keyDown()">
+        <div id="header">
+            <div class="headerCon">
+            <ul><a href="/">
+                <li class="logo1"></li></a>
+                <li id="nav"><a href="/"> 
+                    <div>
+                        <span>首页</span>
                     </div>
-                    <div id="navigation_negative_filmhover">
-                        <div id="navigation_negative_ikon">
-                            <a id="navigation_ikon" href="#"></a>
-                        </div>
-                    </div>
-                    <div id="navigation_negative_filmhover">
-                        <div id="navigation_negative_drawing">
-                            <a id="navigation_drawing" href="#"></a>
-                        </div>
-                    </div>
-                    <div style="float:right">
-                        {% if user.is_authenticated %}
-                            <button id="logo_logoutbutton" type="submit" class="button_wane btn btn-success">登出</button>
-                        {% else %}
-                            <button id="logo_registbutton" type="submit" class="button_wane btn btn-success">创建帐户</button>
-                            <button id="logo_loginbutton" type="submit" class="button_wane btn btn-success">登录</button>
-                        {% endif %}
-                    </div>
-                    <div style="float:right">
-                        <a id="navigation_shoppingcart" href="#" style="background-position:37.5% 32%"></a>
-                        <a id="navigation_shoppingcart_num" href="#" style="background-position:48% 30%"></a>
-                    </div>
-                </div>
+                </a>
+                <a href="/content/personal/">
+                  <div><span>个人主页</span></div></a></li>
+              <li class="headeright"><a>
+                  <div class="login_register"><span class="headerightaspan1">6</span><span class="headerightaspan2"></span></div></a>{% if user.is_authenticated %}
+                <ul>
+                  <li id="menutest1" class="dropdown"><a data-toggle="dropdown" href="#menutest1" type="submit" class="dropdown-toggle">
+                      <div class="login_register"><span>用户名</span></div></a>
+                    <ul style="height:130px;" class="dropdown-menu">
+                      <li style="float:none;"><a href="#">账户设置</a></li>
+                      <li style="float:none;"><a href="#">关联账号</a></li>
+                      <li style="float:none;"><a href="#">我的订单</a></li>
+                      <li style="float:none;"><a href="#">邀请好友</a></li>
+                      <li style="float:none;"><a id="logo_logoutbutton" type="submit">登出</a></li>
+                    </ul>
+                  </li>
+                </ul>{% else %}<a id="logo_registbutton" type="submit">
+                  <div class="login_register"><span>注册</span></div></a><a id="logo_loginbutton" type="submit">
+                  <div class="login_register"><span>登录</span></div></a>{% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% block content %}{% endblock %}
+    <!--底部标签-->
+    <div id="footer">
+      <script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/vendor/jquery.ui.widget.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/tmpl.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/load-image.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/canvas-to-blob.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/bootstrap.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/bootstrap-image-gallery.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/formValidator_min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/formValidatorRegex.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/GT_layer.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/GT_Trading.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.fileupload.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.fileupload-fp.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.fileupload-ui.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.iframe-transport.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.imgareaselect.pack.js"></script>
+      <script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/jquery.masonry.min.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/6cans.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="/statics/js/main.js" charset="UTF-8"></script>
+      <div class="footerCon">
+        <ul>
+          <li class="logo2"></li>
+          <li class="footerLinks">
+            <div class="footerDiva1"><a>创作者加入</a><a>品牌商参与</a><a>关于罐头工场</a><a>招聘</a><a>帮助&amp;常见问题</a><a>联系我们</a><a>客户服务</a></div>
+            <div class="footerDiva2">
+              <ul>
+                <li><em>©</em><em>2012 罐头工场</em></li>
+                <li><a>远程创作与跨界协作平台</a></li>
+                <li><a>隐私权政策</a></li>
+                <li> <a>使用条款</a></li>
+                <li><a>版权说明</a></li>
+                <li>京<a>128713</a>号</li>
+              </ul>
             </div>
-            {% block content %}{% endblock %}
-            <div id="foot" class="navbar navbar-fixed-bottom">
-                <div style="float:left">
-                    <font size="12pt"></font>
-                    @1997-2012易拉互动网络科技有限公司版权所有 京ICP备20030133号
-                </div>
-                <div style="float:right;width:340px">
-                    <a href="#">关于罐头工厂&nbsp;</a>|
-                    <a href="#">联系我们&nbsp;</a>|
-                    <a href="#">招贤纳士&nbsp;</a>|
-                    <a href="#">移动客户端&nbsp;</a>|
-                    <a href="#">官方微博</a>
-                </div>
-            </div>
-        </body>
-    </html>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
