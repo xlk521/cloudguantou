@@ -14,7 +14,12 @@
  */
 
 Ext.Loader.setConfig({
-    enabled: true
+    enabled: true,
+    paths: {
+        'popcans.store': '../statics/js/popcan/store',
+        'popcans.model': '../statics/js/popcan/model',
+        'popcans.view': '../statics/js/popcan/view'
+    }
 });
 
 Ext.application({
@@ -25,9 +30,9 @@ Ext.application({
         'PortfolioStore'
     ],
     views: [
-        'MyViewport'
+        'BaseViewport'
     ],
-    appFolder: 'popcans',
+    appFolder: 'popcan',
     autoCreateViewport: true,
     name: 'popcans'
 });

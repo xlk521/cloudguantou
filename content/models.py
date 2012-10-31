@@ -49,8 +49,7 @@ class PortfolioManager(BaseModelManager):
     pass
 
 class Portfolio(models.Model):
-    frontcover = models.CharField(max_length=128, blank=True)
-    pid = models.CharField(max_length=36, default=str(uuid.uuid4()))
+    pid = models.CharField(max_length=36)
     profile = models.ForeignKey(UserProfile)
     title = models.CharField(max_length=128)
     category = models.ForeignKey(CategoryModel)
@@ -58,6 +57,7 @@ class Portfolio(models.Model):
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     cover_key = models.CharField(max_length=512, null=True)
+    audited = models.BooleanField(default=False)
 
     objects = PortfolioManager()
     
@@ -98,7 +98,7 @@ class Work(models.Model):
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
     price = models.FloatField(blank=True, default=0.0)
     is_cover = models.BooleanField(default=False)
-    audited = models.BooleanField(default=True)
+    available = models.BooleanField(default=True)
     
     objects = WorkManager()
 

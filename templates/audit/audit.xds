@@ -22,26 +22,26 @@
         },
         "b3dd27aa-ee43-4f96-b813-522a65fd28e6": {
             "paths": [
-                "metadata/view/MyViewport",
-                "popcans/view/override/MyViewport.js",
-                "popcans/view/MyViewport.js",
-                "popcans/view/Viewport.js"
+                "metadata/view/BaseViewport",
+                "popcan/view/override/BaseViewport.js",
+                "popcan/view/BaseViewport.js",
+                "popcan/view/Viewport.js"
             ],
-            "className": "MyViewport"
+            "className": "BaseViewport"
         },
         "2adb67f5-06ea-4257-aa70-b8425d413f38": {
             "paths": [
                 "metadata/model/PortfolioModel",
-                "popcans/model/override/PortfolioModel.js",
-                "popcans/model/PortfolioModel.js"
+                "popcan/model/override/PortfolioModel.js",
+                "popcan/model/PortfolioModel.js"
             ],
             "className": "PortfolioModel"
         },
         "9dbe5fc6-c36f-4087-9f4f-9ca2837643d5": {
             "paths": [
                 "metadata/store/PortfolioStore",
-                "popcans/store/override/PortfolioStore.js",
-                "popcans/store/PortfolioStore.js"
+                "popcan/store/override/PortfolioStore.js",
+                "popcan/store/PortfolioStore.js"
             ],
             "className": "PortfolioStore"
         }

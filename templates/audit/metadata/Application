@@ -13,12 +13,33 @@
             "PortfolioStore"
         ],
         "views": [
-            "MyViewport"
+            "BaseViewport"
         ],
-        "appFolder": "popcans",
+        "appFolder": "popcan",
         "autoCreateViewport": true,
         "name": "popcans"
     },
     "id": "ExtBox1-ext-gen1744",
-    "designerId": "application"
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "loader",
+            "reference": {
+                "name": "loader",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "Loader50",
+                "enabled": true,
+                "paths": [
+                    "{\"popcans.store\":\"../statics/js/popcan/store\",\r",
+                    " \"popcans.model\":\"../statics/js/popcan/model\",\r",
+                    " \"popcans.view\":\"../statics/js/popcan/view\"\r",
+                    "}"
+                ]
+            },
+            "designerId": "92601bd3-e0da-419b-a2fc-a5dc9c87479e"
+        }
+    ]
 }
