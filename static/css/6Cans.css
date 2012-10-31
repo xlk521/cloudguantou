@@ -94,8 +94,10 @@ input[type="checkbox"]{width:20px;}
     margin:0 auto;
 }
 #content_div_span4{/*关联账号登录的属性*/
-    width: 220px;
-    float: right;
+    width: 300px;
+    margin-left: 20px;
+    background:#e5e5e5;
+    border:1px solid #cecece;
 }
 #content_div_span4 div{
     margin-top: -10px

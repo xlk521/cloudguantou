@@ -47,9 +47,7 @@ html
                                 span.headerightaspan2
                         {% if user.is_authenticated %}
                         li#menutest1.dropdown
-                            a.dropdown-toggle(data-toggle="dropdown",href="#menutest1")
-                                div.login_register
-                                    span 用户名
+                            a.dropdown-toggle(data-toggle="dropdown",href="#menutest1")用户名
                             ul.dropdown-menu
                                 li
                                     a(href="#")账户设置
@@ -60,89 +58,11 @@ html
                                 li
                                     a(href="#")邀请好友
                                 li
-                                    a#logo_logoutbutton(type="submit")登出
+                                    a#logo_logoutbutton(type="submit")
+                                        div.login_register
+                                            span登出
                         {% else %}
-                        div#myModal_regist.modal.hide.fade(style="display: none; ")
-                            div.modal-header
-                                a.close(data-dismiss="modal")×
-                                h3 注册帐号
-                            div.modal-body
-                                div
-                                    div#content_div_span4
-                                        div#content_div_margin
-                                            div.rightside_text
-                                                b 使用关联帐号登录
-                                            div.rightside_ico
-                                                a(href="#")
-                                                    img(id='sina_auth',src="/statics/img/ico2.gif",alt="6Cans_新浪")
-                                                a(href="#")
-                                                    img(id='douban_auth',src="/statics/img/ico3.gif",alt="6Cans_豆瓣")
-                                                a(href="#")
-                                                    img(id='renren_auth',src="/statics/img/ico4.gif",alt="6Cans_人人")
-                                                a(href="#")
-                                                    img(id='qq_auth',src="/statics/img/ico5.gif",alt="6Cans_QQ")
-                                    div#content_login_divspan4
-                                        form#register_form#margin_left15(action ="/accounts/register/",method="POST") {% csrf_token %}
-                                            fieldset.control-group.success#margin_left25
-                                                div.control-group
-                                                    div.controls
-                                                        div.rightside_text
-                                                            b  使用邮箱注册
-                                                div#margin_top-5
-                                                    strong 用户名
-                                                    label.control-label
-                                                    div.controls
-                                                        {{form.username}}
-                                                        div#id_usernameTip.onShow 请输入用户名
-                                                    {% if form.username.errors %}
-                                                    p.errmsg#err_msg{{ form.username.errors|join:", " }}
-                                                    {% else %}
-                                                    p#err_msg &nbsp;
-                                                    {% endif %}
-                                                div#margin_top-10
-                                                    strong 邮箱
-                                                    label.control-label
-                                                    div.controls
-                                                        {{form.email}}
-                                                        div#id_emailTip.onShow 请输入邮箱
-                                                    {% if form.email.errors %}
-                                                    p.errmsg#err_msg {{ form.email.errors|join:", " }}
-                                                    {% else %}
-                                                    p#err_msg &nbsp;
-                                                    {% endif %}
-                                                div#margin_top-10
-                                                    strong 密码
-                                                    label.control-label
-                                                    div.controls
-                                                        {{form.password1}}
-                                                        div#id_password1Tip.onShow 请输入密码
-                                                    {% if form.password1.errors %}
-                                                    p.errmsg#err_msg{{ form.password1.errors|join:", " }}
-                                                    {% else %}
-                                                    p#err_msg&nbsp;
-                                                    {% endif %}
-                                                div#margin_top-10
-                                                    strong 密码确认
-                                                    label.control-label
-                                                    div.controls
-                                                        {{form.password2}}
-                                                        div#id_password2Tip.onShow 请再次输入密码
-                                                    {% if form.password2.errors %}
-                                                    p.errmsg#err_msg{{ form.password2.errors|join:", " }}
-                                                    {% else %}
-                                                    p#err_msg &nbsp;
-                                                    {% endif %}
-                                                div#margin_top-10
-                                                    div.controls
-                                                        p.p2  验证邮箱，有20%几率获得罐头工场折扣券
-                                                div#margin_top15
-                                                    div.controls
-                                                        button.btn.btn-success#button_color(type="submit")
-                                                            strong &nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;
-                            div.modal-footer
-                                a.btn(href="#",data-dismiss="modal")关闭
-                                a.btn.btn-primary(href="#")保存更改
-                        a(data-toggle="modal",href="#myModal_regist")
+                        a#logo_registbutton(type="submit")
                             div.login_register
                                 span 注册
                         a#logo_loginbutton(type="submit")
