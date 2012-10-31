@@ -36,7 +36,6 @@ div#uploadpage(style="font-size:15px;width:984px")
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列作品描述：
                         {{ form.description }}
-                        
     form#fileupload(action="",method="POST",enctype="multipart/form-data"){% csrf_token %}
         div.row.fileupload-buttonbar(style="margin:0 auto")
             div(style="width:395px;float:left")
@@ -81,7 +80,6 @@ div#uploadpage(style="font-size:15px;width:984px")
             a.btn.btn-primary.modal-next
                 span 下一张
                 i.icon-arrow-right.icon-white
-                
 <script id="template-upload" type="text/x-tmpl">
 {% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
 <tr class="template-upload fade" style="background:#fff;border-bottom:30px solid #f7f7f7">
@@ -144,7 +142,6 @@ div#uploadpage(style="font-size:15px;width:984px")
 </tr>
 {% templatetag openblock %} } {% templatetag closeblock %}
 </script>
-
 <script id="template-download" type="text/x-tmpl">
 {% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
 <tr class="template-download fade" style="background:#fff;border-bottom:30px solid #f7f7f7">
@@ -170,15 +167,6 @@ div#uploadpage(style="font-size:15px;width:984px")
 </button>
 </td>
 </tr></table></td>
-<td><table ><tr>
-<td class="name"><font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品名称：</font>
-<input type="text" class="input-xlarge" id="input01" name='title' placeholder={% templatetag openblock %}=file.name{% templatetag closeblock %}>
-</td></tr></table>
-<table style="margin-top:20px"><tr><td>
-<font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品描述：</font>
-<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242"></textarea>
-</td></tr></table>
-</td>
 {% templatetag openblock %} } {% templatetag closeblock %}
 </tr>
 {% templatetag openblock %} } {% templatetag closeblock %}
