@@ -78,7 +78,6 @@ class PortfolioForm(ModelForm):
         }
          
     def __init__(self, *args, **kwargs):
-        from django.forms.widgets import HiddenInput
         super(PortfolioForm, self).__init__(*args, **kwargs)
         self.fields['createtime'].widget = widgets.AdminDateWidget()
 
