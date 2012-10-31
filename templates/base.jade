@@ -46,21 +46,22 @@ html
                                 span.headerightaspan1 6
                                 span.headerightaspan2
                         {% if user.is_authenticated %}
-                        li#menutest1.dropdown
-                            a.dropdown-toggle(data-toggle="dropdown",href="#menutest1")用户名
-                            ul.dropdown-menu
-                                li
-                                    a(href="#")账户设置
-                                li
-                                    a(href="#")关联账号
-                                li
-                                    a(href="#")我的订单
-                                li
-                                    a(href="#")邀请好友
-                                li
-                                    a#logo_logoutbutton(type="submit")
-                                        div.login_register
-                                            span登出
+                        div
+                            li#menutest1.dropdown
+                                a.dropdown-toggle(data-toggle="dropdown",href="#menutest1",type="submit")
+                                    div.login_register
+                                        span 用户名
+                                ul.dropdown-menu
+                                    li
+                                        a(href="#")账户设置
+                                    li
+                                        a(href="#")关联账号
+                                    li
+                                        a(href="#")我的订单
+                                    li
+                                        a(href="#")邀请好友
+                                    li
+                                        a#logo_logoutbutton(type="submit")登出
                         {% else %}
                         a#logo_registbutton(type="submit")
                             div.login_register
