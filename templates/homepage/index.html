@@ -150,16 +150,10 @@ function index_reloadJson(){//目录页---发送请求并获取数据
         },
         dataType:'json'
     });
+    setTimeout('index_reloadJson()',5000); //指定5秒刷新一次 
     console.log("首页---发送请求并获取数据");//打印LOG
 }
-function reloadnum(){
-    $(document).oneTime(2000, function() {
-        index_reloadJson();
-        console.log("刷新数据！");
-    });
-}
 window.onscroll=function(){get_num_scroll();};
-
 $(document).ready(function(){
     $(".indexfooter_hide_show").css({bottom:-55});
     //test();
@@ -181,8 +175,7 @@ $(document).ready(function(){
             console.log("已经发送请求");
         }
     });
-    setTimeout('reloadnum()',5000); //指定5秒刷新一次 
-    
+    setTimeout('index_reloadJson()',5000); //指定5秒刷新一次 
 });
 </script>
 {% endblock %}
