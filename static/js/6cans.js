@@ -1061,6 +1061,19 @@ function contents_getimgid(obj){//目录页--获取图片的id
     */
     
 }
+/*base.html登录与注册的js功能实现*/
+function show_login(){
+    console.log("123");
+    $("#login_div").show();
+    $("#register_div").hide();
+ }
+ function show_register(){
+    $("#register_div").show();
+    $("#login_div").hide();
+ }
+
+
+/*所有界面的功能实现*/
 $(document).ready(function(){
     //author_rightshow();
     $(".project-cover-img").hover(function(){
