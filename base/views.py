@@ -12,10 +12,11 @@ from utils.helper import convertjson
 def index(request):
     Portfolios = Portfolio.objects.all().order_by('-datetime')[0:19]
     return render_to_response('homepage/index.html',{'Portfolios':Portfolios})
+
 @require_http_methods(["GET"])
 def getworkdata(request):
     works = Work.objects.all().order_by('-datetime')[0:19]
     return HttpResponse(convertjson(works))
 
 def status(request):
-	return HttpResponse()
+    return HttpResponse()
