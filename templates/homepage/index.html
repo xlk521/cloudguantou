@@ -110,12 +110,12 @@ function get_num_scroll(){
         else{$("#index_footer_top").hide();}
 }
 var album_count=0;//个数
-var album_times=0;//次数
+var album_times=1;//次数
 function index_getJson(){//目录页---发送请求并获取数据
     var list_index=0;
     list_index=window.screen.availHeight;
     list_index=Math.ceil(list_index/273);
-    album_count=list_index;
+    album_count=list_index*4;
     console.log("list_index:"+list_index);
     $.ajax({
         type: 'post',
