@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /* GT home */
-#HomeContent{width:984px;padding-top:58px;padding-bottom:72px; margin:0 auto;}
+#HomeContent{width:984px;padding-top:0px;padding-bottom:72px; margin:0 auto;}
 #HomeBanner{ height:163px; border-radius:5px; background-color:#fff; overflow:hidden;}
 #HomeCon{ margin-top:10px;border-radius:5px;background-color:white; overflow:hidden; min-height:600px; -webkit-box-shadow: 0 0 5px 1px #C7C7C7;-moz-box-shadow: 0 0 5px 1px #c7c7c7;box-shadow: 0 0 5px 1px #C7C7C7; padding-bottom:20px;}
 #HomeCon .HomeConTit{ height:54px; border-bottom:1px solid #d1d1d1;background:white;background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, white), color-stop(100%, #F3F3F3));}

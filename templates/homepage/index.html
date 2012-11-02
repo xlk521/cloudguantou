@@ -6,6 +6,7 @@
 <link  href="/statics/css/6cans.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block content %}
+<div id="HomeBanner_top"></div>
 <div id="HomeContent">
 	<div id="HomeBanner">
 		<img src="/statics/img/ba1.jpg" width="982" height="161" />
@@ -41,11 +42,108 @@
 		<div class="HomeConList">
 			<ul id="HomeConList_ul">	
 				{% for Portfolio in Portfolios%}
-				<li><div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.frontcover }} width="221" height="166"></a><div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">{{ Portfolio.title }}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">{{ Portfolio.profile_id }}</a>的品牌<a href='/content/personal/?id={{Portfolio.profile_id}}' class="font2">净世界</a></p></div></div>
+				<li><div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src="/statics/img/approve_upload.gif" date-url={{ Portfolio.frontcover }} width="221" height="166"></a><div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">{{ Portfolio.title }}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">{{ Portfolio.profile_id }}</a>的品牌<a href='/content/personal/?id={{Portfolio.profile_id}}' class="font2">净世界</a></p></div></div>
 				</li>
 				{% endfor %}
 			</ul>
 		</div>
 	</div>
 </div>
+<div id="index_footer" >
+    <div style="width:50px;height:100px;position:absolute;right:-70px;">
+        <a id="index_footer_top" href="#HomeBanner_top" style="position:fixed;bottom:115px;">
+            <div style="width:50px;height:50px;background:url(/statics/img/gtmin.png) no-repeat;background-position:12px -315px;"></div>
+        </a>
+        <a id="index_footer_show" style="position:fixed;bottom:65px;" >
+            <div style="width:50px;height:50px;background:url(/statics/img/gtmin.png) no-repeat;background-position:-32px -315px;"></div>
+        </a>
+    </div>
+</div>
+<script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
+<script type="text/javascript">
+var num1='<li><div class="project-cover"><a href="/content/index/39/?img_id=8417fb87-10db-41f6-8abd-854154a6f907"><img src="/statics/img/homepage_product.GIF" height="166"></a>'+
+	'<div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">title12</h4><em>#摄影</em></div>'+
+	'<p><span class="font1">FROM:</span><a class="font2">2141</a>的品牌<a href="/content/personal/?id=2141" class="font2">净世界</a></p></div></div></li>';
+$.template("tmpl_num1",num1);
+function test(){
+		for(var i=0;i<12;i++){
+			$.tmpl("tmpl_num1").appendTo( "#HomeConList_ul" );
+		}
+}
+function indexfooter_show(){
+    $(this).oneTime(100, function() {
+        $(".indexfooter_hide_show").animate({bottom:0});
+    });
+}
+function indexfooter_hide(){
+    $(this).oneTime(1000, function() {
+        $(".indexfooter_hide_show").animate({bottom:-55});
+    });
+}
+function footer_stoptime(){
+    $(this).stopTime();
+}
+function footer_time(){
+    $(this).oneTime(1000, function() {
+        $(".indexfooter_hide_show").animate({bottom:-55});
+    });
+}
+var scrollPos; 
+function get_num_scroll(){
+        
+        if (typeof window.pageYOffset != 'undefined')    //针对Netscape 浏览器
+        { 
+            scrollPos = window.pageYOffset; 
+        } 
+        else if (typeof document.compatMode != 'undefined' &&   document.compatMode != 'BackCompat')
+        { 
+            scrollPos = document.documentElement.scrollTop; 
+        } 
+        else if (typeof document.body != 'undefined') 
+        { 
+            scrollPos = document.body.scrollTop; 
+        } 
+        console.log("scrollPos:"+scrollPos);
+        if(scrollPos>150){
+            $("#index_footer_top").show();
+        }
+        else{$("#index_footer_top").hide();}
+}
+window.onscroll=function(){get_num_scroll();};
+$(document).ready(function(){
+    $(".indexfooter_hide_show").css({bottom:-55});
+    //test();
+    $("#index_footer_show").hover(function(){
+        indexfooter_show();
+    },function(){
+        indexfooter_hide();
+    });
+    $("#index_footer_show").click(function(){
+        get_num_scroll();
+    });
+    get_num_scroll();
+    var windows_height=document.body.clientHeight;
+    $(window).scroll(function(){
+        //滚动条到网页头部的 高度，兼容ie,ff,chrome
+        var top = scrollPos; //??????
+        console.log("滚动条到网页头部的高度 :"+scrollPos);
+        //网页的高度
+        var textheight = $(document).height();
+        console.log("网页的高度 :"+textheight);
+        console.log("当前显示区域的高度："+document.body.clientHeight);
+        if (textheight - top  <= windows_height) {
+            console.log(windows_height);
+            /*
+            $.getJSON( "json.json" ,function(msg){			
+                for(var i=0;i<12;i++){
+                    $( "#movieTemplate" ).tmpl(msg).prependTo( "#movieList" );//将指定内容在特定位置显示
+                }
+            }); 
+            */
+            test();
+        }
+        console.log("-------------------------------------------------------------------------------------------------------");
+    });
+});
+</script>
 {% endblock %}
