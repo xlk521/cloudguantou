@@ -17,6 +17,7 @@ html
         link(rel="stylesheet",type="text/css",href="/statics/css/jquery.fileupload-ui.css")
         link(rel="stylesheet",type="text/css",href="/statics/css/jquery-ui-1.9.1.css")
         link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap-image-gallery.min.css")
+        {% block link %}{% endblock %}
         script
             var is_authenticated = false
             {% if user.is_authenticated %}

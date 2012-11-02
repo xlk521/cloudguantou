@@ -1155,8 +1155,8 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $('#contents_list_right').bind('ready', function() {
-        contents_getJson();
+    $('#contents_list_right').ready(function() {
+        //contents_getJson();
         console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){

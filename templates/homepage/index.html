@@ -1,140 +1,50 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>罐头工厂-远程创作与跨界协作平台</title>
+{% extends "base.html" %}
+{% block title %}首页{% endblock %}
+{% block link %}
 <link  href="/statics/css/GT_css.css" rel="stylesheet" type="text/css" />
 <link  href="/statics/css/GT_min.css" rel="stylesheet" type="text/css" />
 <link  href="/statics/css/6cans.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="/statics/js/jquery.tmpl.min.js"></script>
-<script type="text/javascript">
-/*var num1='<li><div class="project-cover"><a><img  src="/statics/img/homepage_product.GIF" width="221" height="166"/></a>'+
-							'<div class="project-cover-div"><div><h4  title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">和俩暖色调阿斯达暖色调阿斯暖色调阿斯</h4><em>#摄影</em></div>'+
-								'<p><span class="font1">FROM:</span><a class="font2">简易</a>的品牌<a class="font2">净世界</a></p></div></div></li>';
-								
-$.template("tmpl_num1",num1);
-function test(){
-		for(var i=0;i<12;i++){
-			$.tmpl("tmpl_num1").appendTo( "#HomeConList_ul" );
-		}
-}
-
-$(document).ready(function(){
-	   test();
-	});
-*/
-</script>
-</head>
-
-<body>
-	<div id="header">
-		<div class="headerCon">
+{% endblock %}
+{% block content %}
+<div id="HomeContent">
+	<div id="HomeBanner">
+		<img src="/statics/img/ba1.jpg" width="982" height="161" />
+	</div>
+	<div id="HomeCon">
+		<div class="HomeConTit">
 			<ul>
-				<a href="index.html">
-					<li class="logo1"></li>
-				</a>
-				<li id="nav">
-					<a href="/">
-						<div>					
-							<span>首页</span>					
-						</div>
-					</a>
-					<a href="/content/personal/">
-						<div>
-							<span>个人主页</span>
-						</div>
-					</a>
+				<li>
+					<a class="HomeConTit_a1"></a>
 				</li>
-				<li class="headeright">
-					<a>
-						<div class="login_register">
-							<span class="headerightaspan1">6</span>
-							<span class="headerightaspan2"></span>
-						</div>
-					</a>
-					<a href="/accounts/register/">
-						<div class="login_register">					
-							<span>注册</span>					
-						</div>
-					</a>
-					<a href="/accounts/login/">
-						<div class="login_register">
-							<span>登录</span>
-						</div>
-					</a>
+				<li>
+					<a class="HomeConTit_a2"></a>
+				</li>
+				<li>
+					<a class="HomeConTit_a3"></a>
+				</li>
+				<li>	
+					<a class="HomeConTit_a4"></a>
+				</li>
+				<li class="HomeConTit_a5">	
+				
+				</li>
+				<li class="HomeConTit_a6">	
+					<input name="search" type="text" class="form-searchi"  value="" placeholder="Search...">
 				</li>
 			</ul>
 		</div>
-	</div>
-	<div id="HomeContent">
-		<div id="HomeBanner">
-			<img src="/statics/img/ba1.jpg" width="982" height="161" />
+		<div class="HomeConTit2">
+			<span class="HomeConTit2_span1"></span>
+			<span class="HomeConTit2_span2">30+新作品</span>
 		</div>
-		<div id="HomeCon">
-			<div class="HomeConTit">
-				<ul>
-					<li>
-						<a class="HomeConTit_a1"></a>
-					</li>
-					<li>
-						<a class="HomeConTit_a2"></a>
-					</li>
-					<li>
-						<a class="HomeConTit_a3"></a>
-					</li>
-					<li>	
-						<a class="HomeConTit_a4"></a>
-					</li>
-					<li class="HomeConTit_a5">	
-					
-					</li>
-					<li class="HomeConTit_a6">	
-						<input name="search" type="text" class="form-searchi"  value="" placeholder="Search...">
-					</li>
-				</ul>
-			</div>
-			<div class="HomeConTit2">
-				<span class="HomeConTit2_span1"></span>
-				<span class="HomeConTit2_span2">30+新作品</span>
-			</div>
-			<div class="HomeConList">
-				<ul id="HomeConList_ul">	
-					{% for Portfolio in Portfolios%}
-					<li><div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.frontcover }} width="221" height="166"></a><div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">{{ Portfolio.title }}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">{{ Portfolio.profile_id }}</a>的品牌<a href='/content/personal/?id={{Portfolio.profile_id}}' class="font2">净世界</a></p></div></div>
-					</li>
-					{% endfor %}
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div id="footer">
-		<div class="footerCon">
-			<ul>
-				<li class="logo2"></li>
-				<li class="footerLinks">
-					<div class="footerDiva1">
-						<a>创作者加入</a>
-						<a>品牌商参与</a>
-						<a>关于罐头工场</a>
-						<a>招聘</a>
-						<a>帮助&amp;常见问题</a>
-						<a>联系我们</a>
-						<a>客户服务</a>
-					</div>
-					<div class="footerDiva2">
-						<ul>
-							<li><em>©</em> 2012 罐头工场</li>
-							<li><a>远程创作与跨界协作平台</a></li>
-							<li><a>隐私权政策</a></li>
-							<li><a>使用条款</a></li>
-							<li><a>版权说明</a></li>
-							<li>京<a>128713</a>号</li>
-						</ul>
-					</div>
+		<div class="HomeConList">
+			<ul id="HomeConList_ul">	
+				{% for Portfolio in Portfolios%}
+				<li><div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.frontcover }} width="221" height="166"></a><div class="project-cover-div"><div><h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">{{ Portfolio.title }}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">{{ Portfolio.profile_id }}</a>的品牌<a href='/content/personal/?id={{Portfolio.profile_id}}' class="font2">净世界</a></p></div></div>
 				</li>
+				{% endfor %}
 			</ul>
 		</div>
 	</div>
-</body>
-</html>
+</div>
+{% endblock %}

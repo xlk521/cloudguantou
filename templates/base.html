@@ -4,18 +4,9 @@
     <meta http-equiv="Content-Type" name="viewport" content="width=device-width,initial-scale=1.0"/>
     <meta http-equiv="Content-Type"/>
     <title>{% block title %}{% endblock %}</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/GT_css.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/GT_min.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/GT_trade.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/imgareaselect-default.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/GT_Transaction.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/6Cans.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/mycans_css.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/jquery.fileupload-ui.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/jquery-ui-1.9.1.css"/>
-    <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap-image-gallery.min.css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    {% block link %}{% endblock %}
     <script>
         var is_authenticated = false
         {% if user.is_authenticated %}
