@@ -10,7 +10,7 @@ from utils.helper import convertjson
 
 #@login_required
 def index(request):
-    Portfolios = Portfolio.objects.all().order_by('-datetime')[0:19]
+    Portfolios = Portfolio.objects.all().order_by('-datetime')[0:20]
     return render_to_response('homepage/index.html',{'Portfolios':Portfolios})
 
 @require_http_methods(["GET"])
