@@ -17,6 +17,7 @@ html
         link(rel="stylesheet",type="text/css",href="/statics/css/jquery.fileupload-ui.css")
         link(rel="stylesheet",type="text/css",href="/statics/css/jquery-ui-1.9.1.css")
         link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap-image-gallery.min.css")
+        {% block link %}{% endblock %}
         script
             var is_authenticated = false
             {% if user.is_authenticated %}
@@ -31,13 +32,10 @@ html
                     a(href="/")
                         li.logo1
                     li#nav
-                        a
-                            div                 
+                        a(href="/")  
+                            div              
                                 span 首页
-                        a
-                            div
-                                span 创作区
-                        a
+                        a(href="/content/personal/")
                             div
                                 span 个人主页
                     li.headeright
@@ -46,21 +44,21 @@ html
                                 span.headerightaspan1 6
                                 span.headerightaspan2
                         {% if user.is_authenticated %}
-                        div
+                        ul
                             li#menutest1.dropdown
                                 a.dropdown-toggle(data-toggle="dropdown",href="#menutest1",type="submit")
                                     div.login_register
                                         span 用户名
-                                ul.dropdown-menu
-                                    li
+                                ul.dropdown-menu(style="height:130px;")
+                                    li(style="float:none;")
                                         a(href="#")账户设置
-                                    li
+                                    li(style="float:none;")
                                         a(href="#")关联账号
-                                    li
+                                    li(style="float:none;")
                                         a(href="#")我的订单
-                                    li
+                                    li(style="float:none;")
                                         a(href="#")邀请好友
-                                    li
+                                    li(style="float:none;")
                                         a#logo_logoutbutton(type="submit")登出
                         {% else %}
                         a#logo_registbutton(type="submit")

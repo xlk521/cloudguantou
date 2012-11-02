@@ -1025,3 +1025,8 @@ a.cls:hover{background:url(/statics/img/cls.gif) center -20px no-repeat;}
 .login_register{ float:left;width:66px; height:45px;border-right:1px solid #303030; border-left:1px solid #000;color:gainsboro; font-size:14px; font-weight:700; text-align:center; line-height:45px;}
 .modal-backdrop{ z-index:1; }
 #myModal_regist{ top:50%;left:50%; }
+.base_dropdown_li{float:none;}
+/*header*/
+#HomeBanner_top{height:10px;right:0;left:0;}
+/*悬浮框体*/
+#index_footer{ height:130px;width:984px;position:fixed;right:0;left:0;z-index:1030;bottom:100px;margin:0 auto;}
