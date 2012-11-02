@@ -127,7 +127,7 @@ function index_getJson(){//目录页---发送请求并获取数据
             console.log("album_times:"+album_times);
             console.log(msg);            //index_tmpl();
             for(var i=0;i<album_count;i++){
-                $.tmpl("tmpl_num1",msg.album_obj).appendTo( "#HomeConList_ul" );
+                $.tmpl("tmpl_num1",msg.album_obj[i]).appendTo( "#HomeConList_ul" );
                 console.log("msg.album"+i+":"+msg.album_obj[i]);
             }
         },
