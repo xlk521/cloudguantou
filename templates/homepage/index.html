@@ -36,7 +36,7 @@
 		</div>
 		<div class="HomeConTit2">
 			<span class="HomeConTit2_span1"></span>
-			<span class="HomeConTit2_span2">30+新作品</span>
+			<span class="HomeConTit2_span2"><b id="index_newload">0</b><a >+新作品</a></span>
 		</div>
 		
 		<div class="HomeConList">
@@ -135,6 +135,23 @@ function index_getJson(){//目录页---发送请求并获取数据
     });
     console.log("首页---发送请求并获取数据");//打印LOG
 }
+function index_reloadJson(){//目录页---发送请求并获取数据
+    var myA = document.getElementById("index_newload");//myA.innerText
+    var nuw_neednum=0;
+    $.ajax({
+        type: 'post',
+        url:"/",
+        headers: {"X-CSRFToken":csrftoken},
+        data: { latest_count:1},
+        success:function(msg){
+            nuw_neednum=msg.index_count;
+            console.log("nuw_neednum:"+nuw_neednum);
+            myA.innerText=nuw_neednum;
+        },
+        dataType:'json'
+    });
+    console.log("首页---发送请求并获取数据");//打印LOG
+}
 window.onscroll=function(){get_num_scroll();};
 $(document).ready(function(){
     $(".indexfooter_hide_show").css({bottom:-55});
@@ -150,26 +167,16 @@ $(document).ready(function(){
     get_num_scroll();
     var windows_height=document.body.clientHeight;
     $(window).scroll(function(){
-        //滚动条到网页头部的 高度，兼容ie,ff,chrome
-        var top = scrollPos; //??????
-        //console.log("滚动条到网页头部的高度 :"+scrollPos);
-        //网页的高度
+        var top = scrollPos;
         var textheight = $(document).height();
-        //console.log("网页的高度 :"+textheight);
-        //console.log("当前显示区域的高度："+document.body.clientHeight);
         if (textheight - top  <= windows_height) {
             index_getJson();
             console.log("已经发送请求");
-            /*
-            $.getJSON( "json.json" ,function(msg){			
-                for(var i=0;i<12;i++){
-                    $( "#movieTemplate" ).tmpl(msg).prependTo( "#movieList" );//将指定内容在特定位置显示
-                }
-            }); 
-            */
-            //test();
         }
-        //console.log("-------------------------------------------------------------------------------------------------------");
+    });
+    $(document).oneTime(1000, function() {
+        index_reloadJson();
+        console.log("刷新数据！");
     });
 });
 </script>
