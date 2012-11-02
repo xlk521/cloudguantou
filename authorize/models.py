@@ -29,12 +29,12 @@ class UserProfile(models.Model):
         verbose_name_plural = '6Cans平台用户信息'
 
     GENDER_CHOICES = ((True, '男性'), (False, '女性'))
-
+    
+    cans_id = models.CharField(max_length=128)
     user = models.OneToOneField(User)
     nickname = models.CharField(max_length=256)
     gender = models.BooleanField(choices=GENDER_CHOICES)
     head = models.CharField(max_length=256)
-    cans_id = models.CharField(max_length=128)
     followers_count = models.CharField(max_length=128, default=0)
     friends_count = models.CharField(max_length=128, default=0)
     works_count = models.CharField(max_length=128, default=0)

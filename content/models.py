@@ -56,7 +56,7 @@ class Portfolio(models.Model):
     description = models.CharField(max_length=128, blank=True)
     createtime = models.DateTimeField(blank=True, null=True)
     datetime = models.DateTimeField(auto_now=True, auto_now_add=True)
-    cover_key = models.CharField(max_length=512, null=True)
+    coverkey = models.CharField(max_length=512, null=True)
     audited = models.BooleanField(default=False)
 
     objects = PortfolioManager()
@@ -99,6 +99,7 @@ class Work(models.Model):
     price = models.FloatField(blank=True, default=0.0)
     is_cover = models.BooleanField(default=False)
     available = models.BooleanField(default=True)
+    url = models.CharField(blank=True)
     
     objects = WorkManager()
 
