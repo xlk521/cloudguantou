@@ -61,9 +61,9 @@
 </div>
 <script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
 <script type="text/javascript">
-var index_addimg='<li><div class="project-cover"><a href="/content/index/39/?img_id=${img_id}"><img src=${imgsrc} width="221" height="166"></a><div class="project-cover-div"><div>'+
-'<h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">${title}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">${Portfolio.profile_id }</a>的品牌'+
-'<a href="/content/personal/?id=${Portfolio.profile_id }" class="font2">净世界</a></p></div></div></li>';
+var index_addimg='<li><div class="project-cover"><a href="/content/index/39/?img_id=${pid}"><img src=${coverkey} width="221" height="166"></a><div class="project-cover-div"><div>'+
+'<h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">${title}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">${nickname }</a>的品牌'+
+'<a href="/content/personal/?id=${profile_id }" class="font2">净世界</a></p></div></div></li>';
 $.template("tmpl_num1",index_addimg);
 function index_tmpl(){
 		for(var i=0;i<12;i++){
@@ -127,8 +127,8 @@ function index_getJson(){//目录页---发送请求并获取数据
             console.log("album_times:"+album_times);
             console.log(msg);            //index_tmpl();
             for(var i=0;i<album_count;i++){
-                $.tmpl("tmpl_num1",msg.album).appendTo( "#HomeConList_ul" );
-                console.log("msg.album"+i+":"+msg.album[i]);
+                $.tmpl("tmpl_num1",msg.album_obj).appendTo( "#HomeConList_ul" );
+                console.log("msg.album"+i+":"+msg.album_obj[i]);
             }
         },
         dataType:'json'
