@@ -9,5 +9,7 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('base.views',
 
     url(r'^$', 'index'),
+    
+    #url(r'^getAjaxAlbums$', 'getAjaxAlbums')
 
 )
