@@ -115,7 +115,7 @@ function index_getJson(){//目录页---发送请求并获取数据
     var list_index=0;
     list_index=window.screen.availHeight;
     list_index=Math.ceil(list_index/273);
-    album_counts=list_index;
+    album_count=list_index;
     console.log("list_index:"+list_index);
     $.ajax({
         type: 'post',
@@ -152,11 +152,11 @@ $(document).ready(function(){
     $(window).scroll(function(){
         //滚动条到网页头部的 高度，兼容ie,ff,chrome
         var top = scrollPos; //??????
-        console.log("滚动条到网页头部的高度 :"+scrollPos);
+        //console.log("滚动条到网页头部的高度 :"+scrollPos);
         //网页的高度
         var textheight = $(document).height();
-        console.log("网页的高度 :"+textheight);
-        console.log("当前显示区域的高度："+document.body.clientHeight);
+        //console.log("网页的高度 :"+textheight);
+        //console.log("当前显示区域的高度："+document.body.clientHeight);
         if (textheight - top  <= windows_height) {
             index_getJson();
             console.log("已经发送请求");
@@ -169,7 +169,7 @@ $(document).ready(function(){
             */
             //test();
         }
-        console.log("-------------------------------------------------------------------------------------------------------");
+        //console.log("-------------------------------------------------------------------------------------------------------");
     });
 });
 </script>
