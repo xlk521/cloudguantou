@@ -76,7 +76,7 @@ a.general:hover{ text-decoration:underline;}
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#020202', endColorstr='#020202')"; /* IE8 */
 }
 #header .headerCon{width:984px; height:45px; margin:0 auto;}
-#header .headerCon ul{ height:45px;}
+#header .headerCon_ul{ height:45px;}
 #header .headerCon li{ float:left;}
 #header .headerCon li.logo1{ width:150px; height:32px; margin-top:7px;}
 #header li#nav{ width:264px;border-left:1px solid #303030; border-right:1px solid #000;}
@@ -115,3 +115,40 @@ a.general:hover{ text-decoration:underline;}
 #footer li.footerLinks div.footerDiva2 ul li{ float:left; margin-right:10px;}
 #footer li.footerLinks div.footerDiva2 a:hover{color:white; text-decoration: underline;}
 #footer li.footerLinks div.footerDiva2 em{ font-size:12px;}
+
+
+
+/*登录与注册的modal设置*/
+#myModal {height:400px;}
+#myModal .login{
+ width:325px; height:370px; background-image:url(/statics/img/21232.jpg); border-radius:5px;color:white; box-shadow:0 0 12px #444; position:absolute; top:50%; left:50%; margin-left:-162px; margin-top:-185px;}
+#myModal .login_tit{ width:325px; text-align:right;}
+#myModal .login_off{ display:inline-block; width:16px; height:16px; color:white; border-radius:50%; background-color:#1f1f1f; border:2px solid #7d7d7d; box-shadow:0 0 2px #000; font-weight:700; }
+#myModal .login_h3{ font:1em/100% "微软雅黑", sans-serif; width:155px;}
+#myModal .login_con{ margin:0 20px; overflow:hidden; padding-bottom:20px;}
+#myModal .login_con i{background-image:url(/statics/img/saa1.png); display:block; width:17px; height:17px; background-repeat: no-repeat; float:right;}
+#myModal .login_icon2{ background-position:0 -22px; color:#ff2328;}
+#myModal .login_s1,.login_s2{ float:right; display:block; font:12px/150% sans-serif; margin-right:5px;}
+#myModal .login_s1{ color:#63b853;}
+#myModal .login_s2{ color:#ff2328;}
+#myModal .login_input,#myModal .login_input1{ height:37px; width:275px; border-radius:5px; border:0; padding-left:5px; margin-left:2px;}
+#myModal .login_input{ background:url(/statics/img/1221.jpg) no-repeat;}
+#myModal .login_input1{ background:url(/statics/img/1222.jpg) no-repeat;}
+#myModal .login_input:hover,#myModal .login_input1:hover{box-shadow: 0 0 20px rgba(99, 184, 83, 0.65);}
+#myModal .login_footer{margin:0 20px; overflow:hidden;}
+#myModal .login_sp1{ display:block; width:78px; height:36px; background-color:#3f3f41; border-radius:6px;  box-shadow:0 0 5px #aaa; float:right; margin:5px;}
+#myModal .login_btn{background:url(/statics/img/ass1.jpg) no-repeat; width:70px; height:28px; display:block; font:0.8em/28px "微软雅黑" sans-serif; font-weight:700; border-radius:5px; border:1px solid #000; margin:3px; position:absolute; text-align:center;}
+#myModal .login_a{ font:12px/45px sans-serif; margin-left:20px; color:white;}
+#myModal .login_ad{margin:0 36px; overflow:hidden;}
+#myModal .login_ad li{ float:left; width:112px; padding:7px 7px;}
+#myModal .login_ad li a{
+  display: inline-block;  background-image:url(/statics/img/btn1.png); width:112px; height:35px; border-radius:5px; box-shadow:0 2px 5px #000; background-repeat: no-repeat; color:#3b3b3b;}
+#myModal .login_ad li a span{font:1em/210% "微软雅黑", sans-serif; margin-left:42px; }
+#myModal .login_ad_a1{}
+#myModal .login_ad_a2{background-position:0 -81px;}
+#myModal .login_ad_a3{background-position:0 -164px;}
+#myModal .login_ad_a4{background-position:0 -248px;}
+#myModal .login_ad_a1:hover{background-position:0 -41px; color:#d8d8d8;}
+#myModal .login_ad_a2:hover{background-position:0 -122px; color:#d8d8d8;}
+#myModal .login_ad_a3:hover{background-position:0 -205px; color:#d8d8d8;}
+#myModal .login_ad_a4:hover{background-position:0 -288px; color:#d8d8d8;}

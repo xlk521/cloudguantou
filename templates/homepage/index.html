@@ -109,7 +109,7 @@ function get_num_scroll(){
         }
         else{$("#index_footer_top").hide();}
 }
-var album_counts=0;//个数
+var album_count=0;//个数
 var album_times=0;//次数
 function index_getJson(){//目录页---发送请求并获取数据
     var list_index=0;
@@ -118,15 +118,15 @@ function index_getJson(){//目录页---发送请求并获取数据
     album_counts=list_index;
     console.log("list_index:"+list_index);
     $.ajax({
-        type: 'get',
-        url:"/content/getWorks/",
+        type: 'post',
+        url:"/",
         headers: {"X-CSRFToken":csrftoken},
-        data: { album_counts:album_counts,album_times:album_times},
+        data: { album_count:album_count,album_times:album_times},
         success:function(msg){
             album_times=msg.album_times;
             console.log("album_times:"+album_times);
-            //index_tmpl();
-            for(var i=0;i<album_counts;i++){
+            console.log(msg);            //index_tmpl();
+            for(var i=0;i<album_count;i++){
                 $.tmpl("tmpl_num1",msg.album).appendTo( "#HomeConList_ul" );
                 console.log("msg.album"+i+":"+msg.album[i]);
             }

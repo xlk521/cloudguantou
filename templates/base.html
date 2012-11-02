@@ -41,7 +41,7 @@
     <body id="change_id" style="width:100%;min-height:450px;" onkeydown="keyDown()" data-spy="scroll">
         <div id="header">
             <div class="headerCon">
-                <ul>
+                <ul class="headerCon_ul">
                     <a href="/">
                         <li class="logo1"></li>
                     </a>
@@ -65,14 +65,14 @@
                             </div>
                         </a>
                         {% if user.is_authenticated %}
-                        <ul>
+                        <ul class="headerCon_ul">
                             <li id="menutest1" class="dropdown">
                                 <a data-toggle="dropdown" href="#menutest1" type="submit" class="dropdown-toggle">
                                     <div class="login_register">
                                         <span>用户名</span>
                                     </div>
                                 </a>
-                                <ul style="height:130px;" class="dropdown-menu">
+                                <ul style="height:130px;" class="dropdown-menu headerCon_ul">
                                     <li style="float:none;"><a href="#">账户设置</a></li>
                                     <li style="float:none;"><a href="#">关联账号</a></li>
                                     <li style="float:none;"><a href="#">我的订单</a></li>
