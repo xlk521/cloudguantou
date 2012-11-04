@@ -29,22 +29,6 @@ class CategoryModelForm(ModelForm):
     class Meta:
         model = CategoryModel()
 
-class ReCategoryBrandModelManager(BaseModelManager):
-    pass
-
-class ReCategoryBrandModel(models.Model):
-    category = models.ForeignKey(CategoryModel)
-    brand = models.ForeignKey(Brand)
-    
-    objects = ReCategoryBrandModelManager()
-    
-    def __unicode__(self):
-        return '%s'%self.name
-   
-class ReCategoryBrandModelForm(ModelForm):
-    class Meta:
-        model = ReCategoryBrandModel()
-        
 class PortfolioManager(BaseModelManager):
     pass
 

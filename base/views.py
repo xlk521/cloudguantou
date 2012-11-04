@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
-from content.models import Work, Portfolio
+from content.models import Work, Portfolio, CategoryModel
 from utils.helper import convertjson
 from authorize.models import UserProfile
 
@@ -42,7 +42,12 @@ def index(request):
             album_count = int(request.POST.get('album_count', False))
             album_times = int(request.POST.get('album_times', False))
             album_begin = album_times*album_count
-            portfolios = Portfolio.objects.all().order_by('-datetime')[album_begin: album_begin+album_count ]
+            if request.POST.get('getcategory', False):
+                getcategory = request.POST.get('getcategory', False)
+                category = CategoryModel.objects.get(name=getcategory)
+                portfolios = Portfolio.objects.filter(category=category).order_by('-datetime')[album_begin: album_begin+album_count ]
+            else:
+                portfolios = Portfolio.objects.all().order_by('-datetime')[album_begin: album_begin+album_count ]
             album_times=album_times+1
             albums={}
             albumlist=[]

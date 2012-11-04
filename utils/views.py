@@ -112,4 +112,5 @@ def initContentIndex():
                                        address='北京', worksample='/statics/img/content_list.GIF', id_type='身份证',
                                        id_num='1234567890', id_photo='/statics/img/content_list.GIF',
                                        personal_details='personal_details%s'%i)
+        
 
