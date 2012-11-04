@@ -48,6 +48,8 @@ function get_num_scroll(){
 }
 var album_count=0;//个数
 var album_times=1;//次数
+var class_nume_num=0;//用来标识需要的数据类型
+var index_getfilm_num=0;//记录调用的次数
 function index_getJson(){//目录页---发送请求并获取数据
     var list_index=0;
     list_index=window.screen.availHeight;
@@ -71,6 +73,36 @@ function index_getJson(){//目录页---发送请求并获取数据
         dataType:'json'
     });
     console.log("首页---发送请求并获取数据");//打印LOG
+}
+function index_getfilm(){
+    index_getfilm_num=index_getfilm_num+1;
+    var list_index=0;
+    list_index=window.screen.availHeight;
+    list_index=Math.ceil(list_index/273);
+    album_count=list_index*4;
+    console.log("list_index:"+list_index);
+    if(index_getfilm_num==1){
+        album_times=0;
+        $("#HomeConList_ul").empty();
+    }
+    class_nume_num=1;
+    $.ajax({
+        type: 'post',
+        url:"/",
+        headers: {"X-CSRFToken":csrftoken},
+        data: { album_count:album_count,album_times:album_times,getcategory:"摄影"},
+        success:function(msg){
+            album_times=msg.album_times;
+            console.log("album_times:"+album_times);
+            console.log(msg);            //index_tmpl();
+            for(var i=0;i<album_count;i++){
+                $.tmpl("tmpl_num1",msg.album_obj[i]).appendTo( "#HomeConList_ul" );
+                console.log("msg.album"+i+":"+msg.album_obj[i]);
+            }
+        },
+        dataType:'json'
+    });
+    console.log("首页---发送请求并获取----指定类型----的数据");//打印LOG
 }
 var new_count=0;//用来存放目前显示的刷新得到的数据
 function index_reloadJson(){//目录页---发送请求并获取数据
@@ -138,7 +170,13 @@ $(document).ready(function(){
         var top = scrollPos;
         var textheight = $(document).height();
         if (textheight - top  <= windows_height) {
-            index_getJson();
+            if(class_nume_num==1){
+                index_getfilm();
+            }
+            else{
+                index_getJson();
+            }
+            
             console.log("已经发送请求");
         }
     });
