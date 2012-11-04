@@ -89,6 +89,9 @@ function index_reloadJson(){//目录页---发送请求并获取数据
         },
         dataType:'json'
     });
+    if(nuw_neednum!=0){
+        $(".HomeConTit2_span2").show();
+    }
     setTimeout('index_reloadJson()',5000); //指定60秒刷新一次 
     console.log("首页---发送请求并获取数据--更新待添加的数据");//打印LOG
 }
@@ -106,6 +109,9 @@ function index_reload_img(){//目录页---发送请求并获取数据---将新�
                 $.tmpl("tmpl_num1",msg.album_obj[i]).prependTo( "#HomeConList_ul" );
                 console.log("msg.album"+i+":"+msg.album_obj[i]);
             }
+            var myA = document.getElementById("index_newload");//myA.innerText
+            myA.innerText=0;
+            $(".HomeConTit2_span2").hide();
         },
         dataType:'json'
     });
