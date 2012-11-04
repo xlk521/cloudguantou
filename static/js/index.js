@@ -89,7 +89,7 @@ function index_reloadJson(){//目录页---发送请求并获取数据
         },
         dataType:'json'
     });
-    setTimeout('index_reloadJson()',60000); //指定60秒刷新一次 
+    setTimeout('index_reloadJson()',5000); //指定60秒刷新一次 
     console.log("首页---发送请求并获取数据--更新待添加的数据");//打印LOG
 }
 function index_reload_img(){//目录页---发送请求并获取数据---将新的数据添加到现有数据的顶部
@@ -131,5 +131,5 @@ $(document).ready(function(){
             console.log("已经发送请求");
         }
     });
-    setTimeout('index_reloadJson()',60000); //指定60秒刷新一次 
+    setTimeout('index_reloadJson()',5000); //指定60秒刷新一次 
 });
