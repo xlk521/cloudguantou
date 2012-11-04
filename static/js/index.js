@@ -94,8 +94,7 @@ function index_getfilm(){
         success:function(msg){
             album_times=msg.album_times;
             console.log("album_times:"+album_times);
-            console.log(msg);            //index_tmpl();
-            alert("xlkxklkx");
+            console.log(msg);
             for(var i=0;i<album_count;i++){
                 $.tmpl("tmpl_num1",msg.album_obj[i]).appendTo( "#HomeConList_ul" );
                 console.log("msg.album"+i+":"+msg.album_obj[i]);
