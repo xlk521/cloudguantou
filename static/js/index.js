@@ -90,6 +90,7 @@ function index_reloadJson(){//目录页---发送请求并获取数据
                 console.log("--------------------------------->"+nuw_neednum);
                 $(".HomeConTit2").show();
             }
+            else{$(".HomeConTit2").hide();}
         },
         dataType:'json'
     });
