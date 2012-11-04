@@ -93,11 +93,13 @@ function index_reloadJson(){//目录页---发送请求并获取数据
     console.log("首页---发送请求并获取数据--更新待添加的数据");//打印LOG
 }
 function index_reload_img(){//目录页---发送请求并获取数据---将新的数据添加到现有数据的顶部
+    cur_count=new_count;
+    console.log("cur_count:"+cur_count);
     $.ajax({
         type: 'post',
         url:"/",
         headers: {"X-CSRFToken":csrftoken},
-        data: {get_current_albumdata:1 },
+        data: {get_current_albumdata:1,cur_count:cur_count},
         success:function(msg){
             console.log("数据调取成功！！！");
             for(var i=0;i<new_count;i++){
