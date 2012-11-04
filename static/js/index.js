@@ -72,6 +72,7 @@ function index_getJson(){//目录页---发送请求并获取数据
     });
     console.log("首页---发送请求并获取数据");//打印LOG
 }
+var new_count=0;//用来存放目前显示的刷新得到的数据
 function index_reloadJson(){//目录页---发送请求并获取数据
     var myA = document.getElementById("index_newload");//myA.innerText
     var nuw_neednum=0;
@@ -84,11 +85,29 @@ function index_reloadJson(){//目录页---发送请求并获取数据
             nuw_neednum=msg.index_count;
             console.log("nuw_neednum:"+nuw_neednum);
             myA.innerText=nuw_neednum;
+            new_count=nuw_neednum;
         },
         dataType:'json'
     });
-    setTimeout('index_reloadJson()',5000); //指定5秒刷新一次 
+    setTimeout('index_reloadJson()',60000); //指定60秒刷新一次 
     console.log("首页---发送请求并获取数据--更新待添加的数据");//打印LOG
+}
+function index_reload_img(){//目录页---发送请求并获取数据---将新的数据添加到现有数据的顶部
+    $.ajax({
+        type: 'post',
+        url:"/",
+        headers: {"X-CSRFToken":csrftoken},
+        data: {get_current_albumdata:1 },
+        success:function(msg){
+            console.log("数据调取成功！！！");
+            for(var i=0;i<new_count;i++){
+                $.tmpl("tmpl_num1",msg.album_obj[i]).prependTo( "#HomeConList_ul" );
+                console.log("msg.album"+i+":"+msg.album_obj[i]);
+            }
+        },
+        dataType:'json'
+    });
+    console.log("首页---发送请求并获取数据--添加数据");//打印LOG
 }
 window.onscroll=function(){get_num_scroll();};
 $(document).ready(function(){
@@ -112,5 +131,5 @@ $(document).ready(function(){
             console.log("已经发送请求");
         }
     });
-    setTimeout('index_reloadJson()',5000); //指定5秒刷新一次 
+    setTimeout('index_reloadJson()',60000); //指定60秒刷新一次 
 });
