@@ -46,7 +46,7 @@ class Portfolio(models.Model):
     objects = PortfolioManager()
     
     def __unicode__(self):
-        return '%s Album'%self.title    
+        return '%s Portfolio'%self.title    
 
 class PortfolioForm(ModelForm):
     class Meta:
