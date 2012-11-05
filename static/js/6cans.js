@@ -902,6 +902,7 @@ function contents_left_resize(){//作者目录页的做部分：上下移动的�
                 work_top=work_top-contents_height_num;
                 contents_height_num=0;
                 contents_leftarray[left_num]=work_top;
+                console.log(work_top);
                 left_num=left_num+1;
             }
             contents_line_num=contents_line_num+1;
@@ -912,11 +913,13 @@ function contents_left_resize(){//作者目录页的做部分：上下移动的�
             contents_leftarray[left_num]=work_top;
         }
     }
+     console.log(work_top);
     console.log("个人目录页的函数：contents_left_resize()//解决上下移动的问题！ ");
 }
 var contents_begin_num=0;
 function contents_leftchange(up_down){//记录目录页向上移动的数据，每当点击向上按钮（#work_up）,符合条件时添加数据
     var up_num=contents_leftarray.length;
+    console.log(up_num);
     var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
     up_num=up_num-1;
     if(up_down=="up" && contents_leftnum<up_num){//如果是向上按钮并且还允许调取数据库，数组计数加一
@@ -933,10 +936,7 @@ function contents_leftchange(up_down){//记录目录页向上移动的数据，�
         else{work_top=contents_leftarray[contents_leftnum];}
         $("#contents_list_work").animate({top:work_top});
     }
-    var change_img=new Array();
-    for(var i=0;i<5;i++){
-        change_img[0]="/statics/img/content_list.GIF";
-    }
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:"+work_top);
 }
 function contents_rightchange(next_prive){//设置目录页的变换
     var distance=0;
@@ -946,7 +946,6 @@ function contents_rightchange(next_prive){//设置目录页的变换
         $("#contents_list_right").animate({left:contents_nextarray[contents_list_array]});
     }
     else if(next_prive=="prive" &&  contents_list_array>=0){
-        //contents_nextnum=contents_nextnum-1;//
         contents_list_array=contents_list_array-1;
         if(contents_list_array<0){distance=0;}
         else if(contents_list_array>=0){
@@ -964,15 +963,8 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         headers: {"X-CSRFToken":csrftoken},
         data: { imgid:imgid },
         success:function(msg){
-            console.log("msg.description====>>"+msg.description);
-            //for(var i=0;i<msg.length;i++){//将新旧数据拼接到一起
             contents_listuser[0]=[msg.description,msg.title,msg.createtime];
-            console.log("user_allfriends:::json====>>"+contents_listuser);
             contents_listuser[1]=msg.works;
-            console.log("user_allfriends:::json====>>"+contents_listuser);
-            //}
-            //aythor_users=msg.users;//获取数据中关于已登录作者的数据
-            console.log("user_allfriends:::json====>>"+contents_listuser);
             $("#contents_list_right").empty();
             contents_right_left(msg);
         },
@@ -984,7 +976,6 @@ function contents_resize(){//作者目录页---大小更换之后的函数
     contents_show(1210);
 }
 function contents_show(leftwidth){
-    //$("#contents_list").show(function(){//目录页的内容初始设计
         var wid=document.body.clientWidth-2;//网页可见区域宽-2px
         var hei=document.body.clientHeight-100;//网页可见区域高-上下导航
         var right_width=wid-leftwidth;
@@ -1002,7 +993,6 @@ function contents_show(leftwidth){
         var img_hei=hei-35;
         $(".contents_changeimg").css({height:img_hei});
         console.log("wid:"+wid);
-   // });
 }
 function keyDown(){
     var body_class=document.getElementById('change_id').className;
@@ -1047,18 +1037,7 @@ function list_button_shrink(){//目录页：收缩左半边
     $("#contents_control_right").show();
 }
 function contents_getimgid(obj){//目录页--获取图片的id
-    //console.log(obj.id);
     contents_getJson(obj.id);
-    /*
-    if(obj.className=="contents_adviceimg1"){
-
-    }
-    else if(obj.className=="img_delay_load"){
-        console.log("obj.className===>"+obj.className);
-        $("#contents_list_right").empty();
-        contents_right_left();
-    }
-    */
     
 }
 /*base.html登录与注册的js功能实现*/
@@ -1148,11 +1127,15 @@ $(document).ready(function(){
     $("#cart_div").show(function(){
         mycart_init();
     });
-    $("#contents_list").show(function(){//目录页的内容初始设计
+
+    $("#contents_list").ready(function(){//目录页的内容初始设计
+        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--0");
         contents_show(1210);
+        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--1");
         contentlist_content_imgnum("contents_list_date");
+        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--2");
         contents_left_resize();
-       // contents_left_init();
+        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--3");
     });
     $("#author_content_right").show(function(){
         $('.carousel').carousel('pause');
@@ -1168,6 +1151,7 @@ $(document).ready(function(){
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
+    /**/
     $('#contents_list_right').ready(function() {
         contents_getJson();
         console.log("首次调取数据");
@@ -1282,7 +1266,7 @@ $(document).ready(function(){
         $("#contents_list").show(function(){//目录页的内容初始设计
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
-            //contents_right_left();
+            contents_right_left();
         });
     });
 });
