@@ -1169,7 +1169,7 @@ $(document).ready(function(){
         console.log("show--ing");
     });
     $('#contents_list_right').ready(function() {
-        //contents_getJson();
+        contents_getJson();
         console.log("首次调取数据");
     });
     $("#list_button_shrink").click(function(){
