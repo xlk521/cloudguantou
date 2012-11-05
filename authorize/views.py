@@ -15,7 +15,6 @@ from utils import ImageFactory, convertjson
 from uuid import uuid4
 import logging
 import json
-from content.models import ReCategoryBrandModel, CategoryModel
 
 
 log = logging.getLogger()
@@ -52,9 +51,6 @@ def identity(request):
                 illustration = request.POST.get('illustration', False)
                 painting = request.POST.get('painting', False)
                 photography = category_ischecked(photography)
-                if photography:
-                    ReCategoryBrandModel.objects.create(category=CategoryModel.objects.get(name='photography'),
-                                         brand=brandprofile)
                 illustration = category_ischecked(illustration)
                 painting = category_ischecked(painting)
                 log.debug(photography)
