@@ -1,0 +1,72 @@
+!!!html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
+html
+    head
+        meta(http-equiv="Content-Type",name="viewport", content="width=device-width,initial-scale=1.0")
+        meta(http-equiv="Content-Type",content="text/html; charset="utf-8")
+        title 选择个人品牌背景
+        meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/GT_css.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/GT_min.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/GT_trade.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/imgareaselect-default.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/GT_Transaction.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/6Cans.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/mycans_css.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/jquery.fileupload-ui.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/jquery-ui-1.9.1.css")
+        link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap-image-gallery.min.css")
+        script(type="text/javascript",src="/statics/js/jquery-1.8.2.min.js",charset="UTF-8")
+        link(rel="stylesheet", type="text/css" ,href="/statics/css/lrtk.css" )
+        script(type="text/javascript", charset="utf-8", src="/statics/js/lrscroll.js" )
+    body
+        div(style="position:relative;overflow:hidden;min-width:1084px;")
+            div(style="position:relation;float:left;min-width:984px;")
+                div.personal_leftright(style="height:84px;width:84px;position:relative;float:left;background:#121212")
+                    a(style="background:#fff;width:40px;height:50px;") 左移
+                div#Personal_brand_background(style="height:84px;min-width:984px;position:relative;float:left;background:#eaa333")
+                    div(style="height:84px;width:146px;position:relative;float:left;background:#aaa;margin-right:10px")
+                        a
+                            img(src="/statics/img/cp2.jpg",style="height:84px;width:146px;",onclick="choose_img(this)")
+                    div(style="height:84px;width:146px;position:relative;float:left;background:#ae3434;margin-right:10px")
+                        a
+                            img(src="/statics/img/approve_upload.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
+                    div(style="height:84px;width:146px;position:relative;float:left;background:#aaa;margin-right:10px")
+                        a
+                            img(src="/statics/img/content_list.GIF",style="height:84px;width:146px;",onclick="choose_img(this)")
+                    div(style="height:84px;width:146px;position:relative;float:left;background:#fff;margin-right:10px")
+                        a
+                            img(src="/statics/img/homepage_product.GIF",style="height:84px;width:146px;",onclick="choose_img(this)")
+                div.personal_leftright(style="height:84px;width:84px;position:relative;float:left;background:#121212")
+                    a(style="background:#fff;width:40px;height:50px;") 右移
+            div#personal_button(style="height:84px;width:84px;position:relative;float:left;background:#444333")
+                a(style="background:#fff;width:40px;height:50px;") 提交
+        div#personal_content(style="background-color:#ea3434;border:5px solid #aaa;min-width:1084px;")
+            div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px")选择个人品牌封面
+            img#personal_content_img(style="min-width:984px;display:none")
+
+    script
+        function Personal_brand_resize(){
+            var wid=document.body.clientWidth;
+            var hei=document.body.clientHeight
+            var div_height=$("#personal_button").height();
+            console.log("div_height-->"+div_height);
+            hei=hei-div_height-10;
+            $("#personal_content").css({height:hei});
+            $("#personal_content_img").css({height:hei});
+            wid=wid-10;
+            $("#personal_content_img").css({width:wid});
+        }
+        function choose_img(obj){
+            console.log(obj.src);
+            $("#personal_content_img").show();
+            $("#personal_content_div").hide();
+            $("#personal_content_img").attr({"src":obj.src});
+        }
+        $(document).ready(function(){
+            Personal_brand_resize();
+            $(window).resize(function(){
+                Personal_brand_resize();
+            });
+        });
