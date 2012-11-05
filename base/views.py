@@ -29,7 +29,7 @@ def index(request):
             albumlist=[]
             for portfolio in cur_portfolios:
                 portfolio_details={}
-                portfolio_details['coverkey'] = portfolio.coverkey
+                portfolio_details['coverkey'] = portfolio.cover_key
                 portfolio_details['title'] = portfolio.title
                 portfolio_details['pid'] = portfolio.pid
                 portfolio_details['profile_id'] = portfolio.profile_id

@@ -49,10 +49,11 @@ def content_index(request, cans_id):
         work = {}
         work['title'] = portfolio.title
         work['albumid'] = portfolio.pid
-        work['frontcover'] = reverse('content.views.serve_work', args=(portfolio.cover_key,))
+        #work['frontcover'] = reverse('content.views.serve_work', args=(portfolio.cover_key,))
+        work['frontcover'] = portfolio.coverkey
         works[year][month].append(work)
-
-    return render(request, 'content/contents_list.jade', {'works':works})
+    return HttpResponse(portfolios.__dict__())
+    #return render(request, 'content/contents_list.jade', {'works':works})
 
 @login_required
 @require_http_methods(["POST", "GET"])
@@ -126,7 +127,6 @@ def dealPortfoliodata(portfolio):
             workdetails={}
             workdetails['url'] = work.url
             workdetails['description'] = work.description
-            workdetails['parameter'] = work.parameter
             #work['collections'] = work.collections
             getwork.append(workdetails)
     clickportfolio['works'] = getwork
