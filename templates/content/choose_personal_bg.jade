@@ -22,34 +22,52 @@ html
         script(type="text/javascript", charset="utf-8", src="/statics/js/lrscroll.js" )
     body
         div(style="position:relative;overflow:hidden;min-width:1084px;")
-            div(style="position:relation;float:left;min-width:984px;")
-                div.personal_leftright(style="height:84px;width:84px;position:relative;float:left;background:#121212")
-                    a(style="background:#fff;width:40px;height:50px;") 左移
-                div#Personal_brand_background(style="height:84px;min-width:984px;position:relative;float:left;background:#eaa333")
-                    div(style="height:84px;width:146px;position:relative;float:left;background:#aaa;margin-right:10px")
+            div#Personal_brand_background(style="position:relation;float:left;min-width:984px;background:#aaa;overflow:hidden;margin-left:50px;left:0px")
+                div.personal_img_content(style="height:84px;position:relative;float:left;background:#eaa333;overflow:hidden;")
+                    div.personalimg
                         a
                             img(src="/statics/img/cp2.jpg",style="height:84px;width:146px;",onclick="choose_img(this)")
-                    div(style="height:84px;width:146px;position:relative;float:left;background:#ae3434;margin-right:10px")
+                    div.personalimg
                         a
                             img(src="/statics/img/approve_upload.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
-                    div(style="height:84px;width:146px;position:relative;float:left;background:#aaa;margin-right:10px")
+                    div.personalimg
                         a
                             img(src="/statics/img/content_list.GIF",style="height:84px;width:146px;",onclick="choose_img(this)")
-                    div(style="height:84px;width:146px;position:relative;float:left;background:#fff;margin-right:10px")
+                    div.personalimg
                         a
                             img(src="/statics/img/homepage_product.GIF",style="height:84px;width:146px;",onclick="choose_img(this)")
-                div.personal_leftright(style="height:84px;width:84px;position:relative;float:left;background:#121212")
-                    a(style="background:#fff;width:40px;height:50px;") 右移
-            div#personal_button(style="height:84px;width:84px;position:relative;float:left;background:#444333")
-                a(style="background:#fff;width:40px;height:50px;") 提交
+                a.personal_right(onclick="personal_rightorleft(this)")
+                a.personal_left(onclick="personal_rightorleft(this)")
+            div#personal_button(style="height:84px;width:84px;position:absolute;float:left;background:#444333;right:0px")
+                button(style="background:#Aaa;width:40px;height:50px;") 提交
         div#personal_content(style="background-color:#ea3434;border:5px solid #aaa;min-width:1084px;")
             div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px")选择个人品牌封面
             img#personal_content_img(style="min-width:984px;display:none")
-
+    style
+        .personalimg{height:84px;width:146px;position:relative;float:left;background:#aaa;margin-right:10px}
+        .personal_left{background:url(/statics/img/feature_left.gif) no-repeat;width:40px;height:50px;display:block;position:absolute;top:20%;background-position:6px 3px;top:20px;z-index:10;left:0px}
+        .personal_right{background:url(/statics/img/feature_right.gif) no-repeat;width:40px;height:50px;display:block;position:absolute;top:20%;background-position:6px 3px;right:115px;top:20px;z-index:10}
+        .personal_right:hover,.personal_left:hover{background-position:6px -46px;}
     script
+        function personal_rightorleft(obj){
+            var left_num=0;//用来记录左移的距离
+            var myA = document.getElementById("Personal_brand_background");
+            console.log(myA);
+            var old_leftnum=$("#Personal_brand_background").style.left;
+            var single_img=$(".personalimg").width()+10;
+            console.log("single_img==>"+single_img);
+            console.log("old_leftnum==>"+old_leftnum);
+            if(obj.className=="personal_right"){
+                left_num=old_leftnum+single_img;
+            }
+            else if(obj.className=="personal_left"){
+                left_num=old_leftnum-single_img;
+            }
+            $(".personal_img_content").css({left:left_num});
+        }
         function Personal_brand_resize(){
             var wid=document.body.clientWidth;
-            var hei=document.body.clientHeight
+            var hei=document.body.clientHeight;
             var div_height=$("#personal_button").height();
             console.log("div_height-->"+div_height);
             hei=hei-div_height-10;
@@ -57,6 +75,10 @@ html
             $("#personal_content_img").css({height:hei});
             wid=wid-10;
             $("#personal_content_img").css({width:wid});
+            $("#personal_content_img").css({width:wid});
+            wid=wid+10;
+            wid=wid-210;
+            $("#Personal_brand_background").css({width:wid});
         }
         function choose_img(obj){
             console.log(obj.src);

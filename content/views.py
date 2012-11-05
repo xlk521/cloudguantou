@@ -52,7 +52,6 @@ def content_index(request, cans_id):
         #work['frontcover'] = reverse('content.views.serve_work', args=(portfolio.cover_key,))
         work['frontcover'] = portfolio.coverkey
         works[year][month].append(work)
-    #return HttpResponse(works['2013'])
     return render(request, 'content/contents_list.jade', {'works':works})
 
 @login_required
