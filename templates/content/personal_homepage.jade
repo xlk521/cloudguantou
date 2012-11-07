@@ -1,7 +1,7 @@
 {% extends "base.jade" %}
 {% block title %}个人主页{% endblock %}
 {% block content %}
-div#personal_wrap(style="overflow:hidden;position:relative;min-width:984px;min-height:530px;width:100%;background:url(/statics/img/personal_content_bg.jpg)")
+div#personal_wrap(style="overflow:hidden;position:relative;min-width:984px;min-height:530px;width:100%;background:url(/statics/img/personal_content_bg.jpg);background-size:100%")
     div#personal_left(style="overflow:hidden;position:relative;width:410px;height:420px;float:left;margin-top:10%;margin-bottom:11%")
         div#personal_right_bottom(style="overflow:hidden;position:relative;width:400px;height:45px;border:1px solid #ccc;background:#f2f2f2;")
             h2(style="margin:0px 30px") 最后一抹残阳
@@ -33,4 +33,12 @@ div#personal_wrap(style="overflow:hidden;position:relative;min-width:984px;min-h
             h4 他的关注
         div#personal_right_bottom(style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc")
             h4 他的收藏
+script
+    function personal_resize(){
+        var hei=document.body.clientHeight-130;//网页可见区域高-上下导航
+        $("#personal_wrap").css({height:hei});
+    }
+    $(document).ready(function(){
+        personal_resize();
+    });
 {% endblock %}
