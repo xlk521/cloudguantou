@@ -46,6 +46,7 @@ html
                 var is_authenticated = true
             {% endif %} 
             function personalpage(){
+                console.log("即将打开个人主页！");
                 $.ajax({
                     type: 'post',
                     url:"/",

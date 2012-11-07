@@ -34,6 +34,18 @@
             {% if user.is_authenticated %}
                 var is_authenticated = true
             {% endif %} 
+            function personalpage(){
+                console.log("即将打开个人主页！");
+                $.ajax({
+                    type: 'post',
+                    url:"/",
+                    headers: {"X-CSRFToken":csrftoken},
+                    data: { redict_personal_index:1 },
+                    success:function(msg){
+                    },
+                    dataType:'json'
+                });
+            }
         </script>
         {% block head %}{% endblock %}
     </head>
@@ -51,7 +63,7 @@
                                 <span>首页</span>
                             </div>
                         </a>
-                        <a href="/content/personal/">
+                        <a onclick="personalpage()">
                             <div>
                                 <span>个人主页</span>
                             </div>
