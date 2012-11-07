@@ -42,7 +42,7 @@
                     headers: {"X-CSRFToken":csrftoken},
                     data: { redict_personal_index:1 },
                     success:function(msg){
-                        var hrefa="/content/personal/"+msg;
+                        var hrefa="/content/personal/"+msg.persona_id;
                         console.log("hrefa:"+hrefa);
                         window.location.href=hrefa;
                     },
