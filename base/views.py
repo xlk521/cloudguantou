@@ -27,9 +27,9 @@ def index(request):
             return HttpResponse(convertjson({'index_count':portfolio_count}))
         
         elif request.POST.get('redict_personal_index', False):
-            persona_id = request.user.ger_profile().id
-            return HttpResponse(persona_id)
-            #return render_to_response('content/personal_homepage.html', {'persona_cans_id':persona_cans_id})
+            persona_id = request.user.get_profile().id
+            #return HttpResponse(persona_id)
+            return HttpResponse(convertjson({'persona_id':persona_id}))
         
         elif request.POST.get('get_current_albumdata', False):
             cur_count = request.POST.get('cur_count', False)
