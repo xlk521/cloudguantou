@@ -15,6 +15,7 @@ from utils import ImageFactory, convertjson
 import json
 import logging
 import uuid
+from brand.models import Brand
 
 
 log = logging.getLogger()
@@ -25,9 +26,22 @@ log.setLevel(logging.DEBUG)
 def personal_index(request, profile_id):
     #cans_id = request.GET.get('id', False)
     profile = UserProfile.objects.get(id=profile_id)
-    portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
-    return render_to_response('content/personal_homepage.jade', 
-                              {'profile':profile,'portfolio':portfolio})
+    brand = Brand.objects.get(master=profile)
+    coverkey = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0].coverkey
+    
+    personal_detail={}
+    personal_detail['brand_name'] = brand.name
+    personal_detail['brand_introduction'] = brand.introduction
+    personal_detail['follower_count'] = brand.follower_count
+    personal_detail['favorite_count'] = brand.favorite_count
+    personal_detail['author'] = profile.nickname
+    personal_detail['province'] = profile.province
+    personal_detail['introduction'] = profile.introduction
+    personal_detail['coverkey'] = coverkey
+    personal_detail['cans_id'] = profile.cans_id
+    
+    #return HttpResponse(personal_detail)
+    return render_to_response('content/personal_homepage.jade', {'personal':personal_detail})
 
 @login_required
 @require_http_methods(["GET"])
