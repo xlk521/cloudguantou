@@ -96,14 +96,16 @@ var contents_rightimg_head='<div style="height:45px;background:#fff;line-height:
     '<a style="float:right;margin-top:10px;margin-right:5px"><img src="/statics/img/contents_cart.GIF"></a><a style="float:right;margin-top:20px;margin-right:5px"><img src="/statics/img/contents_share.GIF"></a></div>';
 var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src=${url} style="min-height:450px;"></a></div>';
 var contents_rightimg_footul='<div style="height:25px;background:#fff;"><ul id="contents_rightimg_ul"></ul></div>';
-var contents_rightimg_footliwork='<li class="dropdown"><a style="float:left;margin-left:5px;" data-toggle="dropdown" href="#" class="dropdown-toggle">'+
+/**/
+var contents_rightimg_footliwork='<li class="dropdown" ><a style="float:left;margin-left:5px;" data-toggle="dropdown" href="#" class="dropdown-toggle">'+
     '<img src="/statics/img/contents_work_details.GIF" style="height:22px"></a><ul id="list_work_details" style="margin-top:-140px;min-width:300px;" class="dropdown-menu">'+
     '<li><div><div class="modal-header"><a data-dismiss="modal" style="margin-top:-5px" class="close">×</a><h5>作品参数</h5></div><div class="modal-body">'+
     '<ul style="float:left"><li><p>拍摄的相机:（ 尼康D800 ）</p></li><li><p>快门:（ XXXX ）</p></li><li><p>镜头长短:（ XXXXXXXXX ）</p></li></ul><ul style="float:right"><li><p>光圈:（ XXXXXXXXX ）</p></li><li><p>感光度:（ XXXXXXXXXXXXX ）</p></li>'+
     '</ul> </div></div> </li></ul></li>';
 
-var contents_rightimg_footliadvise='<li style="float:right;margin-right:5px"><a href="#myModal" data-toggle="modal" data-keyboard="false" data-backdrop="false" class="dropdown-toggle">'+
-    '<img onclick="contents_getimgid(this)" class="contents_adviceimg1" src="/statics/img/contents_work_advise.GIF" style="height:22px"></a><div id="myModal" class="modal" style="width:315px;display:none;position:absolute;bottom:15px;right:35px" >'+
+//var contents_rightimg_footliwork='<li></li>';
+var contents_rightimg_footliadvise='<li style="float:right;margin-right:5px"><a href="#myModal_p" data-toggle="modal" data-keyboard="false" data-backdrop="false" class="dropdown-toggle">'+
+    '<img class="contents_adviceimg1" src="/statics/img/contents_work_advise.GIF" style="height:22px"></a><div id="myModal_p" class="modal" style="width:315px;display:none;position:absolute;bottom:15px;right:35px" >'+
     '<div class="modal-header"><a data-dismiss="modal" style="margin-top:-5px" class="close">×</a><h5>评论</h5></div><div class="modal-body"><p>暂无评论</p><hr>'+
     '<textarea id="textarea" rows="2" class="input-xlarge"></textarea> <button class="btn">提交</button></div></div></li>';
 
@@ -1130,20 +1132,6 @@ $(document).ready(function(){
     });
     $("#cart_div").show(function(){
         mycart_init();
-    });
-    $("#contents_list").ready(function(){//目录页的内容初始设计
-        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--0");
-        contents_show(1210);
-        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--1");
-        contentlist_content_imgnum("contents_list_date");
-        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--2");
-        contents_left_resize();
-        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--3");
-
-        $('#contents_list_right').ready(function() {
-            contents_getJson();
-            console.log("首次调取数据");
-        });
     });
     $("#author_content_right").show(function(){
         $('.carousel').carousel('pause');

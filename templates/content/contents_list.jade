@@ -32,6 +32,23 @@ div#contents_list.body_contents_list(style="overflow:hidden;position:relative;mi
         a#list_button_extend(style="display:none")
             img(src="/statics/img/contents_list_extend2.GIF",style="position:absolute;top:140px")
     div#contents_list_right(style="position:relative;min-height:450px;float:left;")
-    a.carousel-control.left#contents_control_left(href="#relationList_f",data-slide="prev",style="margin:auto;display:none")&lsaquo;
+    a.carousel-control.left#contents_control_left(href="#relationList_f",data-slide="prev",style="margin:auto;display:none;z-index:101;")&lsaquo;
     a.carousel-control.right#contents_control_right(href="#relationList_f",data-slide="next",style="margin:auto;display:none")&rsaquo;
+script
+    $(document).ready(function(){
+        $("#contents_list").show("normal",function(){
+            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--0");
+            contents_show(1210);
+            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--1");
+            contentlist_content_imgnum("contents_list_date");
+            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--2");
+            contents_left_resize();
+            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--3");
+
+            $('#contents_list_right').show("normal",function() {
+                contents_getJson();
+                console.log("首次调取数据");
+            });
+        });
+    });
 {% endblock %}
