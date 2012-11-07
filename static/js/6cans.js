@@ -1127,20 +1127,20 @@ $(document).ready(function(){
             author_getRelation("/content/content_following/",'following',author_x_num, author_y_num,"relationTemplate","#relationList_first",'render_follower');//调取数据
         }},function(){}
     );
-    $("#detail_content_div").show(function(){
+    $("#detail_content_div").show("normal",function(){
         product_details();
     });
-    $("#cart_div").show(function(){
+    $("#cart_div").show("normal",function(){
         mycart_init();
     });
-    $("#author_content_right").show(function(){
+    $("#author_content_right").show("normal",function(){
         $('.carousel').carousel('pause');
         author_list_num();//获取作者列表的行数和列数
         author_getRelation("/content/content_follower/",'follower',author_x_num, author_y_num,"relationTemplate_active","#relationList_active",'render_follower');//调取数据
         //author_active(author_x_num,author_y_num,"relationTemplate_active","#relationList_active",0);
         console.log("show--ing");
     });
-    $("#author_content_followright").show(function(){
+    $("#author_content_followright").show("normal",function(){
         $('.carousel').carousel('pause');
         author_list_num();//获取作者列表的行数和列数
         author_getRelation("/content/content_following/",'following',author_x_num, author_y_num,"relationTemplate_active","#relationList_active",'render_follower');//调取数据
@@ -1182,12 +1182,12 @@ $(document).ready(function(){
     },function(){}
     );
 
-    $("#contents_list_left").show(function(){document.getElementById('change_id').className = 'body_contents_list'; });
-    $("#homepage_content").show(function(){
+    $("#contents_list_left").show("normal",function(){document.getElementById('change_id').className = 'body_contents_list'; });
+    $("#homepage_content").show("normal",function(){
         homepage_addimg();
         $("#footer").hide();
     });
-    $("#homepage_content").show(function(){$("#footer").hide();});
+    $("#homepage_content").show("normal",function(){$("#footer").hide();});
     //product产品详情页
     $(".detail_slide_left").click(function(){  
         product_next_prive("prive");
@@ -1195,7 +1195,7 @@ $(document).ready(function(){
     $(".detail_slide_right").click(function(){  
         product_next_prive("next");
     });
-    $("#detail_content_div").show(function(){
+    $("#detail_content_div").show("normal",function(){
         //变量初始化，获取总共需要支付的money
         var myA = document.getElementById("product_offer");
         product_paynum=parseFloat(myA.innerText);
@@ -1254,8 +1254,8 @@ $(document).ready(function(){
     });
     $(window).resize(function() {//重置网页大小的监听函数
         console.log("-------------------------------------------------------------------------------------------------------------");
-        $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
-        $("#author_content_followright").show(function(){author_resize("/content/content_following/",'following');});//作者列表页的设计
+        $("#author_content_right").show("normal",function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
+        $("#author_content_followright").show("normal",function(){author_resize("/content/content_following/",'following');});//作者列表页的设计
         $("#contents_list").ready(function(){//目录页的内容初始设计
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
