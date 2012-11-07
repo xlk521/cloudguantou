@@ -968,6 +968,7 @@ function contents_getJson(imgid){//目录页---发送请求并获取数据
         headers: {"X-CSRFToken":csrftoken},
         data: { imgid:imgid },
         success:function(msg){
+            if(imgid!=undefined){list_button_shrink();}
             contents_listuser[0]=[msg.description,msg.title,msg.createtime];
             contents_listuser[1]=msg.works;
             $("#contents_list_right").empty();
@@ -1043,6 +1044,7 @@ function list_button_shrink(){//目录页：收缩左半边
     $("#contents_control_right").show();
 }
 function contents_getimgid(obj){//目录页--获取图片的id
+
     contents_getJson(obj.id);
     
 }
