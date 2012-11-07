@@ -995,7 +995,8 @@ function contents_show(leftwidth){
         console.log("wid:"+wid);
 }
 function keyDown(){
-    var body_class=document.getElementById('change_id').className;
+    var body_class=document.getElementById('contents_list').className;
+    console.log("键盘被按下=》"+body_class);
     if(body_class=="body_contents_list"){
         if($("#contents_list_left").css("display")=="none"){
             if(window.event.keyCode==37){contents_rightchange("prive"); }
@@ -1127,7 +1128,6 @@ $(document).ready(function(){
     $("#cart_div").show(function(){
         mycart_init();
     });
-
     $("#contents_list").ready(function(){//目录页的内容初始设计
         console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--0");
         contents_show(1210);
@@ -1136,6 +1136,11 @@ $(document).ready(function(){
         console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--2");
         contents_left_resize();
         console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--3");
+
+        $('#contents_list_right').ready(function() {
+            contents_getJson();
+            console.log("首次调取数据");
+        });
     });
     $("#author_content_right").show(function(){
         $('.carousel').carousel('pause');
@@ -1152,10 +1157,6 @@ $(document).ready(function(){
         console.log("show--ing");
     });
     /**/
-    $('#contents_list_right').ready(function() {
-        contents_getJson();
-        console.log("首次调取数据");
-    });
     $("#list_button_shrink").click(function(){
         list_button_shrink();
     });
@@ -1261,9 +1262,10 @@ $(document).ready(function(){
         $('#portfolio').submit();
     });
     $(window).resize(function() {//重置网页大小的监听函数
+        console.log("-------------------------------------------------------------------------------------------------------------");
         $("#author_content_right").show(function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
         $("#author_content_followright").show(function(){author_resize("/content/content_following/",'following');});//作者列表页的设计
-        $("#contents_list").show(function(){//目录页的内容初始设计
+        $("#contents_list").ready(function(){//目录页的内容初始设计
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
             contents_right_left();
