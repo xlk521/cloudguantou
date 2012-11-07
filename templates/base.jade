@@ -45,6 +45,21 @@ html
             {% if user.is_authenticated %}
                 var is_authenticated = true
             {% endif %} 
+            function personalpage(){
+                console.log("即将打开个人主页！");
+                $.ajax({
+                    type: 'post',
+                    url:"/",
+                    headers: {"X-CSRFToken":csrftoken},
+                    data: { redict_personal_index:1 },
+                    success:function(msg){
+                        var hrefa="/content/personal/"+msg;
+                        console.log("hrefa:"+hrefa);
+                        window.location.href=hrefa;
+                    },
+                    dataType:'json'
+                });
+            }
         {% block head %}{% endblock %}
     //分割线
     body#change_id(style="width:100%;min-height:450px;",onkeydown="keyDown()")
@@ -57,7 +72,7 @@ html
                         a(href="/")  
                             div              
                                 span 首页
-                        a(href="/content/personal/")
+                        a(onclick="personalpage()")
                             div
                                 span 个人主页
                     li.headeright
