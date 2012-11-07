@@ -22,9 +22,9 @@ log.setLevel(logging.DEBUG)
 
 
 @login_required
-def personal_index(request):
-    cans_id = request.GET.get('id', False)
-    profile = UserProfile.objects.get(cans_id=cans_id)
+def personal_index(request, profile_id):
+    #cans_id = request.GET.get('id', False)
+    profile = UserProfile.objects.get(id=profile_id)
     portfolio = Portfolio.objects.filter(profile=profile).order_by('-datetime')[0]
     return render_to_response('content/personal_homepage.jade', 
                               {'profile':profile,'portfolio':portfolio})
