@@ -38,9 +38,10 @@ def personal_index(request, profile_id):
     personal_detail['province'] = profile.province
     personal_detail['introduction'] = profile.introduction
     personal_detail['coverkey'] = coverkey
+    personal_detail['cans_id'] = profile.cans_id
     
-    return render_to_response('content/personal_homepage.jade', 
-                              {'personal':personal_detail})
+    #return HttpResponse(personal_detail)
+    return render_to_response('content/personal_homepage.jade', {'personal':personal_detail})
 
 @login_required
 @require_http_methods(["GET"])
