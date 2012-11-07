@@ -295,16 +295,24 @@ function contents_right_left(works_msg){
         console.log("==========up_stop==>:"+up_stop);
         if(up_stop>=wid){
             var stop_num=0;
-            var last_num=contents_nextarray[i-1];
+            var i_last=i-1;
+            var last_num=0;
+            if(i_last<0){last_num=0;}
+            else{last_num=contents_nextarray[i-1];}
             stop_num=up_stop-wid;//最后一次要移动的距离
-            console.log("-------------------------------------->:"+stop_num);
+            console.log("------------------------stop_num-------------->:"+stop_num+"--------------------->:");
             last_num=last_num-stop_num;
             for(var h=i;h<work_next;h++){
                 contents_nextarray[h]=last_num;
                 console.log("last_num:"+last_num);
             }
             work_next=i;
+            console.log("----------------iiiiiiii---------------------->:"+i+"--------------------->:");
             i=-1;
+        }
+        else if(up_stop<wid && i==0){
+            contents_nextarray=new Array();
+            contents_nextarray[0]=0;
         }
     }
     if(contents_resize_num>1){
@@ -960,7 +968,9 @@ function contents_rightchange(next_prive){//设置目录页的变换
         $("#contents_list_right").animate({left:distance});
     }
 }
+var contentslist_imgid;
 function contents_getJson(imgid){//目录页---发送请求并获取数据
+    contentslist_imgid=imgid;
     var contents_listuser=new Array();
     $.ajax({
         type: 'get',
@@ -1001,20 +1011,24 @@ function contents_show(leftwidth){
         console.log("wid:"+wid);
 }
 function keyDown(){
-    var body_class=document.getElementById('contents_list').className;
-    console.log("键盘被按下=》"+body_class);
-    if(body_class=="body_contents_list"){
-        if($("#contents_list_left").css("display")=="none"){
-            if(window.event.keyCode==37){contents_rightchange("prive"); }
-            else if(window.event.keyCode==39){contents_rightchange("next");}
-            else if(window.event.keyCode==70){list_button_extend();}
-        }
-        else{
-            if(window.event.keyCode==38){contents_leftchange("up");}
-            else if(window.event.keyCode==40){contents_leftchange("down");}
-            else if((window.event.keyCode==70)||(window.event.keyCode==39&&(contents_list_array==0||contents_list_array==-1))){list_button_shrink();}
+    var body_class_add=document.getElementById('change_id').className;
+    if(body_class_add=="contents_body"){
+        var body_class=document.getElementById('contents_list').className;
+        console.log("键盘被按下=》"+body_class);
+        if(body_class=="body_contents_list"){
+            if($("#contents_list_left").css("display")=="none"){
+                if(window.event.keyCode==37){contents_rightchange("prive"); }
+                else if(window.event.keyCode==39){contents_rightchange("next");}
+                else if(window.event.keyCode==70){list_button_extend();}
+            }
+            else{
+                if(window.event.keyCode==38){contents_leftchange("up");}
+                else if(window.event.keyCode==40){contents_leftchange("down");}
+                else if((window.event.keyCode==70)||(window.event.keyCode==39&&(contents_list_array==0||contents_list_array==-1))){list_button_shrink();}
+            }
         }
     }
+    
 }
 function list_button_extend(){//目录页：展开左半边
     $("#contents_list_left").show(50);
@@ -1258,10 +1272,11 @@ $(document).ready(function(){
         console.log("-------------------------------------------------------------------------------------------------------------");
         $("#author_content_right").show("normal",function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
         $("#author_content_followright").show("normal",function(){author_resize("/content/content_following/",'following');});//作者列表页的设计
-        $("#contents_list").ready(function(){//目录页的内容初始设计
+        $("#contents_list").show("normal",function(){//目录页的内容初始设计
             $("#contents_list_right").empty();
             contents_resize_num=contents_resize_num+1;//记录大小改变的次数
-            contents_right_left();
+            //contents_right_left();
+            contents_getJson(contentslist_imgid);
         });
     });
 });
