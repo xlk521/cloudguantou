@@ -25,6 +25,12 @@ def index(request):
         if album_latesttime and request.POST.get('latest_count', False):
             portfolio_count = Portfolio.objects.exclude(datetime=album_latesttime).filter(datetime__gte=album_latesttime).count()
             return HttpResponse(convertjson({'index_count':portfolio_count}))
+        
+        elif request.POST.get('redict_personal_index', False):
+            persona_id = request.user.ger_profile().id
+            return HttpResponse(persona_id)
+            #return render_to_response('content/personal_homepage.html', {'persona_cans_id':persona_cans_id})
+        
         elif request.POST.get('get_current_albumdata', False):
             cur_count = request.POST.get('cur_count', False)
             cur_portfolios = Portfolio.objects.all().order_by('-datetime')[0:cur_count]
