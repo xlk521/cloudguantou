@@ -53,6 +53,9 @@ html
                     headers: {"X-CSRFToken":csrftoken},
                     data: { redict_personal_index:1 },
                     success:function(msg){
+                        var hrefa="/content/personal/"+msg;
+                        console.log("hrefa:"+hrefa);
+                        window.location.href=hrefa;
                     },
                     dataType:'json'
                 });
