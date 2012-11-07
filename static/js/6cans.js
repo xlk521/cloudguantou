@@ -94,7 +94,7 @@ var contents_rightimg='<div id="contents_list_img2" class="contents_list_img2" s
 var contents_rightimg_head='<div style="height:45px;background:#fff;line-height:40px;">'+
     '<span style="float:left;background:#aaa;font-size:19px;margin-left:5px">【照片的名称】</span>'+
     '<a style="float:right;margin-top:10px;margin-right:5px"><img src="/statics/img/contents_cart.GIF"></a><a style="float:right;margin-top:20px;margin-right:5px"><img src="/statics/img/contents_share.GIF"></a></div>';
-var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src="/statics/img/content_right.gif" style="min-height:450px;"></a></div>';
+var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src=${url} style="min-height:450px;"></a></div>';
 var contents_rightimg_footul='<div style="height:25px;background:#fff;"><ul id="contents_rightimg_ul"></ul></div>';
 var contents_rightimg_footliwork='<li class="dropdown"><a style="float:left;margin-left:5px;" data-toggle="dropdown" href="#" class="dropdown-toggle">'+
     '<img src="/statics/img/contents_work_details.GIF" style="height:22px"></a><ul id="list_work_details" style="margin-top:-140px;min-width:300px;" class="dropdown-menu">'+
@@ -264,14 +264,15 @@ function contents_right_left(works_msg){
     contents_nextnum[tmpl_arraynum]=center_wid;//用来存放每个模块的宽度
     next_left=next_left-center_wid;//向左移动的距离
     contents_nextarray[tmpl_arraynum]=next_left;//用来存放左右移动的数据
-    work_next=10;
+    work_next=works_msg.works.length;
+    console.log("work_next================================================================================================>:"+work_next);
     for(var i=0;i<work_next;i++){
         leftnum=leftnum+$("#contents_list_img2").width();//获取当前右侧区域的大小
         console.log("leftnum:"+leftnum);
         $('#contents_list_img2').removeAttr('id');
         $('#contents_rightimg_ul').removeAttr('id');
         $.tmpl( "contents_list_rightimg").appendTo( "#contents_list_right" );
-        $.tmpl( "contents_list_rightimg_center").appendTo( "#contents_list_img2" );
+        $.tmpl( "contents_list_rightimg_center",works_msg.works[i]).appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_footul").appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_footliwork").appendTo( "#contents_rightimg_ul" );
         $.tmpl( "contents_list_rightimg_footliadvise").appendTo( "#contents_rightimg_ul" );
@@ -287,12 +288,14 @@ function contents_right_left(works_msg){
         next_left=next_left-center_wid;//向左移动的距离
         contents_nextarray[tmpl_arraynum]=next_left;//用来存放左右移动的数据
     }
-    for(var i=work_next-1;i>=0;i--){//确定最后一次移动的距离
+    for(var i=work_next;i>=0;i--){//确定最后一次移动的距离
         up_stop=up_stop+contents_nextnum[i];//计算最右边几个模块的宽度
+        console.log("==========up_stop==>:"+up_stop);
         if(up_stop>=wid){
             var stop_num=0;
             var last_num=contents_nextarray[i-1];
             stop_num=up_stop-wid;//最后一次要移动的距离
+            console.log("-------------------------------------->:"+stop_num);
             last_num=last_num-stop_num;
             for(var h=i;h<work_next;h++){
                 contents_nextarray[h]=last_num;
@@ -312,7 +315,7 @@ function contents_right_left(works_msg){
     }
     $("#contents_list_right").css({left:0});
     contents_list_array=-1;
-    console.log("个人目录页--添加模版的函数");
+    console.log("个人目录页--添加模版的函数:"+contents_nextnum.length+"-------------->:"+contents_nextarray.length);
 }
 
 function out()
