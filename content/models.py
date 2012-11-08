@@ -84,6 +84,7 @@ class Work(models.Model):
     is_cover = models.BooleanField(default=False)
     available = models.BooleanField(default=True)
     url = models.CharField(blank=True)
+    collection = models.IntegerField(blank=True, default=0)
     
     objects = WorkManager()
 
