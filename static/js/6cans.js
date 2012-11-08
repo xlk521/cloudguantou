@@ -1073,7 +1073,9 @@ function show_login(){
     $("#login_div").hide();
  }
 
-
+function creater_add(){
+    window.location.href ="/accounts/register/";
+}
 /*所有界面的功能实现*/
 $(document).ready(function(){
     //author_rightshow();
@@ -1083,7 +1085,7 @@ $(document).ready(function(){
     	$(this).css({opacity: 1});
     });
     $("#logo_registbutton").click(function(){
-        window.location.href ="/accounts/register/"
+        creater_add();
     });
     $("#logo_loginbutton").click(function(){
         window.location.href ="/accounts/login/"
