@@ -1072,7 +1072,10 @@ function show_login(){
     $("#register_div").show();
     $("#login_div").hide();
  }
-
+function reload_this()//刷新当前页
+{
+    window.location.reload();
+}
 function creater_add(){
     window.location.href ="/accounts/register/";
 }
