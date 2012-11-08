@@ -11,6 +11,7 @@ urlpatterns = patterns('authorize.views',
     url(r'^get_cities/', 'get_cities'),
 )
 
+
 urlpatterns += patterns('authorize.qq_views',
     # 腾讯账户授权
     url(r'^qqauth/', 'qqauth'),

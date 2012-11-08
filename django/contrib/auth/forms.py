@@ -1,3 +1,4 @@
+#coding=utf8
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.tokens import default_token_generator
@@ -151,8 +152,8 @@ class SetPasswordForm(forms.Form):
     A form that lets a user change set his/her password without
     entering the old password
     """
-    new_password1 = forms.CharField(label=_("New password"), widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label=_("New password confirmation"), widget=forms.PasswordInput)
+    new_password1 = forms.CharField(label=_(u"新密码"), widget=forms.PasswordInput)
+    new_password2 = forms.CharField(label=_(u"新密码确认"), widget=forms.PasswordInput)
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
@@ -177,7 +178,7 @@ class PasswordChangeForm(SetPasswordForm):
     A form that lets a user change his/her password by entering
     their old password.
     """
-    old_password = forms.CharField(label=_("Old password"), widget=forms.PasswordInput)
+    old_password = forms.CharField(label=_(u"旧密码"), widget=forms.PasswordInput)
 
     def clean_old_password(self):
         """
