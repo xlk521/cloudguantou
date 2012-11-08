@@ -14,12 +14,8 @@ from authorize.models import UserProfile
 def index(request):
     if request.method != "POST":
         portfolios = Portfolio.objects.all().order_by('-datetime')[0:20]
-        for portfolio in portfolios:
-            user_name = portfolio.profile.nickname
-            #portfolio['user_name'] = user_name
         request.session['album_latesttime'] = portfolios[0].datetime
         return render_to_response('homepage/index.html',{'Portfolios':portfolios})
-        #return HttpResponse(portfolios[0].__dict__)
     else :
         album_latesttime = request.session.get('album_latesttime', False)
         if album_latesttime and request.POST.get('latest_count', False):

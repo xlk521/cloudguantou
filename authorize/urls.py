@@ -11,6 +11,13 @@ urlpatterns = patterns('authorize.views',
     url(r'^get_cities/', 'get_cities'),
 )
 
+#===============================================================================
+# urlpatterns += patterns('authorize.account_settings_views',
+#    url(r'^change_password$', 'change_password',name="change_password"), 
+#    url(r'^change_password_ok$', 'change_password_ok',name="change_password_ok"), 
+# )
+#===============================================================================
+
 urlpatterns += patterns('authorize.qq_views',
     # 腾讯账户授权
     url(r'^qqauth/', 'qqauth'),

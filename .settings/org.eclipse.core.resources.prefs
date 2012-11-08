@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//account_settings/urls.py=utf8
 encoding//audit/urls.py=utf8
+encoding//authorize/account_settings_views.py=utf8
 encoding//authorize/forms.py=utf8
 encoding//authorize/models.py=utf8
 encoding//authorize/urls.py=utf8
@@ -12,6 +13,7 @@ encoding//brand/models.py=utf8
 encoding//content/models.py=utf8
 encoding//content/test.py=utf8
 encoding//content/urls.py=utf8
+encoding//django/contrib/auth/forms.py=utf8
 encoding//django/forms/models.py=utf8
 encoding//friendships/models.py=utf8
 encoding//friendships/urls.py=utf8
