@@ -1103,21 +1103,21 @@ $(document).ready(function(){
         onerror:function(msg,obj,errorlist){alert(msg);}
     });
     $("#id_username")
-        .formValidator({onshow:"请输入用户名",onfocus:"用户名至少4个字符,最多30个字符"})
-        .inputValidator({min:4,max:30,onerror:"你输入的用户名非法,请确认"})
-        .regexValidator({regexp:"username",datatype:"enum",onerror:"用户名格式不正确"});
+        .formValidator({onshow:"请输入用户名！",onfocus:"用户名4~30字符！"})
+        .inputValidator({min:4,max:30,onerror:"用户名非法！"})
+        .regexValidator({regexp:"username",datatype:"enum",onerror:"格式错误！"});
     $("#id_password")
-        .formValidator({onshow:"请输入密码",onfocus:"至少6个长度",oncorrect:"密码格式合法"})
-        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"密码两边不能有空符号"},onerror:"密码不能为空,请确认"});
+        .formValidator({onshow:"请输入密码！",onfocus:"至少6个字符！",oncorrect:"密码格式合法！"})
+        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"两边不能为空！"},onerror:"密码不能为空！"});
     $("#id_email")
-        .formValidator({onshow:"请输入邮箱",onfocus:"邮箱至少6个字符",oncorrect:"恭喜你,输入正确",defaultvalue:"@"})
-        .inputValidator({min:6,max:100,onerror:"你输入的邮箱长度非法,请确认"})
-        .regexValidator({regexp:"^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",onerror:"你输入的邮箱格式不正确"});
+        .formValidator({onshow:"请输入邮箱！",onfocus:"至少6个字符！",oncorrect:"输入正确！",defaultvalue:"@"})
+        .inputValidator({min:6,max:100,onerror:"邮箱长度非法！"})
+        .regexValidator({regexp:"^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",onerror:"邮箱格式错误！"});
     $("#id_password1")
-        .formValidator({onshow:"请输入密码",onfocus:"至少6个长度",oncorrect:"密码格式合法"})
-        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"密码两边不能有空符号"},onerror:"密码不能为空,请确认"});
+        .formValidator({onshow:"请输入密码！",onfocus:"至少6个字符！",oncorrect:"密码格式合法！"})
+        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"两边不能为空！"},onerror:"密码不能为空！"});
     $("#id_password2")
-        .formValidator({onshow:"输再次输入密码",onfocus:"至少6个长度",oncorrect:"密码一致"})
+        .formValidator({onshow:"再次输入密码！",onfocus:"至少6个字符！",oncorrect:"密码一致！"})
         .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"重复密码两边不能有空符号"},onerror:"重复密码不能为空,请确认"})
         .compareValidator({desid:"id_password1",operateor:"=",onerror:"2次密码不一致,请确认"});
     $("#upload_textarea")
