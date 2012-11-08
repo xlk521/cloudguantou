@@ -108,27 +108,28 @@ html
                             div.login_register
                                 span 注册
                         div#myModal.login_modal.hide.fade(style="display: none; ")
-                            div.login_modal-body(action !="{%url django.contrib.auth.views.login %}",method="post") {% csrf_token %}
+                            div.login_modal-body
                                 div.login
                                     div.login_tit
                                         a.login_off(data-dismiss="modal",href="#")×
-                                    div
-                                        ul.login_con
-                                            li
-                                                span#id_usernameTip.onShow.login_s1
-                                                h3.login_h3 User Name * 用户名
-                                            li
-                                                input#id_username.login_input(type="text",name="username")
-                                            li
-                                                span#id_passwordTip.onShow.login_s2
-                                                h3.login_h3 Password *  密码
-                                            li
-                                                input#id_password.login_input1(type="text",name="password")
-                                    div.login_footer
-                                        span.login_sp1
-                                            a.login_btn.btn-primary(type="submit")登 录
-                                        a.login_a(onclick="creater_add()") 立即注册
-                                        a.login_a(href="/accounts/password/reset/") 忘记密码
+                                    form(method="post") {% csrf_token %}
+                                        div
+                                            ul.login_con
+                                                li
+                                                    span#id_usernameTip.onShow.login_s1
+                                                    h3.login_h3 User Name * 用户名
+                                                li
+                                                    input#id_username.login_input(type="text",name="username")
+                                                li
+                                                    span#id_passwordTip.onShow.login_s2
+                                                    h3.login_h3 Password *  密码
+                                                li
+                                                    input#id_password.login_input1(type="text",name="password")
+                                        div.login_footer
+                                            span.login_sp1
+                                                button#fat-btn.login_btn.btn-primary(type="submit",data-loading-text="Logining...")登 录
+                                            a.login_a(onclick="creater_add()") 立即注册
+                                            a.login_a(href="/accounts/password/reset/") 忘记密码
                                     div
                                         ul.login_ad
                                             li

@@ -118,6 +118,10 @@ input[type="checkbox"]{width:20px;}
     margin-left: 20px;
 }
 /*上传界面*/
+#id_description{
+	height:165px;
+	width: 400px;
+}
 #uploadpage{
     background:#f7f7f7;
     margin-top:35px;
@@ -847,6 +851,8 @@ div#homepage_content form fieldset.control-group{
  line-height:20px;
  vertical-align:middle;
 }
+
+/*登录提示信息*/
 #id_usernameTip{
  position:absolute;
  right:32px;
@@ -995,7 +1001,7 @@ bottom:200px
 /*homepage加载时，加载图片的位置*/
 #infscr-loading{margin:0 auto;position:relative;text-align: center;}
 /*登陆界面的属性#id_username[type="text"],*/
-.required,#id_email[type="text"],.uploadpage_input[type="text"],#input01[type="text"]{
+.required,#id_email[type="text"],.uploadpage_input[type="text"],#input01[type="text"],#id_title[type="text"],#createtime[type="text"]{
 	display: inline-block;
 	height: 20px;
 	padding: 4px 6px;

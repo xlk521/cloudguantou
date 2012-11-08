@@ -1123,6 +1123,12 @@ $(document).ready(function(){
     $("#upload_textarea")
         .formValidator({onshow:"请输入作品介绍",onfocus:"作品介绍至少50个字符,最多500个字符",oncorrect:"恭喜你,输入正确"})
         .inputValidator({min:50,max:500,onerror:"你输入的作品介绍长度非法,请确认"});
+    $("#id_title")
+        .formValidator({onshow:"请输入系列名！",onfocus:"系列名1~9字！"})
+        .inputValidator({min:1,max:18,onerror:"系列名至多9个字！"})
+    $("#id_description")
+        .formValidator({onshow:"请输入系列作品描述！",onfocus:"系列作品描述1~100字！"})
+        .inputValidator({min:1,max:18,onerror:"系列名至多100个字！"})
     //生成初始界面
     $("#author_right").click(function(){
         $("#author_right").carousel('next');
