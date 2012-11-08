@@ -812,14 +812,14 @@ div#homepage_content form fieldset.control-group{
 .onShow
 {
  color:#49afcd;
- width:200px;
+ width:120px;
  font-size: 12px;
  line-height:20px;
  vertical-align:middle;
 }
 .onFocus
 {
- width:200px;
+ width:120px;
  color:#faa732;
  font-size: 12px;
  line-height:20px;
@@ -827,7 +827,7 @@ div#homepage_content form fieldset.control-group{
 }
 .onError
 {
- width:200px;
+ width:120px;
  font-size: 12px;
  color: #ff0000;
  line-height:20px;
@@ -835,17 +835,27 @@ div#homepage_content form fieldset.control-group{
 }
 .onCorrect
 {
- width:200px;
+ width:120px;
  font-size: 12px;
  line-height:20px;
  vertical-align:middle;
 }
 .onLoad
 {
- width:200px;
+ width:120px;
  font-size: 12px;
  line-height:20px;
  vertical-align:middle;
+}
+#id_usernameTip{
+ position:absolute;
+ right:32px;
+ top:20px;
+}
+#id_passwordTip{
+ position:absolute;
+ right:32px;
+ top:78px;
 }
 /* 头像选择区域样式 */
 .imgareaselect-border1 {
@@ -984,8 +994,8 @@ bottom:200px
 #i_con .i_con_li2_btn:hover{ border:1px #d16a0e solid; background-color:#ff8500;}
 /*homepage加载时，加载图片的位置*/
 #infscr-loading{margin:0 auto;position:relative;text-align: center;}
-/*登陆界面的属性*/
-#id_username[type="text"],#id_email[type="text"],.uploadpage_input[type="text"],#input01[type="text"]{
+/*登陆界面的属性#id_username[type="text"],*/
+.required,#id_email[type="text"],.uploadpage_input[type="text"],#input01[type="text"]{
 	display: inline-block;
 	height: 20px;
 	padding: 4px 6px;
@@ -1026,6 +1036,7 @@ a.cls:hover{background:url(/statics/img/cls.gif) center -20px no-repeat;}
 .modal-backdrop{ z-index:1; }
 #myModal_regist{ top:50%;left:50%; }
 .base_dropdown_li{float:none;}
+position
 /*header*/
 #HomeBanner_top{height:12px;right:0;left:0;}
 /*悬浮框体*/

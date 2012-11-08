@@ -115,24 +115,18 @@ html
                                     div
                                         ul.login_con
                                             li
-                                                span#id_usernameTip.onShow.login_s1 输入用户名
-                                                {% if form.username.errors %}
-                                                p.errmsg#err_msg {{ form.username.errors|join:", " }}
-                                                {% else %}
-                                                p#err_msg &nbsp;
-                                                {% endif %}
+                                                span#id_usernameTip.onShow.login_s1
                                                 h3.login_h3 User Name * 用户名
                                             li
-                                                {{ form.username }}
+                                                input#id_username.login_input(type="text",name="username")
                                             li
-                                                i.login_icon2
-                                                span.login_s2 密码错误
+                                                span#id_passwordTip.onShow.login_s2
                                                 h3.login_h3 Password *  密码
                                             li
-                                                input.login_input1(type="text")
+                                                input#id_password.login_input1(type="text",name="password")
                                     div.login_footer
                                         span.login_sp1
-                                            a.login_btn.btn.btn-primary(href="#")登 录
+                                            a.login_btn.btn-primary(type="submit")登 录
                                         a.login_a(onclick="creater_add()") 立即注册
                                         a.login_a(href="/accounts/password/reset/") 忘记密码
                                     div
@@ -155,7 +149,7 @@ html
                         {% endif %}
         {% block content %}{% endblock %}
         //底部标签
-        #footer
+        #footer.indexfooter_hide_show(onmouseover="footer_stoptime()",onmouseout="footer_time()")
             .footerCon
                 ul
                     li.logo2

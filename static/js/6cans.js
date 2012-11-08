@@ -1115,10 +1115,10 @@ $(document).ready(function(){
         .regexValidator({regexp:"^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",onerror:"邮箱格式错误！"});
     $("#id_password1")
         .formValidator({onshow:"请输入密码！",onfocus:"至少6个字符！",oncorrect:"密码格式合法！"})
-        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"两边不能为空！"},onerror:"密码不能为空！"});
+        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"两边不能有空符！"},onerror:"密码不能为空！"});
     $("#id_password2")
         .formValidator({onshow:"再次输入密码！",onfocus:"至少6个字符！",oncorrect:"密码一致！"})
-        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"重复密码两边不能有空符号"},onerror:"重复密码不能为空,请确认"})
+        .inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"两边不能有空符号"},onerror:"重复密码不能为空,请确认"})
         .compareValidator({desid:"id_password1",operateor:"=",onerror:"2次密码不一致,请确认"});
     $("#upload_textarea")
         .formValidator({onshow:"请输入作品介绍",onfocus:"作品介绍至少50个字符,最多500个字符",oncorrect:"恭喜你,输入正确"})
