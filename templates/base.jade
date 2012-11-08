@@ -42,9 +42,9 @@ html
         {% block link %}{% endblock %}
         script
             var is_authenticated = false
-            {% if user.is_authenticated %}
-                var is_authenticated = true
-            {% endif %} 
+                {% if user.is_authenticated %}
+                    var is_authenticated = true
+                {% endif %} 
             function personalpage(){
                 console.log("即将打开个人主页！");
                 $.ajax({
@@ -72,9 +72,15 @@ html
                         a(href="/")  
                             div              
                                 span 首页
+                        {% if user.is_authenticated %}
                         a(onclick="personalpage()")
                             div
                                 span 个人主页
+                        {% else %}
+                        a(data-toggle="modal", href="#myModal",type="submit")
+                            div
+                                span 个人主页
+                        {% endif %} 
                     li.headeright
                         a
                             div.login_register
@@ -101,7 +107,45 @@ html
                         a#logo_registbutton(type="submit")
                             div.login_register
                                 span 注册
-                        a#logo_loginbutton(type="submit")
+                        div#myModal.login_modal.hide.fade(style="display: none; ")
+                            div.login_modal-body
+                                div.login
+                                    div.login_tit
+                                        a.login_off(data-dismiss="modal",href="#")×
+                                    div
+                                        ul.login_con
+                                            li
+                                                i.login_icon1
+                                                span.login_s1 输入正确
+                                                h3.login_h3 User Name * 用户名
+                                            li
+                                                input.login_input(type="text")
+                                            li
+                                                i.login_icon2
+                                                span.login_s2 密码错误
+                                                h3.login_h3 Password *  密码
+                                            li
+                                                input.login_input1(type="text")
+                                    div.login_footer
+                                        span.login_sp1
+                                            a.login_btn.btn.btn-primary(href="#")登 录
+                                        a.login_a(href="#") 立即注册
+                                        a.login_a(href="#") 忘记密码
+                                    div
+                                        ul.login_ad
+                                            li
+                                                a.login_ad_a1
+                                                    span 新浪微博
+                                            li
+                                                a.login_ad_a2
+                                                    span 腾讯微博
+                                            li
+                                                a.login_ad_a3
+                                                    span 人人网
+                                            li
+                                                a.login_ad_a4
+                                                    span 豆瓣网
+                        a(data-toggle="modal", href="#myModal",type="submit")
                             div.login_register
                                 span 登录
                         {% endif %}
