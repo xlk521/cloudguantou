@@ -129,21 +129,21 @@ html
                                     div.login_footer
                                         span.login_sp1
                                             a.login_btn.btn.btn-primary(href="#")登 录
-                                        a.login_a(href="#") 立即注册
-                                        a.login_a(href="#") 忘记密码
+                                        a.login_a(onclick="creater_add()") 立即注册
+                                        a.login_a(href="/accounts/password/reset/") 忘记密码
                                     div
                                         ul.login_ad
                                             li
-                                                a.login_ad_a1
+                                                a#sina_auth.login_ad_a1
                                                     span 新浪微博
                                             li
-                                                a.login_ad_a2
+                                                a#qq_auth.login_ad_a2
                                                     span 腾讯微博
                                             li
-                                                a.login_ad_a3
+                                                a#renren_auth.login_ad_a3
                                                     span 人人网
                                             li
-                                                a.login_ad_a4
+                                                a#douban_auth.login_ad_a4
                                                     span 豆瓣网
                         a(data-toggle="modal", href="#myModal",type="submit")
                             div.login_register
