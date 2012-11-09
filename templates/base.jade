@@ -112,19 +112,19 @@ html
                                 div.login
                                     div.login_tit
                                         a.login_off(data-dismiss="modal",href="#")×
-                                    form(method="post") {% csrf_token %}
+                                    form(method="post" ,action="", id="submit_form") {% csrf_token %}
                                         div
                                             ul.login_con
                                                 li
                                                     span#id_usernameTip.onShow.login_s1
                                                     h3.login_h3 User Name * 用户名
                                                 li
-                                                    input#id_username.login_input(type="text",name="username")
+                                                    input#id_username.login_input(type="text",name="username", value="")
                                                 li
                                                     span#id_passwordTip.onShow.login_s2
                                                     h3.login_h3 Password *  密码
                                                 li
-                                                    input#id_password.login_input1(type="text",name="password")
+                                                    input#id_password.login_input1(type="text",name="password", value="")
                                         div.login_footer
                                             span.login_sp1
                                                 button#fat-btn.login_btn.btn-primary(type="submit",data-loading-text="Logining...")登 录

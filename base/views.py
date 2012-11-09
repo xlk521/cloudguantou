@@ -2,11 +2,14 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from content.models import Work, Portfolio, CategoryModel
 from utils.helper import convertjson
 from authorize.models import UserProfile
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.views import login
 
 
 #@login_required
@@ -21,7 +24,16 @@ def index(request):
         if album_latesttime and request.POST.get('latest_count', False):
             portfolio_count = Portfolio.objects.exclude(datetime=album_latesttime).filter(datetime__gte=album_latesttime).count()
             return HttpResponse(convertjson({'index_count':portfolio_count}))
-        
+        elif request.POST.get('username', False) and request.POST.get('password', False):
+            username = request.POST.get('username', False)
+            password = request.POST.get('username', False)
+            #user = User.objects.get(username=username, password=password)
+            user = authenticate(username=username, password=password)  
+            if user is not None:  
+                if user.is_active:  
+                    login(request, user)  
+            return HttpResponse(user)  
+                
         elif request.POST.get('redict_personal_index', False):
             persona_id = request.user.get_profile().id
             #return HttpResponse(persona_id)
