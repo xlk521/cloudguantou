@@ -1128,7 +1128,12 @@ $(document).ready(function(){
         .inputValidator({min:1,max:18,onerror:"系列名至多9个字！"})
     $("#id_description")
         .formValidator({onshow:"请输入系列作品描述！",onfocus:"系列作品描述1~100字！"})
-        .inputValidator({min:1,max:18,onerror:"系列名至多100个字！"})
+        .inputValidator({min:1,max:200,onerror:"系列名至多100个字！"})
+    $("#id_category")
+        .formValidator({onshow:"请选择系列作品类别！",onfocus:"已选！"})
+    $("#input01")
+        .formValidator({onshow:"请输入名称！",onfocus:"名称1~9字！"})
+        .inputValidator({min:1,max:18,onerror:"名称至多9个字！"})
     //生成初始界面
     $("#author_right").click(function(){
         $("#author_right").carousel('next');
