@@ -112,7 +112,8 @@ html
                                 div.login
                                     div.login_tit
                                         a.login_off(data-dismiss="modal",href="#")×
-                                    form(action="",method="post") {% csrf_token %}
+                                    form(action="/accounts/login/",method="post")
+                                        div(style="display:none")
                                         div
                                             ul.login_con
                                                 li

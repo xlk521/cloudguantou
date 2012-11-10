@@ -10,6 +10,7 @@ from authorize.models import UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import login
+from django.contrib.auth.forms import AuthenticationForm
 
 
 #@login_required
@@ -24,15 +25,18 @@ def index(request):
         if album_latesttime and request.POST.get('latest_count', False):
             portfolio_count = Portfolio.objects.exclude(datetime=album_latesttime).filter(datetime__gte=album_latesttime).count()
             return HttpResponse(convertjson({'index_count':portfolio_count}))
-        elif request.POST.get('username', False) and request.POST.get('password', False):
-            username = request.POST.get('username', False)
-            password = request.POST.get('username', False)
-            #user = User.objects.get(username=username, password=password)
-            user = authenticate(username=username, password=password)  
-            if user is not None:  
-                if user.is_active:  
-                    login(request, user)  
-            return HttpResponse(user)  
+        #=======================================================================
+        # #=======================================================================
+        # elif request.COOKIES.get("sessionid",False):             
+        #    #name = request.POST.get('username', False)
+        #    #pwd = request.POST.get('password', False)
+        #    #ret = User.objects.filter(username=name,password=pwd)
+        #    sessionid = request.session.get("sessionid",False)
+        #    request.se
+        # else:    
+        #    request.session[''] = True
+        # =======================================================================    
+        #=======================================================================
                 
         elif request.POST.get('redict_personal_index', False):
             persona_id = request.user.get_profile().id
