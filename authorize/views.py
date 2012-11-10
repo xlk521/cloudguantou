@@ -21,6 +21,7 @@ log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
 
+    
 @login_required
 @require_http_methods(["POST", "GET"])
 def identity(request):
