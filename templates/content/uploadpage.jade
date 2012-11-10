@@ -11,22 +11,17 @@ div#uploadpage(style="font-size:15px;width:984px")
                     strong 上传作品
                     button.btn.btn-large.btn-danger#portfolio_post(type="button",style="float:right") 提交作品
                 div.controls#uploadpage_bodydiv_left
-                    label.control-label(style="padding-top:15px")
+                    label
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 系列名称：
                         {{ form.title }}
-                    span#id_titleTip.onShow(style="margin-left:90px")
-                    label.control-label(style="margin-top:5px")
+                        span#id_titleTip.onShow(style="margin-left:90px")
+                    label
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 作品类别：
-                        //input.success.uploadpage_input(type="text",style="border-color:#444242")
                         {{ form.category }}
-                        {% if form.category.errors %}
-                        p.errmsg#err_msg {{ form.category.errors|join:", " }}
-                        {% else %}
-                        p#err_msg &nbsp;
-                        {% endif %}
-                    label.control-label(style="margin-top:20px")
+                        span#id_categoryTip.onShow(style="margin-left:90px")
+                    label
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
                         font(style="font-size:15px") 创作时间：
                         input.datePicker(name="createtime",readonly="true",type="text",id="createtime")
@@ -103,17 +98,19 @@ div#uploadpage(style="font-size:15px;width:984px")
 </table>
 <table style="margin-left:35px">
 <tr>
-<td class="start">{% templatetag openblock %} if (!o.options.autoUpload) { {% templatetag closeblock %}
-<button class="btn btn-primary">
+<td class="start disabled" style="disabled:disabled">{% templatetag openblock %} if (!o.options.autoUpload) { {% templatetag closeblock %}
+<!--- --->
+<button class="btn btn-primary" style="display:none">
 <i class="icon-upload icon-white"></i>
 <span>{% templatetag openblock %}=locale.fileupload.start{% templatetag closeblock %}</span>
 </button>
-{% templatetag openblock %} } {% templatetag closeblock %}</td>
+{% templatetag openblock %} } {% templatetag closeblock %}
+</td>
 {% templatetag openblock %} } else { {% templatetag closeblock %}
 <td colspan="2"></td>
 {% templatetag openblock %} } {% templatetag closeblock %}
 <td class="cancel">{% templatetag openblock %} if (!i) { {% templatetag closeblock %}
-<button class="btn btn-warning" style="margin-left:25px">
+<button class="btn btn-warning" style="margin-left:0px">
 <i class="icon-ban-circle icon-white"></i>
 <span>{% templatetag openblock %}=locale.fileupload.cancel{% templatetag closeblock %}</span>
 </button>
@@ -133,11 +130,20 @@ div#uploadpage(style="font-size:15px;width:984px")
 <td style="width:105px;height:280px;background:#F7F7F7;"><img src="/statics/img/upload_num.GIF" style="position:relative;margin-top:-115px"></td>
 <td style="width:30px;height:280px;background:#f7f7f7"></td>
 {% templatetag openblock %} if (file.error) { {% templatetag closeblock %}
-<td></td>
-<td class="name"><span>{% templatetag openblock %}=file.name{% templatetag closeblock %}</span></td>
+<td><table style="margin-left:35px;"><tr>
+<td class="preview" id="{% templatetag openblock %}=file.url{% templatetag closeblock %}">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
+<a href="{% templatetag openblock %}=file.url{% templatetag closeblock %}" title="{% templatetag openblock %}=file.name{% templatetag closeblock %}" rel="gallery" download="{% templatetag openblock %}=file.name{% templatetag closeblock %}"><img class="uploaded_img" src="{% templatetag openblock %}=file.thumbnail_url{% templatetag closeblock %}"></a>
+{% templatetag openblock %} } {% templatetag closeblock %}</td></tr></table>
+<table style="margin-left:35px;margin-top:30px;"><tr><td class="delete">
+<button class="btn btn-danger" data-type="{% templatetag openblock %}=file.delete_type{% templatetag closeblock %}" data-url="{% templatetag openblock %}=file.delete_url{% templatetag closeblock %}">
+<i class="icon-trash icon-white"></i>
+<span>{% templatetag openblock %}=locale.fileupload.destroy{% templatetag closeblock %}</span>
+</button></td></tr></table></td><td><table ><tr>
+<td class="name"><span>{% templatetag openblock %}=file.name{% templatetag closeblock %}</span>
+</tr></table><table style="margin-top:20px"><tr><td>
 <td class="size"><span>{% templatetag openblock %}=o.formatFileSize(file.size){% templatetag closeblock %}</span></td>
 <td class="error" colspan="2"><span class="label label-important">{% templatetag openblock %}=locale.fileupload.error{% templatetag closeblock %}</span> 
-{% templatetag openblock %}=locale.fileupload.errors[file.error] || file.error{% templatetag closeblock %}</td>
+</td></tr></table></td>
 {% templatetag openblock %} } else { {% templatetag closeblock %}
 <td><table style="margin-left:35px;"><tr>
 <td class="preview" id="{% templatetag openblock %}=file.url{% templatetag closeblock %}">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
@@ -154,11 +160,11 @@ div#uploadpage(style="font-size:15px;width:984px")
 </tr></table></td>
 <td><table ><tr>
 <td class="name"><font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品名称：</font>
-<input type="text" class="input-xlarge" id="input01" name='title' placeholder={% templatetag openblock %}=file.name{% templatetag closeblock %}>
+<input type="text" class="input-xlarge" id="input01" maxlength="18" name='title' placeholder={% templatetag openblock %}=file.name{% templatetag closeblock %}>
 </td></tr></table>
 <table style="margin-top:20px"><tr><td>
 <font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品描述：</font>
-<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242"></textarea>
+<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242" maxlength="200"></textarea>
 </td></tr></table>
 </td>
 {% templatetag openblock %} } {% templatetag closeblock %}

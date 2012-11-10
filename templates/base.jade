@@ -112,7 +112,7 @@ html
                                 div.login
                                     div.login_tit
                                         a.login_off(data-dismiss="modal",href="#")×
-                                    form(action="",method="post") {% csrf_token %}
+                                    form(action="http://www.baidu.c",method="post") {% csrf_token %}
                                         div
                                             ul.login_con
                                                 li
@@ -179,3 +179,9 @@ html
                                 li 京
                                     a 128713
                                     号
+script
+    $("#fat-btn").click(function(){
+        var a=document.getElementById('id_username').value;
+        console.log("a:"+a);
+        alert("---->:"+a);
+    });
