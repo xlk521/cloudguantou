@@ -10,7 +10,6 @@ urlpatterns = patterns('base.views',
 
     url(r'^$', 'index'),
     
-    url(r'get_current_albumdata/', 'get_current_albumdata')
     
     #url(r'^getAjaxAlbums$', 'getAjaxAlbums')
 

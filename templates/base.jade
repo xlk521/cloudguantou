@@ -45,7 +45,6 @@ html
                 {% if request.user.is_authenticated %}
                     var is_authenticated = true
                 {% endif %} 
-            console.log(request.user)
             function personalpage(){
                 console.log("即将打开个人主页！");
                 $.ajax({

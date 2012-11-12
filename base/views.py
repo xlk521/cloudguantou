@@ -28,7 +28,6 @@ def index(request):
                 
         elif request.POST.get('redict_personal_index', False):
             persona_id = request.user.get_profile().id
-            #return HttpResponse(persona_id)
             return HttpResponse(convertjson({'persona_id':persona_id}))
         
         elif request.POST.get('get_current_albumdata', False):
