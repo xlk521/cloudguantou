@@ -135,7 +135,7 @@ function index_reload_img(){//目录页---发送请求并获取数据---将新�
     console.log("cur_count:"+cur_count);
     $.ajax({
         type: 'post',
-        url:"/get_current_albumdata/",
+        url:"/",
         headers: {"X-CSRFToken":csrftoken},
         data: {get_current_albumdata:1,cur_count:cur_count},
         success:function(msg){

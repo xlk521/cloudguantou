@@ -67,8 +67,6 @@ html
                 }
             }
             function forbidden_selectmouse(){}
-            document.onmousedown=selectmouse;
-            document.onmouseup=new Function("isdrag=false");
         script
             function personal_rightorleft(obj){
                 var left_num=0;//用来记录左移的距离
@@ -126,9 +124,10 @@ html
                 }
                 else if(obj.id=="personal_choose_a"){
                     $("#choose_personalbg").animate({top:0},"slow");
+                    //初始化  确定鼠标移动事件
                     document.onmousedown=selectmouse;
+                    document.onmouseup=new Function("isdrag=false");
                 }
-                
             }
             $(document).ready(function(){
                 Personal_brand_resize();
@@ -154,7 +153,150 @@ html
                             img(src="/statics/img/0110.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
                 a.personal_right(onclick="personal_rightorleft(this)")
                 a.personal_left(onclick="personal_rightorleft(this)")
-            div#personal_button(style="height:84px;width:84px;position:absolute;float:left;background:#444333;right:0px",onclick="choose_perbg(this)")
+            div#personal_button(style="height:84px;width:84px;position:absolute;float:left;background:#444333;right:0px;",onclick="choose_perbg(this)")
                 button(style="background:#Aaa;width:40px;height:50px;") 提交
-        div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px")
+        div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px;z-index:20;")
             a#personal_choose_a(style="width:300px;height:60px;display:block",onclick="choose_perbg(this)") 选择个人品牌封面
+        div#personal_wrap(style="position:absolute;top:0px;min-width:984px;min-height:530px;width:100%;opacity:1")
+            div#personal_left(style="overflow:hidden;position:absolute;width:410px;height:420px;left:0;top:17%;cursor:move;",onmouseover="Endrag('personal_left','personal_left',0,0);",onmouseout="mouse_stop()")
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:400px;height:45px;border:1px solid #ccc;background:#f2f2f2;")
+                    h2(style="margin:0px 30px") {{ personal.brand_name }}
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:400px;height:95px;margin-top:3px;border:1px solid #ccc")
+                    div#personal_right_bottom(style="overflow:hidden;position:relative;width:340px;height:55px;margin-top:20px;margin-left:30px;border:1px solid #ccc;background:#f2f2f2;")
+                        {{ personal.brand_introduction }}
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:400px;height:140px;margin-top:15px;border:1px solid #ccc")
+                    div#personal_right_bottom(style="overflow:hidden;position:relative;width:200px;height:120px;margin-top:15px;margin-left: 30px;border:1px solid #ccc;float:left;background:#f2f2f2;")
+                        div(style="font-size:14px;")
+                            {{ personal.author }}
+                            span(style="font-size:10px") 关注：({{ personal.favorite_count }})  粉丝：({{ personal.follower_count }})
+                        div(style="font-size:12px;")中国：{{ personal.province }}
+                        div(style="font-size:12px;")专注于：摄影、摄影、摄影
+                        div(style="width:55px;height:20px;border:1px solid #424242;line-height:20px;text-align:center;margin-top:30px;float:right")关注
+                    div#personal_right_bottom(style="overflow:hidden;position:relative;width:120px;height:120px;margin-top:10px;margin-left:30px;border:1px solid #ccc;float:left;background:#f2f2f2;")
+                        img(src!="{{ personal.coverkey }}")
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:400px;height:110px;margin-top:3px;border:1px solid #ccc")
+                    div#personal_right_bottom(style="overflow:hidden;position:relative;width:340px;height:95px;background:#f2f2f2;margin-top:10px;margin-left: 30px;border:1px solid #ccc;float:left")
+                        {{ personal.introduction }}
+            div#personal_right_center(style="overflow:hidden;position:absolute;width:210px;min-height:420px;right:0;bottom:7%;cursor:move;",onmouseover="Endrag('personal_right_center','personal_right_center',0,0);",onmouseout="mouse_stop()")
+                div#personal_right_center(style="overflow:hidden;position:relative;width:200px;height:200px;background:#444242;float:right")
+                    div#personal_right_center(style="overflow:hidden;position:relative;width:140px;height:100px;background:#f2f2f2;margin-top:30px;margin-left: 50px;")
+                        a(href!="/content/index/{{personal.cans_id}}")
+                            img(src!="{{ personal.coverkey }}")
+                    div(style="overflow:hidden;position:relative;background:#f2f2f2;margin-top:5px;margin-left: 90px;width:80px;")
+                        h4 作品集
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:15px;border:1px solid #ccc")
+                    h4 发布作品
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:48%;border:1px solid #ccc")
+                    h4 他的关注
+                div#personal_right_bottom(style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc")
+                    h4 他的收藏
+        style
+            #personal_left:active{
+                cursor:move;
+            }
+        script
+            function personal_resize(){
+                //$("#personal_wrap").empty();
+                var hei=document.body.clientHeight-2;//网页可见区域高-上下导航
+                $("#personal_wrap").css({height:hei});
+                //$("#personal_left").css({top:17%},{left:0});
+            }
+            $(document).ready(function(){
+                personal_resize();
+            });
+            $(window).resize(function(){
+                personal_resize();
+                choosepersonalhomebg_init()
+            });
+        script
+            var wid=document.body.clientWidth;
+            var hei=document.body.clientHeight;
+            var right_divlimit=wid-$("#personal_right_center").width()-2;//左边的div区域移动的左右距离，即0~~right_divlimit
+            var top_divlimit=hei-$("#personal_right_center").height()-2;//左边的div区域移动的上下距离，即0~~top_divlimit
+            var top_percent=0;
+            var left_percent=0;
+            function choosepersonalhomebg_init(){
+                wid=document.body.clientWidth;
+                hei=document.body.clientHeight;
+                right_divlimit=wid-$("#personal_right_center").width()-2;//左边的div区域移动的左右距离，即0~~right_divlimit
+                top_divlimit=hei-$("#personal_right_center").height()-2;//左边的div区域移动的上下距离，即0~~top_divlimit
+               // console.log("top_percent:"+top_percent+"             left_percent:"+left_percent);
+                //document.getElementById("personal_left").style.left=left_percent;
+               // document.getElementById("personal_left").style.top=top_percent;
+            }
+            /*
+            鼠标拖动层(可任意绑定DIV标签)（一）
+
+            调用方法:var myDrag=new Endrag(source,target,offSetX, offSetY);
+            参数说明:source--鼠标动作绑定对象;target--操作目标对象(要移动的对象);offSetX--横坐标偏移;offSetY--纵坐标偏移
+            说明:通过多次调用本方法绑定多个对象的拖动
+            */
+            funs={
+                index:100,  
+                getFocus:function (target){  
+                    if(target.style.zIndex!=this.index){  
+                        this.index += 2;  
+                        var idx = this.index;  
+                        target.style.zIndex=idx;  
+                    }  
+                },
+                abs:function (element) {
+                    var result = { x: element.offsetLeft, y: element.offsetTop};
+                    element = element.offsetParent;
+                    while (element) {
+                        result.x += element.offsetLeft;
+                        result.y += element.offsetTop;
+                        element = element.offsetParent;
+                    }
+                    return result;
+                }
+            };
+            function mouse_stop(){
+                document.onmousedown=selectmouse;
+            }
+            function Endrag(source,target,offSetX, offSetY){
+                //禁用背景的拖动
+                document.onmousedown=forbidden_selectmouse;
+                source=typeof(source)=="object" ? source:document.getElementById(source);
+                target=typeof(target)=="object" ? target:document.getElementById(target);
+                var x0=0,y0=0,x1=0,y1=0,moveable=false,index=100,NS=(navigator.appName=='Netscape');
+                offSetX=typeof offSetX== "undefined" ? 0:offSetX;
+                offSetY=typeof offSetY== "undefined" ? 0:offSetY;
+                source.onmousedown=function(e){
+                    e = e ? e : (window.event ? window.event : null);
+                    funs.getFocus(target); 
+                    if(e.button==(NS)?0 :1)  { 
+                        if(!NS){this.setCapture()}
+                        x0 = e.clientX ;  
+                        y0 = e.clientY ;  
+                        x1 = parseInt(funs.abs(target).x);  
+                        y1 = parseInt(funs.abs(target).y);    
+                        moveable = true;
+                    }  
+                };  
+                //拖动;  
+                source.onmousemove=function(e){
+                    e = e ? e : (window.event ? window.event : null);  
+                    if(moveable){
+                        var leftnum=x1 + e.clientX - x0 - offSetX;
+                        var topnum=y1 + e.clientY - y0 - offSetY;
+                        if(leftnum>=0 && leftnum<=right_divlimit){
+                            left_percent=(x1 + e.clientX - x0 - offSetX)/wid;//获取左右位置的百分比
+                            target.style.left = left_percent;//(x1 + e.clientX - x0 - offSetX) + "px";
+                            //
+                        }
+                        if(topnum>=0 && topnum<=top_divlimit){
+                            top_percent=(y1 + e.clientY - y0 - offSetY)/hei;//获取上下位置的百分比
+                            target.style.top  =top_percent;// (y1 + e.clientY - y0 - offSetY) + "px"; 
+                            //
+                        }
+                    }  
+                }; 
+                //停止拖动;  
+                source.onmouseup=function (e){ 
+                    if(moveable)  {  
+                        if(!NS){this.releaseCapture();}
+                        moveable = false;  
+                    }  
+                };
+            }
