@@ -42,9 +42,10 @@ html
         {% block link %}{% endblock %}
         script
             var is_authenticated = false
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                     var is_authenticated = true
                 {% endif %} 
+            console.log(request.user)
             function personalpage(){
                 console.log("即将打开个人主页！");
                 $.ajax({
@@ -72,7 +73,7 @@ html
                         a(href="/")  
                             div              
                                 span 首页
-                        {% if user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
                         a(onclick="personalpage()")
                             div
                                 span 个人主页
@@ -86,7 +87,7 @@ html
                             div.login_register
                                 span.headerightaspan1 6
                                 span.headerightaspan2
-                        {% if user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
                         ul
                             li.dropdown
                                 a.dropdown-toggle(data-toggle="dropdown",href="#")
