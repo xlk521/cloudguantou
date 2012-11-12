@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import login
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.template import RequestContext
 
 #@login_required
 @require_http_methods(["GET", "POST"])
@@ -19,24 +19,12 @@ def index(request):
     if request.method != "POST":
         portfolios = Portfolio.objects.all().order_by('-datetime')[0:20]
         request.session['album_latesttime'] = portfolios[0].datetime
-        return render_to_response('homepage/index.html',{'Portfolios':portfolios})
+        return render_to_response('homepage/index.html',{'Portfolios':portfolios},context_instance=RequestContext(request))
     else :
         album_latesttime = request.session.get('album_latesttime', False)
         if album_latesttime and request.POST.get('latest_count', False):
             portfolio_count = Portfolio.objects.exclude(datetime=album_latesttime).filter(datetime__gte=album_latesttime).count()
             return HttpResponse(convertjson({'index_count':portfolio_count}))
-        #=======================================================================
-        # #=======================================================================
-        # elif request.COOKIES.get("sessionid",False):             
-        #    #name = request.POST.get('username', False)
-        #    #pwd = request.POST.get('password', False)
-        #    #ret = User.objects.filter(username=name,password=pwd)
-        #    sessionid = request.session.get("sessionid",False)
-        #    request.se
-        # else:    
-        #    request.session[''] = True
-        # =======================================================================    
-        #=======================================================================
                 
         elif request.POST.get('redict_personal_index', False):
             persona_id = request.user.get_profile().id
