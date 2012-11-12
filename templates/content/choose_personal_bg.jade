@@ -66,6 +66,7 @@ html
                     return false;
                 }
             }
+            function forbidden_selectmouse(){}
             document.onmousedown=selectmouse;
             document.onmouseup=new Function("isdrag=false");
         script
@@ -115,6 +116,20 @@ html
                 document.body.style.backgroundImage="url(" + obj.src + ")";
                 document.getElementById("moveid").style.backgroundPosition=xx3+"px"+" "+yy3+"px";
             }
+            function choose_perbg(obj){
+                console.log(obj.id);
+                if(obj.id=="personal_button"){
+                    $("#choose_personalbg").animate({top:-84},"slow");
+                    console.log("xx3:"+xx3+"<---正在打印当前位置参数--->yy3:"+yy3);
+                    document.onmousedown=forbidden_selectmouse;
+                    //document.getElementById('cmd1').onclick=function(){};
+                }
+                else if(obj.id=="personal_choose_a"){
+                    $("#choose_personalbg").animate({top:0},"slow");
+                    document.onmousedown=selectmouse;
+                }
+                
+            }
             $(document).ready(function(){
                 Personal_brand_resize();
                 $(window).resize(function(){
@@ -122,7 +137,7 @@ html
                 });
             });
     body#moveid.dragme(style="background-size:cover;")
-        div(style="position:absolute;overflow:hidden;min-width:1084px;z-index:10;background:#FFF;width:100%;")
+        div#choose_personalbg(style="position:absolute;overflow:hidden;min-width:1084px;z-index:10;background:#FFF;width:100%;top:-84px;")
             div#Personal_brand_background
                 div#personal_img_content.personal_img_content
                     div.personalimg
@@ -139,6 +154,7 @@ html
                             img(src="/statics/img/0110.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
                 a.personal_right(onclick="personal_rightorleft(this)")
                 a.personal_left(onclick="personal_rightorleft(this)")
-            div#personal_button(style="height:84px;width:84px;position:absolute;float:left;background:#444333;right:0px")
+            div#personal_button(style="height:84px;width:84px;position:absolute;float:left;background:#444333;right:0px",onclick="choose_perbg(this)")
                 button(style="background:#Aaa;width:40px;height:50px;") 提交
-        div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px")选择个人品牌封面
+        div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px")
+            a#personal_choose_a(style="width:300px;height:60px;display:block",onclick="choose_perbg(this)") 选择个人品牌封面
