@@ -1,144 +1,48 @@
-!!!html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
-html
-    head
-        meta(http-equiv="Content-Type",name="viewport", content="width=device-width,initial-scale=1.0")
-        meta(http-equiv="Content-Type",content="text/html; charset="utf-8")
-        title 选择个人品牌背景
-        meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
-        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/GT_css.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/GT_min.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/GT_trade.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/imgareaselect-default.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/GT_Transaction.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/6Cans.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/mycans_css.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/jquery.fileupload-ui.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/jquery-ui-1.9.1.css")
-        link(rel="stylesheet",type="text/css",href="/statics/css/bootstrap-image-gallery.min.css")
-        script(type="text/javascript",src="/statics/js/jquery-1.8.2.min.js",charset="UTF-8")
-        link(rel="stylesheet", type="text/css" ,href="/statics/css/lrtk.css" )
-        script(type="text/javascript", charset="utf-8", src="/statics/js/lrscroll.js" )
-        style
-            .personal_img_content{height:84px;position:relative;float:left;background:#eaa333;overflow:hidden;left:0px;}
-            .personalimg{height:84px;width:146px;position:relative;float:left;background:#aaa;margin-right:10px}
-            .personal_left{background:url(/statics/img/feature_left.gif) no-repeat;width:40px;height:50px;display:block;position:absolute;top:20%;background-position:6px 3px;top:20px;z-index:10;left:0px}
-            .personal_right{background:url(/statics/img/feature_right.gif) no-repeat;width:40px;height:50px;display:block;position:absolute;top:20%;background-position:6px 3px;right:115px;top:20px;z-index:10}
-            .personal_right:hover,.personal_left:hover{background-position:6px -46px;}
-            #Personal_brand_background{float:left;min-width:984px;background:#aaa;overflow:hidden;margin-left:50px;left:0px;}
-            .dragme{position:relative;}
-        script
-            var ie=document.all;
-            var nn6=document.getElementById&&!document.all;
-            var isdrag=false;
-            var x,y;
-            var dobj;
-            var getX;
-            var getY;
-            var xx=0;
-            var yy=0;
-            var xx3=0;
-            var yy3=0;
-            function movemouse(e){
-                if (isdrag){
-                    var xx2=nn6 ? tx + e.clientX - x : tx + event.clientX - x;//新的移动
-                    var yy2=nn6 ? ty + e.clientY - y : ty + event.clientY - y;
-                    xx3= xx+xx2; 
-                    yy3= yy+yy2;
-                    document.getElementById("moveid").style.backgroundPosition=xx3+"px"+" "+yy3+"px";
-                    return false;
-                }
-            }
-            function selectmouse(e){//获取当前指针位置
-                fobj = document.getElementById("moveid");
-                xx=xx3;
-                yy=yy3;
-                console.log(xx);
-                if(fobj.className=="dragme"){
-                    isdrag = true;
-                    dobj = fobj;
-                    tx = parseInt(dobj.style.left+0);
-                    ty = parseInt(dobj.style.top+0);
-                    x = nn6 ? e.clientX : event.clientX;
-                    y = nn6 ? e.clientY : event.clientY;
-                    document.onmousemove=movemouse;
-                    return false;
-                }
-            }
-            document.onmousedown=selectmouse;
-            document.onmouseup=new Function("isdrag=false");
-        script
-            function personal_rightorleft(obj){
-                var left_num=0;//用来记录左移的距离
-                var myA = document.getElementById("personal_img_content");
-                console.log(myA);
-                var old_leftnum=$(".personal_img_content").css('left');
-                var single_img=$(".personalimg").width()+10;
-                console.log("single_img==>"+single_img);
-                console.log("old_leftnum==>"+old_leftnum);
-                if(obj.className=="personal_right"){
-                    left_num=old_leftnum+single_img;
-                }
-                else if(obj.className=="personal_left"){
-                    left_num=old_leftnum-single_img;
-                }
-                $(".personal_img_content").css({left:left_num});
-            }
-            function Personal_brand_resize(){
-                var wid=document.body.clientWidth;
-                var hei=document.body.clientHeight;
-                var div_height=$("#personal_button").height();
-                console.log("div_height-->"+div_height);
-                hei=hei-div_height-10;
-                $("#personal_content").css({height:hei});
-               // $("#personal_content_img").css({height:hei});
-                wid=wid-10;
-                //$("#personal_content_img").css({width:wid});
-                wid=wid+10;
-                wid=wid-210;
-                $("#Personal_brand_background").css({width:wid});
-            }
-            function choose_img(obj){
-                isdrag=false;
-                x=0;y=0;
-                getX=0;
-                getY=0;
-                xx=0;
-                yy=0;
-                xx3=0;
-                yy3=0;
-                console.log(obj.src);
-                //$("#personal_content_img").show();
-                $("#personal_content_div").hide();
-                //$("#personal_content").attr({"src":obj.src});
-                document.body.style.backgroundImage="url(" + obj.src + ")";
-                document.getElementById("moveid").style.backgroundPosition=xx3+"px"+" "+yy3+"px";
-            }
-            $(document).ready(function(){
-                Personal_brand_resize();
-                $(window).resize(function(){
-                    Personal_brand_resize();
-                });
-            });
-    body#moveid.dragme(style="background-size:cover;")
-        div(style="position:absolute;overflow:hidden;min-width:1084px;z-index:10;background:#FFF;width:100%;")
-            div#Personal_brand_background
-                div#personal_img_content.personal_img_content
-                    div.personalimg
-                        a
-                            img(src="/statics/img/0110.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
-                    div.personalimg
-                        a
-                            img(src="/statics/img/0110.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
-                    div.personalimg
-                        a
-                            img(src="/statics/img/0110.jpg",style="height:84px;width:146px;",onclick="choose_img(this)")
-                    div.personalimg
-                        a
-                            img(src="/statics/img/0110.gif",style="height:84px;width:146px;",onclick="choose_img(this)")
-                a.personal_right(onclick="personal_rightorleft(this)")
-                a.personal_left(onclick="personal_rightorleft(this)")
-            div#personal_button(style="height:84px;width:84px;position:absolute;float:left;background:#444333;right:0px")
-                button(style="background:#Aaa;width:40px;height:50px;") 提交
-        div#personal_content_div(style="width:300px;height:60px;background:#AAA;position:relative;margin:auto;top:40%;text-align:center;line-height:60px;font-size:25px")选择个人品牌封面
+{% extends "login_base.jade" %}
+{% block title %}登录{% endblock %}
+{% block index %}
+div#content_login_divspan4
+    form#login_form#margin_left15(action !="{%url django.contrib.auth.views.login %}",method="post") {% csrf_token %}
+        fieldset.control-group.success#margin_left25
+            div.control-group
+                div.controls
+                    div.rightside_text
+                        b 使用邮箱登录
+            div.control-group#margin_top-5
+                strong用户名&nbsp;
+                label.control-label
+                  //{{form.username.label_tag}}
+                div.controls
+                    {{ form.username }}
+                    div#id_usernameTip.onShow 请输入用户名
+                    {% if form.username.errors %}
+                    p.errmsg#err_msg {{ form.username.errors|join:", " }}
+                    {% else %}
+                    p#err_msg &nbsp;
+                    {% endif %}
+            div#margin_top-10
+                strong 密码&nbsp;
+                label.control-label
+                  //{{ form.password.label_tag }}
+                div.controls
+                    {{ form.password }}
+                    div#id_passwordTip.onShow 请输入密码
+                    {% if form.password.errors %}
+                    p.errmsg#err_msg {{ form.password.errors|join:", " }}
+                    {% else %}
+                    p#err_msg &nbsp;
+                    {% endif %}
+                {% if login_failed %}p 用户名或密码错误。
+                {% endif %}
+            div#margin_top-10
+                div.controls
+                    label
+                        input(type="checkbox",style="margin-top:-2px")
+                        font(color="#7cbe31")
+                            &nbsp;自动登录 |
+                        a#link-forgot-passwd(href !="{% url auth_password_reset %}")忘记密码
+            div#margin_top15
+                div.controls
+                    button.btn.btn-success#button_color(type="submit")
+                        strong &nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;
+{% endblock %}
