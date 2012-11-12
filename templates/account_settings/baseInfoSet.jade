@@ -28,7 +28,7 @@ div#mycans(style="margin:0 auto")
                 ul
                     li.B_i_con_li1 登陆账号：
                     li.B_i_con_li2
-                        strong yang***yang
+                        strong {{ user.username }}
                         a.B_i_con_lia1 修改密码
                     li.B_i_con_li1 安全邮箱：
                     li.B_i_con_li2
@@ -36,7 +36,7 @@ div#mycans(style="margin:0 auto")
                         a.B_i_con_lia 验证邮箱
                     li.B_i_con_li1 名号：
                     li.B_i_con_li2
-                        input.B_i_con_input1(name="", type="text" ,value="张三")
+                        input.B_i_con_input1(name="", type="text" ,value!="{{ profile.nickname }}")
                     li.B_i_con_li1 头像：
                     li.B_i_con_li2
                         a.B_i_con_lia2 本地照片
@@ -45,10 +45,10 @@ div#mycans(style="margin:0 auto")
                     li.B_i_con_li1 性别：
                     li.B_i_con_li2
                         label
-                            input(name="" ,type="radio" ,value="")
+                            input(name="sex" ,type="radio" ,value="", checked!={{ profile.gender }} )
                             em &nbsp;男
                         label
-                            input(name="" ,type="radio" ,value="")
+                            input(name="sex" ,type="radio" ,value="", checked!={{ profile.gender }} )
                             em &nbsp;女
                     li.B_i_con_li1 所在地：
                     li.B_i_con_li2
