@@ -2,13 +2,13 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template.context import RequestContext
-from authorize.models import UserProfile
+from django.contrib.auth.models import User
 
 @login_required
 def base_info_set(request):
     profile = request.user.get_profile()
-    
-    return render_to_response('account_settings/baseInfoSet.html', {'profile':profile},context_instance=RequestContext(request))
+    user = User.objects.get(id=profile.user_id)
+    return render_to_response('account_settings/baseInfoSet.html', {'profile':profile, "user":user}, context_instance=RequestContext(request))
 
 @login_required
 def deliver_address(request):
