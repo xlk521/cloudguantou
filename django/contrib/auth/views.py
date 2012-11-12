@@ -19,7 +19,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.models import get_current_site
 
 
-@csrf_protect
+#@csrf_protect
 @never_cache
 def login(request, template_name='registration/login.html',
           redirect_field_name=REDIRECT_FIELD_NAME,

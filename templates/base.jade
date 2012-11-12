@@ -112,10 +112,8 @@ html
                                 div.login
                                     div.login_tit
                                         a.login_off(data-dismiss="modal",href="#")×
-                                    form(action="/accounts/login/",method="post")
-                                        div(style="display:none")
-                                            input(type="hidden",name="csrfmiddlewaretoken",value="3466f0d4118a93623d28b34e66896e61")
-                                        div
+                                    form(action !="{%url django.contrib.auth.views.login %}",method="post") 
+                                        div {% csrf_token %}
                                             ul.login_con
                                                 li
                                                     span#id_usernameTip.onShow.login_s1
