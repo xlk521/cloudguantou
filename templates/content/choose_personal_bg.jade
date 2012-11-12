@@ -70,19 +70,22 @@ html
         script
             function personal_rightorleft(obj){
                 var left_num=0;//用来记录左移的距离
-                var myA = document.getElementById("personal_img_content");
-                console.log(myA);
-                var old_leftnum=$(".personal_img_content").css('left');
+                var old_leftnum=parseFloat($(".personal_img_content").css('left'));
                 var single_img=$(".personalimg").width()+10;
-                console.log("single_img==>"+single_img);
-                console.log("old_leftnum==>"+old_leftnum);
+                var max_width=$("#Personal_brand_background").width();
+                var single_nums=Math.ceil(max_width/single_img);//获取一行显示的个数
+                var img_nums=document.getElementById("#Personal_brand_background");
                 if(obj.className=="personal_right"){
+                    
                     left_num=old_leftnum+single_img;
+                    console.log("right:"+left_num);
                 }
                 else if(obj.className=="personal_left"){
+                    
                     left_num=old_leftnum-single_img;
+                    console.log("left:"+left_num);
                 }
-                $(".personal_img_content").css({left:left_num});
+                $(".personal_img_content").animate({left:left_num});
             }
             function Personal_brand_resize(){
                 var wid=document.body.clientWidth;
@@ -206,7 +209,7 @@ html
             });
             $(window).resize(function(){
                 personal_resize();
-                choosepersonalhomebg_init()
+                choosepersonalhomebg_init();
             });
         script
             var wid=document.body.clientWidth;
@@ -220,9 +223,6 @@ html
                 hei=document.body.clientHeight;
                 right_divlimit=wid-$("#personal_right_center").width()-2;//左边的div区域移动的左右距离，即0~~right_divlimit
                 top_divlimit=hei-$("#personal_right_center").height()-2;//左边的div区域移动的上下距离，即0~~top_divlimit
-               // console.log("top_percent:"+top_percent+"             left_percent:"+left_percent);
-                //document.getElementById("personal_left").style.left=left_percent;
-               // document.getElementById("personal_left").style.top=top_percent;
             }
             /*
             鼠标拖动层(可任意绑定DIV标签)（一）
@@ -282,12 +282,18 @@ html
                         var topnum=y1 + e.clientY - y0 - offSetY;
                         if(leftnum>=0 && leftnum<=right_divlimit){
                             left_percent=(x1 + e.clientX - x0 - offSetX)/wid;//获取左右位置的百分比
-                            target.style.left = left_percent;//(x1 + e.clientX - x0 - offSetX) + "px";
-                            //
+                            left_percent=left_percent*100;
+                            console.log("left_percent:"+left_percent);
+                            target.style.left = left_percent+ "%";
+                            //target.style.left = (x1 + e.clientX - x0 - offSetX) + "px";
+                            
                         }
                         if(topnum>=0 && topnum<=top_divlimit){
                             top_percent=(y1 + e.clientY - y0 - offSetY)/hei;//获取上下位置的百分比
-                            target.style.top  =top_percent;// (y1 + e.clientY - y0 - offSetY) + "px"; 
+                            top_percent=top_percent*100;
+                            console.log("top_percent:"+top_percent);
+                            target.style.top  =top_percent+ "%"; 
+                            //target.style.top  =(y1 + e.clientY - y0 - offSetY) + "px"; 
                             //
                         }
                     }  
