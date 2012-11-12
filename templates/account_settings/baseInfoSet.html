@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.jade" %}
 {% block title %}帐号管理-基本信息{% endblock %}
 {% block content %}
 <div id="mycans">
@@ -33,26 +33,27 @@
 						<a class="B_i_con_lia">验证邮箱</a></li>
 					<li class="B_i_con_li1">名号：</li>
 					<li class="B_i_con_li2">
-						<input name="" type="text" value="张三" class="B_i_con_input1"/>
+						<input name="" type="text" value={{ profile.nickname }} class="B_i_con_input1"/>
 					</li>
 					<li class="B_i_con_li1">头像：</li>
 					<li class="B_i_con_li2"><a class="B_i_con_lia2">本地照片</a>
 						<p>支持.jpg，.png文件，且文件不能大于5M</p>
-						<img src="/statics/img/example_img01.jpg" width="531" height="339"/></li>
+						<img src="/statics/img/example_img01.jpg" width="531" height="339"/>
+					</li>
 					<li class="B_i_con_li1">性别：</li>
 					<li class="B_i_con_li2">
 						<label>
-							<input name="" type="radio" value=""/>
+							<input name="sex" type="radio" value="" checked={{ profile.gender }}/>
 							<em>&nbsp;男</em></label>
 						<label>
-							<input name="" type="radio" value=""/>
+							<input name="sex" type="radio" value="" checked={{ profile.gender }}/>
 							<em>&nbsp;女</em></label>
 					</li>
 					<li class="B_i_con_li1">所在地：</li>
 					<li class="B_i_con_li2"><a class="B_i_con_lia3">省/直辖市/自治区</a><a class="B_i_con_lia3">地区/市</a></li>
 					<li class="B_i_con_li1">个人简介：</li>
 					<li class="B_i_con_li2">
-						<textarea name="" cols="" rows="" class="B_i_textarea"></textarea>
+						<textarea name="" cols="" rows="" class="B_i_textarea">{{ profile.introduction }}</textarea>
 					</li>
 					<li class="B_i_con_li1"></li>
 					<li class="B_i_con_li2"><a class="B_i_con_btn">完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成</a></li>
