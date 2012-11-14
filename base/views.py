@@ -45,6 +45,12 @@ def index(request):
                 profile = UserProfile.objects.get(pk=portfolio.profile_id)
                 portfolio_details['nickname'] = profile.nickname
                 albumlist.append(portfolio_details)
+            #a_list=['converkey','title','pid','profile_id','nickname']
+#            b_list=[portfolio.cover_key, portfolio.title, portfolio.pid, portfolio.profile_id, UserProfile.objects.get(pk=portfolio.profile_id).nickname]
+#            albumlist=[dict(zip(a_list, b_list)) for portfolio in cur_portfolios]
+            #albumlist=[{i: eval('portfolio.'+i) for i in a_list} for i in cur_portfolios]
+
+            
             cur_albums['album_obj'] = albumlist
             return HttpResponse(convertjson(cur_albums))
         else:

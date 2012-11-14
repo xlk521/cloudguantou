@@ -64,7 +64,7 @@ def initialization(request):
     #    model.save()
     #===========================================================================
     initContentIndex()
-    #WriteLoctionJsonToDatabase()
+    WriteLoctionJsonToDatabase()
     return HttpResponse('initialization add succeed!')
 
 def cleanupDataBase():
