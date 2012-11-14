@@ -4,7 +4,7 @@
 
 /*mycans account*/
 
-#mycans{width:982px; border:1px #dfd9db solid; border-radius:5px; overflow:hidden; margin:10px 0; background:white url(/statics/img/GT_leftnav_bg20120919.png) repeat-y -4px 0; padding-bottom:20px;}
+#mycans{width:982px; border:1px #dfd9db solid; border-radius:5px; overflow:hidden; margin:65px auto; background:white url(/statics/img/GT_leftnav_bg20120919.png) repeat-y -4px 0; padding-bottom:20px;}
 #mycans_left{ float:left; width:140px;}
 #mycans_left dt,#mycans_left dd{ height:26px; line-height:26px;}
 #mycans_left dt:hover,#mycans_left dd:hover{background-color:#e6e6e6;}

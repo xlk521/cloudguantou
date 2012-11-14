@@ -3,27 +3,28 @@
 {% block headright %}
 {% endblock %}
 {% block content_works %}
-<div class="controls">
-	<label style="margin-left:-20px" class="control-label">
-		<font size="4px" color="red">&lowast;&nbsp;</font>
-		<font size="4px">品牌昵称</font>{{ formdesign.name }}
-	</label>
-</div>
-<div class="controls">
-	<label style="margin-left:-20px" class="control-label">
-		<font size="4px" color="red">&lowast;&nbsp;</font>
-		<font size="4px">品牌介绍</font>{{ formdesign.introduction }}
-
-	</label>
-</div>
-<div class="controls">
-	<label style="margin-left:-20px" class="control-label">
-		<font size="4px" color="red">&lowast;&nbsp;</font>
-		<font size="4px">品牌类别</font>
-		<input name = "photography" type="checkbox" style="margin-left:30px"/>
-		<font size="4px" style="margin-left:10px">摄影</font>
-		<input name="illustration" type="checkbox" style="margin-left:30px"/><font size="4px" style="margin-left:10px">插画</font>
-		<input name="painting" type="checkbox" style="margin-left:30px"/><font size="4px" style="margin-left:10px">绘画</font>
-	</label>
-</div>
+<style>
+#id_name{
+	width:135px;
+	text-align:right;
+	float:left;
+	margin-top:15px;
+	line-height:30px;
+}
+#id_introduction{}
+</style>
+<li class="B_i_con_li1"><font size="4px" color="red">&lowast;</font>品牌昵称：</li>
+<li class="B_i_con_li2">
+    {{ formdesign.name }}
+</li>
+<li class="B_i_con_li1"><font size="4px" color="red">&lowast;</font>品牌介绍：</li>
+<li class="B_i_con_li2">
+    {{ formdesign.introduction }}
+</li>
+<li class="B_i_con_li1"><font size="4px" color="red">&lowast;</font>品牌类别：</li>
+<li class="B_i_con_li2">
+    <input name = "photography" type="checkbox" style="margin-left:0px"/><font size="4px" style="margin-left:10px">摄影</font>
+    <input name="illustration" type="checkbox" style="margin-left:0px"/><font size="4px" style="margin-left:10px">插画</font>
+	<input name="painting" type="checkbox" style="margin-left:0px"/><font size="4px" style="margin-left:10px">绘画</font>
+</li>
 {% endblock %}

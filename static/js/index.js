@@ -3,9 +3,9 @@ var index_addimg='<li><div class="project-cover"><a href="/content/index/39/?img
 '<a href="/content/personal/?id=${profile_id }" class="font2">净世界</a></p></div></div></li>';
 $.template("tmpl_num1",index_addimg);
 function index_tmpl(){
-		for(var i=0;i<12;i++){
-			$.tmpl("tmpl_num1").appendTo( "#HomeConList_ul" );
-		}
+	for(var i=0;i<12;i++){
+		$.tmpl("tmpl_num1").appendTo( "#HomeConList_ul" );
+	}
 }
 function indexfooter_show(){
     $(this).oneTime(100, function() {
