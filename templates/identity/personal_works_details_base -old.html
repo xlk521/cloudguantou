@@ -72,40 +72,14 @@ function preview(img, selection) {
 		<fieldset class="control-group success">
 			{% block content_works %}{% endblock %}
 			<div class="controls">
-				<label style="margin-left:-20px" class="control-label">
-					<font size="4px" color="red">&lowast;&nbsp;</font>
-					<font size="4px">品牌昵称</font>{{ formdesign.name }}
-				</label>
-			</div>
-			<div class="controls">
-				<label style="margin-left:-20px" class="control-label">
-					<font size="4px" color="red">&lowast;&nbsp;</font>
-					<font size="4px">品牌介绍</font>{{ formdesign.introduction }}
-
-				</label>
-			</div>
-			<div class="controls">
-				<label style="margin-left:-20px" class="control-label">
-					<font size="4px" color="red">&lowast;&nbsp;</font>
-					<font size="4px">品牌类别</font>
-					<input name = "photography" type="checkbox" style="margin-left:30px"/>
-					<font size="4px" style="margin-left:10px">摄影</font>
-					<input name="illustration" type="checkbox" style="margin-left:30px"/><font size="4px" style="margin-left:10px">插画</font>
-					<input name="painting" type="checkbox" style="margin-left:30px"/><font size="4px" style="margin-left:10px">绘画</font>
-				</label>
-			</div>
-
-
-
-			
-			<div class="controls">
 				<label class="control-label">
-				<font size="4px">用户昵称</font> {{ form.nickname }}
-				{% if form.nickname.errors %}
-				<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
-				{% else %}
-				<p id="err_msg">&nbsp;</p>
-				{% endif %}
+					<font size="4px">用户昵称</font>
+					{{ form.nickname }}
+					{% if form.nickname.errors %}
+					<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
+					{% else %}
+					<p id="err_msg">&nbsp;</p>
+					{% endif %}
 				</label>
 			</div>
 			<div class="controls">
@@ -125,7 +99,8 @@ function preview(img, selection) {
 			</div>
 			<div class="controls">
 				<label class="control-label">
-				<font size="4px" style="margin-left:35px">性别</font> {{ form.gender }}
+				<font size="4px" style="margin-left:35px">性别</font>
+				{{ form.gender }}
 				{% if form.gender.errors %}
 				<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
 				{% else %}
@@ -144,7 +119,8 @@ function preview(img, selection) {
 			</div>
 			<div class="controls">
 				<label class="control-label">
-				<font size="4px" style="margin-left:15px">所在地</font> {{ form.province }}
+				<font size="4px" style="margin-left:15px">所在地</font>
+				{{ form.province }}
 				{% if form.province.errors %}
 				<p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
 				{% else %}

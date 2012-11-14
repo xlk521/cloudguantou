@@ -3,13 +3,13 @@
 {% block headright %}
 {% endblock %}
 {% block content %}
-div#uploadpage(style="font-size:15px;width:984px")
+div#uploadpage(style="font-size:15px;width:984px;margin-top:65px;")
     form(id="portfolio",action="",method="post",enctype="multipart/form-data"){% csrf_token %}
         fieldset.control-group.success
             div(style="width:984px")
                 div.controls#uploadpage_headdiv
                     strong 上传作品
-                    button.btn.btn-large.btn-danger#portfolio_post(type="button",style="float:right") 提交作品
+                    button.btn.btn-large.btn-danger#portfolio_post(type="button",style="float:right;height:35px;line-height:15px;") 提交作品
                 div.controls#uploadpage_bodydiv_left
                     label
                         font(style="font-size:15px",color="red") &lowast;&nbsp;
