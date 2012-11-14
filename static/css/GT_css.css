@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /*全局*/
-body{background:#dedede  url(../IMG/gtheaderbg2.JPG);color:#5d5d5d;}
+body{background:#dedede  url(/statics/IMG/gtheaderbg2.JPG);color:#5d5d5d;}
 
 /*标签样式*/
 body,ul,dl,li,dt,dl,dd,input,td,table,h1,h2,h3,h4,h5,h6,p{margin:0; padding:0;}
@@ -35,13 +35,13 @@ em,b{font-family:Tahoma,Arial,Helvetica,sans-serif;}
 .bottom_line2{ width:100%; height:5px;border:0px;background-color:#f2f2f2;color:#f2f2f2;}
 
 /*引进图*/
-.logo1,.logo2,.nav1,.nav2,.nav3,.headerightaspan2,.HomeConTit2_span1{background: url(../IMG/gtmin.png) no-repeat;}
-.detail_slide_right,.detail_slide_left,.ibg1,.ibg2,.ibg3,.ddnumbera1,.ddnumbera2,.cart_btn,.d_servicediv01,.d_servicediv02,.d_servicediv03,.d_servicediv04{background: url(../IMG/GT_detail.png) no-repeat;}
-.tb-postAgeCont,.i_con_li2_a1,.B_i_con_lia3,.listliR_a1{background: url(../IMG/GT_icon_2012913.png) no-repeat;}
-.ddinputw60h21,.i_con_li2 input,.i_con_li2 .i_textarea1,.i_con_li2 .i_textarea2,.B_i_con_input1,.B_i_textarea{background:url(../IMG/inputshadowbg.gif) no-repeat;}
-.icon-suc{background: url(../IMG/GT_icon_2012915.gif) no-repeat;}
-.mt_con li a{background: url(../IMG/GT_banks.png) no-repeat;}
-.mycans_dl1 dt i,.B_i_con_lia2,.sbt_newsbtn,.o_apagebtnleft,.o_apagebtnright,.add_btn{ background:url(../admin_mycans/adminimg/mycans.png) no-repeat;}
+.logo1,.logo2,.nav1,.nav2,.nav3,.headerightaspan2,.HomeConTit2_span1{background: url(/statics/IMG/gtmin.png) no-repeat;}
+.detail_slide_right,.detail_slide_left,.ibg1,.ibg2,.ibg3,.ddnumbera1,.ddnumbera2,.cart_btn,.d_servicediv01,.d_servicediv02,.d_servicediv03,.d_servicediv04{background: url(/statics/IMG/GT_detail.png) no-repeat;}
+.tb-postAgeCont,.i_con_li2_a1,.B_i_con_lia3,.listliR_a1{background: url(/statics/IMG/GT_icon_2012913.png) no-repeat;}
+.ddinputw60h21,.i_con_li2 input,.i_con_li2 .i_textarea1,.i_con_li2 .i_textarea2,.B_i_con_input1,.B_i_textarea{background:url(/statics/IMG/inputshadowbg.gif) no-repeat;}
+.icon-suc{background: url(/statics/IMG/GT_icon_2012915.gif) no-repeat;}
+.mt_con li a{background: url(/statics/IMG/GT_banks.png) no-repeat;}
+.mycans_dl1 dt i,.B_i_con_lia2,.sbt_newsbtn,.o_apagebtnleft,.o_apagebtnright,.add_btn{ background:url(/statics/img/mycans.png) no-repeat;}
 
 
 /*图标*/
@@ -61,10 +61,10 @@ a.general:hover{ text-decoration:underline;}
 
 /*header*/
 #header{
-	position:relative;
-
+	position:fixed;
+	top:0px;
 	height:45px;
-	 _background: url(../IMG/menubar-bg.png) repeat-x;
+	 _background: url(/statics/IMG/menubar-bg.png) repeat-x;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 	
 	right:0;
