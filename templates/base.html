@@ -20,7 +20,8 @@
         <script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/statics/js/vendor/jquery.ui.widget.js" charset="UTF-8"></script>
-        <script type="text/javascript" src="/statics/js/tmpl.min.js" charset="UTF-8"></script>
+        <!----script type="text/javascript" src="/statics/js/tmpl.min.js" charset="UTF-8"></script----->
+        <!---- 在上传个人头像页面不能添加tmpl.min.js---->
         <script type="text/javascript" src="/statics/js/load-image.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/statics/js/canvas-to-blob.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/statics/js/bootstrap.js" charset="UTF-8"></script>
@@ -90,7 +91,7 @@
                         <ul>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                    <div style="width:134px" class="login_register"><span>小浪更改此处</span></div>
+                                    <div style="width:134px" class="login_register"><span>账号</span></div>
                                 </a>
                                 <ul style="height:130px;" class="dropdown-menu">
                                     <li style="float:none;"><a href="/account_settings/base_info_set/">账户设置</a></li>
@@ -163,7 +164,7 @@
               });
           }
         </script>
-        <div id="footer" class="indexfooter_hide_show">
+        <div id="footer" class="indexfooter_hide_show" onmouseover="footer_stoptime()" onmouseout="footer_time()">
             <div class="footerCon">
                 <ul>
                     <li class="logo2"></li>

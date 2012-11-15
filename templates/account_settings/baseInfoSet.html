@@ -1,5 +1,67 @@
-{% extends "base.jade" %}
+{% extends "base.html" %}
 {% block title %}帐号管理-基本信息{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block head %} 
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#head-upload").fileupload({
+        dataType: 'json',
+        autoUpload: true,
+        singleFileUploads: true,
+        done: function (e, data) {
+        	console.log("xlk--2");
+        	var obj = jQuery.parseJSON(data.jqXHR.responseText);
+			$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+			img_url = $('#user-head').attr("src");
+			$('#user_upload_thumbnail').attr("src",img_url);
+			$('input[name="img_url"]').val(img_url);
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    });
+    $('<div><img id="user_upload_thumbnail" src="/statics/img/picture_load.gif" style="position: relative;" /></div>')	
+        .css({
+            float: 'left',
+            position: 'relative',
+            overflow: 'hidden',
+            width: '100px',
+            height: '100px'
+        })
+        .insertAfter($('#user-head'));
+    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview,
+    	onSelectEnd: function (img, selection) {
+        $('input[name="x1"]').val(selection.x1);
+        $('input[name="y1"]').val(selection.y1);
+        $('input[name="x2"]').val(selection.x2);
+        $('input[name="y2"]').val(selection.y2);
+    	}
+    });
+})
+function preview(img, selection) {
+    var scaleX = 100 / (selection.width || 1);
+    var scaleY = 100 / (selection.height || 1);
+  	var wid=$("#user-head").width();
+   	var hei=$("#user-head").height();
+    $('#user-head + div > img').css({
+        width: Math.round(scaleX * wid) + 'px',
+        height: Math.round(scaleY * hei) + 'px',
+        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+    });
+}
+</script>
+<style type="text/css">
+.bar {height:18px;  background:green;}
+.B_i_con_li2{min-height: 33px;}
+.B_i_con_li2 ul li{margin-top: 0px;}
+</style>
+{% endblock %}
 {% block content %}
 <div id="mycans">
 	<div id="mycans_left">
@@ -24,40 +86,71 @@
 				<h3>基本信息</h3>
 			</div>
 			<div id="B_i_con">
-				<ul>
-					<li class="B_i_con_li1">登陆账号：</li>
-					<li class="B_i_con_li2"><strong>yang***yang</strong><a class="B_i_con_lia1">修改密码</a></li>
-					<li class="B_i_con_li1">安全邮箱：</li>
-					<li class="B_i_con_li2">
-						<input name="" type="" class="B_i_con_input1"/>
-						<a class="B_i_con_lia">验证邮箱</a></li>
-					<li class="B_i_con_li1">名号：</li>
-					<li class="B_i_con_li2">
-						<input name="" type="text" value={{ profile.nickname }} class="B_i_con_input1"/>
-					</li>
-					<li class="B_i_con_li1">头像：</li>
-					<li class="B_i_con_li2"><a class="B_i_con_lia2">本地照片</a>
-						<p>支持.jpg，.png文件，且文件不能大于5M</p>
-						<img src="/statics/img/example_img01.jpg" width="531" height="339"/>
-					</li>
-					<li class="B_i_con_li1">性别：</li>
-					<li class="B_i_con_li2">
-						<label>
-							<input name="sex" type="radio" value="" checked={{ profile.gender }}/>
-							<em>&nbsp;男</em></label>
-						<label>
-							<input name="sex" type="radio" value="" checked={{ profile.gender }}/>
-							<em>&nbsp;女</em></label>
-					</li>
-					<li class="B_i_con_li1">所在地：</li>
-					<li class="B_i_con_li2"><a class="B_i_con_lia3">省/直辖市/自治区</a><a class="B_i_con_lia3">地区/市</a></li>
-					<li class="B_i_con_li1">个人简介：</li>
-					<li class="B_i_con_li2">
-						<textarea name="" cols="" rows="" class="B_i_textarea">{{ profile.introduction }}</textarea>
-					</li>
-					<li class="B_i_con_li1"></li>
-					<li class="B_i_con_li2"><a class="B_i_con_btn">完&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成</a></li>
-				</ul>
+				<form action="" method="post" id="submit_form">
+					{% csrf_token %}
+					<ul style="padding-top:20px;padding-bottom:30px;overflow:hidden">
+						<li class="B_i_con_li1">登陆账号：</li>
+						<li class="B_i_con_li2"><strong>{{ profile.user}}</strong><a class="B_i_con_lia1">修改密码</a></li>
+						<li class="B_i_con_li1">安全邮箱：</li>
+						<li class="B_i_con_li2">
+							<input name="" type="" class="B_i_con_input1"/>
+							<a class="B_i_con_lia">验证邮箱</a>
+						</li>
+						<li class="B_i_con_li1">名号：</li>
+						<li class="B_i_con_li2">
+							<input name="" type="text" value="{{ profile.nickname }}" class="B_i_con_input1" id="id_nickname"/>
+							<span id="id_nicknameTip" class="onShow"></span>
+						</li>
+						<li class="B_i_con_li1">头像：</li>
+						<li class="B_i_con_li2">
+							<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple="multiple"/>
+							<div id="progress">
+								<div class="bar" style="width: 0%;"></div>
+							</div>
+							<font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font>
+							<div >
+								<label style="width:300px;height:300px;overflow:hidden;">
+									<img id="user-head" src="/statics/img/picture_load.gif" style="float:left ;width:300px;height:300px;"/>
+								</label>
+								
+							</div>
+						</li>
+						<li class="B_i_con_li1">性别：</li>
+						<li class="B_i_con_li2">
+							<label>
+								<input name="sex" type="radio" value="" style="width:20px" checked={{ profile.gender }}/>
+								<em>&nbsp;男</em></label>
+							<label>
+								<input name="sex" type="radio" value="" style="width:20px" checked={{ profile.gender }}/>
+								<em>&nbsp;女</em></label>
+						</li>
+						<li class="B_i_con_li1" style="display:none"></li>
+						<li class="B_i_con_li2" style="display:none">
+							<input type="hidden" name="x1" value="" />
+		  					<input type="hidden" name="y1" value="" />
+		  					<input type="hidden" name="x2" value="" />
+		  					<input type="hidden" name="y2" value="" />
+		  					<input type="hidden" name="img_url" value="">
+						</li>
+						<li class="B_i_con_li1">所在地：</li>
+						<li class="B_i_con_li2">
+							{{ profile.province }}
+							<select name="city" id="id_city">
+								<option>--</option>
+							</select>
+						</li>
+						<li class="B_i_con_li1">个人简介：</li>
+						<li class="B_i_con_li2">
+							<textarea name="" cols="" rows="" class="B_i_textarea">{{ profile.introduction }}</textarea>
+						</li>
+						<li class="B_i_con_li1"></li>
+						<li class="B_i_con_li2">
+							<button type="submit" value="确定" class="B_i_con_btn">
+								<strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong>
+							</button>
+						</li>
+					</ul>
+				</form>
 			</div>
 		</div>
 	</div>
