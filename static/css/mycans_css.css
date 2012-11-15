@@ -27,11 +27,14 @@
 /*----------分割线----------*/
 
 /*Basic information*/
+#id_gender_0,#id_gender_1{width:20px;}
 #B_i_con li{ float:left; margin-top:15px; line-height:30px;}
+#B_i_con li.B_i_con_li2 ul li{margin-top: 0px;}
+#B_i_con li.B_i_con_li2 ul li label{margin-left: 0px;}
 #B_i_con .B_i_con_li1{ width:135px; text-align:right;}
 #B_i_con .B_i_con_li2{ width:632px; margin-left:25px;}
-#B_i_con .B_i_con_input1{display:inline-block; border-radius:3px; border:2px #aaaaaa solid;}
-#B_i_con .B_i_con_input1{ width:177px; height:26px; line-height:26px; padding-left:5px;}
+#B_i_con .B_i_con_input1,#B_i_con #id_nickname,#B_i_con #id_name{display:inline-block; border-radius:3px; border:2px #aaaaaa solid;}
+#B_i_con .B_i_con_input1,#B_i_con #id_nickname,#B_i_con #id_name{ width:177px; height:26px; line-height:26px; padding-left:5px;}
 #B_i_con .B_i_con_lia,#B_i_con .B_i_con_lia1{ display:inline-block; width:82px; height:26px; line-height:26px; border-radius:2px; text-align:center; border:1px #fff solid;}
 #B_i_con .B_i_con_lia{ margin-left:20px;}
 #B_i_con .B_i_con_lia:hover{ background-color:#faecdd; border:1px #d6b190 solid;}
@@ -44,7 +47,7 @@
 #B_i_con .B_i_con_li2 label{margin-right:20px;}
 #B_i_con .B_i_con_lia3{color:#a7a6ac; font-size:12px;display: inline-block;border-radius:3px; border:2px #aaaaaa solid;}
 #B_i_con .B_i_con_lia3{width:123px; height:26px; line-height:26px; margin-right:10px; background-position:106px -122px; padding-left:5px;}
-#B_i_con .B_i_textarea{ width:480px; height:150px;border-radius:3px; border:2px #aaaaaa solid;}
+#B_i_con .B_i_textarea,#B_i_con #id_introduction{ width:480px; height:150px;border-radius:3px; border:2px #aaaaaa solid;}
 #B_i_con .B_i_con_btn{display: inline-block; border:1px #bc4c01 solid; border-radius: 2px; color:white; font-weight:bold; background-color:#f60; text-align:center;width:124px; height:30px; line-height:30px; font-size:15px;font-family:"微软雅黑"}
 #B_i_con .B_i_con_btn:hover{ border:1px #d16a0e solid; background-color:#ff8500;}
 

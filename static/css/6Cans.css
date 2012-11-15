@@ -941,7 +941,7 @@ div#homepage_content form fieldset.control-group{
     text-align:center;
 }
 
-#id_city {margin-left:30px;width:125px;height:35px;background:#f7f7f7;border-width:3px}
+#id_city {width:125px;height:35px;background:#f7f7f7;border-width:3px}
 /*置顶*/
 .backToTop ,.backShow{
 	 display: none;
