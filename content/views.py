@@ -21,7 +21,8 @@ from brand.models import Brand
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
-
+def choose_personal_bg(request):
+    return render_to_response('content/choose_personal_bg.jade')
 @login_required
 def personal_index(request, profile_id):
     #cans_id = request.GET.get('id', False)
