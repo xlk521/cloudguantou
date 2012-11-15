@@ -1,7 +1,7 @@
 {% extends "base.jade" %}
 {% block title %}主页{% endblock %}
 {% block content %}
-div#contents_list.body_contents_list(style="overflow:hidden;position:relative;min-width:1210px;min-height:450px;width:100%;")
+div#contents_list.body_contents_list(style="overflow:hidden;position:absolute;min-width:1210px;min-height:450px;width:100%;top:45px")
     div#contents_list_left(style="position:relative;width:740px;min-height:450px;float:left;background-color:white")
         div#contents_listborder_left(style="position:relative;width:24px;float:left;z-index:10;background-color:#FFF;border-right:1px solid #aaa;min-height:450px")
         div#contents_list_work(style="position:relative;width:665px;float:left;z-index:10;background-color:#FFF")
@@ -14,10 +14,9 @@ div#contents_list.body_contents_list(style="overflow:hidden;position:relative;mi
                 div#contents_work
                     div(style="overfloat:hidden")
                         a
-                            img.img_delay_load(src!={{album.frontcover}},id!={{album.albumid}},style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;",onclick="contents_getimgid(this)")
+                            img.img_delay_load(src!={{album.frontcover}},id!={{album.albumid}},title!="{{ album.title }}:本相册共10张",style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;",onclick="contents_getimgid(this)")
                             div
-                                b {{ album.title }} 
-
+                                b {{ album.title }}
                 {% endfor %}
             {% endfor %}
             {% endfor %}
@@ -38,14 +37,9 @@ script
     $(document).ready(function(){
         $("#contents_list").show("normal",function(){
             $("#change_id").attr("class","contents_body");
-            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--0");
             contents_show(1210);
-            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--1");
             contentlist_content_imgnum("contents_list_date");
-            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--2");
             contents_left_resize();
-            console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy--3");
-
             $('#contents_list_right').show("normal",function() {
                 contents_getJson();
                 console.log("首次调取数据");

@@ -68,20 +68,27 @@ html
             }
             function forbidden_selectmouse(){}
         script
+            var stopnum=0;
             function personal_rightorleft(obj){
                 var left_num=0;//用来记录左移的距离
                 var old_leftnum=parseFloat($(".personal_img_content").css('left'));
                 var single_img=$(".personalimg").width()+10;
                 var max_width=$("#Personal_brand_background").width();
                 var single_nums=Math.ceil(max_width/single_img);//获取一行显示的个数
+                var allnum=4;//假定当前有4个图片
                 var img_nums=document.getElementById("#Personal_brand_background");
-                if(obj.className=="personal_right"){
-                    
+                var stop=0;
+                if(single_nums>=allnum){stop=0;}
+                else {
+                    stop=allnum-single_nums;//确定可以移动的个数
+                }
+                if(obj.className=="personal_right" && stopnum<stop){
+                    stopnum=stopnum+1;
                     left_num=old_leftnum+single_img;
                     console.log("right:"+left_num);
                 }
-                else if(obj.className=="personal_left"){
-                    
+                else if(obj.className=="personal_left"  && stopnum>0){
+                    stopnum=stopnum-1;
                     left_num=old_leftnum-single_img;
                     console.log("left:"+left_num);
                 }
@@ -276,7 +283,7 @@ html
                 };  
                 //拖动;  
                 source.onmousemove=function(e){
-                    e = e ? e : (window.event ? window.event : null);  
+                    e = e ? e : (window.event ? window.event : null); 
                     if(moveable){
                         var leftnum=x1 + e.clientX - x0 - offSetX;
                         var topnum=y1 + e.clientY - y0 - offSetY;

@@ -3,12 +3,18 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template.context import RequestContext
 from django.contrib.auth.models import User
-
+from google.appengine.ext import blobstore
+from authorize.views import get_cities
 @login_required
 def base_info_set(request):
     profile = request.user.get_profile()
     user = User.objects.get(id=profile.user_id)
-    return render_to_response('account_settings/baseInfoSet.html', {'profile':profile, "user":user}, context_instance=RequestContext(request))
+    upload_url = blobstore.create_upload_url('/authorize/head_upload/')
+    #province = get_cities(request)
+    #import logging
+    #logging.error("province")
+    #logging.error(request)
+    return render_to_response('account_settings/baseInfoSet.html', {'profile':profile, "user":user, 'upload_url':upload_url }, context_instance=RequestContext(request))
 
 @login_required
 def deliver_address(request):

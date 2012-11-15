@@ -91,10 +91,10 @@ $.template("contents_center_leftup",  contents_center_up );
 $.template("contents_center_leftdown",  contents_center_down );
 //右边图片部分的模版
 var contents_rightimg='<div id="contents_list_img2" class="contents_list_img2" style="position:absolute;min-height:450px;background:#fff;left:700px;border-left-color:#AAA;border-left-style:solid;border-left-width:1px;"></div>';
-var contents_rightimg_head='<div style="height:45px;background:#fff;line-height:40px;">'+
+var contents_rightimg_head='<div style="height:40px;background:#fff;line-height:40px;">'+
     '<span style="float:left;background:#aaa;font-size:19px;margin-left:5px">【照片的名称】</span>'+
     '<a style="float:right;margin-top:10px;margin-right:5px"><img src="/statics/img/contents_cart.GIF"></a><a style="float:right;margin-top:20px;margin-right:5px"><img src="/statics/img/contents_share.GIF"></a></div>';
-var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src=${url} style="min-height:450px;"></a></div>';
+var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src=${url} style="min-height:450px;margin:auto;display:block;"></a></div>';
 var contents_rightimg_footul='<div style="height:25px;background:#fff;"><ul id="contents_rightimg_ul"></ul></div>';
 /**/
 var contents_rightimg_footliwork='<li class="dropdown" ><a style="float:left;margin-left:5px;" data-toggle="dropdown" href="#" class="dropdown-toggle">'+
@@ -274,6 +274,7 @@ function contents_right_left(works_msg){
         $('#contents_list_img2').removeAttr('id');
         $('#contents_rightimg_ul').removeAttr('id');
         $.tmpl( "contents_list_rightimg").appendTo( "#contents_list_right" );
+        $.tmpl( "contents_list_rightimg_head").appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_center",works_msg.works[i]).appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_footul").appendTo( "#contents_list_img2" );
         $.tmpl( "contents_list_rightimg_footliwork").appendTo( "#contents_rightimg_ul" );
@@ -1006,7 +1007,7 @@ function contents_show(leftwidth){
         var img_h=hei-35;
         var img_w=img_h*4/3+1;
         $(".contents_list_img2").css({height:hei,width:img_w});//所有的模板统一大小的设置
-        var img_hei=hei-35;
+        var img_hei=hei-75;
         $(".contents_changeimg").css({height:img_hei});
         console.log("wid:"+wid);
 }
@@ -1134,6 +1135,15 @@ $(document).ready(function(){
     $("#input01")
         .formValidator({onshow:"请输入名称！",onfocus:"名称1~9字！"})
         .inputValidator({min:1,max:18,onerror:"名称至多9个字！"})
+    $("#id_name")
+        .formValidator({onshow:"请输入品牌名称！",onfocus:"品牌名称1~9字！"})
+        .inputValidator({min:1,max:18,onerror:"品牌名称至多9个字！"})
+    $("#id_nickname")
+        .formValidator({onshow:"请输入昵称！",onfocus:"昵称1~8字！"})
+        .inputValidator({min:1,max:16,onerror:"昵称至多8个字！"})
+    $("#id_introduction")
+        .formValidator({onshow:"请输入品牌简介！",onfocus:"品牌简介1~100字！"})
+        .inputValidator({min:1,max:200,onerror:"昵称至多100个字！"})
     //生成初始界面
     $("#author_right").click(function(){
         $("#author_right").carousel('next');
