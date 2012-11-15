@@ -1,8 +1,8 @@
-{% extends "base.jade" %}
+{% extends "base.html" %}
 {% block title %}个人信息{% endblock %}
 {% block headright %}
 {% endblock %}
-{% block head %} 
+{% block head %}
 <script type="text/javascript">
 $(document).ready(function(){
     $(function () {
@@ -16,7 +16,7 @@ $(document).ready(function(){
 				img_url = $('#user-head').attr("src");
 				$('#user_upload_thumbnail').attr("src",img_url);
 				$('input[name="img_url"]').val(img_url);
-				
+
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -43,6 +43,8 @@ $(document).ready(function(){
             $('input[name="y2"]').val(selection.y2);
         	}
 	    });
+
+    	
     })
 })	
 function preview(img, selection) {
@@ -60,90 +62,84 @@ function preview(img, selection) {
 </script>
 <style type="text/css">
 .bar {height:18px;  background:green;}
-.B_i_con_li2{min-height: 33px;}
-.B_i_con_li2 ul li{margin-top: 0px;}
 </style>
 {% endblock %}
 {% block content %}
-<div id="mycans">
-	<div id="mycans_right">
-		<div class="mycans_div">
-			<div class="mycans_tit">
-				<h3>基本信息</h3>
+<div id="div_span9">
+	<form action="" method="post" id="submit_form">
+		{% csrf_token %}
+		<fieldset class="control-group success">
+			{% block content_works %}{% endblock %}
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px">用户昵称</font> {{ form.nickname }}
+				{% if form.nickname.errors %}
+				<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				</label>
 			</div>
-			<div id="B_i_con">
-				<form action="" method="post" id="submit_form">
-					{% csrf_token %}
-					<ul style="padding-top:20px;padding-bottom:30px;overflow:hidden">
-						{% block content_works %}{% endblock %}
-						<li class="B_i_con_li1">名号：</li>
-						<li class="B_i_con_li2">
-							{{ form.nickname }}
-							{% if form.nickname.errors %}
-							<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
-							{% else %}
-							<p id="err_msg">&nbsp;</p>
-							{% endif %}
-						</li>
-						<li class="B_i_con_li1">头像：</li>
-						<li class="B_i_con_li2">
-							<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple>
-							<div id="progress">
-								<div class="bar" style="width: 0%;"></div>
-							</div>
-							<font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font>
-							<div>
-								<img id="user-head" src="/statics/img/picture_load.gif" style="float:left "/>
-							</div>
-						</li>
-						<li class="B_i_con_li1">性别：</li>
-						<li class="B_i_con_li2">
-							{{ form.gender }}
-							{% if form.gender.errors %}
-							<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
-							{% else %}
-							<p id="err_msg">&nbsp;</p>
-							{% endif %}
-						</li>
-						<li class="B_i_con_li1" style="display:none"></li>
-						<li class="B_i_con_li2" style="display:none">
-							<input type="hidden" name="x1" value="" />
-		  					<input type="hidden" name="y1" value="" />
-		  					<input type="hidden" name="x2" value="" />
-		  					<input type="hidden" name="y2" value="" />
-		  					<input type="hidden" name="img_url" value="">
-						</li>
-						<li class="B_i_con_li1">所在地：</li>
-						<li class="B_i_con_li2">
-							{{ form.province }}
-							{% if form.province.errors %}
-							<p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
-							{% else %}
-							<p id="err_msg">&nbsp;</p>
-							{% endif %}
-							<select name="city" id="id_city">
-								<option>市/区</option>
-							</select>
-						</li>
-						<li class="B_i_con_li1">个人简介：</li>
-						<li class="B_i_con_li2">
-							{{ form.introduction }}
-							{% if form.introduction.errors %}
-							<p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
-							{% else %}
-							<p id="err_msg">&nbsp;</p>
-							{% endif %}
-						</li>
-						<li class="B_i_con_li1"></li>
-						<li class="B_i_con_li2">
-							<button type="submit" value="确定" class="B_i_con_btn">
-								<strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong>
-							</button>
-						</li>
-					</ul>
-				</form>
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px" style="margin-left:35px">头像</font>
+				<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple>
+				<div id="progress">
+					<div class="bar" style="width: 0%;"></div>
+				</div>
+				</label>
 			</div>
-		</div>
-	</div>
+			<div class="controls">
+				<label style="margin-left:105px" class="control-label"> <font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font> </label>
+			</div>
+			<div class="controls">
+				<label style="margin-left:105px" class="control-label"> <img id="user-head" src="/statics/img/picture_load.gif" style="float:left "/> </label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px" style="margin-left:35px">性别</font> {{ form.gender }}
+				{% if form.gender.errors %}
+				<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				</label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+					<input type="hidden" name="x1" value="" />
+  					<input type="hidden" name="y1" value="" />
+  					<input type="hidden" name="x2" value="" />
+  					<input type="hidden" name="y2" value="" />
+  					<input type="hidden" name="img_url" value="">
+				</label>
+			</div>
+			<div class="controls">
+				<label class="control-label">
+				<font size="4px" style="margin-left:15px">所在地</font> {{ form.province }}
+				{% if form.province.errors %}
+				<p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				<select name="city" id="id_city">
+					<option>市/区</option>
+				</select>
+				</label>
+			</div>
+			<div class="controls">
+				<p>{{ form.introduction }}
+					{% if form.introduction.errors %}
+				<p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}
+				</p>
+			</div>
+			<div class="controls">
+				<button type="submit" value="确定" style="background:#7cbe31;margin-left:100px" class="btn btn-success"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
+			</div>
+		</fieldset>
+	</form>
 </div>
 {% endblock %}

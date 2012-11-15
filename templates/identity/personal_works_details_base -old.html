@@ -147,3 +147,154 @@ function preview(img, selection) {
 	</form>
 </div>
 {% endblock %}
+//xlk的修改版时代吗
+{% extends "base.jade" %}
+{% block title %}个人信息{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block head %} 
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log("fileupload函数功能有问题");
+	var idPost=document.getElementById("head-upload").innerHTML;
+	console.log(idPost);
+    $("#head-upload").fileupload({
+        dataType: 'json',
+        autoUpload: true,
+        singleFileUploads: true,
+        done: function (e, data) {
+        	console.log("xlk--2");
+        	var obj = jQuery.parseJSON(data.jqXHR.responseText);
+			$("#user-head").attr("src","/authorize/head/"+obj.photo_key);
+			img_url = $('#user-head').attr("src");
+			$('#user_upload_thumbnail').attr("src",img_url);
+			$('input[name="img_url"]').val(img_url);
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    });
+    $('<div><img id="user_upload_thumbnail" src="/statics/img/picture_load.gif" style="position: relative;" /></div>')	
+        .css({
+            float: 'left',
+            position: 'relative',
+            overflow: 'hidden',
+            width: '100px',
+            height: '100px'
+        })
+        .insertAfter($('#user-head'));
+    $('#user-head').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview,maxWidth: 120, maxHeight: 120,minWidth:120, minHeight:120,
+    	onSelectEnd: function (img, selection) {
+        $('input[name="x1"]').val(selection.x1);
+        $('input[name="y1"]').val(selection.y1);
+        $('input[name="x2"]').val(selection.x2);
+        $('input[name="y2"]').val(selection.y2);
+    	}
+    });
+})
+function preview(img, selection) {
+    var scaleX = 100 / (selection.width || 1);
+    var scaleY = 100 / (selection.height || 1);
+  	var wid=$("#user-head").width();
+   	var hei=$("#user-head").height();
+    $('#user-head + div > img').css({
+        width: Math.round(scaleX * wid) + 'px',
+        height: Math.round(scaleY * hei) + 'px',
+        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+    });
+}
+</script>
+<style type="text/css">
+.bar {height:18px;  background:green;}
+.B_i_con_li2{min-height: 33px;}
+.B_i_con_li2 ul li{margin-top: 0px;}
+</style>
+{% endblock %}
+{% block content %}
+<div id="mycans">
+	<div id="mycans_right">
+		<div class="mycans_div">
+			<div class="mycans_tit">
+				<h3>基本信息</h3>
+			</div>
+			<div id="B_i_con">
+				<form action="" method="post" id="submit_form">
+					{% csrf_token %}
+					<ul style="padding-top:20px;padding-bottom:30px;overflow:hidden">
+						{% block content_works %}{% endblock %}
+						<li class="B_i_con_li1">名号：</li>
+						<li class="B_i_con_li2">
+							{{ form.nickname }}
+							{% if form.nickname.errors %}
+							<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
+							{% else %}
+							<p id="err_msg">&nbsp;</p>
+							{% endif %}
+						</li>
+						<li class="B_i_con_li1">头像：</li>
+						<li class="B_i_con_li2">
+							<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple="multiple"/>
+							<div id="progress">
+								<div class="bar" style="width: 0%;"></div>
+							</div>
+							<font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font>
+							<div>
+								<img id="user-head" src="/statics/img/picture_load.gif" style="float:left "/>
+							</div>
+						</li>
+						<li class="B_i_con_li1">性别：</li>
+						<li class="B_i_con_li2">
+							{{ form.gender }}
+							{% if form.gender.errors %}
+							<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
+							{% else %}
+							<p id="err_msg">&nbsp;</p>
+							{% endif %}
+						</li>
+						<li class="B_i_con_li1" style="display:none"></li>
+						<li class="B_i_con_li2" style="display:none">
+							<input type="hidden" name="x1" value="" />
+		  					<input type="hidden" name="y1" value="" />
+		  					<input type="hidden" name="x2" value="" />
+		  					<input type="hidden" name="y2" value="" />
+		  					<input type="hidden" name="img_url" value="">
+						</li>
+						<li class="B_i_con_li1">所在地：</li>
+						<li class="B_i_con_li2">
+							{{ form.province }}
+							{% if form.province.errors %}
+							<p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
+							{% else %}
+							<p id="err_msg">&nbsp;</p>
+							{% endif %}
+							<select name="city" id="id_city">
+								<option>市/区</option>
+							</select>
+						</li>
+						<li class="B_i_con_li1">个人简介：</li>
+						<li class="B_i_con_li2">
+							{{ form.introduction }}
+							{% if form.introduction.errors %}
+							<p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
+							{% else %}
+							<p id="err_msg">&nbsp;</p>
+							{% endif %}
+						</li>
+						<li class="B_i_con_li1"></li>
+						<li class="B_i_con_li2">
+							<button type="submit" value="确定" class="B_i_con_btn">
+								<strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong>
+							</button>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
