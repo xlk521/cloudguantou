@@ -1,6 +1,25 @@
 {% extends "base.jade" %}
 {% block title %}帐号管理-收货地址{% endblock %}
 {% block content %}
+script
+    function choose_address(obj){
+        //获取改变前的默认地址的相关内容(固定的)
+        var li_name_ed=document.getElementsByName("chooseed_address");
+        var span_name_ed=document.getElementsByName("chooseed_address_span");
+        var a_name_ed=document.getElementsByName("chooseed_address_a");
+        //获取需要设置为默认地址的内容（根据点击的内容的name改变）
+        var objname=obj.name;
+        var li_name=document.getElementsByName(objname+"_li");
+        var span_name=document.getElementById(objname+"_span");
+        var a_name=document.getElementsByName(objname);
+
+        console.log(li_name);
+        console.log(span_name);
+        console.log(a_name);
+        $(li_name).css({backgroundColor:"#F0EDEC"},{color:"#5D5D5D"},{border:3});
+        span_name.innerHTML="寄送至";
+        $(a_name).empty();
+    }
 div#mycans(style="margin:0 auto")
     div#mycans_left
         dl.mycans_dl1
@@ -26,19 +45,22 @@ div#mycans(style="margin:0 auto")
                 h3 收货地址
             div#D_a_con
                 ul.D_a_con_top
-                    li.D_a_red
-                        span.tip 寄送至
+                    li.D_a_red(name="chooseed_address")
+                        span.tip(name="chooseed_address_span") 寄送至
                         a.delete 删除
                         a.delete 编辑
                         label.label1 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
                         em.em1 12345678901
-                        a.dft 默认地址
-                    li.D_a_red1
+                        span(name="chooseed_address_a")
+                            a.dft 默认地址
+                    li.D_a_red1(name="choose_address_li")
+                        span#choose_address_span.tip(name="choose_address_span") 更改此处
                         a.delete 删除
                         a.delete 编辑
                         label.label2 北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)
                         em.em1 12345678901
-                        a.dft1 设为默认地址
+                        span
+                            a.dft1(onclick="choose_address(this)",name="choose_address") 设为默认地址
                 div.D_a_con_sbt
                     a.sbt_newsbtn
                         h3 新增地址
