@@ -2,4 +2,67 @@
 {% block title %}注册{% endblock %}
 {% block headright %}
 {% endblock %}
-{% block index %}<div id="content_login_divspan4"><form id="margin_left15" action="/accounts/register/" method="POST">{% csrf_token %}<fieldset id="margin_left25" class="control-group success"><div class="control-group"><div class="controls"><div class="rightside_text"><b> 使用邮箱注册</b></div></div></div><div id="margin_top-5"><strong>用户名</strong><label class="control-label"></label><div class="controls">{{form.username}}<div id="id_usernameTip" class="onShow">请输入用户名</div></div>{% if form.username.errors %}<p id="err_msg" class="errmsg">{{ form.username.errors|join:", " }}</p>{% else %}<p id="err_msg">&nbsp;</p>{% endif %}</div><div id="margin_top-10"><strong>邮箱</strong><label class="control-label"></label><div class="controls">{{form.email}}<div id="id_emailTip" class="onShow">请输入邮箱</div></div>{% if form.email.errors %}<p id="err_msg" class="errmsg">{{ form.email.errors|join:", " }}</p>{% else %}<p id="err_msg">&nbsp;</p>{% endif %}</div><div id="margin_top-10"><strong>密码</strong><label class="control-label"></label><div class="controls">{{form.password1}}<div id="id_password1Tip" class="onShow">请输入密码</div></div>{% if form.password1.errors %}<p id="err_msg" class="errmsg">{{ form.password1.errors|join:", " }}</p>{% else %}<p id="err_msg">&nbsp;</p>{% endif %}</div><div id="margin_top-10"><strong>密码确认</strong><label class="control-label"></label><div class="controls">{{form.password2}}<div id="id_password2Tip" class="onShow">请再次输入密码</div></div>{% if form.password2.errors %}<p id="err_msg" class="errmsg">{{ form.password2.errors|join:", " }}</p>{% else %}<p id="err_msg">&nbsp;</p>{% endif %}</div><div id="margin_top-10"><div class="controls"><p class="p2"> 验证邮箱，有20%几率获得罐头工场折扣券</p></div></div><div id="margin_top15"><div class="controls"><button id="button_color" type="submit" class="btn btn-success"><strong>&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;</strong></button></div></div></fieldset></form></div>{% endblock %}
+{% block index %}
+<div id="content_login_divspan4">
+	<form id="margin_left15" action="/accounts/register/" method="POST">
+		{% csrf_token %}
+		<fieldset id="margin_left25" class="control-group success">
+			<div class="control-group">
+				<div class="controls">
+					<div class="rightside_text"><b> 使用邮箱注册</b></div>
+				</div>
+			</div>
+			<div id="margin_top-5"><strong>用户名</strong>
+				<label class="control-label"></label>
+				<div class="controls">{{form.username}}
+					<div id="id_usernameTip" class="onShow">请输入用户名</div>
+				</div>
+				{% if form.username.errors %}
+				<p id="err_msg" class="errmsg">{{ form.username.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}</div>
+			<div id="margin_top-10"><strong>邮箱</strong>
+				<label class="control-label"></label>
+				<div class="controls">{{form.email}}
+					<div id="id_emailTip" class="onShow">请输入邮箱</div>
+				</div>
+				{% if form.email.errors %}
+				<p id="err_msg" class="errmsg">{{ form.email.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}</div>
+			<div id="margin_top-10"><strong>密码</strong>
+				<label class="control-label"></label>
+				<div class="controls">{{form.password1}}
+					<div id="id_password1Tip" class="onShow">请输入密码</div>
+				</div>
+				{% if form.password1.errors %}
+				<p id="err_msg" class="errmsg">{{ form.password1.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}</div>
+			<div id="margin_top-10"><strong>密码确认</strong>
+				<label class="control-label"></label>
+				<div class="controls">{{form.password2}}
+					<div id="id_password2Tip" class="onShow">请再次输入密码</div>
+				</div>
+				{% if form.password2.errors %}
+				<p id="err_msg" class="errmsg">{{ form.password2.errors|join:", " }}</p>
+				{% else %}
+				<p id="err_msg">&nbsp;</p>
+				{% endif %}</div>
+			<div id="margin_top-10">
+				<div class="controls">
+					<p class="p2"> 验证邮箱，有20%几率获得罐头工场折扣券</p>
+				</div>
+			</div>
+			<div id="margin_top15">
+				<div class="controls">
+					<button id="button_color" type="submit" class="btn btn-success"><strong>&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;</strong></button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+{% endblock %}

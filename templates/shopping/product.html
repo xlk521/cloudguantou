@@ -1,28 +1,32 @@
-{% extends "base.html" %}
+{% extends "base.jade" %}
 {% block title %}物品详情页{% endblock %}
 {% block content %}
-<div id="detail_content_div">
+<div id="detail_content_div" style="margin:0 auto">
 	<div id="detail_content_left">
 		<div id="detail_content_left_top">
 			<ul class="ulmarginw25">
-				<li class="h30">
-					<h3>青藏高原</h3>
-				</li>
-				<li class="h24"><span>类别：</span><em>摄影</em><span>品牌：</span><em>金色闪光</em><span>作者</span><em>姚远</em></li>
+				<li id="h30" class="h30"></li>
+				<li id="h24" class="h24"></li>
 			</ul>
 			<hr class="bottom_line"/>
 			<ul class="ulmarginw25">
-				<li class="h410"><img src="/statics/img/cp.jpg" width="510" height="410"/></li>
+				<li id="h410" class="h410">
+					<div style="width:510px;height:410px;background:#aaa;position:absolute;">
+						<div id="product_side_imgbg" style="width:380px;height:330px;background:#aaa;margin:40px auto"><img src="/statics/IMG/cp.gif" style="width:340px;height:290px;margin:20px 20px"/></div>
+					</div>
+				</li>
 				<li class="hauto1">
 					<p>所有复制品均有6cans统一扫描、制定、装订。所有纸张均为康颂纸，画框均为____材质，6cans为您保证质量。</p>
 				</li>
 			</ul>
 		</div>
 		<div id="detail_content_left_bottom">
-			<div class="dclb"><span>系列《<strong>走进西藏的春与秋</strong>》中的其它作品</span>
-				<div class="detail_left_content_w510"><a target="_self" class="detail_slide_right"></a><a target="_self" class="detail_slide_left"></a>
-					<div class="detail_left_content_w470"><a><img src="/statics/IMG/xq_cps1.jpg" width="110" height="83"/></a><a><img src="/statics/IMG/xq_cps1.jpg" width="110" height="83"/></a><a><img src="/statics/IMG/xq_cps1.jpg" width="110" height="83"/></a><a><img src="/statics/IMG/xq_cps1.jpg" width="110" height="83"/></a></div>
-				</div>
+			<div class="dclb"><span>系列《<strong id="other_product_name"></strong>》中的其它作品</span>
+				<div class="detail_left_content_w510">
+					<div style="overflow:hidden;width:456px;position:relative;margin-left:25px" class="detail_left_content_w470">
+						<div style="position:relative" class="detail_left_content_w"></div>
+					</div>
+					<a target="_self" class="detail_slide_right"></a><a target="_self" style="position: absolute;" class="detail_slide_left"></a></div>
 			</div>
 		</div>
 	</div>
@@ -38,51 +42,51 @@
 			<dl class="ulmarginw25">
 				<dt class="lifontsize">请选择尺寸：</dt>
 				<dd class="lifontsize_dd">
-					<input name="" type="radio" value=""/>
-					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>100 .00</em></strong></dd>
+					<input name="choose_size" type="radio" value="0" onclick="product_count_paynum(this)" checked="checked" class="product_size_pay"/>
+					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>0.00</em></strong></dd>
 				<dd class="lifontsize_dd">
-					<input name="" type="radio" value=""/>
-					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>100 .00</em></strong></dd>
+					<input name="choose_size" type="radio" value="200" onclick="product_count_paynum(this)" class="product_size_pay"/>
+					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>200 .00</em></strong></dd>
 				<dd class="lifontsize_dd">
-					<input name="" type="radio" value=""/>
-					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>100 .00</em></strong></dd>
+					<input name="choose_size" type="radio" value="300" onclick="product_count_paynum(this)" class="product_size_pay"/>
+					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>300 .00</em></strong></dd>
 				<dd class="lifontsize_dd">
-					<input name="" type="radio" value=""/>
-					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>100 .00</em></strong></dd>
+					<input name="choose_size" type="radio" value="400" onclick="product_count_paynum(this)" class="product_size_pay"/>
+					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>400 .00</em></strong></dd>
 				<dd class="lifontsize_dd">
-					<input name="" type="radio" value=""/>
-					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>100 .00</em></strong></dd>
+					<input name="choose_size" type="radio" value="500" onclick="product_count_paynum(this)" class="product_size_pay"/>
+					<em>20  X  30CM</em><strong><i class="ibg1"></i><em>500 .00</em></strong></dd>
 			</dl>
 			<hr class="bottom_line"/>
 			<dl class="ulmarginw25">
 				<dt class="lifontsize">请选择画框</dt>
 				<dd class="ddh112">
 					<li class="liw20">
-						<input type="radio" name="subProduct"/>
+						<input type="radio" name="subProduct" title="无框" value="0" onclick="product_count_paynum(this)" checked="checked" class="product_side_pay"/>
 					</li>
 					<li><img src="/statics/IMG/GT_detail_none20120913.jpg" alt="" width="83" height="82"/>
 						<p>+0RMB</p>
 					</li>
 					<li class="liw20">
-						<input type="radio" name="subProduct"/>
+						<input type="radio" name="subProduct" title="黑框" value="300" onclick="product_count_paynum(this)" class="product_side_pay"/>
 					</li>
 					<li><img src="/statics/IMG/GT_detail_black20120913.jpg" alt="" width="83" height="82"/>
-						<p>+100RMB</p>
+						<p>+300RMB</p>
 					</li>
 					<li class="liw20">
-						<input type="radio" name="subProduct"/>
+						<input type="radio" name="subProduct" title="白框" value="500" onclick="product_count_paynum(this)" class="product_side_pay"/>
 					</li>
 					<li><img src="/statics/IMG/GT_detail_white20120913.jpg" alt="" width="83" height="82"/>
-						<p>+100RMB</p>
+						<p>+500RMB</p>
 					</li>
 				</dd>
 			</dl>
 			<hr class="bottom_line"/>
 			<dl class="ulmarginw25">
 				<dt class="ifontsize">请填写购买的数量:</dt>
-				<dd class="ddnumber"><a class="ddnumbera1"></a>
-					<input name="" type="text" value="1" maxlength="5" class="ddinputw60h21"/>
-					<a class="ddnumbera2"></a><span>件,(仅 5 件)</span></dd>
+				<dd class="ddnumber"><a onclick="product_pay(&quot;nav&quot;)" class="ddnumbera1"></a>
+					<input name="" id="product_num" type="text" value="1" maxlength="5" class="ddinputw60h21"/>
+					<a onclick="product_pay(&quot;add&quot;)" class="ddnumbera2"></a><span>件,(仅 5 件)</span></dd>
 			</dl>
 			<hr class="bottom_line"/>
 			<dl class="ulmarginw25">
@@ -95,10 +99,42 @@
 		<div id="detail_content_right_bottom">
 			<div class="de_right_btleft">
 				<p>重量：<b>5</b><em>kg</em></p>
-				<p>总价：<b>1233 .00</b><em>RMB</em></p>
+				<p>总价：<b id="product_offer">1233 .00</b><em>RMB</em></p>
 			</div>
 			<div class="de_right_btright"><a class="btright_btn">加入购物车</a></div>
 		</div>
 	</div>
+</div>
+<div id="d_service" style="width:984px;position:relative;margin:0 auto;">
+	<ul>
+		<li class="d_serviceli1">
+			<div class="d_serviceDIV1">
+				<div class="d_servicediv01"></div>
+				<h3>精挑细选</h3>
+				<p>来自优秀创作者的杰出作品，每件作品都独一无二。</p>
+			</div>
+		</li>
+		<li class="d_serviceli1">
+			<div class="d_serviceDIV1">
+				<div class="d_servicediv02"></div>
+				<h3>品质保证</h3>
+				<p>对于您挑选的作品，罐头工场采用行业顶级的微喷制作技术，并用环保材料进行多重包装。</p>
+			</div>
+		</li>
+		<li class="d_serviceli1">
+			<div class="d_serviceDIV1">
+				<div class="d_servicediv03"></div>
+				<h3>安全支付</h3>
+				<p>罐头工场开通了多种支付功能，保证您的支付安全、快捷。</p>
+			</div>
+		</li>
+		<li>
+			<div class="d_serviceDIV1">
+				<div class="d_servicediv04"></div>
+				<h3>安全送达</h3>
+				<p>罐头工场选择最优秀的快递服务商，以确保您的包裹完好无缺。</p>
+			</div>
+		</li>
+	</ul>
 </div>
 {% endblock %}

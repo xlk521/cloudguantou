@@ -63,8 +63,7 @@ function preview(img, selection) {
 </style>
 {% endblock %}
 {% block content %}
-<div id="mycans">
-	{% block baseInfoSet %}{% endblock %}
+<div id="mycans"> {% block baseInfoSet %}{% endblock %}
 	<div id="mycans_right">
 		<div class="mycans_div">
 			<div class="mycans_tit">
@@ -76,14 +75,10 @@ function preview(img, selection) {
 					<ul style="padding-top:20px;padding-bottom:30px;overflow:hidden">
 						{% block content_works %}{% endblock %}
 						<li class="B_i_con_li1">名号：</li>
-						<li class="B_i_con_li2">
-							{{ form.nickname }}
+						<li class="B_i_con_li2"> {{ form.nickname }}
 							{% if form.nickname.errors %}
 							<p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
-							{% else %}
-							<span id="id_nicknameTip" class="onShow">xlk</span>
-							{% endif %}
-						</li>
+							{% else %} <span id="id_nicknameTip" class="onShow">xlk</span> {% endif %} </li>
 						<li class="B_i_con_li1">头像：</li>
 						<li class="B_i_con_li2">
 							<input id="head-upload" type="file" name="head_file" data-url="{{ upload_url }}" multiple="multiple"/>
@@ -92,51 +87,38 @@ function preview(img, selection) {
 							</div>
 							<font color="#ccc">仅支持jpg , png格式的图片，且小于5M</font>
 							<div >
-								<label style="width:300px;height:300px;overflow:hidden;">
-									<img id="user-head" src="/statics/img/picture_load.gif" style="float:left ;width:300px;height:300px;"/>
-								</label>
-								
+								<label style="width:300px;height:300px;overflow:hidden;"> <img id="user-head" src="/statics/img/picture_load.gif" style="float:left ;width:300px;height:300px;"/> </label>
 							</div>
 						</li>
 						<li class="B_i_con_li1">性别：</li>
-						<li class="B_i_con_li2">
-							{{ form.gender }}
+						<li class="B_i_con_li2"> {{ form.gender }}
 							{% if form.gender.errors %}
 							<p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
-							{% endif %}
-						</li>
+							{% endif %} </li>
 						<li class="B_i_con_li1" style="display:none"></li>
 						<li class="B_i_con_li2" style="display:none">
 							<input type="hidden" name="x1" value="" />
-		  					<input type="hidden" name="y1" value="" />
-		  					<input type="hidden" name="x2" value="" />
-		  					<input type="hidden" name="y2" value="" />
-		  					<input type="hidden" name="img_url" value="">
+							<input type="hidden" name="y1" value="" />
+							<input type="hidden" name="x2" value="" />
+							<input type="hidden" name="y2" value="" />
+							<input type="hidden" name="img_url" value="">
 						</li>
 						<li class="B_i_con_li1">所在地：</li>
-						<li class="B_i_con_li2">
-							{{ form.province }}
+						<li class="B_i_con_li2"> {{ form.province }}
 							<select name="city" id="id_city">
 								<option>--</option>
 							</select>
 							{% if form.province.errors %}
 							<p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
-							{% endif %}
-						</li>
+							{% endif %} </li>
 						<li class="B_i_con_li1">个人简介：</li>
-						<li class="B_i_con_li2">
-							{{ form.introduction }}
+						<li class="B_i_con_li2"> {{ form.introduction }}
 							{% if form.introduction.errors %}
 							<p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
-							{% else %}
-							<span id="id_introductionTip" class="onShow"></span>
-							{% endif %}
-						</li>
+							{% else %} <span id="id_introductionTip" class="onShow"></span> {% endif %} </li>
 						<li class="B_i_con_li1"></li>
 						<li class="B_i_con_li2">
-							<button type="submit" value="确定" class="B_i_con_btn">
-								<strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong>
-							</button>
+							<button type="submit" value="确定" class="B_i_con_btn"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
 						</li>
 					</ul>
 				</form>

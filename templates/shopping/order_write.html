@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "base.jade" %}
 {% block title %}填写订单{% endblock %}
 {% block content %}
-<div class="sbt-ift">
+<div id="order_write" style="margin:0 auto" class="sbt-ift">
 	<div class="sbt-ift1">
 		<h3>填写订单信息</h3>
 	</div>
@@ -10,15 +10,7 @@
 			<h4>填写收货地址:</h4>
 		</div>
 		<div class="sbt-ift22">
-			<ul>
-				<li class="t-red"><span class="tip">寄送至</span><a class="delete">删除</a>
-					<input type="radio" checked="checked" class="radio"/>
-					<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
-					<em class="em1">13125456654</em><a class="dft">设为默认地址</a></li>
-				<li><a class="delete">删除</a>
-					<input type="radio" checked="checked" class="radio"/>
-					<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
-					<em class="em1">13125456654</em><a class="dft">设为默认地址</a></li>
+			<ul id="order_write_address">
 			</ul>
 			<a class="set-address"></a></div>
 	</div>
@@ -29,22 +21,22 @@
 		<div class="sbt-ift22"><b class="b1">支付方法</b>
 			<ul>
 				<li>
-					<input type="radio" checked="checked" class="radio"/>
+					<input type="radio" checked="checked" name="order_write_offer" class="radio"/>
 					<label class="label1">在线支付</label>
 					<em class="em1">通过第三方支付平台转账，转账后1-3个工作日内到账</em><a class="a1">查看银行及限额</a></li>
 				<li>
-					<input type="radio" checked="checked" class="radio"/>
+					<input type="radio" checked="checked" name="order_write_offer" class="radio"/>
 					<label class="label1">公司转账</label>
 					<em class="em1">通过第三方支付平台转账，转账后1-3个工作日内到账</em><a class="a1">查看账户信息</a></li>
 				<li>
-					<input type="radio" checked="checked" class="radio"/>
+					<input type="radio" checked="checked" name="order_write_offer" class="radio"/>
 					<label class="label1">银行汇款</label>
 					<em class="em1">通过第三方支付平台转账，转账后1-3个工作日内到账</em><a class="a1">查看帮助</a></li>
 			</ul>
 			<b class="b1">配送方式</b>
 			<ul>
 				<li class="dt_ddlogistics">
-					<input type="radio" checked="checked" class="radio"/>
+					<input type="radio" checked="checked" name="order_write_address" class="radio"/>
 					<label class="label1 label2">顺丰快递</label>
 					<span>
 					<div class="tb-postAgeCont">至   北京</div>
@@ -66,26 +58,7 @@
 				<li class="li6">单价</li>
 				<li class="li7">小计</li>
 			</ul>
-			<ul class="ul2">
-				<li class="li1 hg"><img src="/statics/IMG/cp1.jpg" width="107" height="85"/></li>
-				<li class="li2 hg">
-					<div>云贵水田油墨风景</div>
-				</li>
-				<li class="li3 hg">
-					<div>摄影</div>
-				</li>
-				<li class="li4 hg">
-					<div>黑色框架</div>
-				</li>
-				<li class="li5 hg">
-					<div>2</div>
-				</li>
-				<li class="li6 hg">
-					<div><strong>600</strong></div>
-				</li>
-				<li class="li7 hg">
-					<div><strong class="strong1">￥1200.00</strong></div>
-				</li>
+			<ul id="order_write_work" class="ul2">
 			</ul>
 		</div>
 		<div class="order-go">

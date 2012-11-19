@@ -8,7 +8,7 @@
 #HomeCon .HomeConTit{ height:54px; border-bottom:1px solid #d1d1d1;background:white;background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, white), color-stop(100%, #F3F3F3));}
 #HomeCon .HomeConTit ul{overflow:hidden;}
 #HomeCon .HomeConTit li{ float:left; border-right:1px solid #d1d1d1;height:54px;}
-#HomeCon .HomeConTit li a{ display:block; height:54px; line-height:54px;}
+#HomeCon .HomeConTit li a{ display:block; height:54px; line-height:54px;font-size: 14px;font-weight: 700;text-align: center;}
 #HomeCon .HomeConTit li a:hover{background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #f5f5f5), color-stop(100%, #e4e4e4));}
 #HomeCon .HomeConTit a.HomeConTit_a1{ width:136px;}
 #HomeCon .HomeConTit a.HomeConTit_a2{ width:98px;}
@@ -16,6 +16,8 @@
 #HomeCon .HomeConTit a.HomeConTit_a4{ width:98px;}
 #HomeCon .HomeConTit li.HomeConTit_a5{ width:170px;}
 #HomeCon .HomeConTit li.HomeConTit_a6{ width:214px;}
+#HomeCon .HomeConTit li.HomeConTit_a7{ width:163px; background-position:30px -124px;}
+#HomeCon .HomeConTit li.HomeConTit_a7:hover{}
 #HomeCon .form-searchi{ width:150px;  border:1px solid #cfcfcf; border-radius:13px;background-color: white;font-size: 12px;height: 17px;line-height: normal;padding: 4px 4px 4px 24px;background-position: 0px -431px;margin-top:14px;margin-left:22px;}
 #HomeCon .form-searchi:active:{ border:1px solid #3e75ff;}
 #HomeCon .HomeConTit2{ height:42px; padding:0 26px 0 26px;}
@@ -29,7 +31,7 @@
 #HomeCon .HomeConList img{border-radius: 3px 3px 0 0;}
 #HomeCon .project-cover-div{ height:72px;border-radius: 0 0 3px 3px;}
 #HomeCon .project-cover-div div{ padding:0 15px 0 15px;; height:39px; line-height:39px; border-bottom:1px solid #e4e4e4; overflow:hidden; background-color:white;}
-#HomeCon .project-cover-div h4{float:left; width:130px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+#HomeCon .project-cover-div h4{float:left; width:130px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;line-height: 40px;}
 #HomeCon .project-cover-div em{ float:right; font-size:12px; color:#969696;}
 #HomeCon .project-cover-div p{padding-left:15px; display:block; height:31px; line-height:31px; border-top:1px solid white;/* background-color:#dfdfdf;*/background: -webkit-gradient(linear, 0 0, 0 100%, from(#e4e4e4), to(#e1e1e1));background:-moz-linear-gradient(top, #e4e4e4, #e1e1e1);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4e4e4', endColorstr='#e1e1e1')"; /* IE8 */}
 #HomeCon .project-cover-div span.font1{ font-family: Calibri, Arial, Helvetica, sans-serif; font-size:13px;}

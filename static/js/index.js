@@ -48,7 +48,7 @@ function get_num_scroll(){
 }
 var album_count=0;//个数
 var album_times=1;//次数
-var class_nume_num=0;//用来标识需要的数据类型
+var class_nume_num=0;//用来标识需要的数据类型，0为全部，1为摄影，2为插画，3为绘画
 var index_getfilm_num=0;//记录调用的次数
 function index_getJson(){//目录页---发送请求并获取数据
     var list_index=0;
@@ -74,7 +74,7 @@ function index_getJson(){//目录页---发送请求并获取数据
     });
     console.log("首页---发送请求并获取数据");//打印LOG
 }
-function index_getfilm(){
+function index_getfilm(num,string_name){//num传入标志：0代表全部···
     index_getfilm_num=index_getfilm_num+1;
     var list_index=0;
     list_index=window.screen.availHeight;
@@ -85,12 +85,12 @@ function index_getfilm(){
         album_times=0;
         $("#HomeConList_ul").empty();
     }
-    class_nume_num=1;
+    class_nume_num=num;//标志数据类型为摄影
     $.ajax({
         type: 'post',
         url:"/",
         headers: {"X-CSRFToken":csrftoken},
-        data: { album_count:album_count,album_times:album_times,getcategory:"摄影"},
+        data: { album_count:album_count,album_times:album_times,getcategory:string_name},
         success:function(msg){
             album_times=msg.album_times;
             console.log("album_times:"+album_times);
@@ -158,7 +158,7 @@ $(document).ready(function(){
     //test();
     $("#index_footer_show").hover(function(){
         indexfooter_show();
-    },function(){
+        },function(){
         indexfooter_hide();
     });
     $("#index_footer_show").click(function(){
@@ -171,7 +171,7 @@ $(document).ready(function(){
         var textheight = $(document).height();
         if (textheight - top  <= windows_height) {
             if(class_nume_num==1){
-                index_getfilm();
+                index_getfilm(1,"摄影");
             }
             else{
                 index_getJson();

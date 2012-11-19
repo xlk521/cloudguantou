@@ -1,143 +1,93 @@
 {% extends "base.jade" %}
 {% block title %}帐号管理-收货地址{% endblock %}
-{% block content %}
-<script>
-    function choose_address(obj){
-        //获取改变前的默认地址的相关内容(固定的)
-        var li_name_ed=document.getElementsByName("chooseed_address");
-        var span_name_ed=document.getElementsByName("chooseed_address_span");
-        var a_name_ed=document.getElementsByName("chooseed_address_a");
-        //获取需要设置为默认地址的内容（根据点击的内容的name改变）
-        var objname=obj.name;
-        var li_name=document.getElementsByName(objname+"_li");
-        var span_name=document.getElementById(objname+"_span");
-        var a_name=document.getElementsByName(objname);
-      
-        console.log(li_name);
-        console.log(span_name);
-        console.log(a_name);
-        $(li_name).css({backgroundColor:"#F0EDEC"},{color:"#5D5D5D"},{border:3});
-        span_name.innerHTML="寄送至";
-        $(a_name).empty();
-    }
-</script>
+{% block content %}<script>function choose_address(obj){
+    //获取改变前的默认地址的相关内容(固定的)
+    var li_name_ed=document.getElementsByName("chooseed_address");
+    var span_name_ed=document.getElementsByName("chooseed_address_span");
+    var a_name_ed=document.getElementsByName("chooseed_address_a");
+    //获取需要设置为默认地址的内容（根据点击的内容的name改变）
+    var objname=obj.name;
+    var li_name=document.getElementsByName(objname+"_li");
+    var span_name=document.getElementById(objname+"_span");
+    var a_name=document.getElementsByName(objname);
+    
+    console.log(li_name);
+    console.log(span_name);
+    console.log(a_name);
+    $(li_name).css({backgroundColor:"#F0EDEC"},{color:"#5D5D5D"},{border:3});
+    span_name.innerHTML="寄送至";
+    $(a_name).empty();
+}</script>
 <div id="mycans" style="margin:0 auto">
-    <div id="mycans_left">
-        <dl class="mycans_dl1">
-            <dt>
-                <i></i>
-                <a href="/account_settings/base_info_set/">账号设置</a>
-            </dt>
-            <dd>
-                <a href="/account_settings/base_info_set/">基本信息</a>
-            </dd>
-            <dd class="D_a_dd">
-                <a href="/account_settings/deliver_address/">收货地址</a>
-            </dd>
-        </dl>
-        <dl class="mycans_dl2">
-            <dt><a href="/account_settings/related_set/">关联账号</a></dt>
-        </dl>
-        <dl class="mycans_dl3">
-            <dt>
-                <a href="/account_settings/my_order/">我的订单</a>
-            </dt>
-        </dl>
-        <dl class="mycans_dl4">
-            <dt>
-                <a href="/account_settings/invite_friends/">邀请好友</a>
-            </dt>
-        </dl>
-    </div>
-    <div id="mycans_right">
-        <div class="mycans_div">
-            <div class="mycans_tit">
-                <h3>收货地址</h3>
-            </div>
-            <div id="D_a_con">
-                <ul class="D_a_con_top">
-                    <li name="chooseed_address" class="D_a_red">
-                        <span name="chooseed_address_span" class="tip">寄送至</span>
-                        <a class="delete">删除</a>
-                        <a class="delete">编辑</a>
-                        <label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
-                        <em class="em1">12345678901</em>
-                        <span name="chooseed_address_a">
-                            <a class="dft">默认地址</a>
-                        </span>
-                    </li>
-                    <li name="choose_address_li" class="D_a_red1">
-                        <span id="choose_address_span" name="choose_address_span" class="tip">更改此处</span>
-                        <a class="delete">删除</a>
-                        <a class="delete">编辑</a>
-                        <label class="label2">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
-                        <em class="em1">12345678901</em>
-                        <span>
-                            <a onclick="choose_address(this)" name="choose_address" class="dft1">设为默认地址</a>
-                        </span>
-                    </li>
-                </ul>
-                <div class="D_a_con_sbt">
-                    <a class="sbt_newsbtn">
-                        <h3>新增地址</h3>
-                    </a>
-                    <div class="sbt_listdiv">
-                        <ul class="sbt_listul">
-                            <li class="sbt_listli1">
-                                <h4>设置新的收货地址</h4>
-                            </li>
-                            <li class="sbt_listliL">
-                                <strong>省：</strong>
-                            </li>
-                            <li class="sbt_listliR">
-                                <a class="listliR_a1">省/直辖市/自治区</a>
-                                <span class="listliR_span1">
-                                    <strong>市：</strong>
-                                </span>
-                                <a class="listliR_a1">地区/市</a>
-                                <span class="listliR_span2">
-                                    <strong>邮政编码：</strong>
-                                </span>
-                                <input name="" type="text" class="listliR_input1" />
-                            </li>
-                            <li class="sbt_listliL">
-                                <strong>县/区/街道：</strong>
-                            </li>
-                            <li class="sbt_listliR">
-                                <textarea name="" cols="" rows="" class="listliR_textarea1"></textarea>
-                            </li>
-                            <li class="sbt_listliL">
-                                <strong>收货人姓名：</strong>
-                            </li>
-                            <li class="sbt_listliR">
-                                <input name="" type="text" class="listliR_input2" />
-                            </li>
-                            <li class="sbt_listliL">
-                                <strong>手机号：</strong>
-                            </li>
-                            <li class="sbt_listliR">
-                                <input name="" type="text" class="listliR_input2" />
-                            </li>
-                            <li class="sbt_listliL">
-                                <strong>设置默认：</strong>
-                            </li>
-                            <li class="sbt_listliR">
-                                <input name="" type="checkbox" value="" class="listliR_input3" />
-                            </li>
-                            <li class="sbt_listliL"></li>
-                            <li class="sbt_listliR">
-                                <a class="sbt_newsbtn1">
-                                    <h3>确认</h3>
-                                </a>
-                                <a class="sbt_newsbtn1">
-                                    <h3>取消</h3>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div id="mycans_left">
+		<dl class="mycans_dl1">
+			<dt><i></i><a href="/account_settings/base_info_set/">账号设置</a></dt>
+			<dd><a href="/account_settings/base_info_set/">基本信息</a></dd>
+			<dd class="D_a_dd"><a href="/account_settings/deliver_address/">收货地址</a></dd>
+		</dl>
+		<dl class="mycans_dl2">
+			<dt><a href="/account_settings/related_set/">关联账号</a></dt>
+		</dl>
+		<dl class="mycans_dl3">
+			<dt><a href="/account_settings/my_order/">我的订单</a></dt>
+		</dl>
+		<dl class="mycans_dl4">
+			<dt><a href="/account_settings/invite_friends/">邀请好友</a></dt>
+		</dl>
+	</div>
+	<div id="mycans_right">
+		<div class="mycans_div">
+			<div class="mycans_tit">
+				<h3>收货地址</h3>
+			</div>
+			<div id="D_a_con">
+				<ul class="D_a_con_top">
+					<li name="chooseed_address" class="D_a_red"><span name="chooseed_address_span" class="tip">寄送至</span><a class="delete">删除</a><a class="delete">编辑</a>
+						<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
+						<em class="em1">12345678901</em><span name="chooseed_address_a"><a class="dft">默认地址</a></span></li>
+					<li name="choose_address_li" class="D_a_red1"><span id="choose_address_span" name="choose_address_span" class="tip">更改此处</span><a class="delete">删除</a><a class="delete">编辑</a>
+						<label class="label2">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>
+						<em class="em1">12345678901</em><span><a onclick="choose_address(this)" name="choose_address" class="dft1">设为默认地址</a></span></li>
+				</ul>
+				<div class="D_a_con_sbt"><a class="sbt_newsbtn">
+					<h3>新增地址</h3>
+					</a>
+					<div class="sbt_listdiv">
+						<ul class="sbt_listul">
+							<li class="sbt_listli1">
+								<h4>设置新的收货地址</h4>
+							</li>
+							<li class="sbt_listliL"><strong>省：</strong></li>
+							<li class="sbt_listliR"><a class="listliR_a1">省/直辖市/自治区</a><span class="listliR_span1"><strong>市：</strong></span><a class="listliR_a1">地区/市</a><span class="listliR_span2"><strong>邮政编码：</strong></span>
+								<input name="" type="text" class="listliR_input1"/>
+							</li>
+							<li class="sbt_listliL"><strong>县/区/街道：</strong></li>
+							<li class="sbt_listliR">
+								<textarea name="" cols="" rows="" class="listliR_textarea1"></textarea>
+							</li>
+							<li class="sbt_listliL"><strong>收货人姓名：</strong></li>
+							<li class="sbt_listliR">
+								<input name="" type="text" class="listliR_input2"/>
+							</li>
+							<li class="sbt_listliL"><strong>手机号：</strong></li>
+							<li class="sbt_listliR">
+								<input name="" type="text" class="listliR_input2"/>
+							</li>
+							<li class="sbt_listliL"><strong>设置默认：</strong></li>
+							<li class="sbt_listliR">
+								<input name="" type="checkbox" value="" class="listliR_input3"/>
+							</li>
+							<li class="sbt_listliL"></li>
+							<li class="sbt_listliR"><a class="sbt_newsbtn1">
+								<h3>确认</h3>
+								</a><a class="sbt_newsbtn1">
+								<h3>取消</h3>
+								</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}

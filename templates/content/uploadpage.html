@@ -1,51 +1,157 @@
-{% extends "base.html" %}
+{% extends "base.jade" %}
 {% block title %}上传作品{% endblock %}
 {% block headright %}
 {% endblock %}
-{% block content %}<script id="movieTemplate" type="text/x-jquery-tmpl"><div style="margin-top:0px;width:984px;overflow:hidden;"><div style="float:left;height:80px;width:108px;line-height:80px;text-align:center;position:relative; border:1px #FFF solid;background-color:#FFF;"><font style="font-size:60px">1</font></div><div style="float:left;height:285px;line-height:80px;width:268px;margin-left:30px;text-align:center; position:relative; border:1px #FFF solid; background-color:#FFF;"><div style="height:200px;width:230px;margin:30px auto;"><img src="/statics/img/upload_bg.GIF"/><button style="float:right" class="btn btn-mini">删除</button></div></div><div style="float:left;height:285px;width:572px;  position:relative; border:1px #FFF solid; background-color:#FFF;"><label style="padding-top:30px;padding-left:20px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品名称：</font><input type="text" style="border-color:#444242 " class="success"/></label><label style="padding-top:20px;padding-left:20px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品描述：&nbsp;</font><textarea name="message" style="width:420px;height:150px;border-color:#444242"></textarea></label></div></div></script>
-<div id="uploadpage" style="font-size:15px;width:984px">
-	<form action ="{%url django.contrib.auth.views.login%}" method="post">
+{% block content %}
+<div id="uploadpage" style="font-size:15px;width:984px;margin-top:65px;">
+	<form id="portfolio" action="" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		<fieldset class="control-group success">
 			<div style="width:984px">
-				<div id="uploadpage_headdiv" class="controls"><strong>上传作品</strong></div>
+				<div id="uploadpage_headdiv" class="controls"><strong>上传作品</strong>
+					<button id="portfolio_post" type="button" style="float:right;height:35px;line-height:15px;" class="btn btn-large btn-danger">提交作品</button>
+				</div>
 				<div id="uploadpage_bodydiv_left" class="controls">
-					<label style="padding-top:15px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">系列名称：</font>
-						<input type="text" style="border-color:#444242" class="success"/>
-						<br/>
-						<font style="font-size:13px;color:#ababab;margin-left:95px">只能使用汉字，字母，阿拉伯数字，“-”“_”符号。</font></label>
-					<label style="margin-top:5px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品类别：</font>
-						<input type="text" style="border-color:#444242" class="success"/>
-					</label>
-					<label style="margin-top:20px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">创作时间：</font>
-						<select style="width:100px;height:30px;border-color:#444242">
-							<option>年</option>
-							<option>1</option>
-						</select>
-						<select style="width:40px;height:30px;border-color:#444242">
-							<option>月</option>
-							<option>1</option>
-						</select>
-						<select style="width:40px;height:30px;border-color:#444242">
-							<option>日</option>
-							<option>1</option>
-						</select>
+					<label><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">系列名称：</font>{{ form.title }}<span id="id_titleTip" style="margin-left:90px" class="onShow"></span></label>
+					<label><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">作品类别：</font>{{ form.category }}<span id="id_categoryTip" style="margin-left:90px" class="onShow"></span></label>
+					<label><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">创作时间：</font>
+						<input name="createtime" readonly="true" type="text" id="createtime" class="datePicker"/>
 					</label>
 				</div>
 				<div id="uploadpage_bodydiv_right" class="controls">
-					<label style="padding-top:15px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">系列作品描述：</font>
-						<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242"></textarea>
-					</label>
-				</div>
+					<label style="padding-top:15px" class="control-label"><font style="font-size:15px" color="red">&lowast;&nbsp;</font><font style="font-size:15px">系列作品描述：</font>{{ form.description }}</label>
+					<span id="id_descriptionTip" style="margin-left:120px" class="onShow"></span></div>
 			</div>
 		</fieldset>
 	</form>
-	<form style="width:984px">
-		<fieldset id="movieList" style="margin-top:0px" class="control-group success">
-		</fieldset>
-		<a href="javascript:add()" id="uploadButton"><font style="font-weight:bold;font-size:20px">+</font><font style="text-decoration:underline;font-size:15px">上传文件</font></a>
+	<form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div style="margin:0 auto" class="row fileupload-buttonbar">
+			<div style="width:395px;float:left"><span class="btn btn-success fileinput-button"><i class="icon-plus icon-white"></i><span>添加文件...</span>
+				<input type="file" name="works" multiple="multiple"/>
+				</span>
+				<button type="submit" class="btn btn-primary start"><i class="icon-upload icon-white">"</i><span>开始上传</span></button>
+				<button type="reset" class="btn btn-warning cancel"><i class="icon-ban-circle icon-white"></i><span>取消上传</span></button>
+				<button type="button" style="display:none" class="btn btn-danger delete"><i class="icon-trash icon-white"></i><span>删除</span></button>
+			</div>
+			<div style="float:left;width:580px" class="fileupload-progress fade">
+				<div role="progressbar" aria-valuemin="0" aria-valuemax="100" class="progress progress-success progress-striped active">
+					<div style="width:0%;" class="bar"></div>
+				</div>
+				<div class="progress-extended">&nbsp</div>
+			</div>
+		</div>
+		<div class="fileupload-loading"></div>
+		<br/>
+		<table role="presentation" class="table table-striped">
+			<tbody data-toggle="modal-gallery" data-target="#modal-gallery" class="files">
+			</tbody>
+		</table>
 	</form>
-	<script type="text/javascript">$( "#uploadButton" ).click( function() {
-    $( "#movieTemplate" ).tmpl( ).prependTo( "#movieList" );
-});</script></div>
+	<br/>
+	<div id="modal-gallery" data-filter=":odd" class="modal modal-gallery hide fade">
+		<div class="modal-header"><a data-dismiss="modal" class="close">&times;</a>
+			<h3 class="modal-title">"</h3>
+		</div>
+		<div class="modal-body">
+			<div class="modal-image"></div>
+		</div>
+		<div class="modal-footer"><a target="_blank" class="btn modal-download"><i class="icon-download"></i><span>下载</span></a><a data-slideshow="5000" class="btn btn-success modal-play modal-slideshow"><i class="icon-play icon-white"></i><span>幻灯片演示</span></a><a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i><span>上一张</span></a><a class="btn btn-primary modal-next"><span>下一张</span><i class="icon-arrow-right icon-white"></i></a></div>
+	</div>
+</div>
+<script id="template-upload" type="text/x-tmpl">
+{% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
+<tr class="template-upload fade" style="background:#fff;border-bottom:30px solid #f7f7f7">
+<td style="width:30px;height:280px;background:#f7f7f7"></td>
+<td style="width:305px;text-align:center;">
+<table style="margin-left:35px">
+<tr>
+<td class="preview"><span class="fade"></span></td>
+</tr>
+</table>
+<table style="margin-left:35px">
+<tr>
+{% templatetag openblock %} if (file.error) { {% templatetag closeblock %}
+<td class="error" colspan="2">
+<span class="label label-important">{% templatetag openblock %}=locale.fileupload.error{% templatetag closeblock %}</span> {% templatetag openblock %}=locale.fileupload.errors[file.error] || file.error{% templatetag closeblock %}</td>
+{% templatetag openblock %} } else if (o.files.valid && !i) { {% templatetag closeblock %}
+<td>
+<div class="upload_run progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+</td>
+</tr>
+</table>
+<table style="margin-left:35px">
+<tr>
+<td class="start disabled" style="disabled:disabled">{% templatetag openblock %} if (!o.options.autoUpload) { {% templatetag closeblock %}
+<!--- --->
+<button class="btn btn-primary" style="display:none">
+<i class="icon-upload icon-white"></i>
+<span>{% templatetag openblock %}=locale.fileupload.start{% templatetag closeblock %}</span>
+</button>
+{% templatetag openblock %} } {% templatetag closeblock %}
+</td>
+{% templatetag openblock %} } else { {% templatetag closeblock %}
+<td colspan="2"></td>
+{% templatetag openblock %} } {% templatetag closeblock %}
+<td class="cancel">{% templatetag openblock %} if (!i) { {% templatetag closeblock %}
+<button class="btn btn-warning" style="margin-left:0px">
+<i class="icon-ban-circle icon-white"></i>
+<span>{% templatetag openblock %}=locale.fileupload.cancel{% templatetag closeblock %}</span>
+</button>
+{% templatetag openblock %} } {% templatetag closeblock %}</td></tr>
+<tr>
+<td class="size" style="display:none"><span>{% templatetag openblock %}=o.formatFileSize(file.size){% templatetag closeblock %}</span></td>
+</tr>
+</table>
+</td>
+</tr>
+{% templatetag openblock %} } {% templatetag closeblock %}
+</script> 
+<script id="template-download" type="text/x-tmpl">
+{% templatetag openblock %} for (var i=0, file; file=o.files[i]; i++) { {% templatetag closeblock %}
+<tr class="template-download fade" style="background:#fff;border-bottom:30px solid #f7f7f7">
+<td style="width:105px;height:280px;background:#F7F7F7;"><img src="/statics/img/upload_num.GIF" style="position:relative;margin-top:-115px"></td>
+<td style="width:30px;height:280px;background:#f7f7f7"></td>
+{% templatetag openblock %} if (file.error) { {% templatetag closeblock %}
+<td><table style="margin-left:35px;"><tr>
+<td class="preview" id="{% templatetag openblock %}=file.url{% templatetag closeblock %}">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
+<a href="{% templatetag openblock %}=file.url{% templatetag closeblock %}" title="{% templatetag openblock %}=file.name{% templatetag closeblock %}" rel="gallery" download="{% templatetag openblock %}=file.name{% templatetag closeblock %}"><img class="uploaded_img" src="{% templatetag openblock %}=file.thumbnail_url{% templatetag closeblock %}"></a>
+{% templatetag openblock %} } {% templatetag closeblock %}</td></tr></table>
+<table style="margin-left:35px;margin-top:30px;"><tr><td class="delete">
+<button class="btn btn-danger" data-type="{% templatetag openblock %}=file.delete_type{% templatetag closeblock %}" data-url="{% templatetag openblock %}=file.delete_url{% templatetag closeblock %}">
+<i class="icon-trash icon-white"></i>
+<span>{% templatetag openblock %}=locale.fileupload.destroy{% templatetag closeblock %}</span>
+</button></td></tr></table></td><td><table ><tr>
+<td class="name"><span>{% templatetag openblock %}=file.name{% templatetag closeblock %}</span>
+</tr></table><table style="margin-top:20px"><tr><td>
+<td class="size"><span>{% templatetag openblock %}=o.formatFileSize(file.size){% templatetag closeblock %}</span></td>
+<td class="error" colspan="2"><span class="label label-important">{% templatetag openblock %}=locale.fileupload.error{% templatetag closeblock %}</span> 
+</td></tr></table></td>
+{% templatetag openblock %} } else { {% templatetag closeblock %}
+<td><table style="margin-left:35px;"><tr>
+<td class="preview" id="{% templatetag openblock %}=file.url{% templatetag closeblock %}">{% templatetag openblock %} if (file.thumbnail_url) { {% templatetag closeblock %}
+<a href="{% templatetag openblock %}=file.url{% templatetag closeblock %}" title="{% templatetag openblock %}=file.name{% templatetag closeblock %}" rel="gallery" download="{% templatetag openblock %}=file.name{% templatetag closeblock %}"><img class="uploaded_img" src="{% templatetag openblock %}=file.thumbnail_url{% templatetag closeblock %}"></a>
+{% templatetag openblock %} } {% templatetag closeblock %}</td>
+</tr></table>
+<table style="margin-left:35px;margin-top:30px;"><tr>
+<td class="delete">
+<button class="btn btn-danger" data-type="{% templatetag openblock %}=file.delete_type{% templatetag closeblock %}" data-url="{% templatetag openblock %}=file.delete_url{% templatetag closeblock %}">
+<i class="icon-trash icon-white"></i>
+<span>{% templatetag openblock %}=locale.fileupload.destroy{% templatetag closeblock %}</span>
+</button>
+</td>
+</tr></table></td>
+<td><table ><tr>
+<td class="name"><font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品名称：</font>
+<input type="text" class="input-xlarge" id="input01" maxlength="18" name='title' placeholder={% templatetag openblock %}=file.name{% templatetag closeblock %}>
+</td></tr></table>
+<table style="margin-top:20px"><tr><td>
+<font style="font-size:15px" color="red">∗&nbsp;</font><font style="font-size:15px">作品描述：</font>
+<textarea name="message" style="width:420px;height:150px;background:#f7f7f7;border-color:#444242" maxlength="200"></textarea>
+</td></tr></table>
+</td>
+{% templatetag openblock %} } {% templatetag closeblock %}
+</tr>
+{% templatetag openblock %} } {% templatetag closeblock %}
+</script> 
 {% endblock %}

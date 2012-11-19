@@ -1,9 +1,0 @@
-{% extends "base.jade" %}
-{% block title %}操作已成功{% endblock %}
-{% block content %}
-div.container(style="padding-top:100px;")
-p 谢谢， 操作已成功！现在可以
-    a(href !='{% url auth_login %}')
-        b 登录
-    |使用你注册时使用的用户名和密码。
-{% endblock %}

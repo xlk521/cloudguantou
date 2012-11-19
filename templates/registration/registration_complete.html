@@ -3,12 +3,12 @@
 {% block content %}
 <div style="padding-top:100px;" class="container">
 	<div style="font-size:20pt">
-			<p>感谢您的注册!</p>
-			<p>已经发送给你{{model.user.email}}一封包含激活链接的邮件。</p>
-			<p>我们会在服务器上保存帐号激活信息 <b> 7 </b> 天。</p>
-			<p><b id="changenum">6</b>秒后即将跳转到下一个界面，如无跳转请点击<a href="/authorize/identity/"> <b> 此处连接 </b></a>。</p>
-		</div>
+		<p>感谢您的注册!</p>
+		<p>已经发送给你{{model.user.email}}一封包含激活链接的邮件。</p>
+		<p>我们会在服务器上保存帐号激活信息 <b> 7 </b> 天。</p>
+		<p><b id="changenum">6</b>秒后即将跳转到下一个界面，如无跳转请点击<a href="/authorize/identity/"> <b> 此处连接 </b></a>。</p>
 	</div>
+</div>
 </div>
 <script>
 var num=6;
@@ -31,5 +31,5 @@ function turnonther(num){
 $(document).ready(function(){
 	time_one();
 });
-</script>
+</script> 
 {% endblock %}

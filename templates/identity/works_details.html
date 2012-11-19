@@ -4,19 +4,15 @@
 {% endblock %}
 {% block content_works %}
 <li class="B_i_con_li1"><font size="4px" color="red">&lowast;</font>品牌昵称：</li>
-<li class="B_i_con_li2">
-    {{ formdesign.name }}
-    <span id="id_nameTip" class="onShow"></span>
-</li>
+<li class="B_i_con_li2"> {{ formdesign.name }} <span id="id_nameTip" class="onShow"></span> </li>
 <li class="B_i_con_li1"><font size="4px" color="red">&lowast;</font>品牌介绍：</li>
-<li class="B_i_con_li2">
-    {{ formdesign.introduction }}
-    <span id="id_introductionTip" class="onShow"></span>
-</li>
+<li class="B_i_con_li2"> {{ formdesign.introduction }} <span id="id_introductionTip" class="onShow"></span> </li>
 <li class="B_i_con_li1"><font size="4px" color="red">&lowast;</font>品牌类别：</li>
 <li class="B_i_con_li2">
-    <input name = "photography" type="checkbox" style="margin-left:0px"/><span>摄影</span>
-    <input name="illustration" type="checkbox" style="margin-left:0px"/><span>插画</span>
-	<input name="painting" type="checkbox" style="margin-left:0px"/><span>绘画</span>
-</li>
+	<input name = "photography" type="checkbox" style="margin-left:0px"/>
+	<span>摄影</span>
+	<input name="illustration" type="checkbox" style="margin-left:0px"/>
+	<span>插画</span>
+	<input name="painting" type="checkbox" style="margin-left:0px"/>
+	<span>绘画</span> </li>
 {% endblock %}
