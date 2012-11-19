@@ -1,0 +1,189 @@
+<!DOCTYPE html public "-//w3c//dtd html 4.01 transitional//en" "http://www.w3.org/tr/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <meta http-equiv="Content-Type"/>
+        <title>{% block title %}{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/GT_css.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/GT_min.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/GT_trade.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/imgareaselect-default.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/GT_Transaction.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/6Cans.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/mycans_css.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/jquery.fileupload-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/jquery-ui-1.9.1.css"/>
+        <link rel="stylesheet" type="text/css" href="/statics/css/bootstrap-image-gallery.min.css"/>
+        <script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/vendor/jquery.ui.widget.js" charset="UTF-8"></script>
+        <!----script type="text/javascript" src="/statics/js/tmpl.min.js" charset="UTF-8"></script----->
+        <!---- 在上传个人头像页面不能添加tmpl.min.js---->
+        <script type="text/javascript" src="/statics/js/load-image.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/canvas-to-blob.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/bootstrap.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/bootstrap-image-gallery.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/formValidator_min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/formValidatorRegex.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/GT_layer.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/GT_Trading.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.fileupload.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.fileupload-fp.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.fileupload-ui.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.iframe-transport.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.imgareaselect.pack.js"></script>
+        <script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.masonry.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/6cans.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/main.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
+        {% block link %}{% endblock %}
+        <script>
+            var is_authenticated = false
+                {% if request.user.is_authenticated %}
+                    var is_authenticated = true
+                {% endif %} 
+            function personalpage(){
+              console.log("即将打开个人主页！");
+              $.ajax({
+                    type: 'post',
+                    url:"/",
+                    headers: {"X-CSRFToken":csrftoken},
+                    data: { redict_personal_index:1 },
+                    success:function(msg){
+                        var hrefa="/content/personal/"+msg.persona_id;
+                        console.log("hrefa:"+hrefa);
+                        window.location.href=hrefa;
+                    },
+                    dataType:'json'
+                });
+            }
+        </script>
+        {% block head %}{% endblock %}
+    </head>
+<!--分割线-->
+    <body id="change_id" style="width:100%;min-height:450px;" onkeydown="keyDown()">
+        <div id="header">
+            <div class="headerCon">
+                <ul>
+                    <a href="/">
+                        <li class="logo1"></li>
+                    </a>
+                    <li id="nav">
+                        <a href="/"> 
+                            <div>
+                                <span>首页</span>
+                            </div>
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <a onclick="personalpage()">
+                    <div><span>个人主页</span></div>
+                    </a>{% else %}<a data-toggle="modal" href="#myModal" type="submit">
+                    <div><span>个人主页</span></div>
+                    </a>{% endif %}</li>
+                    <li class="headeright">
+                        <a>
+                            <div class="login_register"><span class="headerightaspan1">6</span><span class="headerightaspan2"></span></div>
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <ul>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                    <div style="width:134px" class="login_register"><span>账号</span></div>
+                                </a>
+                                <ul style="height:130px;" class="dropdown-menu">
+                                    <li style="float:none;"><a href="/account_settings/base_info_set/">账户设置</a></li>
+                                    <li style="float:none;"><a href="/account_settings/related_set/">关联账号</a></li>
+                                    <li style="float:none;"><a href="/account_settings/my_order/">我的订单</a></li>
+                                    <li style="float:none;"><a href="/account_settings/invite_friends/">邀请好友</a></li>
+                                    <li style="float:none;"><a id="logo_logoutbutton" type="submit">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <a id="logo_registbutton" type="submit">
+                            <div class="login_register"><span>注册</span></div>
+                        </a>
+                        <div id="myModal" style="display: none; " class="login_modal hide fade">
+                            <div class="login_modal-body">
+                                <div class="login">
+                                    <div class="login_tit"><a data-dismiss="modal" href="#" class="login_off">×</a></div>
+                                    <form action ="{%url django.contrib.auth.views.login %}" method="post"> 
+                                        <div>{% csrf_token %}
+                                            <ul class="login_con">
+                                            <li><span id="id_usernameTip" class="onShow login_s1"></span>
+                                                <h3 class="login_h3">User Name * 用户名</h3>
+                                            </li>
+                                            <li>
+                                                <input id="id_username" type="text" name="username" class="login_input"/>
+                                            </li>
+                                            <li><span id="id_passwordTip" class="onShow login_s2"></span>
+                                                <h3 class="login_h3">Password *  密码</h3>
+                                            </li>
+                                            <li>
+                                                <input id="id_password" type="text" name="password" class="login_input1"/>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                        <div class="login_footer">
+                                            <span class="login_sp1">
+                                                <button id="fat-btn" type="submit" data-loading-text="Logining..." class="login_btn btn-primary">登 录</button>
+                                            </span>
+                                            <a onclick="creater_add()" class="login_a">立即注册</a>
+                                            <a href="/accounts/password/reset/" class="login_a">忘记密码</a>
+                                        </div>
+                                    </form>
+                                    <div>
+                                        <ul class="login_ad">
+                                            <li><a id="sina_auth" class="login_ad_a1"><span>新浪微博</span></a></li>
+                                            <li><a id="qq_auth" class="login_ad_a2"><span>腾讯微博</span></a></li>
+                                            <li><a id="renren_auth" class="login_ad_a3"><span>人人网</span></a></li>
+                                            <li><a id="douban_auth" class="login_ad_a4"><span>豆瓣网</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a data-toggle="modal" href="#myModal" type="submit">
+                            <div class="login_register" style=""><span>登录</span></div>
+                        </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+        <!--底部标签-->
+        <div id="footer" class="indexfooter_hide_show" onmouseover="footer_stoptime()" onmouseout="footer_time()">
+            <div class="footerCon">
+                <ul>
+                    <li class="logo2"></li>
+                    <li class="footerLinks">
+                        <div class="footerDiva1">
+                            <a onclick="creater_add()">创作者加入</a>
+                            <a>品牌商参与</a>
+                            <a>关于罐头工场</a>
+                            <a>招聘</a>
+                            <a>帮助&amp;常见问题</a>
+                            <a>联系我们</a>
+                            <a>客户服务</a>
+                        </div>
+                        <div class="footerDiva2">
+                            <ul>
+                                <li><em>©</em><em>2012 罐头工场</em></li>
+                                <li><a>远程创作与跨界协作平台</a></li>
+                                <li><a>隐私权政策</a></li>
+                                <li> <a>使用条款</a></li>
+                                <li><a>版权说明</a></li>
+                                <li>京<a>128713</a>号</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
