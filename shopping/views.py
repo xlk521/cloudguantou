@@ -25,7 +25,7 @@ def get_product(request, work_id):
             packages = Package.objects.filter(work=work)
             #获得同系列的其他作品
             brothers = Work.objects.filter(portfolio=work.portfolio)
-            return render(request, 'shopping/product.jade', {
+            return render(request, 'shopping/product.html', {
                     'form':form, 'sizes':sizes, 'packages':packages, 
                     'brothers':brothers, 'deliveries':deliveries, 'destination':destination
                 })

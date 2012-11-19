@@ -32,7 +32,7 @@ def activate(request, backend,
     ``success_url`` (see below).
 
     On unsuccessful activation, will render the template
-    ``registration/activate.jade`` to display an error message; to
+    ``registration/activate.html`` to display an error message; to
     override thise, pass the argument ``template_name`` (see below).
 
     **Arguments**
@@ -54,7 +54,7 @@ def activate(request, backend,
     
     ``template_name``
         A custom template to use. This is optional; if not specified,
-        this will default to ``registration/activate.jade``.
+        this will default to ``registration/activate.html``.
 
     ``\*\*kwargs``
         Any keyword arguments captured from the URL, such as an
@@ -69,7 +69,7 @@ def activate(request, backend,
     
     **Template:**
     
-    registration/activate.jade or ``template_name`` keyword argument.
+    registration/activate.html or ``template_name`` keyword argument.
     
     """
     backend = get_backend(backend)
@@ -160,7 +160,7 @@ def register(request, backend, success_url=None, form_class=None,
     
     ``template_name``
         A custom template to use. If not supplied, this will default
-        to ``registration/registration_form.jade``.
+        to ``registration/registration_form.html``.
     
     **Context:**
     
@@ -172,7 +172,7 @@ def register(request, backend, success_url=None, form_class=None,
     
     **Template:**
     
-    registration/registration_form.jade or ``template_name`` keyword
+    registration/registration_form.html or ``template_name`` keyword
     argument.
     
     """

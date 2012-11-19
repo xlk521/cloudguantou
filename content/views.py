@@ -22,7 +22,7 @@ log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
 def choose_personal_bg(request):
-    return render_to_response('content/choose_personal_bg.jade')
+    return render_to_response('content/choose_personal_bg.html')
 @login_required
 def personal_index(request, profile_id):
     #cans_id = request.GET.get('id', False)
@@ -42,7 +42,7 @@ def personal_index(request, profile_id):
     personal_detail['cans_id'] = profile.cans_id
     
     #return HttpResponse(personal_detail)
-    return render_to_response('content/personal_homepage.jade', {'personal':personal_detail})
+    return render_to_response('content/personal_homepage.html', {'personal':personal_detail})
 
 @login_required
 @require_http_methods(["GET"])
@@ -67,14 +67,14 @@ def content_index(request, cans_id):
         #work['frontcover'] = reverse('content.views.serve_work', args=(portfolio.cover_key,))
         work['frontcover'] = portfolio.coverkey
         works[year][month].append(work)
-    return render(request, 'content/contents_list.jade', {'works':works})
+    return render(request, 'content/contents_list.html', {'works':works})
 
 @login_required
 @require_http_methods(["POST", "GET"])
 def up_load(request):
     if request.method == "GET":
         form = PortfolioForm()
-        return render(request, 'content/uploadpage.jade', {'form':form})
+        return render(request, 'content/uploadpage.html', {'form':form})
     elif request.method == "POST":
         pid = str(uuid.uuid4())
         profile = request.user.get_profile()
@@ -195,9 +195,9 @@ def getFriendsProfile(request, page):
         request.session['cursor'] = 0
         request.session['count'] = 0
         if page=='follower':
-            return render(request, 'content/content_following.jade')
+            return render(request, 'content/content_following.html')
         elif page=='following':
-            return render(request, 'content/content_follow.jade')
+            return render(request, 'content/content_follow.html')
 
     elif request.method == 'POST':
         result = {}
