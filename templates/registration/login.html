@@ -1,4 +1,4 @@
-{% extends "login_base.jade" %}
+{% extends "login_base.html" %}
 {% block title %}登录{% endblock %}
 {% block index %}
 <div id="content_login_divspan4">
@@ -11,8 +11,9 @@
 				</div>
 			</div>
 			<div id="margin_top-5" class="control-group"><strong>用户名&nbsp;</strong>
-				<label class="control-label"><!--{{form.username.label_tag}}--></label>
-				<div class="controls">{{ form.username }}
+				<label class="control-label">{{form.username.label_tag}}</label>
+				<div class="controls">
+					{{ form.username }}
 					<div id="id_usernameTip" class="onShow">请输入用户名</div>
 					{% if form.username.errors %}
 					<p id="err_msg" class="errmsg">{{ form.username.errors|join:", " }}</p>
@@ -21,7 +22,7 @@
 					{% endif %}</div>
 			</div>
 			<div id="margin_top-10"><strong>密码&nbsp;</strong>
-				<label class="control-label"><!--{{ form.password.label_tag }}--></label>
+				<label class="control-label">{{ form.password.label_tag }}</label>
 				<div class="controls">{{ form.password }}
 					<div id="id_passwordTip" class="onShow">请输入密码</div>
 					{% if form.password.errors %}
