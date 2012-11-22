@@ -19,6 +19,7 @@ encoding//friendships/models.py=utf8
 encoding//friendships/urls.py=utf8
 encoding//identity/urls.py=utf8
 encoding//payment/urls.py=utf8
+encoding//qqweibo/models.py=utf-8
 encoding//shopping/models.py=utf8
 encoding//shopping/urls.py=utf8
 encoding//shopping/views.py=utf8

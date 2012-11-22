@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %}主页{% endblock %}
+{% block content %}
 <div id="contents_list" style="overflow:hidden;position:absolute;min-width:1210px;min-height:450px;width:100%;top:45px" class="body_contents_list">
     <div id="contents_list_left" style="position:relative;width:740px;min-height:450px;float:left;background-color:white">
         <div id="contents_listborder_left" style="position:relative;width:24px;float:left;z-index:10;background-color:#FFF;border-right:1px solid #aaa;min-height:450px"></div>
@@ -57,3 +60,4 @@
         });
     });
 </script>
+{% endblock %}

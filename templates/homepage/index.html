@@ -29,7 +29,7 @@
 			<ul id="HomeConList_ul">
 				{% for Portfolio in Portfolios%}
 				<li>
-					<div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.coverkey }}  width="221" height="166"></a>
+					<div class="project-cover"><a href='/content/index/39/?img_id={{Portfolio.pid}}'><img src={{ Portfolio.coverkey }}  style="width:221px;height:166px;"></a>
 						<div class="project-cover-div">
 							<div>
 								<h4 title="{{ Portfolio.title }}">{{ Portfolio.title }}</h4>
