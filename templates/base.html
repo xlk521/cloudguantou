@@ -18,10 +18,14 @@
 		<link rel="stylesheet" type="text/css" href="/statics/css/jquery-ui-1.9.1.css"/>
 		<link rel="stylesheet" type="text/css" href="/statics/css/bootstrap-image-gallery.min.css"/>
 		<script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
 		<script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js"charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/vendor/jquery.ui.widget.js"charset="UTF-8"></script>
-		<script type="text/javascript" src="/statics/js/tmpl.min.js" charset="UTF-8"></script>
+		<!----上传图片的界面不能包含下面的这个JS---->
+		<!----
+			<script type="text/javascript" src="/statics/js/tmpl.min.js" charset="UTF-8"></script>
+		---->
 		<script type="text/javascript" src="/statics/js/load-image.min.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/canvas-to-blob.min.js"charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/bootstrap.js" charset="UTF-8"></script>
@@ -37,9 +41,11 @@
 		<script type="text/javascript" src="/statics/js/jquery.imgareaselect.pack.js"></script>
 		<script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js"charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/jquery.masonry.min.js"charset="UTF-8"></script>
+
+		<script type="text/javascript" src="/statics/js/new_6cans.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/6cans.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="/statics/js/main.js" charset="UTF-8"></script>
-		<script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
+		
 		{% block link %}{% endblock %}
 		<script>
 		    var is_authenticated = false
@@ -65,7 +71,7 @@
 		{% block head %}{% endblock %}
 	</head>
 	<!--分割线-->
-	<body id="change_id" style="width:100%;min-height:450px;" onkeydown="keyDown()">
+	<body id="change_id" style="width:100%;min-height:450px;" {% block keydown %}{% endblock %}>
 		<div id="header">
 			<div class="headerCon">
 				<ul>
@@ -172,7 +178,7 @@
 		</div>
 		{% block content %}{% endblock %}
 		<!--底部标签-->
-		<div id="footer" class="indexfooter_hide_show">
+		<div id="footer" class="indexfooter_hide_show" {% block footdiv %}{% endblock %}>
 			<div class="footerCon">
 				<ul>
 					<li class="logo2"></li>

@@ -21,7 +21,7 @@ urlpatterns = patterns('content.views',
     #获取系列作品内容
     url(r'getWorks/', 'get_works'),
 
-    url(r'^content_follower/#', 'getFriendsProfile', {'page' :'follower'}),
+    url(r'^content_follower/', 'getFriendsProfile', {'page' :'follower'}),
     
     url(r'^upload/$', 'up_load'),
     #批量获得上传路径

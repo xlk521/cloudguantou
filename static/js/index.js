@@ -1,3 +1,14 @@
+/****
+index.html需要加载的js
+<script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js" charset="UTF-8"></script>共有
+<script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js"charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js"charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/new_6cans.js" charset="UTF-8"></script>共有
+<script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
+<script type="text/javascript" src="/statics/js/vendor/index.js"charset="UTF-8"></script>
+****/
+
 var index_addimg='<li><div class="project-cover"><a href="/content/index/39/?img_id=${pid}"><img src=${coverkey} width="221" height="166"></a><div class="project-cover-div"><div>'+
 '<h4 title="和俩暖色调阿斯达暖色调阿斯暖色调阿斯">${title}</h4><em>#摄影</em></div><p><span class="font1">FROM:</span><a class="font2">${nickname }</a>的品牌'+
 '<a href="/content/personal/?id=${profile_id }" class="font2">净世界</a></p></div></div></li>';

@@ -1,5 +1,15 @@
-{% extends "index_base.html" %}
+{% extends "base.html" %}
 {% block title %}首页{% endblock %}
+{% block link %}
+<script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js"charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js"charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.timers-1.2.js"></script>
+<script type="text/javascript" src="/statics/js/vendor/index.js"charset="UTF-8"></script>
+{% endblock %}
+{% block footdiv %}
+onmouseover="footer_stoptime()" onmouseout="footer_time()"
+{% endblock %}
 {% block content %}
 <div id="HomeBanner_top" style="height:45px;margin-bottom:10px"></div>
 <div id="HomeContent" >

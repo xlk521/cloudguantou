@@ -9,16 +9,8 @@
 		<link rel="stylesheet" type="text/css" href="/statics/css/bootstrap.css"/>
 		<link rel="stylesheet" type="text/css" href="/statics/css/GT_css.css"/>
 		<link rel="stylesheet" type="text/css" href="/statics/css/GT_min.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/GT_trade.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/imgareaselect-default.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/GT_Transaction.css"/>
 		<link rel="stylesheet" type="text/css" href="/statics/css/6Cans.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/mycans_css.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/jquery.fileupload-ui.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/jquery-ui-1.9.1.css"/>
-		<link rel="stylesheet" type="text/css" href="/statics/css/bootstrap-image-gallery.min.css"/>
 		<script type="text/javascript" src="/statics/js/jquery-1.8.2.min.js" charset="UTF-8"></script>
-		<link rel="stylesheet" type="text/css" href="/statics/css/lrtk.css"/>
 		<script type="text/javascript" charset="utf-8" src="/statics/js/choose_personal_bg.js"></script>
 		<style>
 			.personal_img_content {
@@ -222,12 +214,14 @@
 			                left_percent=(x1 + e.clientX - x0 - offSetX)/wid;//获取左右位置的百分比
 			                left_percent=left_percent*100;
 			                target.style.left = left_percent+ "%";
+			                console.log("left_percent:"+left_percent+ "%");
 			                
 			            }
 			            if(topnum>=0 && topnum<=top_divlimit){
 			                top_percent=(y1 + e.clientY - y0 - offSetY)/hei;//获取上下位置的百分比
 			                top_percent=top_percent*100;
 			                target.style.top  =top_percent+ "%";
+			                console.log("top_percent:"+top_percent+ "%");
 			            }
 			        }  
 			    }; 
@@ -236,7 +230,7 @@
 			        if(moveable)  {  
 			            if(!NS){this.releaseCapture();}
 			            moveable = false;  
-			        }  
+			        }
 			    };
 			}
 		</script>

@@ -1,3 +1,9 @@
+/***
+choose_personal_bg界面的js包括：
+----base界面调用了--->jquery-1.8.2.min.js
+-------->choose_personal_bg.js
+-------->
+***/
 var ie=document.all;
 var nn6=document.getElementById&&!document.all;
 var isdrag=false;
@@ -89,7 +95,8 @@ function choose_perbg(obj){
         press_bt_a="button";
         $("#choose_personalbg").animate({top:-84},"slow");
         document.onmousedown=new Function("isdrag=false");
-        
+        console.log("xx3:"+xx3 +"   "+"yy3:"+yy3 );
+        console.log("top_percent:"+top_percent );
     }
     else if(obj.id=="personal_choose_a"){
         press_bt_a="a";
@@ -132,11 +139,10 @@ $("#personal_right_center").live("mouseout",function(){
     }
 });
 function personal_resize(){
-    //$("#personal_wrap").empty();
     var hei=document.body.clientHeight-2;//网页可见区域高-上下导航
     $("#personal_wrap").css({height:hei});
-    //$("#personal_left").css({top:17%},{left:0});
 }
+
 $(document).ready(function(){
     Personal_brand_resize();
     personal_resize();

@@ -1,35 +1,85 @@
 {% extends "base.html" %}
 {% block title %}我的关注{% endblock %}
+{% block link %}
+<script type="text/javascript" src="/statics/js/jquery-ui-1.9.1.min.js"charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/bootstrap.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/jquery.infinitescroll.min.js"charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/content_follow.js"></script>
+<style>
+	#header{position: relative;}
+	.carousel{
+		margin-bottom:0px;
+		line-height:1.5;
+	}
+	#content_follow_left{
+		width:160px;
+		border-right:1px solid #444242;
+		background:#aaa;
+		float:left;
+		height: 100%;
+		z-index: 100;
+		position: relative;
+	}
+	#attention_listing_content{
+		height:100%;
+		width:100%;
+		overflow:hidden;
+		position:relative;
+	}
+	#author{
+		overflow:hidden;
+		position:relative;
+		min-width:984px;
+		min-height:450px;
+		width:100%;
+	}
+	.relationList_div_cls{
+		border-right:1px solid #ccc;
+		background:#fff;
+		float:left;
+	}
+	#author{
+		overflow:hidden;
+		position:relative;
+		min-width:984px;
+		min-height:450px;
+		width:100%;
+	}
+	.author_li_a1{background:#f2f2f2}
+.author_friend_show_a{border:1px solid #000;width:135px;height:15px;line-height:15px;color:#fff;font-size:15px;text-align:center;}
+.author_follow,.author_li_a1{border:1px solid #000;width:135px;height:25px;line-height:25px;color:#fff;font-size:15px;text-align:center}
+</style>
+{% endblock %}
 {% block content %}
-<div id="author" style="overflow:hidden;position:relative;min-width:984px;min-height:450px;width:100%;">
-	<div id="attention_listing_content" style="height:100%;width:100%;">
-		<div style="width:160px;height:100%;border-right:1px solid #444242;background:#aaa;float:left">
+<div id="author">
+	<div id="attention_listing_content">
+		<div id="content_follow_left" class="content_follow_left">
 			<div style="width:160px;padding-top:45px;">
 				<ul class="nav nav-pills">
 					<li>
-						<a style="border:1px solid #000;width:135px;height:25px;line-height:25px;color:#fff;font-size:15px;text-align:center;background:#f2f2f2">我的关注</a>
+						<a class="author_li_a1">我的关注</a>
 					</li>
 					<li id="author_friend_show">
-						<a style="border:1px solid #000;width:135px;height:15px;line-height:15px;color:#fff;font-size:15px;text-align:center;">创作者</a>
-						<a style="border:1px solid #000;width:135px;height:15px;line-height:15px;color:#fff;font-size:15px;text-align:center;">用户</a>
+						<a class="author_friend_show_a">创作者</a>
+						<a class="author_friend_show_a">用户</a>
 					</li>
 					<li>
-						<a id="author_follow" href="/content/content_following/" style="border:1px solid #000;width:135px;height:25px;line-height:25px;color:#fff;font-size:15px;text-align:center">我的粉丝
-						</a>
+						<a id="author_follow" class="author_follow" href="/content/content_following/">我的粉丝</a>
 					</li>
 					<li>
-						<a style="border:1px solid #000;width:135px;height:25px;line-height:25px;color:#fff;font-size:15px;text-align:center">邀请站外好友</a>
+						<a class="author_follow">邀请站外好友</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div id="author_content_right">
-			<div id="relationList_f" class="carousel slide">
-				<div id="relationList_form" class="carousel-inner"></div>
-				<a id="author_left" href="#relationList_f" data-slide="prev" class="carousel-control left">&lsaquo;</a>
-				<a id="author_right" href="#relationList_f" data-slide="next" class="carousel-control right">&rsaquo;</a>
+		<div id="author_content_right" style="height: 100%;">
+			<div id="relationList_f" class="slide"  style="height: 100%;">
+				<div id="relationList_form"  style="height: 100%;"></div>
 			</div>
 		</div>
 	</div>
+	<a id="author_left" href="#relationList_f" data-slide="prev" style="margin:auto;z-index:101;" class="carousel-control left">&lsaquo;</a>
+    <a id="author_right" href="#relationList_f" data-slide="next" style="margin:auto;" class="carousel-control right">&rsaquo;</a>
 </div>
 {% endblock %}

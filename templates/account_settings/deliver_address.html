@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}帐号管理-收货地址{% endblock %}
-{% block content %}<script>function choose_address(obj){
+{% block content %}
+<script>
+function choose_address(obj){
     //获取改变前的默认地址的相关内容(固定的)
     var li_name_ed=document.getElementsByName("chooseed_address");
     var span_name_ed=document.getElementsByName("chooseed_address_span");
@@ -17,7 +19,8 @@
     $(li_name).css({backgroundColor:"#F0EDEC"},{color:"#5D5D5D"},{border:3});
     span_name.innerHTML="寄送至";
     $(a_name).empty();
-}</script>
+}
+</script>
 <div id="mycans" style="margin:0 auto">
 	<div id="mycans_left">
 		<dl class="mycans_dl1">

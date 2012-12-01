@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 {% block title %}主页{% endblock %}
+{% block link %}
+<script type="text/javascript" src="/statics/js/jquery.tmpl.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/statics/js/contents_list.js"></script>
+<style>
+.contents_list_button{position:relative;width:20px;min-height:450px;float:left;z-index:100;background:#FFF;border-right-color:#aaa;border-right-style:solid;border-right-width:1px;overflow:hidden;}
+.contents_list_a{position:relative;width:50px;min-height:450px;float:left;z-index:10;background:#FFF}
+.contents_list_button img{position:absolute;top:140px}
+.contents_list_right{position:relative;min-height:450px;float:left;}
+</style>
+{% endblock %}
+{% block keydown %} onkeydown="keyDown()"{% endblock %}
 {% block content %}
 <div id="contents_list" style="overflow:hidden;position:absolute;min-width:1210px;min-height:450px;width:100%;top:45px" class="body_contents_list">
     <div id="contents_list_left" style="position:relative;width:740px;min-height:450px;float:left;background-color:white">
@@ -15,7 +26,7 @@
                 <div id="contents_work">
                     <div style="overfloat:hidden">
                         <a>
-                            <img class="img_delay_load" src={{album.frontcover}} id={{album.albumid}},title="{{ album.title }}:本相册共10张" style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;" onclick="contents_getimgid(this)"/>
+                            <img class="img_delay_load" src={{album.frontcover}} id={{album.albumid}} title="{{ album.title }}:本相册共10张" style="background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;" onclick="contents_getimgid(this)"/>
                             <div> <b>{{ album.title }}</b></div>
                         </a>
                     </div>
@@ -25,7 +36,7 @@
             {% endfor %}
             {% endfor %}
         </div>
-        <div id="contents_list_a" style="position:relative;width:50px;min-height:450px;float:left;z-index:10;background:#FFF">
+        <div id="contents_list_a" class="contents_list_a">
             <a id="work_up">
                 <img src="/statics/img/contents_list_up.GIF" style="position:absolute;top:40px" />
             </a>
@@ -34,30 +45,16 @@
             </a>
         </div>
     </div>
-    <div id="contents_list_button" style="position:relative;width:20px;min-height:450px;float:left;z-index:100;background:#FFF;border-right-color:#aaa;border-right-style:solid;border-right-width:1px; ">
+    <div id="contents_list_button" class="contents_list_button">
         <a id="list_button_shrink">
-            <img src="/statics/img/contents_list_extend.GIF" style="position:absolute;top:140px" />
+            <img src="/statics/img/contents_list_extend.GIF" />
         </a>
         <a id="list_button_extend" style="display:none">
-            <img src="/statics/img/contents_list_extend2.GIF" style="position:absolute;top:140px" />
+            <img src="/statics/img/contents_list_extend2.GIF" />
         </a>
     </div>
-    <div id="contents_list_right" style="position:relative;min-height:450px;float:left;"></div>
+    <div id="contents_list_right" class="contents_list_right"></div>
     <a id="contents_control_left" href="#relationList_f" data-slide="prev" style="margin:auto;display:none;z-index:101;" class="carousel-control left">&lsaquo;</a>
-    <a id="contents_control_right" href="#relationList_f" data-slide="next" style="margin:auto;display:none" class="carousel-control right">&rsaquo;</a>
+    <a id="contents_control_right" href="#relationList_f" data-slide="next" style="margin:auto;" class="carousel-control right">&rsaquo;</a>
 </div>
-<script>
-    $(document).ready(function(){
-        $("#contents_list").show("normal",function(){
-            $("#change_id").attr("class","contents_body");
-            contents_show(1210);
-            contentlist_content_imgnum("contents_list_date");
-            contents_left_resize();
-            $('#contents_list_right').show("normal",function() {
-                contents_getJson();
-                console.log("首次调取数据");
-            });
-        });
-    });
-</script>
 {% endblock %}

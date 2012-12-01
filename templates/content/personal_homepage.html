@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 {% block title %}个人主页{% endblock %}
+{% block link %}
+<script type="text/javascript" src="/statics/js/personal_homepage.js" charset="UTF-8"></script>
+<style>
+.personal-content{overflow:hidden;position:relative;min-width:984px;min-height:530px;width:100%;background:url(/statics/img/personal_content_bg.jpg);background-size:cover;top:45px}
+.personal-left{position:relative;width:410px;height:420px;float:left;margin-top:10%;margin-bottom:11%}
+.personal-left-a{overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc;margin-right: 8px;}
+</style>
+{% endblock %}
 {% block content %}
-<div id="personal_wrap" style="overflow:hidden;position:relative;min-width:984px;min-height:530px;width:100%;background:url(/statics/img/personal_content_bg.jpg);background-size:100%">
-	<div id="personal_left" style="overflow:hidden;position:relative;width:410px;height:420px;float:left;margin-top:10%;margin-bottom:11%">
+<div id="personal_wrap" class="personal-content">
+	<div id="personal_left" class="personal-left">
+		<a id="personal_right_bottom" class="personal-left-a" href="/content/choose_bg/">
+			<h4>他的收藏</h4>
+		</a>
 		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:400px;height:45px;border:1px solid #ccc;background:#f2f2f2;">
 			<h2 style="margin:0px 30px">{{ personal.brand_name }}</h2>
 		</div>
@@ -40,10 +51,4 @@
 		</div>
 	</div>
 </div>
-<script>function personal_resize(){
-    var hei=document.body.clientHeight-130;//网页可见区域高-上下导航
-    $("#personal_wrap").css({height:hei});
-}
-$(document).ready(function(){
-    personal_resize();
-});</script>{% endblock %}
+{% endblock %}

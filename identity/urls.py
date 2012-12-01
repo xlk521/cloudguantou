@@ -8,6 +8,4 @@ urlpatterns = patterns('identity.views',
     url(r'identity/', 'identity'),
     url(r'personal_details/', 'personal_details'),
     url(r'works_details/', 'works_details'),
-    
-    
 )

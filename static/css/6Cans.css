@@ -905,7 +905,7 @@ div#homepage_content form fieldset.control-group{
 #author_content_right,#author_content_followright{
     background:#aaa;
     float:left;
-    height:100%;
+    /*height:100%;*/
 }
 /*个人目录页*/
 .contents_list_divleft{
