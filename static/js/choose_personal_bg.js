@@ -15,6 +15,33 @@ var xx=0;
 var yy=0;
 var xx3=0;
 var yy3=0;
+var intnum=0;//一行加载的图片个数
+var imgsingle=0;//每一个图片区域的宽度
+var hei=0;
+var wid=0;
+
+var tmplimg='<div class="personalimg" id="imgs"><a><img src="/statics/img/0110.gif" class="bgimg" onClick="choose_img(this)"/></a></div>';
+$.template("imgtem", tmplimg );
+function templimg(imgnum){
+    for(var i=0;i<imgnum;i++){
+        $.tmpl( "imgtem").appendTo( "#personal_img_content" );
+        var divimg=document.getElementById("imgs");
+        var imgid=divimg.getElementsByTagName("img");
+        $(imgid).id=i;
+        //imgid.value=i;
+        imgid=divimg.getElementsByTagName("img");
+        $("#imgs").removeAttr('id');
+        console.log(imgid);
+    }
+    var newwidth=imgnum*imgsingle;
+    var singlewid=wid-newwidth;
+    var marginleft=singlewid/2;
+    console.log(marginleft);
+    $("#personal_img_content").css({"marginLeft":marginleft});
+}
+function moveleft(left_right){
+
+}
 function movemouse(e){
     if (isdrag){
         var xx2=nn6 ? tx + e.clientX - x : tx + event.clientX - x;//新的移动
@@ -67,14 +94,17 @@ function personal_rightorleft(obj){
     $(".personal_img_content").animate({left:left_num});
 }
 function Personal_brand_resize(){
-    var wid=document.body.clientWidth;
-    var hei=document.body.clientHeight;
+    wid=document.body.clientWidth;
+    hei=document.body.clientHeight;
     var div_height=$("#personal_button").height();
     hei=hei-div_height-10;
     $("#personal_content").css({height:hei});
     wid=wid-10;
     wid=wid+10;
     wid=wid-210;
+    imgsingle=156;//$(".personalimg").width()+10;
+    intnum=Math.floor(wid/imgsingle);
+    console.log(intnum+"   num    "+imgsingle+" single_img   "+wid);
     $("#Personal_brand_background").css({width:wid});
 }
 function choose_img(obj){
@@ -146,6 +176,7 @@ function personal_resize(){
 $(document).ready(function(){
     Personal_brand_resize();
     personal_resize();
+    templimg(intnum);
     $(window).resize(function(){
         Personal_brand_resize();
         personal_resize();

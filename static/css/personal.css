@@ -1,0 +1,96 @@
+/*personal_homepage.html*/
+.personal-content{/*overflow:hidden;*/position:relative;min-width:984px;min-height:530px;width:100%;background:url(/statics/img/personal_content_bg.jpg);background-size:cover;top:45px}
+.personal-left{position:relative;width:410px;height:420px;float:left;margin-top:0;margin-bottom:0}
+.personal-left-a{/*overflow:hidden;*/position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc;margin-right: 8px;}
+.brand_name{/*overflow:hidden;*/position:relative;width:400px;height:45px;border:1px solid #ccc;background:#f2f2f2;}
+.introduct{/*overflow:hidden;*/position:relative;width:400px;height:95px;margin-top:3px;border:1px solid #ccc}
+.introduction{/*overflow:hidden;*/position:relative;width:340px;height:55px;margin-top:20px;margin-left:30px;border:1px solid #ccc;background:#f2f2f2;}
+.brand_detials{/*overflow:hidden;*/position:relative;width:400px;height:140px;margin-top:15px;border:1px solid #ccc}
+.detials1{/*overflow:hidden;*/position:relative;width:200px;height:120px;margin-top:15px;margin-left: 30px;border:1px solid #ccc;float:left;background:#f2f2f2;}
+.contern{width:55px;height:20px;border:1px solid #424242;line-height:20px;text-align:center;margin-top:30px;float:right}
+.personal_coverkey{/*overflow:hidden;*/position:relative;width:120px;height:120px;margin-top:10px;margin-left:30px;border:1px solid #ccc;float:left;background:#f2f2f2;}
+.personal_con{/*overflow:hidden;*/position:relative;width:400px;height:110px;margin-top:3px;border:1px solid #ccc}
+.personal_intro{/*overflow:hidden;*/position:relative;width:340px;height:95px;background:#f2f2f2;margin-top:10px;margin-left: 30px;border:1px solid #ccc;float:left}
+.center_detials,.center_detials1{overflow:hidden;position:relative;width:210px;min-height:100px;float:right;margin-top:0;}
+.center_detials1{width:300px;min-height: 100px;}
+.center_detials3{position:relative;min-height:100px;float:right;margin-top:0;position:absolute;bottom:0px;top: 425px;}
+.center_detials{margin-right: 25px;}
+.center1,.center11,.center13{overflow:hidden;position:relative;width:210px;height:200px;background:#444242;}
+.center1{}
+.center13{height:130px;width:705px}
+.center11{width:290px;height:180px}
+.center2,.center22,.center23{overflow:hidden;position:relative;width:140px;height:100px;background:#f2f2f2;margin-top:30px;margin-left: 50px;}
+.center22{margin-top:2px;margin-left:0px;width:160px;height:100px;}
+.center23{position:relative;float:left;margin: 5px;width: 140px;height: 120px;}
+.works,.works11{overflow:hidden;position:relative;background:#f2f2f2;margin-top:5px;margin-left: 90px;width:80px;}
+.works11{margin-left: 0px;width:290px;}
+.works1{overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:15px;border:1px solid #ccc}
+.works2{overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:0%;border:1px solid #ccc}
+.works3,.works4,.works5,works6{overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc}
+.works4,.works5{float:none;margin-top:0px;}
+.works5{height: 21px;line-height: 21px;}
+.works6{}
+.works11 ul li{width: 100px;position: relative;float: left;}
+.img{width:140px;height:100px}
+.title_a{border:1px solid #aaa;width:100px;display:block;position:relative;float:left}
+.leftmove{overflow:hidden;height: 80px;margin-top: 25px;width:50px;position:relative;float:left;background:#aaa;display:block}
+.centerimg{overflow:hidden;position:relative;float:left;width: 600px;}
+
+/*personal_homepage_bg:±≥æ∞—°‘Ò“≥√Ê*/
+.personal_img_content {
+	height:84px;
+	position:relative;
+	float:left;
+	background:#eaa333;
+	overflow:hidden;
+	left:0px;
+}
+.personalimg {
+	height:84px;
+	width:146px;
+	position:relative;
+	float:left;
+	background:#aaa;
+	margin-right:10px
+}
+.personal_left {
+	background:url(/statics/img/feature_left.gif) no-repeat;
+	width:40px;
+	height:50px;
+	display:block;
+	position:absolute;
+	top:20%;
+	background-position:6px 3px;
+	top:20px;
+	z-index:10;
+	left:0px
+}
+.personal_right {
+	background:url(/statics/img/feature_right.gif) no-repeat;
+	width:40px;
+	height:50px;
+	display:block;
+	position:absolute;
+	top:20%;
+	background-position:6px 3px;
+	right:115px;
+	top:20px;
+	z-index:10
+}
+.personal_right:hover, .personal_left:hover {
+	background-position:6px -46px;
+}
+#Personal_brand_background {
+	float:left;
+	min-width:984px;
+	background:#aaa;
+	overflow:hidden;
+	margin-left:50px;
+	left:0px;
+}
+.dragme {
+	position:relative;
+}
+#personal_left:active {
+	cursor:move;
+}

@@ -1,68 +1,60 @@
-{% extends "login_base.html" %}
+{% extends "base.html" %}
 {% block title %}注册{% endblock %}
-{% block headright %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/statics/css/login.css"/>
 {% endblock %}
-{% block index %}
-<div id="content_login_divspan4">
-	<form id="margin_left15" action="/accounts/register/" method="POST">
-		{% csrf_token %}
-		<fieldset id="margin_left25" class="control-group success">
-			<div class="control-group">
-				<div class="controls">
-					<div class="rightside_text"><b> 使用邮箱注册</b></div>
+{% block content %}
+<div class="rightside_content1">
+    <div class="content_div_span4">
+        <div id="content_div_margin">
+            <div class="rightside_ico">
+                <a href="#"><img id="sina_auth" src="/statics/img/ico2.gif" alt="6Cans_新浪"/>使用新浪微博账号登陆</a>
+                <a href="#"><img id="qq_auth" src="/statics/img/ico5.gif" alt="6Cans_QQ"/>使用腾讯微博账号登陆</a>
+                <a href="#"><img id="douban_auth" src="/statics/img/ico3.gif" alt="6Cans_豆瓣"/>使用豆瓣账号登陆</a>
+                <a href="#"><img id="renren_auth" src="/statics/img/ico4.gif" alt="6Cans_人人"/>使用人人账号登陆</a>
+                
+            </div>
+        </div>
+    </div>
+    <div class="content_login_divspan4">
+		<form id="margin_left15" action="/accounts/register/" method="POST">
+			<fieldset id="margin_left25" class="control-group success">
+				<div id="margin_top-5">
+					<label class="control-label"><strong>用户名</strong></label>
+					<div class="controls">
+						<input id="id_username" type="text" class="required" name="username" maxlength="30">
+					</div>
 				</div>
-			</div>
-			<div id="margin_top-5"><strong>用户名</strong>
-				<label class="control-label"></label>
-				<div class="controls">{{form.username}}
-					<div id="id_usernameTip" class="onShow">请输入用户名</div>
+				<div id="margin_top-10">
+					<label class="control-label"><strong>邮箱</strong></label>
+					<div class="controls">
+						<input id="id_email" type="text" class="required" name="email" maxlength="75">
+					</div>
 				</div>
-				{% if form.username.errors %}
-				<p id="err_msg" class="errmsg">{{ form.username.errors|join:", " }}</p>
-				{% else %}
-				<p id="err_msg">&nbsp;</p>
-				{% endif %}</div>
-			<div id="margin_top-10"><strong>邮箱</strong>
-				<label class="control-label"></label>
-				<div class="controls">{{form.email}}
-					<div id="id_emailTip" class="onShow">请输入邮箱</div>
+				<div id="margin_top-10">
+					<label class="control-label"><strong>密码</strong></label>
+					<div class="controls">
+						<input id="id_password1" type="password" class="required" name="password1">
+					</div>
 				</div>
-				{% if form.email.errors %}
-				<p id="err_msg" class="errmsg">{{ form.email.errors|join:", " }}</p>
-				{% else %}
-				<p id="err_msg">&nbsp;</p>
-				{% endif %}</div>
-			<div id="margin_top-10"><strong>密码</strong>
-				<label class="control-label"></label>
-				<div class="controls">{{form.password1}}
-					<div id="id_password1Tip" class="onShow">请输入密码</div>
+				<div id="margin_top-10">
+					<label class="control-label"><strong>密码确认</strong></label>
+					<div class="controls">
+						<input id="id_password2" type="password" class="required" name="password2">
+					</div>
 				</div>
-				{% if form.password1.errors %}
-				<p id="err_msg" class="errmsg">{{ form.password1.errors|join:", " }}</p>
-				{% else %}
-				<p id="err_msg">&nbsp;</p>
-				{% endif %}</div>
-			<div id="margin_top-10"><strong>密码确认</strong>
-				<label class="control-label"></label>
-				<div class="controls">{{form.password2}}
-					<div id="id_password2Tip" class="onShow">请再次输入密码</div>
+				<div>
+					<div class="controls">
+						<input type="checkbox" style="width:20px"/>同意《罐头工场》协议
+						<p class="p2"> 验证邮箱，有20%几率获得罐头工场折扣券</p>
+					</div>
 				</div>
-				{% if form.password2.errors %}
-				<p id="err_msg" class="errmsg">{{ form.password2.errors|join:", " }}</p>
-				{% else %}
-				<p id="err_msg">&nbsp;</p>
-				{% endif %}</div>
-			<div id="margin_top-10">
-				<div class="controls">
-					<p class="p2"> 验证邮箱，有20%几率获得罐头工场折扣券</p>
-				</div>
-			</div>
-			<div id="margin_top15">
-				<div class="controls">
-					<button id="button_color" type="submit" class="btn btn-success"><strong>&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;</strong></button>
-				</div>
-			</div>
-		</fieldset>
-	</form>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<div class="rightside_content2">
+	<div></div>
+    <button id="button_color" type="submit" class="btn btn-success"><strong>&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;</strong></button>
 </div>
 {% endblock %}

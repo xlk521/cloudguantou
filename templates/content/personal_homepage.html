@@ -1,54 +1,277 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% block title %}个人主页{% endblock %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/statics/css/personal.css"/>
+<style>
+.li{display:block;width:40px;height:20px;border:1px solid #aaa;}
+</style>
+{% endblock %}
 {% block link %}
 <script type="text/javascript" src="/statics/js/personal_homepage.js" charset="UTF-8"></script>
-<style>
-.personal-content{overflow:hidden;position:relative;min-width:984px;min-height:530px;width:100%;background:url(/statics/img/personal_content_bg.jpg);background-size:cover;top:45px}
-.personal-left{position:relative;width:410px;height:420px;float:left;margin-top:10%;margin-bottom:11%}
-.personal-left-a{overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc;margin-right: 8px;}
-</style>
+<script>
+/*关注/分享作者，审核通过*/
+var post_url="";
+/*关注作者.personal_author*/
+$('.personal_author').live('click',function(e){// 
+    var suid=$(this).attr('id');//获取其id,此id与作者id相同
+    var param={suid:suid,message:"personal_author"};//发送到后台的参数
+    $.ajax({
+        type:'POST',
+        url:post_url,
+        dataType:'json',
+        data:param,
+        cache:false,
+        success:function(response){
+            alter("关注成功!");
+            $(this).html("已关注");
+        }
+    });
+});
+
+/*分享作者.personal_share*/
+$('.personal_share').live('click',function(e){// 
+    var suid=$(this).attr('id');//获取其id,此id与作者id相同
+    var param={suid:suid,message:"personal_share"};//发送到后台的参数
+    $.ajax({
+        type:'POST',
+        url:post_url,
+        dataType:'json',
+        data:param,
+        cache:false,
+        success:function(response){
+            alter("分享成功!");
+            $(this).html("已分享");
+        }
+    });
+});
+
+/*通过审核.personal_go*/
+$('.personal_go').live('click',function(e){// 
+    var suid=$(this).attr('id');//获取其id,此id与作者id相同
+    var param={suid:suid,message:"personal_go"};//发送到后台的参数
+    $.ajax({
+        type:'POST',
+        url:post_url,
+        dataType:'json',
+        data:param,
+        cache:false,
+        success:function(response){
+            alter("已通过审核!");
+            $(this).html("已通过审核");
+        }
+    });
+});
+
+</script>
 {% endblock %}
 {% block content %}
 <div id="personal_wrap" class="personal-content">
-	<div id="personal_left" class="personal-left">
-		<a id="personal_right_bottom" class="personal-left-a" href="/content/choose_bg/">
-			<h4>页面管理</h4>
-		</a>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:400px;height:45px;border:1px solid #ccc;background:#f2f2f2;">
-			<h2 style="margin:0px 30px">{{ personal.brand_name }}</h2>
-		</div>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:400px;height:95px;margin-top:3px;border:1px solid #ccc">
-			<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:340px;height:55px;margin-top:20px;margin-left:30px;border:1px solid #ccc;background:#f2f2f2;">{{ personal.brand_introduction }}</div>
-		</div>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:400px;height:140px;margin-top:15px;border:1px solid #ccc">
-			<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:200px;height:120px;margin-top:15px;margin-left: 30px;border:1px solid #ccc;float:left;background:#f2f2f2;">
-				<div style="font-size:14px;">{{ personal.author }}<span style="font-size:10px">关注：({{ personal.favorite_count }})  粉丝：({{ personal.follower_count }})</span></div>
-				<div style="font-size:12px;">中国：{{ personal.province }}</div>
-				<div style="font-size:12px;">专注于：摄影、摄影、摄影</div>
-				<div style="width:55px;height:20px;border:1px solid #424242;line-height:20px;text-align:center;margin-top:30px;float:right">关注</div>
-			</div>
-			<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:120px;height:120px;margin-top:10px;margin-left:30px;border:1px solid #ccc;float:left;background:#f2f2f2;"><img src="{{ personal.coverkey }}"/></div>
-		</div>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:400px;height:110px;margin-top:3px;border:1px solid #ccc">
-			<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:340px;height:95px;background:#f2f2f2;margin-top:10px;margin-left: 30px;border:1px solid #ccc;float:left">{{ personal.introduction }}</div>
-		</div>
-	</div>
-	<div id="personal_right_center" style="overflow:hidden;position:relative;width:210px;min-height:420px;float:right;margin-top:21%;">
-		<div id="personal_right_center" style="overflow:hidden;position:relative;width:200px;height:200px;background:#444242;float:right">
-			<div id="personal_right_center" style="overflow:hidden;position:relative;width:140px;height:100px;background:#f2f2f2;margin-top:30px;margin-left: 50px;"><a href="/content/index/{{personal.cans_id}}"><img src="{{ personal.coverkey }}"/></a></div>
-			<div style="overflow:hidden;position:relative;background:#f2f2f2;margin-top:5px;margin-left: 90px;width:80px;">
-				<h4>作品集</h4>
-			</div>
-		</div>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:15px;border:1px solid #ccc">
-			<h4>发布作品</h4>
-		</div>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:48%;border:1px solid #ccc">
-			<h4>他的关注</h4>
-		</div>
-		<div id="personal_right_bottom" style="overflow:hidden;position:relative;width:130px;height:30px;background:#f2f2f2;float:right;margin-top:3px;border:1px solid #ccc">
-			<h4>他的收藏</h4>
-		</div>
-	</div>
+    <div id="personal_left" class="personal-left">
+        <a id="personal_right_bottom" class="personal-left-a" href="/content/choose_bg/">
+            <h4>页面管理</h4>
+        </a>
+        <div id="personal_right_bottom" class="brand_detials" style="margin-top: 35px;">
+            <div id="personal_right_bottom" class="detials1">
+                <div style="font-size:14px;">{{ personal.author }}
+                    <span style="font-size:10px">关注：({{ personal.favorite_count }})  粉丝：({{ personal.follower_count }})</span>
+                </div>
+                <div style="font-size:12px;">中国：{{ personal.province }}</div>
+                <div style="font-size:12px;">专注于：摄影、摄影、摄影</div>
+                <div class="contern"><a class="personal_author">关注</a></div>
+                <div class="contern"><a>私信</a></div>
+                <div class="contern"><a class="personal_share">分享</a></div>
+            </div>
+            <div id="personal_right_bottom" class="personal_coverkey">
+                <img src=""/>
+            </div>
+        </div>
+        <div id="personal_right_bottom" class="brand_name"style="width: 70px;height: 122px;float: left;">
+            <ul>
+                <li class="li">作品</li>
+                <li class="li">blog</li>
+                <li class="li">项目</li>
+                <li class="li">关注</li>
+                <li class="li">收藏</li>
+            </ul>
+        </div>
+        <div id="personal_right_bottom" class="introduct" style="width: 327px;height: 120px;float: left;">
+            <h3>关于他</h3>
+            <div id="personal_right_bottom" class="introduction" style="margin: 0 auto;width: 305px;height: 98px;"></div>
+        </div>
+        <div id="personal_right_bottom" class="introduct" style="width: 398px;height: 120px;float: left;">
+            <h3>LC摄影LC摄影LC摄影LC摄影</h3>
+            <div id="personal_right_bottom" class="introduction" style="margin: 0 auto;width: 375px;height: 98px;">LC摄影LC摄影LC摄影</div>
+        </div>
+    </div>
+    <div id="personal_right_center" class="center_detials1">
+        <div id="personal_right_bottom" class="works4">
+            <h4>他的博客</h4>
+        </div>
+        <div>
+            <div id="personal_right_center" class="center11">
+                <div class="works11">
+                    <a href="">博客名称</a>
+                </div>
+                <div id="personal_right_center" class="center22">
+                    <a href="/content/index/{{personal.cans_id}}">
+                        <img src="{{ personal.coverkey }}"/>
+                    </a>
+                </div>
+                <div class="works11">
+                    <h5>20个字以内的简介···</h5>
+                </div>
+                <div class="works11">
+                    <ul>
+                        <li><span>来自：<a>亮亮</a></span></li>
+                        <li><span>2012/12/12</span></li>
+                        <li style="width:80px"><a>24评论</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="personal_right_center" class="center11">
+                <div class="works11">
+                    <a href="">博客名称</a>
+                </div>
+                <div id="personal_right_center" class="center22">
+                    <a href="/content/index/{{personal.cans_id}}">
+                        <img src="{{ personal.coverkey }}"/>
+                    </a>
+                </div>
+                <div class="works11">
+                    <h5>20个字以内的简介···</h5>
+                </div>
+                <div class="works11">
+                    <ul>
+                        <li><span>来自：<a>亮亮</a></span></li>
+                        <li><span>2012/12/12</span></li>
+                        <li style="width:80px"><a>24评论</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="personal_right_center" class="center11">
+                <div class="works11">
+                    <a href="">博客名称</a>
+                </div>
+                <div id="personal_right_center" class="center22">
+                    <a href="/content/index/{{personal.cans_id}}">
+                        <img src="{{ personal.coverkey }}"/>
+                    </a>
+                </div>
+                <div class="works11">
+                    <h5>20个字以内的简介···</h5>
+                </div>
+                <div class="works11">
+                    <ul>
+                        <li><span>来自：<a>亮亮</a></span></li>
+                        <li><span>2012/12/12</span></li>
+                        <li style="width:80px"><a>24评论</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="personal_right_center" class="center_detials1">
+        <div id="personal_right_bottom" class="works4">
+            <a style="display:block;width:85px;height:30px;border:1px solid #aaa;position: relative;
+float: left;font-size:14px">他的作品</a>
+            <a style="display:block;width:40px;height:30px;border:1px solid #aaa;position: relative;
+float: left;">上传</a>
+        </div>
+        <div>
+            <div id="personal_right_center" class="center11">
+                <div class="works11">
+                    <a href="">作品名称</a>
+                </div>
+                <div id="personal_right_center" class="center22">
+                    <a href="/content/index/{{personal.cans_id}}">
+                        <img src="{{ personal.coverkey }}"/>
+                    </a>
+                </div>
+                <div class="works11">
+                    <ul>
+                        <li><span>作品类型：<a>#油画</a></span></li>
+                        <li style="width:80px;position:relative;float:right;"><a>主题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="personal_right_center" class="center11">
+                <div class="works11">
+                    <a href="">作品名称</a>
+                </div>
+                <div id="personal_right_center" class="center22">
+                    <a href="/content/index/{{personal.cans_id}}">
+                        <img src="{{ personal.coverkey }}"/>
+                    </a>
+                </div>
+                <div class="works11">
+                    <ul>
+                        <li><span>作品类型：<a>#油画</a></span></li>
+                        <li style="width:80px;position:relative;float:right;"><a>主题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="personal_right_center" class="center11">
+                <div class="works11">
+                    <a href="">作品名称</a>
+                </div>
+                <div id="personal_right_center" class="center22">
+                    <a href="/content/index/{{personal.cans_id}}">
+                        <img src="{{ personal.coverkey }}"/>
+                    </a>
+                </div>
+                <div class="works11">
+                    <ul>
+                        <li><span>作品类型：<a>#油画</a></span></li>
+                        <li style="width:80px;position:relative;float:right;"><a>主题</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="personal_right_center" class="center_detials3">
+        <div class="works5">
+            <h5>项目管理</h5>
+        </div>
+        <div class="works6">
+            <a class="title_a">关注的</a>
+            <a class="title_a">完成的</a>
+            <a class="title_a">发起的</a>
+        </div>
+        <div id="personal_right_center" class="center13" style="width: 600px;">
+            <div class="centerimg">
+                <div id="personal_right_center" class="center23">
+                    <a href="">
+                        <img id="img1" class="img" src="/statics/img/01.jpg"/>
+                    </a>
+                    <a style="display:block;position:relative;float:left" href="">名称</a>
+                    <a style="display:block;position:relative;float:right" class="personal_go">通过审核</a>
+                </div>
+                <div id="personal_right_center" class="center23">
+                    <div class="img" style="border:1px solid #aaa;height:75px">
+                    </div>
+                    <div style="overflow: hidden;">
+                        <span style="display:block;position:relative;float:left" href="">发起人：</span>
+                        <a style="display:block;position:relative;float:right" href="">亮</a>
+                        <span style="display:block;position:relative;float:left" href="">创作区</span>
+                    </div>
+                    <div style="overflow: hidden;">
+                        <span style="display:block;position:relative;float:left" href="">for：</span>
+                        <a style="display:block;position:relative;float:left" href="">名称2</a>
+                        <a style="display:block;position:relative;float:right" href="">35</a>
+                        <span style="display:block;position:relative;float:right" href="">作品数：</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

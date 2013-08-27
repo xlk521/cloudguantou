@@ -9,6 +9,80 @@
 .contents_list_button img{position:absolute;top:140px}
 .contents_list_right{position:relative;min-height:450px;float:left;}
 </style>
+<script>
+/*分享，收藏，评论*/
+var post_url="";
+/*分享.personal_content_share*/
+$('.personal_content_share').live('click',function(e){// 
+    var suid=$(this).attr('id');//获取其id,此id与作者id相同
+    var param={suid:suid,message:"personal_content_share"};//发送到后台的参数
+    $.ajax({
+        type:'POST',
+        url:post_url,
+        dataType:'json',
+        data:param,
+        cache:false,
+        success:function(response){//返回分享数share_num
+            alter("分享成功!");
+            $(this).css({"background":"#eae"}).html("已分享  "+msg.share_num);
+        }
+    });
+});
+
+/*收藏.personal_content_save*/
+$('.personal_content_save').live('click',function(e){// 
+    var suid=$(this).attr('id');//获取其id,此id与作者id相同
+    var param={suid:suid,message:"personal_content_save"};//发送到后台的参数
+    $.ajax({
+        type:'POST',
+        url:post_url,
+        dataType:'json',
+        data:param,
+        cache:false,
+        success:function(response){
+            alter("分享成功!");
+            $(this).css({"background":"#eae"}).html("已收藏");
+        }
+    });
+});
+//评论的限制
+$('.personal_comment').keyup(function(e){//鼠标按键：up响应
+        var title=$(this).val();//获取标题
+        //提示区域：<span id="personal_commentlog">1~300字</span>
+        if(title.length>300){
+            $('#personal_commentlog').css({'color':'#FFB2B0'}).html('超出字数限制');
+        }//如果标题超出限定长度，提示错误
+        else{
+            $('#personal_commentlog').css({'color':'#69BC42'}).html('已经输入'+title.length+'个字');
+        }
+    });
+/*评论.personal_content_comment*/
+$('.personal_content_comment').live('click',function(e){// 
+    var suid=$(this).attr('id');//获取其id,此id与作者id相同
+    //评论框的id="personal_comment"
+    var comment=$(".personal_comment").val();
+    if(comment.length>300){
+        $('#personal_commentlog').css({'color':'#FFB2B0'}).html('超出字数限制');
+    }
+    else{
+        var param={suid:suid,message:"personal_content_comment",comment:comment};//发送到后台的参数
+        $.ajax({
+            type:'POST',
+            url:post_url,
+            dataType:'json',
+            data:param,
+            cache:false,
+            success:function(response){
+                alter("评论成功!");
+                //品论显示区域class="comment_of_personal"
+                var model="";//评论区域的插入模版
+                $.template("personal_model",model);
+                $.tmpl( "personal_model",msg).prependTo( ".comment_of_personal" );
+            }
+        });
+    }
+});
+</script>
 {% endblock %}
 {% block keydown %} onkeydown="keyDown()"{% endblock %}
 {% block content %}

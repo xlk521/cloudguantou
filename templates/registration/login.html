@@ -1,50 +1,74 @@
-{% extends "login_base.html" %}
-{% block title %}登录{% endblock %}
-{% block index %}
-<div id="content_login_divspan4">
-	<form id="margin_left15" action ="{%url django.contrib.auth.views.login %}" method="post">
-		{% csrf_token %}
-		<fieldset id="margin_left25" class="control-group success">
-			<div class="control-group">
-				<div class="controls">
-					<div class="rightside_text"><b>使用邮箱登录</b></div>
-				</div>
-			</div>
-			<div id="margin_top-5" class="control-group"><strong>用户名&nbsp;</strong>
-				<label class="control-label">{{form.username.label_tag}}</label>
-				<div class="controls">
-					{{ form.username }}
-					<div id="id_usernameTip" class="onShow">请输入用户名</div>
-					{% if form.username.errors %}
-					<p id="err_msg" class="errmsg">{{ form.username.errors|join:", " }}</p>
-					{% else %}
-					<p id="err_msg">&nbsp;</p>
-					{% endif %}</div>
-			</div>
-			<div id="margin_top-10"><strong>密码&nbsp;</strong>
-				<label class="control-label">{{ form.password.label_tag }}</label>
-				<div class="controls">{{ form.password }}
-					<div id="id_passwordTip" class="onShow">请输入密码</div>
-					{% if form.password.errors %}
-					<p id="err_msg" class="errmsg">{{ form.password.errors|join:", " }}</p>
-					{% else %}
-					<p id="err_msg">&nbsp;</p>
-					{% endif %}</div>
-				{% if login_failed %}p 用户名或密码错误。
-				{% endif %}</div>
-			<div id="margin_top-10">
-				<div class="controls">
-					<label>
-						<input type="checkbox" style="margin-top:-2px"/>
-						<font color="#7cbe31">&nbsp;自动登录 |</font><a id="link-forgot-passwd" href ="{% url auth_password_reset %}">忘记密码</a></label>
-				</div>
-			</div>
-			<div id="margin_top15">
-				<div class="controls">
-					<button id="button_color" type="submit" class="btn btn-success"><strong>&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;</strong></button>
-				</div>
-			</div>
-		</fieldset>
-	</form>
+{% extends "base.html" %}
+{% block title %}个人信息{% endblock %}
+{% block headright %}
+{% endblock %}
+{% block link %}
+<script type="text/javascript" src="/statics/js/personal_works_details_base.js"charset="UTF-8"></script>
+{% endblock %}
+{% block head %}
+<style type="text/css">
+.bar {height:18px;  background:green;}
+.B_i_con_li2{min-height: 33px;}
+.B_i_con_li2 ul li{margin-top: 0px;}
+</style>
+{% endblock %}
+{% block content %}
+<div id="mycans"> {% block baseInfoSet %}{% endblock %}
+    <div id="mycans_right">
+        <div class="mycans_div">
+            <div class="mycans_tit">
+                <h3>基本信息</h3>
+            </div>
+            <div id="B_i_con">
+                <form action="" method="post" id="submit_form">
+                    {% csrf_token %}
+                    <ul style="padding-top:20px;padding-bottom:30px;overflow:hidden">
+                        {% block content_works %}{% endblock %}
+                        <li class="B_i_con_li1">名号：</li>
+                        <li class="B_i_con_li2"> {{ form.nickname }}
+                            {% if form.nickname.errors %}
+                            <p id="err_msg" class="errmsg">{{ form.nickname.errors|join:", " }}</p>
+                            {% else %} <span id="id_nicknameTip" class="onShow">xlk</span> {% endif %} </li>
+                        <li class="B_i_con_li1">头像：</li>
+                        <li class="B_i_con_li2">
+                            <div >
+                                <label style="width:300px;height:300px;overflow:hidden;"> <img id="user-head" src="/statics/img/picture_load.gif" style="float:left ;width:300px;height:300px;"/> </label>
+                            </div>
+                        </li>
+                        <li class="B_i_con_li1">性别：</li>
+                        <li class="B_i_con_li2"> {{ form.gender }}
+                            {% if form.gender.errors %}
+                            <p id="err_msg" class="errmsg">{{ form.gender.errors|join:", " }}</p>
+                            {% endif %} </li>
+                        <li class="B_i_con_li1" style="display:none"></li>
+                        <li class="B_i_con_li2" style="display:none">
+                            <input type="hidden" name="x1" value="" />
+                            <input type="hidden" name="y1" value="" />
+                            <input type="hidden" name="x2" value="" />
+                            <input type="hidden" name="y2" value="" />
+                            <input type="hidden" name="img_url" value="">
+                        </li>
+                        <li class="B_i_con_li1">所在地：</li>
+                        <li class="B_i_con_li2"> {{ form.province }}
+                            <select name="city" id="id_city">
+                                <option>--</option>
+                            </select>
+                            {% if form.province.errors %}
+                            <p id="err_msg" class="errmsg">{{ form.province.errors|join:", " }}</p>
+                            {% endif %} </li>
+                        <li class="B_i_con_li1">个人简介：</li>
+                        <li class="B_i_con_li2"> {{ form.introduction }}
+                            {% if form.introduction.errors %}
+                            <p id="err_msg" class="errmsg">{{ form.introduction.errors|join:", " }}</p>
+                            {% else %} <span id="id_introductionTip" class="onShow"></span> {% endif %} </li>
+                        <li class="B_i_con_li1"></li>
+                        <li class="B_i_con_li2">
+                            <button type="submit" value="确定" class="B_i_con_btn"> <strong>&nbsp;&nbsp;完&nbsp;&nbsp;&nbsp;成&nbsp;&nbsp;</strong> </button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -18,12 +18,14 @@ REDIRECT_URI = settings.SINA_CALLBACK
 
 @require_http_methods(["GET"])
 def sinaauth(request):
+    #新浪授权
     client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=REDIRECT_URI)
     url = client.get_authorize_url()
     return HttpResponseRedirect(url)
     
 @require_http_methods(['GET'])
 def sinacallback(request):
+    #新浪回调函数
     code = request.GET.get('code', False)
     if code:
         client = APIClient(app_key=APP_KEY, app_secret=APP_SECRET, redirect_uri=REDIRECT_URI)

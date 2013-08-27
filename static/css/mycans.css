@@ -1,0 +1,9 @@
+.contents_list_button{position:relative;width:20px;min-height:450px;float:left;z-index:100;background:#FFF;border-right-color:#aaa;border-right-style:solid;border-right-width:1px;overflow:hidden;}
+.contents_list_a{position:relative;width:50px;min-height:450px;float:left;z-index:10;background:#FFF}
+.contents_list_button img{position:absolute;top:140px}
+.contents_list_right{position:relative;min-height:450px;float:left;}
+
+.body_contents_list{overflow:hidden;position:absolute;min-width:1210px;min-height:450px;width:100%;top:45px}
+.personal_list1{position:relative;width:740px;min-height:450px;float:left;background-color:white}
+.personal_list1_left{position:relative;width:24px;float:left;z-index:10;background-color:#FFF;border-right:1px solid #aaa;min-height:450px}
+.persoanl_list1_work{position:relative;width:665px;float:left;z-index:10;background-color:#FFF}

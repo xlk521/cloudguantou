@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %}激活您的邮箱{% endblock %}
+{% block link %}
+<script type="text/javascript" src="/statics/js/registration_complete.js" charset="UTF-8"></script>
+{% endblock %}
 {% block content %}
 <div style="padding-top:100px;" class="container">
 	<div style="font-size:20pt">
@@ -9,26 +12,4 @@
 		<p><b id="changenum">6</b>秒后即将跳转到下一个界面，如无跳转请点击<a href="/authorize/identity/"> <b> 此处连接 </b></a>。</p>
 	</div>
 </div>
-<script>
-var num=6;
-function time_one(){
-	$(this).oneTime(1000,function(){
-		time_one(num);
-	});
-	turnonther(num);
-	num=num-1;
-}
-function turnonther(num){
-	var myA = document.getElementById("changenum");//myA.innerText
-	console.log(myA);
-	myA.innerText=num;
-	if(num==1){
-		$(this).stopTime();
-		window.location.href="/authorize/identity/";
-	}
-}
-$(document).ready(function(){
-	time_one();
-});
-</script> 
 {% endblock %}

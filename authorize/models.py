@@ -183,8 +183,10 @@ class SINAProfileManager(models.Manager):
 class SINAProfileModel(models.Model):
     class Meta:
         verbose_name_plural = '新浪用户信息'
-
+    
+    #统一的信息，一对一的
     cans_profile = models.OneToOneField(UserProfile)
+    #
     access_token = models.CharField('access_token', max_length=32, blank=True)
     expires_in = models.IntegerField("过期时间", blank=True)
     uid = models.CharField(max_length=32, primary_key=True)

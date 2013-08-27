@@ -166,7 +166,7 @@ def get_first_letter(name):
 
 def convertjson(result):
     try:
-        result =  json.dumps(result, ensure_ascii=False, separators=(',',':'), cls=DjangoJSONEncoder)      
+        result =  json.dumps(result, ensure_ascii=False, separators=(',',':'), cls=DjangoJSONEncoder)
     except Exception as e:
         print(e)
     return result

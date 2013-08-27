@@ -25,21 +25,29 @@ var csrftoken = getCookie('csrftoken');
 
 //作者目录页右半部分的模版
 //中间简介区域的模版
-var contents_center='<div id="contents_list_center" style="position:absolute;width:450px;min-height:450px;background:#fff;left:0px"><div id="contents_centerleft" style="position:relative;width:400px;height:140px;top:50%;margin:auto;"></div></div>';
+var contents_center='<div id="contents_list_center" style="position:absolute;width:450px;min-height:450px;background:#fff;left:0px"><div id="contents_centerleft" style="position:relative;width:400px;height:140px;top:20%;margin:auto;"></div></div>';
 var contents_center_up='<div style="overflow:hidden;height:60px;border-bottom-color:#aaa;border-bottom-style:solid;border-bottom-width:1px;">'+
     '<ul><li style="width:150px;float:left;margin-top:15px"><h2 style="font-size:20px;margin-left:35px;">${title} </h2></li>'+
     '<li style="width:50px;float:left;margin-top:17px"><h3 style="font-size:16px;color:#aaa;">摄影</h3></li>'+
     '<li style="float:left;margin-top:28px"><span style="font-size:16px;color:#AAA">创作时间：${createtime}</span></li></ul></div>';
-var contents_center_down='<div style="overflow:hidden;height:90px;">'+
+var contents_center_down='<div style="overflow:hidden;height:90px;border-bottom: 1px solid #AAA;">'+
     '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${description}<a>阅读更多</a></p></div>';
+var contents_center_down2='<div style="overflow:hidden;height:170px;border: 1px solid #AAA;margin-top: 20px;">'+
+    '<div><div style="width: 100px;height: 166px;border: 1px solid #aaa;position:relative;float:left">'+
+    '<img src="" style="width:100px;height:100px"/><a style="display:block;width:40px;height:30px;border:1px solid #aaa">'+
+    'Nike</a><a style="width:100px;height:26px;background:#aaa;display:block;">查看品牌商主页</a></div><div style="position:relative;float:left;width:280px;height:160px;border:1px solid #aaa;margin-left: 10px;">'+
+    '<span style="height:30px;padding: 0;line-height: 30px;text-align: center;">来自项目：Nike新广告设计</span>'+
+    '<span style="width:2770px;height:100px;border:1px solid #aaa;display: block;">项目简介：</span>'+
+    '<button style="position:relative;float:right">查看更多</button></div></div></div>';
 $.template("contents_center_left",  contents_center );
 $.template("contents_center_leftup",  contents_center_up );
 $.template("contents_center_leftdown",  contents_center_down );
+$.template("contents_center_leftdown2",  contents_center_down2 );
 //右边图片部分的模版
 var contents_rightimg='<div id="contents_list_img2" class="contents_list_img2" style="position:absolute;min-height:450px;background:#fff;left:700px;border-left-color:#AAA;border-left-style:solid;border-left-width:1px;"></div>';
 var contents_rightimg_head='<div style="height:40px;background:#fff;line-height:40px;">'+
     '<span style="float:left;background:#aaa;font-size:19px;margin-left:5px">【照片的名称】</span>'+
-    '<a style="float:right;margin-top:10px;margin-right:5px"><img src="/statics/img/contents_cart.GIF"></a><a style="float:right;margin-top:20px;margin-right:5px"><img src="/statics/img/contents_share.GIF"></a></div>';
+    '<a style="float:right;margin-top:10px;margin-right:5px"><img src="/statics/img/contents_cart.GIF"></a><a style="float:right;margin-top:20px;margin-right:5px" class="personal_content_share"><img src="/statics/img/contents_share.GIF"></a></div>';
 var contents_rightimg_center='<div id="list_img" style="padding:5px;"><a><img  class="contents_changeimg" src=${url} style="min-height:450px;margin:auto;display:block;"></a></div>';
 var contents_rightimg_footul='<div style="height:25px;background:#fff;"><ul id="contents_rightimg_ul"></ul></div>';
 var contents_rightimg_footliwork='<li class="dropdown" ><a style="float:left;margin-left:5px;" data-toggle="dropdown" href="#" class="dropdown-toggle">'+
@@ -50,9 +58,9 @@ var contents_rightimg_footliwork='<li class="dropdown" ><a style="float:left;mar
 var contents_rightimg_footliadvise='<li style="float:right;margin-right:5px"><a href="#myModal_p" data-toggle="modal" data-keyboard="false" data-backdrop="false" class="dropdown-toggle">'+
     '<img class="contents_adviceimg1" src="/statics/img/contents_work_advise.GIF" style="height:22px"></a><div id="myModal_p" class="modal" style="width:315px;display:none;position:absolute;bottom:15px;right:35px" >'+
     '<div class="modal-header"><a data-dismiss="modal" style="margin-top:-5px" class="close">×</a><h5>评论</h5></div><div class="modal-body"><p>暂无评论</p><hr>'+
-    '<textarea id="textarea" rows="2" class="input-xlarge"></textarea> <button class="btn">提交</button></div></div></li>';
-var contents_rightimg_footliattention='<li style="float:right;margin-right:5px" class="dropdown"><a data-toggle="dropdown" href="#" class="dropdown-toggle"><img src="/statics/img/contents_work_attention.GIF" style="height:22px"></a>'+
-    '<ul id="list_work_attention" style="margin-top:-65px;min-width:300px;margin-left:-300px" class="dropdown-menu"><li><div><div class="modal-header"><a data-dismiss="modal" style="margin-top:-5px" class="close">×</a><h5>收藏成功</h5></div></div></li></ul></li>';
+    '<textarea id="作品id" class="personal_comment" rows="2" class="input-xlarge"></textarea> <button id="作品id" class="btn personal_content_comment">提交</button></div></div></li>';
+var contents_rightimg_footliattention='<li style="float:right;margin-right:5px" class="dropdown"><a  class="personal_content_save"><img src="/statics/img/contents_work_attention.GIF" style="height:22px"></a>'+
+    '</li>';
 $.template("contents_list_rightimg",  contents_rightimg );
 $.template("contents_list_rightimg_head",  contents_rightimg_head );
 $.template("contents_list_rightimg_center",  contents_rightimg_center );
@@ -94,6 +102,7 @@ function contents_right_left(works_msg){
     $.tmpl( "contents_center_left").appendTo( "#contents_list_right" );
     $.tmpl( "contents_center_leftup",works_msg).appendTo( "#contents_centerleft" );
     $.tmpl( "contents_center_leftdown",works_msg).appendTo( "#contents_centerleft" );
+    $.tmpl( "contents_center_leftdown2",works_msg).appendTo( "#contents_centerleft" );
     center_wid=$("#contents_list_center").width();//获取当前右侧区域的大小
     leftnum=center_wid;
     contents_nextnum[tmpl_arraynum]=center_wid;//用来存放每个模块的宽度

@@ -37,11 +37,12 @@ $.template("cart_bottom",mycart_bottom );
 
 //订单填写页的模版
 //地址模版
+/*
 var order_write_addressli='<li class="t-red" id="order_write_adli"></li>';
 var order_write_addressspan='<span class="tip">寄送至</span>';
 var order_write_addresscontent='<a class="delete">删除</a><input class="radio" type="radio" checked="checked" />'+
-	'<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>'+
-	'<em class="em1">1854545454</em><a class="dft">设为默认地址</a>';
+    '<label class="label1">北京市 朝阳区 西大望路1号SOHO现代城A座562号  (遥远 收)</label>'+
+    '<em class="em1">1854545454</em><a class="dft">设为默认地址</a>';
 $.template("order_write_li",  order_write_addressli );
 $.template("order_write_span",  order_write_addressspan );
 $.template("order_write_content",  order_write_addresscontent );
@@ -87,6 +88,8 @@ $.template("product_other_work",product_otherwork);
 //product同系列商品的模版
 var product_other_works='<div class="product_otherdiv" style="float:left;position:absolute"><a ><img src="/statics/IMG/xq_cps1.jpg" width="110" height="83" /></a></div>';
 $.template("product_otherworks", product_other_works );
+*/
+
 //homepage页面的模版
 /*
 var num1='<li><div class="project-cover"><a><img class="project-cover-img" src="/statics/IMG/cp2.jpg" width="221" height="166" style="opacity: 1; "/></a>'+
@@ -95,7 +98,7 @@ var num1='<li><div class="project-cover"><a><img class="project-cover-img" src="
 $.template("tmpl_num1",num1);
 */
 
-//
+/*
 //product产品页的模版生成函数
 function product_details(){
     $.tmpl( "product_list_h30").appendTo( "#h30" );
@@ -131,14 +134,14 @@ function order_write(){
     for(var i=0;i<2;i++){
         $.tmpl( "order_write_li").appendTo( "#order_write_address" );
         if(i==0){
-        	$.tmpl( "order_write_span").appendTo( "#order_write_adli" );
+            $.tmpl( "order_write_span").appendTo( "#order_write_adli" );
         }
         $.tmpl( "order_write_content").appendTo( "#order_write_adli" );
         $('#order_write_adli').removeAttr('id');
     }
     //作品模板
     for(var i=0;i<2;i++){
-    	$.tmpl( "order_write_works").appendTo( "#order_write_work" );
+        $.tmpl( "order_write_works").appendTo( "#order_write_work" );
     }
 }
 
@@ -350,6 +353,9 @@ function product_pay(add_nav){//物品数量与资金的关系函数
     myA.innerText=money_pay;
     $(".ddinputw60h21").attr('value',product_num);
 }
+*/
+
+
 //homepage界面的添加图片
 /*
 function homepage_addimg(){
@@ -362,6 +368,7 @@ function homepage_addimg(){
 
 
 /*base.html登录与注册的js功能实现*/
+/*
 function show_login(){
     console.log("123");
     $("#login_div").show("normal");
@@ -371,20 +378,24 @@ function show_login(){
     $("#register_div").show("normal");
     $("#login_div").hide("normal");
  }
-function reload_this()//刷新当前页
+ function reload_this()//刷新当前页
 {
     window.location.reload();
 }
 function creater_add(){
     window.location.href ="/accounts/register/";
 }
+*/
+
+
 /*所有界面的功能实现*/
 $(document).ready(function(){
     //author_rightshow();
-    $(".project-cover-img").hover(function(){
-    	$(this).css({opacity: 0.8});
+    /*
+$(".project-cover-img").hover(function(){
+        $(this).css({opacity: 0.8});
     },function(){
-    	$(this).css({opacity: 1});
+        $(this).css({opacity: 1});
     });
     $("#logo_registbutton").click(function(){
         creater_add();
@@ -401,7 +412,11 @@ $(document).ready(function(){
     $.formValidator.initConfig({formid:"login_form",debug:false,submitonce:true,
         onerror:function(msg,obj,errorlist){alert(msg);}
     });
-    $("#id_username")
+    */
+    
+   
+    /*
+ $("#id_username")
         .formValidator({onshow:"请输入用户名！",onfocus:"用户名4~30字符！"})
         .inputValidator({min:4,max:30,onerror:"用户名非法！"})
         .regexValidator({regexp:"username",datatype:"enum",onerror:"格式错误！"});
@@ -444,7 +459,7 @@ $(document).ready(function(){
         .inputValidator({min:1,max:200,onerror:"昵称至多100个字！"})
     
     
-    /**/
+    */
     
     //增加或者减少购买物品数量的按钮事件
     $(".ddnumbera1").mousedown(function(){
@@ -483,6 +498,7 @@ $(document).ready(function(){
         money=parseFloat(myA.innerText);
         product_others();
     });
+    /*
     var files;
     $("#album-upload").fileupload({
         autoUpload: true,
@@ -505,7 +521,7 @@ $(document).ready(function(){
             var obj = jQuery.parseJSON(data.jqXHR.responseText);
             console.log( obj.photo_key );
             $("#user-head").attr("src","/authorize/head/"+obj.photo_key);
-            **/
+            **//*
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -533,6 +549,8 @@ $(document).ready(function(){
         }).appendTo($('#portfolio'));
         $('#portfolio').submit();
     });
+    */
+
     $(window).resize(function() {//重置网页大小的监听函数
         console.log("-------------------------------------------------------------------------------------------------------------");
         $("#author_content_right").show("normal",function(){author_resize("/content/content_follower/",'follower');});//作者列表页的设计
